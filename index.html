@@ -66,36 +66,76 @@
         dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadd<br><br>
 
         <!-- <h3 id="add-future-todo">Add Future todo:</h3> -->
-        <button onclick="loadPlan()"> Load Plan </button><br><br>
+        <button onclick="loadPlan()"> Load Saved </button><br><br>
 
+        <span>Add Task (date, todo & color)</span><br>
+        <div id="add-todo-container">
         <input type="date" id="date-input" name="date" autocomplete="off"/>
-
 
         <input id="add-todo-text" placeholder="Add todo text..." type="text" name="text"/><br><br>
 
-        <input id="add-todo-date" type="text" name="text"/>
+        <!-- <input id="add-todo-date" type="text" name="text"/> -->
+
+        <form id="color-drop-down">
+          <label for="colors"></label>
+          <select name="colors" id="colors">
+            <option id="gray-color" value="grayColor"></option>
+            <option id="yellow-color" value="yellowColor"></option>
+            <option id="green-color" value="greenColor"></option>
+            <option id="blue-color" value="blueColor"></option>
+            <option id="purple-color" value="purpleColor"></option>
+            <option id="red-color" value="redColor"></option>
+          </select>
+        </form>
+        </div><br>
 
         <pre id="textarea" contenteditable></pre>
 
         <button onclick="addTaskToList()"> Add to List </button><br><br>
 
 
-        <span>Dates & Todos</span><br>
+        <span>Current Plan</span><br>
 
-          <!-- <input id="todo-one-date" class="todo-list" type="text" placeholder="Next date..." name="text"/>
-          <input id="todo-one-text" class="todo-list" type="text" placeholder="Planned todo..." name="text"/><br> -->
-          <textarea id="todo-one-date" class="todo-date" type="text" placeholder="Next date..." name="text"></textarea>
-          <textarea id="todo-one-text" class="todo-text" type="text" placeholder="Planned todo..." name="text"></textarea><br>
-          <textarea id="todo-two-date" class="todo-date" type="text" name="text"></textarea>
-          <textarea id="todo-two-text" class="todo-text" type="text" name="text"></textarea><br>
-          <textarea id="todo-three-date" class="todo-date" type="text" name="text"></textarea>
-          <textarea id="todo-three-text" class="todo-text" type="text" name="text"></textarea><br>
+          <div id="todo-container">
+            <textarea id="todo-one-date" class="todo-date" type="text" placeholder="Next date..." name="text"></textarea>
+            <textarea id="todo-one-text" class="todo-text" type="text" placeholder="Planned todo..." name="text"></textarea>
+            <div class="todo-color"></div>
+          </div>
+
+          <!-- <form action="/action_page.php"> -->
+            <!-- <form id="color-drop-down">
+            <label for="colors"></label>
+            <select name="colors" id="colors">
+              <option id="gray-color" value="rgb(150,150,150)">Gray</option>
+              <option id="yellow-color" value="rgb(255,204,0)">Yellow</option>
+              <option id="green-color" value="rgb(51,153,102)">Green</option>
+              <option id="blue-color" value="rgb(0,102,104)">Blue</option>
+              <option id="purple-color" value="rgb(153,51,102)">Purple</option>
+              <option id="red-color" value="rgb(255,64,64)">Red</option>
+            </select> -->
+            <!-- <br><br>
+            <input type="submit" value="Submit"> -->
+          </form>
+          <!-- <br> -->
+            <div id="todo-container">
+            <textarea id="todo-two-date" class="todo-date" type="text" name="text"></textarea>
+            <textarea id="todo-two-text" class="todo-text" type="text" name="text"></textarea>
+            <div class="todo-color"></div>
+          </div>
+          <div id="todo-container">
+            <textarea id="todo-three-date" class="todo-date" type="text" name="text"></textarea>
+            <textarea id="todo-three-text" class="todo-text" type="text" name="text"></textarea>
+            <div class="todo-color"></div>
+          </div>
+
+
 
         <!-- <input type="text" name="text"/>
         <input type="text" name="text"/><br><br> -->
 
-        <button onclick="save()"> Save </button>
-        <button onclick="saveAs()"> Save As </button><br><br>
+        <button onclick="saveAs()"> Save As </button>
+        <button onclick="save()"> Save </button><br><br>
+
         hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
         dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadd
         hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
