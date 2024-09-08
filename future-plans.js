@@ -192,6 +192,7 @@ let textInputValue = document.getElementById('add-todo-text');
 
 const dateCollection = document.getElementsByClassName("todo-date");
 const todoCollection = document.getElementsByClassName("todo-text");
+const todoTextElements = document.querySelectorAll(".todo-text");
 const todoColorCollection = document.getElementsByClassName("todo-color");
 const todoColorElement = document.querySelector(".todo-color");
 const todoColorElements = document.querySelectorAll(".todo-color");
@@ -213,6 +214,7 @@ let blueColor = "rgb(51,102,255)";
 let purpleColor = "rgb(153,51,102)";
 let redColor = "rgb(255,64,64)";
 let colorText;
+let rgbColor;
 
 let returnPickerBackgroundColor = colorPickerSelect.style.backgroundColor;
 let returnListElementBackgroundColor = colorPickerSelect.style.backgroundColor;
@@ -262,7 +264,7 @@ function colorPickerFunction() {
     return returnPickerBackgroundColor;
 }
 
-// Change color on created todoElement
+// Translator: Change background color on todoElement (in construction), with variable value (string)
 function colorPickerElementFunction(todoColorElement) {
     if (todoColorElement.value === "grayColor") {
         todoColorElement.style.backgroundColor = grayColor;
@@ -279,6 +281,7 @@ function colorPickerElementFunction(todoColorElement) {
     }
 }
 
+// Translator: Color text variable to color text string
 function returnRgbColor(colorText) {
     if (colorText === "grayColor") {
         return grayColor;
@@ -295,6 +298,24 @@ function returnRgbColor(colorText) {
     }
 }
 
+// Translator: rgb color to color text string
+function returnDefinedColorText(rgbColor) {
+    if (rgbColor === "rgb(150,150,150)") {
+        return "grayColor";
+    } else if (rgbColor === "rgb(255,204,0)") {
+        return "yellowColor";
+    } else if (rgbColor === "rgb(51,153,102)") {
+        return "greenColor";
+    } else if (rgbColor === "rgb(51,102,255)") {
+        return "blueColor";
+    } else if (rgbColor === "rgb(153,51,102)") {
+        return "purpleColor";
+    } else if (rgbColor === "rgb(255,64,64)") {
+        return "redColor";
+    }
+}
+
+// Color picker drop down (change)
 colorPickerSelect.addEventListener("change", (e) => {
     colorPickerSelect.style.backgroundColor = colorPickerFunction()
 });
@@ -316,7 +337,6 @@ function addTaskToList() {
             //Update HTML to (input order) values
             dateCollection[i].innerHTML = dateInputValue.value;
             todoCollection[i].innerHTML = textInputValue.value;
-            // todoColorCollection[i].innerHTML = colorPickerSelect.value;
             todoColorCollection[i].value = colorPickerSelect.value;
 
             // Change color on created todo element
@@ -352,6 +372,110 @@ function addTaskToList() {
 
     console.log(JSON.stringify(plannedTodos))
 }
+
+// _ _ _
+
+// Edit task
+
+
+        // Select all date fields (textareas) with the class 'todo-date'
+        const dateFields = document.querySelectorAll('.todo-date');
+
+        // Add event listeners to all the created date fields
+        dateFields.forEach(function(field) {
+            field.addEventListener('input', function(event) {
+                const todoIndex = event.target.getAttribute('data-id');  // Get the todo index
+                const key = event.target.getAttribute('data-key');  // Get the key (todo, color, etc.)
+
+                plannedTodos[todoIndex][key] = dateCollection[todoIndex].value;
+
+                console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos));
+            });
+        });
+
+        // Select all date fields (textareas) with the class 'todo-text'
+        const todoFields = document.querySelectorAll('.todo-text');
+
+        // Add event listeners to all the created date fields
+        todoFields.forEach(function(field) {
+            field.addEventListener('input', function(event) {
+                const todoIndex = event.target.getAttribute('data-id');  // Get the todo index
+                const key = event.target.getAttribute('data-key');  // Get the key (todo, color, etc.)
+
+                plannedTodos[todoIndex][key] = todoCollection[todoIndex].value;
+
+                console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos));
+            });
+        });
+
+
+// Select the parent element and the color switcher panel
+const parentDiv = document.getElementById('todo-wrapper');
+const childDivs = parentDiv.querySelectorAll('.todo-color');
+
+const colorSwitcherPanel = document.getElementById('color-switcher-panel');
+const closePanelButton = document.getElementById('close-panel');
+
+const colorOption = document.querySelector('.color-option');
+
+// _ _ _
+
+let dataId;
+
+function getDataId(dataId) {
+    let currentDataId = dataId;
+    console.log("currentDataId = " + currentDataId);
+    return currentDataId;
+}
+
+// _ _ _
+
+// Add event listener to the parent element
+parentDiv.addEventListener('click', function(event) {
+    // Check if the clicked element is a div with the name "color"
+    if (event.target && event.target.getAttribute('name') === 'color') {
+        dataId = event.target.getAttribute('data-id');
+        console.log('Data-id of clicked color div:', dataId);
+
+        // You can add additional logic here
+    }
+});
+
+
+// Add event listener to the parent div (event delegation)
+parentDiv.addEventListener('click', function(event) {
+    if (event.target && event.target.getAttribute('name') === 'color') {
+        // Open the color switcher panel by removing the 'hidden' class
+        colorSwitcherPanel.classList.remove('hidden');
+    }
+});
+
+// Add event listener to close the panel
+closePanelButton.addEventListener('click', function() {
+    plannedTodos[dataId].color = returnDefinedColorText(todoColorCollection[dataId].value);
+    console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos));
+    colorSwitcherPanel.classList.add('hidden');
+});
+
+colorSwitcherPanel.addEventListener('click', function(e) {
+    console.log(e.target.getAttribute('data-color'))
+    console.log(returnRgbColor(e.target.getAttribute('data-color')));
+    getDataId();
+    console.log("dataId (in colorSwitcherPanel) = " + dataId);
+    todoColorCollection[dataId].value = returnRgbColor(e.target.getAttribute('data-color'));
+    todoColorCollection[dataId].style.backgroundColor = returnRgbColor(e.target.getAttribute('data-color'));
+
+    console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos));
+
+});
+
+// Optionally, add logic to close the panel when clicking outside of it
+window.addEventListener('click', function(event) {
+    if (event.target === colorSwitcherPanel) {
+        colorSwitcherPanel.classList.add('hidden');
+    }
+});
+
 
 async function loadPlan() {
     let [fileHandle] = await window.showOpenFilePicker({
