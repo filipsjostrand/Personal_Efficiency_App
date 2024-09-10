@@ -361,6 +361,8 @@ function addTaskToList() {
         if (plannedTodos[j].isEmpty === false) {
         dateCollection[j].innerHTML = plannedTodos[j].date
         todoCollection[j].innerHTML = plannedTodos[j].todo
+        dateCollection[j].value = plannedTodos[j].date
+        todoCollection[j].value = plannedTodos[j].todo
         todoColorCollection[j].value = returnRgbColor(plannedTodos[j].color)
         todoColorCollection[j].style.backgroundColor = returnRgbColor(plannedTodos[j].color)
         }
@@ -377,33 +379,67 @@ function addTaskToList() {
 
 // Edit task
 
+let dataId;
 
+function getDataId(dataId) {
+    let currentDataId = dataId;
+    console.log("currentDataId = " + currentDataId);
+    return currentDataId;
+}
+
+function checkIfDateAndTextAreEmpty() {
+    getDataId(dataId);
+    if (dateCollection[dataId].value === '' && todoCollection[dataId].value === '') {
+        plannedTodos[dataId].date = 'YYYY-MM-DD';
+        plannedTodos[dataId].todo = 'Todo X';
+        plannedTodos[dataId].color = 'Select';
+        todoColorCollection[dataId].style.backgroundColor = 'rgb(221, 221, 221)';
+        plannedTodos[dataId].isEmpty = true;
+    }
+    console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos));
+}
+
+
+        // Date fields
         // Select all date fields (textareas) with the class 'todo-date'
         const dateFields = document.querySelectorAll('.todo-date');
 
         // Add event listeners to all the created date fields
         dateFields.forEach(function(field) {
             field.addEventListener('input', function(event) {
-                const todoIndex = event.target.getAttribute('data-id');  // Get the todo index
+                dataId = event.target.getAttribute('data-id');  // Get the todo index
                 const key = event.target.getAttribute('data-key');  // Get the key (todo, color, etc.)
 
-                plannedTodos[todoIndex][key] = dateCollection[todoIndex].value;
+                getDataId(dataId);
+
+                if (dateCollection[dataId].value !== '') {
+                    plannedTodos[dataId][key] = dateCollection[dataId].value;
+
+                } else if (dateCollection[dataId].value === undefined || dateCollection[dataId].value === null || dateCollection[dataId].value === '') {
+                    checkIfDateAndTextAreEmpty();
+                }
 
                 console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos));
             });
         });
 
-        // Select all date fields (textareas) with the class 'todo-text'
+        // Text fields
+        // Select all text fields (textareas) with the class 'todo-text'
         const todoFields = document.querySelectorAll('.todo-text');
 
-        // Add event listeners to all the created date fields
+        // Add event listeners to all the created text fields
         todoFields.forEach(function(field) {
             field.addEventListener('input', function(event) {
-                const todoIndex = event.target.getAttribute('data-id');  // Get the todo index
+                dataId = event.target.getAttribute('data-id');  // Get the todo index
                 const key = event.target.getAttribute('data-key');  // Get the key (todo, color, etc.)
 
-                plannedTodos[todoIndex][key] = todoCollection[todoIndex].value;
 
+                if (todoCollection[dataId].value !== '') {
+                    plannedTodos[dataId][key] = todoCollection[dataId].value;
+
+                } else if (todoCollection[dataId].value === undefined || todoCollection[dataId].value === null || todoCollection[dataId].value === '') {
+                    checkIfDateAndTextAreEmpty();
+                }
                 console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos));
             });
         });
@@ -420,22 +456,11 @@ const colorOption = document.querySelector('.color-option');
 
 // _ _ _
 
-let dataId;
-
-function getDataId(dataId) {
-    let currentDataId = dataId;
-    console.log("currentDataId = " + currentDataId);
-    return currentDataId;
-}
-
-// _ _ _
-
 // Add event listener to the parent element
 parentDiv.addEventListener('click', function(event) {
     // Check if the clicked element is a div with the name "color"
     if (event.target && event.target.getAttribute('name') === 'color') {
         dataId = event.target.getAttribute('data-id');
-        console.log('Data-id of clicked color div:', dataId);
 
         // You can add additional logic here
     }
@@ -458,10 +483,7 @@ closePanelButton.addEventListener('click', function() {
 });
 
 colorSwitcherPanel.addEventListener('click', function(e) {
-    console.log(e.target.getAttribute('data-color'))
-    console.log(returnRgbColor(e.target.getAttribute('data-color')));
     getDataId();
-    console.log("dataId (in colorSwitcherPanel) = " + dataId);
     todoColorCollection[dataId].value = returnRgbColor(e.target.getAttribute('data-color'));
     todoColorCollection[dataId].style.backgroundColor = returnRgbColor(e.target.getAttribute('data-color'));
 
