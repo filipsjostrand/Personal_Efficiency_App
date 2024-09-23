@@ -506,13 +506,15 @@ function clearAll() {
     console.log("clearAll() körs")
     for (let i = 0; i < dateCollection.length; i++) {
         dateCollection[i].value = '';
+        dateCollection[i].innerHTML = '';
         todoCollection[i].value = '';
+        todoCollection[i].innerHTML = '';
         todoColorCollection[i].style.backgroundColor = 'rgb(228, 228, 228)';
 
         plannedTodos[i].date = 'YYYY-MM-DD';
         plannedTodos[i].todo = 'Todo X';
         plannedTodos[i].color = 'Select';
-        plannedTodos[i].isEmpty = false;
+        plannedTodos[i].isEmpty = true;
 
         console.log("dateCollection[i].value = " + dateCollection[i].value)
         console.log("plannedTodos[i].date = " + plannedTodos[i].date)
