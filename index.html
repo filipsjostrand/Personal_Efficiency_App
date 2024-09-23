@@ -108,8 +108,9 @@
 
             <pre id="textarea" contenteditable></pre>
 
-            <button onclick="addTaskToList()"> Add to List </button><br><br>
+            <button onclick="addTaskToList()"> Add </button><br><br>
 
+            <button id="clear-all">Clear All</button><br><br>
 
             <span>Current Plan</span><br>
             <div id="todo-wrapper">
@@ -136,13 +137,15 @@
           <!-- Hidden color switcher panel -->
           <div id="color-switcher-panel" class="hidden">
             <div id="color-switcher-content">
-                <p>Select a color:</p>
+                <p>Change color:</p>
                 <div class="color-option" style="background-color: rgb(150,150,150);" data-color="grayColor"></div>
                 <div class="color-option" style="background-color: rgb(255,204,0);" data-color="yellowColor"></div>
                 <div class="color-option" style="background-color: rgb(51,153,102);" data-color="greenColor"></div>
                 <div class="color-option" style="background-color: rgb(51,102,255);" data-color="blueColor"></div>
                 <div class="color-option" style="background-color: rgb(153,51,102);" data-color="purpleColor"></div>
                 <div class="color-option" style="background-color: rgb(255,64,64);" data-color="redColor"></div>
+                <p>Clear row:</p>
+                <div class="color-option" id="trash-can"><i class="fa-solid fa-trash-can"></i></div>
                 <button id="close-panel">Close</button>
             </div>
           </div>

@@ -21,12 +21,39 @@ a {
   text-decoration: none;
 }
 
+
+/* Navbar (start) */
+
+#navbar {
+  padding-top: 7px;
+  /* width: 100%; */
+  /* height: 50px; */
+
+  /* Safari */
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
+#todo-div,
+#weekly-div,
+#future-div,
+#timer-div,
+#about-div
+{
+  width: 100%;
+  height: 60px;
+}
+
+/* Navbar (end) */
+
+/* Weekly schedule (start) */
 .grid-day-container {
   display: grid;
   grid-template-columns: auto auto auto auto auto auto auto;
   grid-template-rows: auto 400px;
   gap: 3px;
-  background-color: #68a089;
+  background-color: rgb(137 188 212);
   padding: 3px;
   border-radius: 5px;
 }
@@ -53,6 +80,10 @@ a {
   grid-row-start: 2;
 }
 
+/* Weekly schedule (end) */
+
+
+/* Future plans (start) */
 
 .grid-container {
     display: grid;
@@ -96,26 +127,7 @@ a {
     border: none;
   }
 
-#navbar {
-  padding-top: 7px;
-  /* width: 100%; */
-  /* height: 50px; */
-
-  /* Safari */
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-}
-
-#todo-div,
-#weekly-div,
-#future-div,
-#timer-div,
-#about-div
-{
-  width: 100%;
-  height: 60px;
-}
+/* Remove field - save to file (start) */
 
 #textarea {
   display: flex;
@@ -126,6 +138,8 @@ a {
   border: 2px solid;
   border-color: rgb(65, 105, 65)
 }
+
+/* Remove field - save to file (end) */
 
 .todo-color {
   width: 30px;
@@ -224,11 +238,14 @@ a {
   border: 1px solid #ccc;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   background-color: rgb(32 32 32);
-  padding: 30px;
+  padding-top: 5px;
+  padding-bottom: 15px;
+  padding-left: 30px;
+  padding-right: 30px;
   z-index: 1000;
 }
 
-/* Style for the color options */
+/* Color panel options */
 .color-option {
   width: 50px;
   height: 50px;
@@ -237,20 +254,60 @@ a {
   margin: 5px;
 }
 
-/* Style for close button */
+.color-option i {
+  font-size: 50px;
+  color: rgb(119, 119, 119);
+}
+
+/* close color panel button */
 #close-panel {
   margin-top: 10px;
 }
 
+/* Future plans (end) */
 
+/* Computer screens and larger (start) */
+@media screen and (min-width: 1024px) {
 
+  .color-switcher-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-bottom: 17px;
+  }
 
-/* Mobile screens */
+  #trash-can {
+    display: flex;
+    flex-direction: row;
+  }
+
+  #close-panel {
+    width: 100%;
+    height: 30px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+}
+/* Computer screens and larger (end) */
+
+/* Tablets and larger screens (start) */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+}
+/* Tablets and larger screens (end) */
+
+/* Mobile screens (start) */
 @media screen and (max-width: 767px) {
   #add-todo-text {
     width: 100%;
   }
+
+  #close-panel {
+    width: 100%;
+    height: 26px;
+    margin-top: 15px;
+  }
 }
+/* Mobile screens (end) */
 
 
 /* _ _ _ (scroll functionality with arrows) */

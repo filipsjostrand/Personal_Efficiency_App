@@ -498,6 +498,32 @@ window.addEventListener('click', function(event) {
     }
 });
 
+// _ _ _
+
+let clearAllButton = document.getElementById('clear-all');
+
+function clearAll() {
+    console.log("clearAll() körs")
+    for (let i = 0; i < dateCollection.length; i++) {
+        dateCollection[i].value = '';
+        todoCollection[i].value = '';
+        todoColorCollection[i].style.backgroundColor = 'rgb(228, 228, 228)';
+
+        plannedTodos[i].date = 'YYYY-MM-DD';
+        plannedTodos[i].todo = 'Todo X';
+        plannedTodos[i].color = 'Select';
+        plannedTodos[i].isEmpty = false;
+
+        console.log("dateCollection[i].value = " + dateCollection[i].value)
+        console.log("plannedTodos[i].date = " + plannedTodos[i].date)
+        console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos));
+    }
+}
+
+clearAllButton.addEventListener('click', clearAll);
+
+// _ _ _
+
 
 async function loadPlan() {
     let [fileHandle] = await window.showOpenFilePicker({
