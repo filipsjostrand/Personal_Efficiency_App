@@ -487,13 +487,40 @@ closePanelButton.addEventListener('click', function() {
 // colorSwitcherPanel click
 colorSwitcherPanel.addEventListener('click', function(e) {
     getDataId();
+    console.log("colorSwitcherPanel (dataId) = " + dataId);
     todoColorCollection[dataId].value = returnRgbColor(e.target.getAttribute('data-color'));
     todoColorCollection[dataId].style.backgroundColor = returnRgbColor(e.target.getAttribute('data-color'));
 
-    clearSpecificTodoRowButton.addEventListener('click', clearSpecificTodoRow(dataId));
+    // console.log("e.target.getAttribute('trash-can').style.backgroundColor = 'white' = " + e.target.getAttribute('trash-can').style.backgroundColor = 'white')
+
+    // if (e.target == clearSpecificTodoRowButton) {
+
+    //     alert('Trash can clicked!')
+    //     console.log("colorSwitcherPanel (trash can press)");
+    //     clearSpecificTodoRowButton.addEventListener('click', clearSpecificTodoRow(dataId));
+    // }
 
     console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos));
 });
+
+    clearSpecificTodoRowButton.addEventListener('click', function() {
+        console.log("clearSpecificTodo")
+        getDataId();
+        console.log("clearSpecificTodo (dataId) = " + dataId);
+
+        dateCollection[dataId].value = '';
+        dateCollection[dataId].innerHTML = '';
+        todoCollection[dataId].value = '';
+        todoCollection[dataId].innerHTML = '';
+        todoColorCollection[dataId].style.backgroundColor = 'rgb(228, 228, 228)';
+
+        plannedTodos[dataId].date = 'YYYY-MM-DD';
+        plannedTodos[dataId].todo = 'Todo X';
+        plannedTodos[dataId].color = 'Select';
+        plannedTodos[dataId].isEmpty = true;
+
+        console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos));
+    });
 
 // Optionally, add logic to close the panel when clicking outside of it
 window.addEventListener('click', function(event) {
