@@ -206,6 +206,10 @@ let colorPickerBlue = document.getElementById('blue-color');
 let colorPickerPurple = document.getElementById('purple-color');
 let colorPickerRed = document.getElementById('red-color');
 
+// Clear todos...
+let clearAllButton = document.getElementById('clear-all');
+let clearSpecificTodoRowButton = document.getElementById('trash-can');
+
 // Color definition
 let grayColor = "rgb(150,150,150)";
 let yellowColor = "rgb(255,204,0)";
@@ -461,8 +465,6 @@ parentDiv.addEventListener('click', function(event) {
     // Check if the clicked element is a div with the name "color"
     if (event.target && event.target.getAttribute('name') === 'color') {
         dataId = event.target.getAttribute('data-id');
-
-        // You can add additional logic here
     }
 });
 
@@ -482,13 +484,15 @@ closePanelButton.addEventListener('click', function() {
     colorSwitcherPanel.classList.add('hidden');
 });
 
+// colorSwitcherPanel click
 colorSwitcherPanel.addEventListener('click', function(e) {
     getDataId();
     todoColorCollection[dataId].value = returnRgbColor(e.target.getAttribute('data-color'));
     todoColorCollection[dataId].style.backgroundColor = returnRgbColor(e.target.getAttribute('data-color'));
 
-    console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos));
+    clearSpecificTodoRowButton.addEventListener('click', clearSpecificTodoRow(dataId));
 
+    console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos));
 });
 
 // Optionally, add logic to close the panel when clicking outside of it
@@ -499,9 +503,9 @@ window.addEventListener('click', function(event) {
 });
 
 // _ _ _
+// Clear todos
 
-let clearAllButton = document.getElementById('clear-all');
-
+// Clear All todos
 function clearAll() {
     console.log("clearAll() körs")
     for (let i = 0; i < dateCollection.length; i++) {
@@ -515,14 +519,29 @@ function clearAll() {
         plannedTodos[i].todo = 'Todo X';
         plannedTodos[i].color = 'Select';
         plannedTodos[i].isEmpty = true;
-
-        console.log("dateCollection[i].value = " + dateCollection[i].value)
-        console.log("plannedTodos[i].date = " + plannedTodos[i].date)
-        console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos));
     }
 }
 
 clearAllButton.addEventListener('click', clearAll);
+
+// Clear specific todo-row (select the trash can symbol)
+function clearSpecificTodoRow() {
+    console.log("clearSpecificTodo() körs")
+        dateCollection[dataId].value = '';
+        dateCollection[dataId].innerHTML = '';
+        todoCollection[dataId].value = '';
+        todoCollection[dataId].innerHTML = '';
+        todoColorCollection[dataId].style.backgroundColor = 'rgb(228, 228, 228)';
+
+        plannedTodos[dataId].date = 'YYYY-MM-DD';
+        plannedTodos[dataId].todo = 'Todo X';
+        plannedTodos[dataId].color = 'Select';
+        plannedTodos[dataId].isEmpty = true;
+
+        console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos));
+}
+
+
 
 // _ _ _
 
