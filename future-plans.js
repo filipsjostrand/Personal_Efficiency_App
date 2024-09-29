@@ -230,7 +230,161 @@ colorPickerBlue.style.backgroundColor = blueColor;
 colorPickerPurple.style.backgroundColor = purpleColor;
 colorPickerRed.style.backgroundColor = redColor;
 
-//
+// _ _ _
+
+// Week schedule
+
+    // Function to get the current weekday as a three-letter abbreviation
+    function getWeekday(date) {
+        const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        return weekdays[date.getDay()];
+    }
+
+    // Function to format date as YYYY-MM-DD
+    function formatDate(date) {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    }
+
+    //   // Function to get the current week number of the year
+    //   function getWeekNumber(date) {
+    //     const startOfYear = new Date(date.getFullYear(), 0, 1);
+    //     const pastDaysOfYear = (date - startOfYear) / 86400000;
+    //     console.log("weekday: " + Math.ceil((pastDaysOfYear + startOfYear.getDay()) / 7))
+    //     return Math.ceil((pastDaysOfYear + startOfYear.getDay()) / 7)((pastDaysOfYear + startOfYear.getDay()) / 7);
+    // }
+
+    // _ _ _
+
+    var todayDate = new Date();
+
+    Date.prototype.getWeekNumber = function () {
+        var date = new Date(this.getTime());
+        date.setHours(0, 0, 0, 0);
+        // Thursday in current week decides the year.
+        date.setDate(date.getDate() + 3 - (date.getDay() + 6) % 7);
+        // January 4 is always in week 1.
+        var week1 = new Date(date.getFullYear(), 0, 4);
+        // Adjust to Thursday in week 1 and count number of weeks from date to week1.
+        return 1 + Math.round(((date.getTime() - week1.getTime()) / 86400000
+                              - 3 + (week1.getDay() + 6) % 7) / 7);
+    };
+
+    // Example usage:
+    // var todayDate = new Date();
+    var weekNumber = todayDate.getWeekNumber();
+    console.log("Week number: " + weekNumber);
+
+    // _ _ _
+
+    // Function to get the current date in CET
+    function getCETDate() {
+        const now = new Date();
+        // Convert to milliseconds
+        const utcOffset = now.getTimezoneOffset() * 60000;
+        // Create a new date object in UTC
+        const utcTime = now.getTime() + utcOffset;
+        // Add the CET offset (UTC+1, which is 3600000 milliseconds)
+        const cetTime = utcTime + 3600000;
+        // console.log(cetTime.toString())
+        return new Date(cetTime);
+    }
+
+
+      // Get today's date in CET
+      const today = getCETDate();
+
+      // Display current weekday
+      const weekdayDisplay = document.getElementById('weekday-display');
+      weekdayDisplay.textContent = `${getWeekday(today)}`;
+
+      // Display today's date
+      const dateDisplay = document.getElementById('date-display');
+      dateDisplay.textContent = `${formatDate(today)}`;
+
+      // Display current week number
+      const weekDisplay = document.getElementById('week-display');
+      weekDisplay.textContent = "Week: " + weekNumber;
+
+// _ _ _
+
+
+
+
+function getCurrentWeekDates() {
+    // const today = new Date();
+    const currentDay = todayDate.getDay();
+    const firstDayOfWeek = new Date(todayDate.setDate(todayDate.getDate() - currentDay + (currentDay === 0 ? -6 : 1))); // Adjust if today is Sunday
+    const weekDates = [];
+
+    for (let i = 0; i < 7; i++) {
+        const date = new Date(firstDayOfWeek);
+        date.setDate(firstDayOfWeek.getDate() + i);
+        const yyyy = date.getFullYear();
+        const mm = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+        const dd = String(date.getDate()).padStart(2, '0');
+        weekDates.push(`${yyyy}-${mm}-${dd}`);
+    }
+
+    return weekDates;
+}
+
+// Example usage:
+const weekDates = getCurrentWeekDates();
+console.log(weekDates);
+
+document.getElementById('mon-date').textContent = weekDates[0];
+
+// function getWeekDates() {
+//     const today = new Date();
+//     const firstDayOfWeek = new Date(today.setDate(today.getDate() - today.getDay() + 1)); // Monday
+//     const weekDates = [];
+
+//     for (let i = 0; i < 7; i++) {
+//         const date = new Date(firstDayOfWeek);
+//         date.setDate(firstDayOfWeek.getDate() + i);
+//         const yyyy = date.getFullYear();
+//         const mm = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+//         const dd = String(date.getDate()).padStart(2, '0');
+//         weekDates.push(`${yyyy}-${mm}-${dd}`);
+//     }
+
+//     return weekDates;
+// }
+
+// // Example usage:
+// const weekDates = getWeekDates();
+// console.log(weekDates);
+
+// _ _ _
+
+    // // Get todays date (YYYY-MM-DD)
+    // function getCurrentDate() {
+    //     let dateFunc = new Date()
+
+    //     day = dateFunc.getDate()
+    //     month = dateFunc.getMonth()+1 //1
+    //     year = dateFunc.getYear()
+    //     if(year < 1000){year = year + 1900}//2
+
+    //     if(month<10)
+    //     {
+    //     month = "0" + month
+    //     } //3
+
+    //     if(day <10)
+    //     {
+    //     day = "0" + day
+    //     } //4
+
+    //     console.log(year + "-" + month + "-" + day)
+    // }
+
+
+
+// _ _ _
 
 // Color picker drop down
 
@@ -506,7 +660,6 @@ colorSwitcherPanel.addEventListener('click', function(e) {
     clearSpecificTodoRowButton.addEventListener('click', function() {
         console.log("clearSpecificTodo")
         getDataId();
-        console.log("clearSpecificTodo (dataId) = " + dataId);
 
         dateCollection[dataId].value = '';
         dateCollection[dataId].innerHTML = '';

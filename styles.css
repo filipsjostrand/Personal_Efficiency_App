@@ -59,7 +59,7 @@ a {
 }
 
 .grid-day-container > div,
-#mon,
+#mon-div,
 #tue,
 #wed,
 #thu,
@@ -78,6 +78,10 @@ a {
 .day
 {
   grid-row-start: 2;
+}
+
+#mon-date {
+  font-size: 16px;
 }
 
 /* Weekly schedule (end) */
