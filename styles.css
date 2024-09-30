@@ -80,7 +80,14 @@ a {
   grid-row-start: 2;
 }
 
-#mon-date {
+#mon-date,
+#tue-date,
+#wed-date,
+#thu-date,
+#fri-date,
+#sat-date,
+#sun-date
+ {
   font-size: 16px;
 }
 

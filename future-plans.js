@@ -336,6 +336,12 @@ const weekDates = getCurrentWeekDates();
 console.log(weekDates);
 
 document.getElementById('mon-date').textContent = weekDates[0];
+document.getElementById('tue-date').textContent = weekDates[1];
+document.getElementById('wed-date').textContent = weekDates[2];
+document.getElementById('thu-date').textContent = weekDates[3];
+document.getElementById('fri-date').textContent = weekDates[4];
+document.getElementById('sat-date').textContent = weekDates[5];
+document.getElementById('sun-date').textContent = weekDates[6];
 
 // function getWeekDates() {
 //     const today = new Date();
