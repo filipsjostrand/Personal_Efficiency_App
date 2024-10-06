@@ -214,7 +214,7 @@ let clearSpecificTodoRowButton = document.getElementById('trash-can');
 let grayColor = "rgb(150,150,150)";
 let yellowColor = "rgb(255,204,0)";
 let greenColor = "rgb(51,153,102)";
-let blueColor = "rgb(51,102,255)";
+let blueColor = "rgb(66, 113, 255)";
 let purpleColor = "rgb(153,51,102)";
 let redColor = "rgb(255,64,64)";
 let colorText;
@@ -331,17 +331,26 @@ function getCurrentWeekDates() {
     return weekDates;
 }
 
+let mondayDateDiv = document.getElementById('mon-date');
+let tuesdayDateDiv = document.getElementById('tue-date');
+let wednesdayDateDiv = document.getElementById('wed-date');
+let thursdayDateDiv = document.getElementById('thu-date');
+let fridayDateDiv = document.getElementById('fri-date')
+let saturdayDateDiv = document.getElementById('sat-date')
+let sundayDateDiv = document.getElementById('sun-date')
+
+
 // Example usage:
 const weekDates = getCurrentWeekDates();
 console.log(weekDates);
 
-document.getElementById('mon-date').textContent = weekDates[0];
-document.getElementById('tue-date').textContent = weekDates[1];
-document.getElementById('wed-date').textContent = weekDates[2];
-document.getElementById('thu-date').textContent = weekDates[3];
-document.getElementById('fri-date').textContent = weekDates[4];
-document.getElementById('sat-date').textContent = weekDates[5];
-document.getElementById('sun-date').textContent = weekDates[6];
+mondayDateDiv.textContent = weekDates[0];
+tuesdayDateDiv.textContent = weekDates[1];
+wednesdayDateDiv.textContent = weekDates[2];
+thursdayDateDiv.textContent = weekDates[3];
+fridayDateDiv.textContent = weekDates[4];
+saturdayDateDiv.textContent = weekDates[5];
+sundayDateDiv.textContent = weekDates[6];
 
 // function getWeekDates() {
 //     const today = new Date();
@@ -511,6 +520,8 @@ function addTaskToList() {
                 return new Date(a.date) - new Date(b.date);
             })
 
+            console.log("i = " + i);
+
             // Stoppa for-loop när siffra hitttats och reviderats.
             break;
         }
@@ -531,6 +542,9 @@ function addTaskToList() {
         todoColorCollection[j].style.backgroundColor = returnRgbColor(plannedTodos[j].color)
         }
     }
+
+    updateTodoSchedule();
+    createCurrentWeekDateSets();
 
     console.log(plannedTodos[0].date)
     console.log(plannedTodos[1].date)
@@ -651,15 +665,6 @@ colorSwitcherPanel.addEventListener('click', function(e) {
     todoColorCollection[dataId].value = returnRgbColor(e.target.getAttribute('data-color'));
     todoColorCollection[dataId].style.backgroundColor = returnRgbColor(e.target.getAttribute('data-color'));
 
-    // console.log("e.target.getAttribute('trash-can').style.backgroundColor = 'white' = " + e.target.getAttribute('trash-can').style.backgroundColor = 'white')
-
-    // if (e.target == clearSpecificTodoRowButton) {
-
-    //     alert('Trash can clicked!')
-    //     console.log("colorSwitcherPanel (trash can press)");
-    //     clearSpecificTodoRowButton.addEventListener('click', clearSpecificTodoRow(dataId));
-    // }
-
     console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos));
 });
 
@@ -727,11 +732,162 @@ function clearSpecificTodoRow() {
         console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos));
 }
 
+// _ _ _
+
+// Show plan (in week schedule)
+
+// Monday Schedule Div
+let monScheduleWrapper = document.getElementById("mon-todo");
+
+function addTodoDivs() {
+
+    for (let i = 0; i < 9; i++) {
+
+        // Create 9 Monday Week Schedule Divs
+        let newMonWeekDiv = document.createElement("mon-schedule-div");
+
+        newMonWeekDiv.classList.add("mon-todo-week-item");
+        newMonWeekDiv.id = "mon-week-schedule";
+        newMonWeekDiv.style.display = "grid";
+        newMonWeekDiv.style.width = "100%";
+        newMonWeekDiv.style.fontSize = "13px";
+        newMonWeekDiv.style.color = "rgb(0, 0, 0)";
+        newMonWeekDiv.style.borderRadius = "5px";
+
+        // Create a new div (id = "mon-week-schedule") in the Monday schedule div
+        monScheduleWrapper.appendChild(newMonWeekDiv)
+    }
+}
+
+addTodoDivs();
+
+let mondayTodoItem = document.querySelector(".mon-todo-week-item");
+
+// _ _ _
+
+function updateTodoSchedule() {
+
+    // let mondayScheduleSetAdded = new Set();
+
+    for (let i = 0; i < plannedTodos.length; i++) {
+        if (plannedTodos[i].isEmpty === false && dateCollection[i].innerHTML == mondayDateDiv.textContent) {
+            alert("This todo date matches the current Monday date");
+
+            console.log("i (1) = " + i);
+
+
+            // _ _ _ (Används ej(?) 2024-10-06)
+            // let newDiv = document.createElement("div");
+
+            // newDiv.classList.add("todo-item");
+            // newDiv.id = "mon-div-schedule";
+
+            // newDiv.innerHTML = plannedTodos[i].todo;
+
+            // mondayScheduleSetAdded.add(newDiv.innerHTML);
+            // console.log("[...mondayScheduleSetAdded] = " + [...mondayScheduleSetAdded]);
+
+            // newDiv.style.backgroundColor = todoColorCollection[i].value;
+            // newDiv.style.fontSize = "13px";
+            // newDiv.style.color = "rgb(0, 0, 0)";
+
+            // // Create a new div (id = "div") in the Monday schedule div
+            // monScheduleWrapper.appendChild(newDiv)
+        // }
+
+
+        }
+    }
+}
+
+// _ _ _ (Används ej(?) 2024-10-06)
+
+// function createTodoWeekPlanDiv() {
+//     let newDiv = document.createElement("div");
+
+//     newDiv.classList.add("todo-item");
+//     newDiv.id = "mon-div-schedule";
+
+//     newDiv.innerHTML = plannedTodos[i].todo;
+
+//     newDiv.style.backgroundColor = todoColorCollection[i].value;
+//     newDiv.style.fontSize = "13px";
+//     newDiv.style.color = "rgb(0, 0, 0)";
+
+//     // Create a new div (id = "div") in the Monday schedule div
+//     monScheduleWrapper.appendChild(newDiv)
+// }
+
+// _ _ _
+
+// _ _ _ (Använda Set(?))
+
+// All data (todo numbers)
+// 1. Create a Set with all the plannedTodos index numbers
+let todoIndexNumbersSet = new Set();
+
+function getTodoIndexNumbersSet() {
+    for (let i = 0; i < plannedTodos.length; i++) {
+        todoIndexNumbersSet.add(i);
+
+    }
+}
+
+getTodoIndexNumbersSet();
+console.log(todoIndexNumbersSet);
+
+// _ _ _
+
+console.log(plannedTodos[[...todoIndexNumbersSet][0]])
+console.log(plannedTodos[[...todoIndexNumbersSet][0]].date)
+
+// _ _ _
+
+// _ _ _ (Använda Set(?))
+
+let monSet = new Set();
+let tueSet = new Set();
+let wedSet = new Set();
+let thuSet = new Set();
+let friSet = new Set();
+let satSet = new Set();
+let sunSet = new Set();
+
+// function createCurrentWeekDateMaps() {
+function createCurrentWeekDateSets() {
+    for (let i = 0; i < plannedTodos.length; i++) {
+        if (plannedTodos[i].date == weekDates[0]) {
+            console.log("mondayDate Matches, add to monMap")
+            monScheduleWrapper.children[i].textContent = plannedTodos[i].todo
+            monScheduleWrapper.children[i].style.backgroundColor = returnRgbColor(plannedTodos[i].color)
+
+            // _ _ _ (använda set(?))
+            monSet.add(i)
+        } else if (plannedTodos[i].date == weekDates[1]) {
+
+        } else if (plannedTodos[i].date == weekDates[2]) {
+
+        } else if (plannedTodos[i].date == weekDates[3]) {
+
+        } else if (plannedTodos[i].date == weekDates[4]) {
+
+        } else if (plannedTodos[i].date == weekDates[5]) {
+
+        } else if (plannedTodos[i].date == weekDates[6]) {
+
+        }
+    }
+}
+
+// _ _ _ (Använda(?) 2024-10-06)
+// weekDates.forEach(plannedTodos.date => {
+//     if (weekdate == plannedTodos)
+// )
 
 
 // _ _ _
 
-
+// Load plan
 async function loadPlan() {
     let [fileHandle] = await window.showOpenFilePicker({
         types: [
@@ -753,6 +909,7 @@ async function loadPlan() {
     console.log(text);
 }
 
+// Save plan
 async function save() {
     let stream = await fileHandle.createWritable();
     await stream.write(dateInput.value);
@@ -761,6 +918,7 @@ async function save() {
     await stream.close();
 }
 
+// saveAs plan
 async function saveAs() {
     fileHandle = await window.showSaveFilePicker();
     save();
