@@ -297,6 +297,61 @@ a {
 
 /* Future plans (end) */
 
+/* _ _ _
+_ _ _ */
+
+/* .plan-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.todo-date {
+  flex: 1;
+  font-weight: bold;
+}
+
+.todo-text {
+  flex: 3;
+}
+
+.todo-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+}
+
+.edit-btn, .delete-btn {
+  padding: 5px 10px;
+  border: none;
+  background-color: #eee;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.edit-btn:hover {
+  background-color: #ddd;
+}
+
+.delete-btn:hover {
+  background-color: #ffcccc;
+} */
+
+
+/* _ _ _
+_ _ _ */
+
+
 /* Computer screens and larger (start) */
 @media screen and (min-width: 1024px) {
 

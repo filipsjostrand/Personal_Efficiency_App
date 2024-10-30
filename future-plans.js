@@ -187,16 +187,25 @@ var plannedTodos = [
     // },
 ];
 
+var plannedTodosStart = [];
+
 //
 let dateInputValue = document.getElementById('date-input');
 let textInputValue = document.getElementById('add-todo-text');
 
-const dateCollection = document.getElementsByClassName("todo-date");
-const todoCollection = document.getElementsByClassName("todo-text");
-const todoTextElements = document.querySelectorAll(".todo-text");
-const todoColorCollection = document.getElementsByClassName("todo-color");
-const todoColorElement = document.querySelector(".todo-color");
-const todoColorElements = document.querySelectorAll(".todo-color");
+// const dateCollection = document.getElementsByClassName("todo-date");
+// const todoCollection = document.getElementsByClassName("todo-text");
+// const todoTextElements = document.querySelectorAll(".todo-text");
+// const todoColorCollection = document.getElementsByClassName("todo-color");
+// const todoColorElement = document.querySelector(".todo-color");
+// const todoColorElements = document.querySelectorAll(".todo-color");
+
+let dateCollection = document.getElementsByClassName("todo-date");
+let todoCollection = document.getElementsByClassName("todo-text");
+let todoTextElements = document.querySelectorAll(".todo-text");
+let todoColorCollection = document.getElementsByClassName("todo-color");
+let todoColorElement = document.querySelector(".todo-color");
+let todoColorElements = document.querySelectorAll(".todo-color");
 
 //
 let colorPickerSelect = document.querySelector('select#colors');
@@ -679,7 +688,9 @@ function addTaskToList() {
 
         //Update HTML to (input order) values
         dateCollection[i].innerHTML =  plannedTodos[i].date;
+        dateCollection[i].value = plannedTodos[i].date;
         todoCollection[i].innerHTML = plannedTodos[i].todo;
+        todoCollection[i].value = plannedTodos[i].todo;
         todoColorCollection[i].value = plannedTodos[i].todo
 
         todoColorCollection[i].style.backgroundColor = returnRgbColor(plannedTodos[i].color);
@@ -965,23 +976,65 @@ closePanelButton.addEventListener('click', function(event) {
 // Clear All todos
 function clearAll() {
     console.log("clearAll() körs")
+
     for (let i = 0; i < dateCollection.length; i++) {
+
         dateCollection[i].value = '';
         dateCollection[i].innerHTML = '';
         todoCollection[i].value = '';
         todoCollection[i].innerHTML = '';
         todoColorCollection[i].style.backgroundColor = 'rgb(228, 228, 228)';
 
-        plannedTodos[i].date = '';
-        plannedTodos[i].todo = '';
-        plannedTodos[i].color = '';
-        plannedTodos[i].isEmpty = true;
+        // plannedTodos[i].date = '';
+        // plannedTodos[i].todo = '';
+        // plannedTodos[i].color = '';
+        // plannedTodos[i].isEmpty = true;
+
+        // todoColorCollection[i].style.backgroundColor = returnRgbColor(plannedTodos[i].color);
+
     }
+    dateInputValue.value = '';
+    plannedTodos.length = 0;
+    plannedTodos = plannedTodosStart;
+
+    // _ _ _
+
+    // dateCollection.size = 0;
+    // todoCollection.size = 0;
+    // todoColorCollection.size = 0;
+
+    // dateCollection = [];
+    // todoCollection = [];
+    // todoColorCollection = [];
+
+    // _ _ _
+
+    // for (let i = 0; i < dateCollection.length; i++) {
+    //     // Clear value or innerHTML based on the element type in dateCollection
+    //     if (dateCollection[i].tagName === 'INPUT' || dateCollection[i].tagName === 'TEXTAREA') {
+    //         dateCollection[i].value = '';      // Clear the input or textarea value
+    //     } else {
+    //         dateCollection[i].innerHTML = '';  // Clear inner content for non-input elements
+    //     }
+
+    //     // Clear value or innerHTML based on the element type in todoCollection
+    //     if (todoCollection[i].tagName === 'INPUT' || todoCollection[i].tagName === 'TEXTAREA') {
+    //         todoCollection[i].value = '';      // Clear the input or textarea value
+    //     } else {
+    //         todoCollection[i].innerHTML = '';  // Clear inner content for non-input elements
+    //     }
+
+    //     // Reset background color for todoColorCollection items
+    //     todoColorCollection[i].style.backgroundColor = 'rgb(228, 228, 228)';  // Set to default background color
+    // }
+
+    // plannedTodos.length = 0;
+    // updatePlannedTodosWithDomData();
 }
 
 clearAllButton.addEventListener('click', clearAll);
 
-// Clear specific todo-row (select the trash can symbol)
+// Clear specific todo-row (select the trash can symbol)    //trash can dust bin recycle
 function clearSpecificTodoRow() {
     console.log("clearSpecificTodo() körs")
         dateCollection[dataId].value = '';
@@ -1245,6 +1298,7 @@ function updatePlannedTodosWithDomData() {
 }
 
 // _ _ _
+
 
 // _ _ _
 
