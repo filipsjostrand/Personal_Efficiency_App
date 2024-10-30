@@ -1,6 +1,8 @@
 let fileHandle;
 const dateInput = document.getElementById('date-input');
 
+// Ska todo-objekt-array, "plannedTodos" innehålla några objekt från början (exempelvis 3 till 9 objekt/dag*365 dagar = 3285 objekt/år) eller ska den vara tom?
+
 var plannedTodos = [
     // // todo #1
     // {
@@ -193,12 +195,7 @@ var plannedTodosStart = [];
 let dateInputValue = document.getElementById('date-input');
 let textInputValue = document.getElementById('add-todo-text');
 
-// const dateCollection = document.getElementsByClassName("todo-date");
-// const todoCollection = document.getElementsByClassName("todo-text");
-// const todoTextElements = document.querySelectorAll(".todo-text");
-// const todoColorCollection = document.getElementsByClassName("todo-color");
-// const todoColorElement = document.querySelector(".todo-color");
-// const todoColorElements = document.querySelectorAll(".todo-color");
+// Ska ...Collection ha "let" eller "const"(?)
 
 let dateCollection = document.getElementsByClassName("todo-date");
 let todoCollection = document.getElementsByClassName("todo-text");
@@ -260,14 +257,6 @@ const weekdays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
         return `${year}-${month}-${day}`;
     }
 
-    //   // Function to get the current week number of the year
-    //   function getWeekNumber(date) {
-    //     const startOfYear = new Date(date.getFullYear(), 0, 1);
-    //     const pastDaysOfYear = (date - startOfYear) / 86400000;
-    //     console.log("weekday: " + Math.ceil((pastDaysOfYear + startOfYear.getDay()) / 7))
-    //     return Math.ceil((pastDaysOfYear + startOfYear.getDay()) / 7)((pastDaysOfYear + startOfYear.getDay()) / 7);
-    // }
-
     // _ _ _
 
     var todayDate = new Date();
@@ -285,7 +274,6 @@ const weekdays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
     };
 
     // Example usage:
-    // var todayDate = new Date();
     var weekNumber = todayDate.getWeekNumber();
     console.log("Week number: " + weekNumber);
 
@@ -323,10 +311,7 @@ const weekdays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 // _ _ _
 
 
-
-
 function getCurrentWeekDates() {
-    // const today = new Date();
     const currentDay = todayDate.getDay();
     const firstDayOfWeek = new Date(todayDate.setDate(todayDate.getDate() - currentDay + (currentDay === 0 ? -6 : 1))); // Adjust if today is Sunday
     const weekDates = [];
@@ -363,52 +348,6 @@ thursdayDateDiv.textContent = weekDates[3];
 fridayDateDiv.textContent = weekDates[4];
 saturdayDateDiv.textContent = weekDates[5];
 sundayDateDiv.textContent = weekDates[6];
-
-// function getWeekDates() {
-//     const today = new Date();
-//     const firstDayOfWeek = new Date(today.setDate(today.getDate() - today.getDay() + 1)); // Monday
-//     const weekDates = [];
-
-//     for (let i = 0; i < 7; i++) {
-//         const date = new Date(firstDayOfWeek);
-//         date.setDate(firstDayOfWeek.getDate() + i);
-//         const yyyy = date.getFullYear();
-//         const mm = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
-//         const dd = String(date.getDate()).padStart(2, '0');
-//         weekDates.push(`${yyyy}-${mm}-${dd}`);
-//     }
-
-//     return weekDates;
-// }
-
-// // Example usage:
-// const weekDates = getWeekDates();
-// console.log(weekDates);
-
-// _ _ _
-
-    // // Get todays date (YYYY-MM-DD)
-    // function getCurrentDate() {
-    //     let dateFunc = new Date()
-
-    //     day = dateFunc.getDate()
-    //     month = dateFunc.getMonth()+1 //1
-    //     year = dateFunc.getYear()
-    //     if(year < 1000){year = year + 1900}//2
-
-    //     if(month<10)
-    //     {
-    //     month = "0" + month
-    //     } //3
-
-    //     if(day <10)
-    //     {
-    //     day = "0" + day
-    //     } //4
-
-    //     console.log(year + "-" + month + "-" + day)
-    // }
-
 
 
 // _ _ _
@@ -520,22 +459,10 @@ function timeToNumber(time) {
     return time ? parseInt(time.replace(':', '')) : Infinity; // Ingen tid sorteras sist (Infinity)
 }
 
-// // Funktion för att sortera todos baserat på tid i todo-text
-// function sortTodosByTime(todos) {
-//     console.log("sortTodosByTime(todos) körs")
-//     return todos.sort((a, b) => {
-//         const timeA = timeToNumber(extractTime(a.todo));
-//         const timeB = timeToNumber(extractTime(b.todo));
-
-//         return timeA - timeB;
-//     });
-// }
 
 // Function to convert dates to time and sort the objects
 function sortArrayOfObjectsDataByDateAndTIme(arrayOfObjects) {
     return arrayOfObjects.sort((a, b) => {
-    //   const timeA = new Date(a.date).getTime();
-    //   const timeB = new Date(b.date).getTime();
     let timeA = new Date(a.date).getTime();
     let timeB = new Date(b.date).getTime();
 
@@ -558,71 +485,9 @@ function extractTimeFromTodo(todo) {
     return match ? match[0] : null;
 }
 
-
-
 //_ _ _
 //_ _ _
 
-// // Lägg till todo & color i veckoschema (för respektive dag)
-// // function organizeTodosForWeek(plannedTodos, weekDates) {
-// function organizeTodosForWeek(plannedTodos, weekDates) {
-//     console.log("organizeTodosForWeek(plannedTodos, weekDates) körs")
-
-//     // let day;
-
-//     // För varje todo-objekt i plannedTodos-array:en
-//     plannedTodos.forEach(todo => {
-
-
-//         // // Hitta indexet för aktuellt veckodatum i "weekDates"-arrayn (med mån-sön-datum för aktuell vecka)
-//         // const dayIndex = weekDates.indexOf(todo.date);
-//         // // let dayIndex = weekDates.indexOf();
-//         // console.log("dayIndex: " + dayIndex)
-
-//         // Om datumet matchar en dag i veckan
-//         // if (dayIndex !== -1) {
-//         //     const day = weekdays[dayIndex].toLocaleLowerCase(); // Få rätt veckodag (mon, tue, etc.)
-
-
-//         plannedTodos[0].date === weekDates[1]
-
-//         if (todo.date === weekDates[0]) {
-
-//             // Lägg till todo & color i veckodagslistan
-//             // weekTodos[day].push({ date: todo.date, todo: todo.todo, color: todo.color });
-
-//             // Lägg till todo & color i veckolistan (ska date läggas till?)
-//             weekTodos.push({ date: todo.date, todo: todo.todo, color: todo.color });
-//         } else if (todo.date === weekDates[1]) {
-//             weekTodos.push({ date: todo.date, todo: todo.todo, color: todo.color });
-//         } else if (todo.date === weekDates[2]) {
-//             weekTodos.push({ date: todo.date, todo: todo.todo, color: todo.color });
-//         } else if (todo.date === weekDates[3]) {
-//             weekTodos.push({ date: todo.date, todo: todo.todo, color: todo.color });
-//         } else if (todo.date === weekDates[4]) {
-//             weekTodos.push({ date: todo.date, todo: todo.todo, color: todo.color });
-//         } else if (todo.date === weekDates[5]) {
-//             weekTodos.push({ date: todo.date, todo: todo.todo, color: todo.color });
-//         } else if (todo.date === weekDates[6]) {
-//             weekTodos.push({ date: todo.date, todo: todo.todo, color: todo.color });
-//         }
-
-
-//         console.log("weekTodos = " + weekTodos)
-//         // }
-//     });
-
-//     // // Sortera varje veckodags-lista baserat på tiden i todo-texten
-//     // for (const day in weekTodos) {
-//     //     weekTodos[day] = sortTodosByTime(weekTodos[day]);
-//     // }
-
-// }
-
-//_ _ _
-//_ _ _
-
-//   let hasMatch = false;
 
 let sortedData;
 
@@ -630,8 +495,6 @@ let sortedData;
 function addTaskToList() {
         console.log("addTaskToList() körs")
         console.log("dateInputValue.value + ' ' + textInputValue.value = " + dateInputValue.value + " " + textInputValue.value)
-
-    // if (dateInputValue.value < todays date) {add plannedTodo row to "history(?)"}
 
         plannedTodos.push(
             {
@@ -644,19 +507,8 @@ function addTaskToList() {
 
 
     if (plannedTodos.length > 1) {
-        // Use the sortArrayOfObjectsDataByDate(arrayOfObjects) function
-        // const sortedData = sortArrayOfObjectsDataByDate(plannedTodos);
-        // console.log(sortedData);
 
-        // const sortTodoDataByTime = sortTodosByTime(plannedTodos)
-        // console.log(sortTodoDataByTime);
-
-
-        // // Use the sortArrayOfObjectsDataByDateAndTIme(arrayOfObjects) function
-        // sortedData = sortArrayOfObjectsDataByDateAndTIme(plannedTodos);
-        // console.log("sortedData = " + sortedData);
-
-        // Sorteringsfunktion
+        // Sorteringsfunktion (sortera 1. Datum, 2. Tid)
         plannedTodos.sort(function(a, b) {
             // Jämför datum först
             if (a.date < b.date) return -1;
@@ -725,35 +577,6 @@ function addTaskToList() {
         sunScheduleWrapper.children[i].style.backgroundColor = '';
 
         console.log("plannedTodos[i] (1) = " + JSON.stringify(plannedTodos[i]))
-
-        // plannedTodos = {date: `${dateInputValue.value}`, todo: `${textInputValue.value}`, color: `${colorPickerSelect.value}`, isEmpty: false};
-
-        // Följande if-sats används ej? (2024-10-16)
-        // console.log("update all plannedTodos")
-        // if (plannedTodos[i].isEmpty === true) {
-        //     plannedTodos[i].date = dateInputValue.value;
-        //     plannedTodos[i].todo = textInputValue.value;
-        //     plannedTodos[i].color = colorPickerSelect.value;
-        //     plannedTodos[i].isEmpty = false;
-
-        //     //Update HTML to (input order) values
-        //     dateCollection[i].innerHTML = dateInputValue.value;
-        //     todoCollection[i].innerHTML = textInputValue.value;
-        //     todoColorCollection[i].value = colorPickerSelect.value;
-
-        //     // Change color on created todo element
-        //     todoColorElements.forEach((todoColorElement) => colorPickerElementFunction(todoColorElement));
-
-        //     // Sort todo list after date (closest first)
-        //     plannedTodos.sort((a,b)=>{
-        //         return new Date(a.date) - new Date(b.date);
-        //     })
-
-        //     console.log("i = " + i);
-
-        //     // Stoppa for-loop när siffra hitttats och reviderats.
-        //     break;
-        // }
     }
 
     // Empty todo text input
@@ -764,16 +587,9 @@ function addTaskToList() {
     updateCurrentWeekSchedule();
 
     // Skapa vecko-specifika array-objekt?
-    // organizeTodosForWeek(plannedTodos, weekDates)
 
     console.log(plannedTodos[0].date)
-    // console.log(plannedTodos[1].date)
-    // console.log(plannedTodos[2].date)
-
     console.log(JSON.stringify(plannedTodos))
-
-    // CheckIfWeekDatesMatchesCurrentWeekDates();
-
 }
 
 // _ _ _
@@ -891,35 +707,23 @@ parentDiv.addEventListener('click', function(event) {
 
 // colorSwitcherPanel click
 colorSwitcherPanel.addEventListener('click', function(e) {
-    console.log("colorSwitcherPanel körs");
+        console.log("colorSwitcherPanel körs");
     getDataId();
-    console.log("colorSwitcherPanel (dataId) = " + dataId);
+        console.log("colorSwitcherPanel (dataId) = " + dataId);
     todoColorCollection[dataId].value = returnRgbColor(e.target.getAttribute('data-color'));
-    console.log("returnRgbColor(e.target.getAttribute('data-color')) = " + returnRgbColor(e.target.getAttribute('data-color')))
+        console.log("returnRgbColor(e.target.getAttribute('data-color')) = " + returnRgbColor(e.target.getAttribute('data-color')))
     todoColorCollection[dataId].style.backgroundColor = returnRgbColor(e.target.getAttribute('data-color'));
 
 
     // const key = e.target.getAttribute('data-key');
 
     console.log("JSON.stringify(plannedTodos) (1) = " + JSON.stringify(plannedTodos));
-
     console.log(" plannedTodos[dataId].color (11) = " +  plannedTodos[dataId].color)
-    // console.log(" plannedTodos[dataId][key] (ooa) = " +  plannedTodos[dataId][key])
-
     console.log("returnDefinedColorText(todoColorCollection[dataId].value) (select) = " + returnDefinedColorText(todoColorCollection[dataId].value))
+
     plannedTodos[dataId].color = returnDefinedColorText(todoColorCollection[dataId].value)
+
     console.log(" plannedTodos[dataId].color (22) = " +  plannedTodos[dataId].color)
-
-    // if (todoColorCollection[dataId].value !== '') {
-    //     plannedTodos[dataId][key] = returnDefinedColorText(todoColorCollection[dataId].value);
-    //     console.log(" plannedTodos[dataId][key] (if) = " +  plannedTodos[dataId][key])
-
-    // } else if (todoColorCollection[dataId].value === undefined || todoColorCollection[dataId].value === null || todoColorCollection[dataId].value === '') {
-    //     console.log(" plannedTodos[dataId][key] (else if) = " +  plannedTodos[dataId][key])
-    //     plannedTodos[dataId][key] = "grayColor";
-    //     // checkIfDateAndTextAreEmpty();
-    // }
-
     console.log("JSON.stringify(plannedTodos) (2) = " + JSON.stringify(plannedTodos));
 });
 
@@ -950,22 +754,7 @@ closePanelButton.addEventListener('click', function(event) {
         event.stopPropagation();
     });
 
-// let colorPickerCloseButton = document.getElementById("close-panel");
-
-// colorPickerCloseButton.addEventListener("click", (event) => {
-//     colorSwitcherPanel.classList.add('hidden');
-//   });
-
 // _ _ _
-
-// // Optionally, add logic to close the panel when clicking outside of it
-// window.addEventListener('click', function(event) {
-//     if (event.target === colorSwitcherPanel) {
-//         // colorSwitcherPanel.classList.add('hidden');
-//         colorSwitcherPanel.style.display = 'none';
-//     }
-// });
-
 // _ _ _
 
 // Fixa så att clear todos fungerar för week schedule (2024-10-16)
@@ -984,52 +773,13 @@ function clearAll() {
         todoCollection[i].value = '';
         todoCollection[i].innerHTML = '';
         todoColorCollection[i].style.backgroundColor = 'rgb(228, 228, 228)';
-
-        // plannedTodos[i].date = '';
-        // plannedTodos[i].todo = '';
-        // plannedTodos[i].color = '';
-        // plannedTodos[i].isEmpty = true;
-
-        // todoColorCollection[i].style.backgroundColor = returnRgbColor(plannedTodos[i].color);
-
     }
     dateInputValue.value = '';
     plannedTodos.length = 0;
     plannedTodos = plannedTodosStart;
 
     // _ _ _
-
-    // dateCollection.size = 0;
-    // todoCollection.size = 0;
-    // todoColorCollection.size = 0;
-
-    // dateCollection = [];
-    // todoCollection = [];
-    // todoColorCollection = [];
-
     // _ _ _
-
-    // for (let i = 0; i < dateCollection.length; i++) {
-    //     // Clear value or innerHTML based on the element type in dateCollection
-    //     if (dateCollection[i].tagName === 'INPUT' || dateCollection[i].tagName === 'TEXTAREA') {
-    //         dateCollection[i].value = '';      // Clear the input or textarea value
-    //     } else {
-    //         dateCollection[i].innerHTML = '';  // Clear inner content for non-input elements
-    //     }
-
-    //     // Clear value or innerHTML based on the element type in todoCollection
-    //     if (todoCollection[i].tagName === 'INPUT' || todoCollection[i].tagName === 'TEXTAREA') {
-    //         todoCollection[i].value = '';      // Clear the input or textarea value
-    //     } else {
-    //         todoCollection[i].innerHTML = '';  // Clear inner content for non-input elements
-    //     }
-
-    //     // Reset background color for todoColorCollection items
-    //     todoColorCollection[i].style.backgroundColor = 'rgb(228, 228, 228)';  // Set to default background color
-    // }
-
-    // plannedTodos.length = 0;
-    // updatePlannedTodosWithDomData();
 }
 
 clearAllButton.addEventListener('click', clearAll);
@@ -1137,8 +887,6 @@ function addTodoDivs() {
     }
 }
 
-
-
 // Add divs to week schedule
 addTodoDivs();
 
@@ -1163,8 +911,6 @@ let currentSunCollection = document.getElementsByClassName("sun-todo-week-item")
 // Gör inget(?) ((2024-10-10))
 function updateTodoSchedule() {
 
-    // let mondayScheduleSetAdded = new Set();
-
     for (let i = 0; i < plannedTodos.length; i++) {
         if (plannedTodos[i].isEmpty === false && dateCollection[i].innerHTML == mondayDateDiv.textContent) {
             alert("This todo date matches the current Monday date");
@@ -1182,9 +928,6 @@ function updateTodoSchedule() {
 // update data (to divs in the week schedule)
 function updateCurrentWeekSchedule() {
 
-// monScheduleWrapper
-
-
     for (let i = 0; i < plannedTodos.length; i++) {
         if (plannedTodos[i].date == weekDates[0]) {
             // monSet.add(i)
@@ -1195,8 +938,6 @@ function updateCurrentWeekSchedule() {
             monScheduleWrapper.children[i].style.backgroundColor = returnRgbColor(plannedTodos[i].color)
 
             // _ _ _ (använda set(?))
-
-            // organizeTodosForWeek(plannedTodos, weekDates)
 
         } else if (plannedTodos[i].date == weekDates[1]) {
             console.log("tuesday i = " + i)
@@ -1349,7 +1090,6 @@ async function loadPlan() {
     for (let i = 0; i < plannedTodos.length; i++) {
         console.log("for-loop (load) körs")
 
-        // console.log(plannedTodos[i].date + plannedTodos[i].todo + returnRgbColor(plannedTodos[i].color))
         console.log("plannedTodos[i].date = " + plannedTodos[i].date)
             dateCollection[i].value = plannedTodos[i].date;
             dateCollection[i].innerHTML = plannedTodos[i].date;
