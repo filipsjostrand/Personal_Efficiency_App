@@ -69,7 +69,7 @@ a {
   background-color: rgba(58, 58, 58, 0.8);
   color: rgb(248, 248, 248);
   text-align: center;
-  padding: 3px 0;
+  /* padding: 3px 0; */
   font-size: 25px;
   cursor: pointer;
   border-radius: 5px;
@@ -101,6 +101,17 @@ a {
   display: grid;
   grid-template-rows: auto auto auto auto auto auto auto auto auto;
   gap: 1px;
+  color: rgb(0, 0, 0);
+}
+
+.monday-target-div,
+.tuesday-target-div,
+.wednesday-target-div,
+.thursday-target-div,
+.friday-target-div,
+.saturday-target-div,
+.sunday-target-div {
+  font-size: 16px;
 }
 
 /* Weekly schedule (end) */
