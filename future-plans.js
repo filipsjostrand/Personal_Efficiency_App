@@ -498,6 +498,85 @@ function extractTimeFromTodo(todo) {
 //_ _ _
 
 
+function addNewTodoContainer() {
+    // // Select all existing todo containers
+
+    // Find the highest data-id among the existing containers
+
+// _ _ _
+
+// createDataIdArray is a NodeList of elements with `data-id` attributes
+
+var createDataIdArray = document.querySelectorAll('.todo-text');
+
+// Initialize maxId to be a negative number to ensure it will be updated
+var maxId = -1;
+
+// Loop through each element in createDataIdArray
+createDataIdArray.forEach(element => {
+    // Get the `data-id` attribute and convert it to an integer
+    var dataId = parseInt(element.getAttribute('data-id'), 10);
+
+    console.log("dataId = " + dataId);
+
+    // If dataId is a valid number, update maxId if dataId is greater
+    if (!isNaN(dataId) && dataId > maxId) {
+        maxId = dataId;
+    }
+});
+
+console.log("maxId = " + maxId);
+let highestId = maxId
+
+
+// _ _ _
+
+    // Set the new data-id to be one higher than the highest existing data-id
+    const newId = highestId + 1;
+
+    // Create a new div for the todo-container-element
+    const newTodoContainer = document.createElement('div');
+    newTodoContainer.classList.add('todo-container-element');
+    newTodoContainer.setAttribute('data-id', newId);
+
+    // Lägg in data från plannedTodos[sistaIndexNr???]
+
+    // Create and append the first textarea for date
+    const dateTextarea = document.createElement('textarea');
+    dateTextarea.id = `todo-${newId}-date`;
+    dateTextarea.classList.add('todo-date');
+    dateTextarea.setAttribute('type', 'text');
+    dateTextarea.setAttribute('data-id', newId);
+    dateTextarea.setAttribute('data-key', 'date');
+    dateTextarea.setAttribute('name', 'date');
+    dateTextarea.textContent = `Date ${newId}`; // Placeholder text
+    newTodoContainer.appendChild(dateTextarea);
+
+    // Create and append the second textarea for text
+    const textTextarea = document.createElement('textarea');
+    textTextarea.id = `todo-${newId}-text`;
+    textTextarea.classList.add('todo-text');
+    textTextarea.setAttribute('type', 'text');
+    textTextarea.setAttribute('data-id', newId);
+    textTextarea.setAttribute('data-key', 'todo');
+    textTextarea.setAttribute('name', 'text');
+    textTextarea.textContent = `Todo Text ${newId}`; // Placeholder text
+    newTodoContainer.appendChild(textTextarea);
+
+    // Create and append the color div
+    const colorDiv = document.createElement('div');
+    colorDiv.classList.add('todo-color');
+    colorDiv.setAttribute('data-id', newId);
+    colorDiv.setAttribute('data-key', 'color');
+    colorDiv.setAttribute('name', 'color');
+    // colorDiv.style.backgroundColor = "lightgreen"; // Set a color for the color div
+    newTodoContainer.appendChild(colorDiv);
+
+    // Append the new container to the main container
+    const wrapperContainer = document.getElementById('todo-wrapper');
+    wrapperContainer.appendChild(newTodoContainer);
+}
+
 let sortedData;
 
 // Add todos (to todo list)
@@ -537,6 +616,11 @@ function addTaskToList() {
 
         console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos))
     }
+
+    // if (plannedTodos.length > 3) {
+        if (plannedTodos.length > 3) {
+            addNewTodoContainer();
+        }
 
     for (let i = 0; i < plannedTodos.length; i++) {
 
@@ -886,7 +970,9 @@ function clearAll() {
         Element.style.backgroundColor = "";
     })
 
-
+    // returnRgbColor(colorPickerGray.value) = 'rgb(150, 150, 150)';
+    colorPickerSelect.style.backgroundColor = returnRgbColor(colorPickerGray.value);
+    colorPickerSelect.value = colorPickerGray.value;
     // _ _ _
     // _ _ _
 }
