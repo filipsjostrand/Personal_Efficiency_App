@@ -189,6 +189,22 @@ var plannedTodos = [
     // },
 ];
 
+let currentTodoContainerRowLength;
+
+function returnCurrentTodoContainerRowLength(plannedTodos) {
+
+    if (plannedTodos.length <= 3) {
+        currentTodoContainerRowLength = 3
+        } else if (plannedTodos.length > 3) {
+        currentTodoContainerRowLength = plannedTodos.length
+        }
+
+    console.log("currentTodoContainerRowLength = " + currentTodoContainerRowLength)
+
+    return currentTodoContainerRowLength;
+
+}
+
 var plannedTodosStart = [];
 var plannedTodosEdit = [];
 
@@ -497,86 +513,6 @@ function extractTimeFromTodo(todo) {
 //_ _ _
 //_ _ _
 
-
-function addNewTodoContainer() {
-    // // Select all existing todo containers
-
-    // Find the highest data-id among the existing containers
-
-// _ _ _
-
-// createDataIdArray is a NodeList of elements with `data-id` attributes
-
-var createDataIdArray = document.querySelectorAll('.todo-text');
-
-// Initialize maxId to be a negative number to ensure it will be updated
-var maxId = -1;
-
-// Loop through each element in createDataIdArray
-createDataIdArray.forEach(element => {
-    // Get the `data-id` attribute and convert it to an integer
-    var dataId = parseInt(element.getAttribute('data-id'), 10);
-
-    console.log("dataId = " + dataId);
-
-    // If dataId is a valid number, update maxId if dataId is greater
-    if (!isNaN(dataId) && dataId > maxId) {
-        maxId = dataId;
-    }
-});
-
-console.log("maxId = " + maxId);
-let highestId = maxId
-
-
-// _ _ _
-
-    // Set the new data-id to be one higher than the highest existing data-id
-    const newId = highestId + 1;
-
-    // Create a new div for the todo-container-element
-    const newTodoContainer = document.createElement('div');
-    newTodoContainer.classList.add('todo-container-element');
-    newTodoContainer.setAttribute('data-id', newId);
-
-    // Lägg in data från plannedTodos[sistaIndexNr???]
-
-    // Create and append the first textarea for date
-    const dateTextarea = document.createElement('textarea');
-    dateTextarea.id = `todo-${newId}-date`;
-    dateTextarea.classList.add('todo-date');
-    dateTextarea.setAttribute('type', 'text');
-    dateTextarea.setAttribute('data-id', newId);
-    dateTextarea.setAttribute('data-key', 'date');
-    dateTextarea.setAttribute('name', 'date');
-    dateTextarea.textContent = `Date ${newId}`; // Placeholder text
-    newTodoContainer.appendChild(dateTextarea);
-
-    // Create and append the second textarea for text
-    const textTextarea = document.createElement('textarea');
-    textTextarea.id = `todo-${newId}-text`;
-    textTextarea.classList.add('todo-text');
-    textTextarea.setAttribute('type', 'text');
-    textTextarea.setAttribute('data-id', newId);
-    textTextarea.setAttribute('data-key', 'todo');
-    textTextarea.setAttribute('name', 'text');
-    textTextarea.textContent = `Todo Text ${newId}`; // Placeholder text
-    newTodoContainer.appendChild(textTextarea);
-
-    // Create and append the color div
-    const colorDiv = document.createElement('div');
-    colorDiv.classList.add('todo-color');
-    colorDiv.setAttribute('data-id', newId);
-    colorDiv.setAttribute('data-key', 'color');
-    colorDiv.setAttribute('name', 'color');
-    // colorDiv.style.backgroundColor = "lightgreen"; // Set a color for the color div
-    newTodoContainer.appendChild(colorDiv);
-
-    // Append the new container to the main container
-    const wrapperContainer = document.getElementById('todo-wrapper');
-    wrapperContainer.appendChild(newTodoContainer);
-}
-
 let sortedData;
 
 // Add todos (to todo list)
@@ -619,7 +555,7 @@ function addTaskToList() {
 
     // if (plannedTodos.length > 3) {
         if (plannedTodos.length > 3) {
-            addNewTodoContainer();
+            addDynamicTodoContainer();
         }
 
     for (let i = 0; i < plannedTodos.length; i++) {
@@ -637,36 +573,7 @@ function addTaskToList() {
 
         // Change color on created todo element
         todoColorElements.forEach((todoColorElement) => colorPickerElementFunction(todoColorElement));
-
     }
-
-// _ _ _
-
-    // Följande for-loop kan integreras i ovanstående for-loop?
-
-    // // Idé: Iterera över plannedTodos-objektet och använd boolean "isEmpty"
-    // for (let i = 0; i < plannedTodos.length; i++) {
-    //     console.log("for-loop körs")
-
-    //     console.log("reset week schedule HTML")
-    //     monScheduleWrapper.children[i].innerHTML = '';
-    //     tueScheduleWrapper.children[i].innerHTML = '';
-    //     wedScheduleWrapper.children[i].innerHTML = '';
-    //     thuScheduleWrapper.children[i].innerHTML = '';
-    //     friScheduleWrapper.children[i].innerHTML = '';
-    //     satScheduleWrapper.children[i].innerHTML = '';
-    //     sunScheduleWrapper.children[i].innerHTML = '';
-
-    //     monScheduleWrapper.children[i].style.backgroundColor = '';
-    //     tueScheduleWrapper.children[i].style.backgroundColor = '';
-    //     wedScheduleWrapper.children[i].style.backgroundColor = '';
-    //     thuScheduleWrapper.children[i].style.backgroundColor = '';
-    //     friScheduleWrapper.children[i].style.backgroundColor = '';
-    //     satScheduleWrapper.children[i].style.backgroundColor = '';
-    //     sunScheduleWrapper.children[i].style.backgroundColor = '';
-
-    //     console.log("plannedTodos[i] (1) = " + JSON.stringify(plannedTodos[i]))
-    // }
 
 // _ _ _
 
@@ -902,18 +809,20 @@ if (plannedTodos[dataId].date === weekDates[0]) {
         plannedTodos[dataId].color = '';
         plannedTodos[dataId].isEmpty = true;
 
-
-
         plannedTodos.forEach(Element => {
             if (Element.isEmpty === false) {
                 plannedTodosEdit.push(Element);
             }})
+
+            console.log("JSON.stringify(plannedTodosEdit) = " + JSON.stringify(plannedTodosEdit))
 
         plannedTodos = plannedTodosEdit;
 
         plannedTodosEdit = plannedTodosStart;
 
         console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos));
+
+
         event.stopPropagation();
     });
 
@@ -930,7 +839,6 @@ function clearAll() {
     console.log("clearAll() körs")
 
     for (let i = 0; i < dateCollection.length; i++) {
-
         dateCollection[i].value = '';
         dateCollection[i].innerHTML = '';
         todoCollection[i].value = '';
@@ -970,6 +878,8 @@ function clearAll() {
         Element.style.backgroundColor = "";
     })
 
+    removeAllTodoContainersWithDataIdGreaterThanTwo();
+
     // returnRgbColor(colorPickerGray.value) = 'rgb(150, 150, 150)';
     colorPickerSelect.style.backgroundColor = returnRgbColor(colorPickerGray.value);
     colorPickerSelect.value = colorPickerGray.value;
@@ -978,6 +888,10 @@ function clearAll() {
 }
 
 clearAllButton.addEventListener('click', clearAll);
+
+
+// FIXA! plannedTodos som ligger under
+// clearSpecificTodoRow() körs aldrig (2024-11-06)
 
 // Clear specific todo-row (select the trash can symbol)    //trash can dust bin recycle
 function clearSpecificTodoRow() {
@@ -996,6 +910,8 @@ function clearSpecificTodoRow() {
 
         console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos));
 }
+
+// _ _ _
 
 // Clear todos from Week schedule!
 
@@ -1036,44 +952,6 @@ let newSunWeekDiv = document.createElement("sun-schedule-div");
 function addTodoDivs() {
 
     for (let i = 0; i < 9; i++) {
-
-
-// `${mon-todo-week-div-i}`
-
-        // // Create 9 Monday divs
-        // newMonWeekDiv.classList.add(`mon-todo-week-div-${i}`);
-        // newMonWeekDiv.id = "mon-week-schedule";
-        // addCurrentWeekdayDivStyle(newMonWeekDiv)
-
-        // // Create 9 Tuesday divs
-        // newTueWeekDiv.classList.add("tue-todo-week-item");
-        // newTueWeekDiv.id = "tue-week-schedule";
-        // addCurrentWeekdayDivStyle(newTueWeekDiv)
-
-        // // Create 9 Wednesday divs
-        // newWedWeekDiv.classList.add("wed-todo-week-item");
-        // newWedWeekDiv.id = "wed-week-schedule";
-        // addCurrentWeekdayDivStyle(newWedWeekDiv)
-
-        // // Create 9 Thursday divs
-        // newThuWeekDiv.classList.add("thu-todo-week-item");
-        // newThuWeekDiv.id = "thu-week-schedule";
-        // addCurrentWeekdayDivStyle(newThuWeekDiv)
-
-        // // Create 9 Friday divs
-        // newFriWeekDiv.classList.add("fri-todo-week-item");
-        // newFriWeekDiv.id = "fri-week-schedule";
-        // addCurrentWeekdayDivStyle(newFriWeekDiv)
-
-        // // Create 9 Saturday divs
-        // newSatWeekDiv.classList.add("sat-todo-week-item");
-        // newSatWeekDiv.id = "sat-week-schedule";
-        // addCurrentWeekdayDivStyle(newSatWeekDiv)
-
-        // // Create 9 Sunday divs
-        // newSunWeekDiv.classList.add("sun-todo-week-item");
-        // newSunWeekDiv.id = "sun-week-schedule";
-        // addCurrentWeekdayDivStyle(newSunWeekDiv)
 
         // Create 9 Monday divs
         newMonWeekDiv.classList.add("mon-todo-week-item");
@@ -1391,11 +1269,11 @@ addTodoButton.addEventListener("click", function(e) {
 
         redistributeScheduleContent(scheduleWrappers);
 
-        currentMondayTodos.forEach(currentMondayTodos => {
-            console.log("currentMondayTodos = " + currentMondayTodos)})
+        // currentMondayTodos.forEach(currentMondayTodos => {
+        //     console.log("currentMondayTodos = " + currentMondayTodos)})
 
-        currentMondayTodoItems.forEach(currentMondayTodoItems => {
-            console.log("currentMondayTodoItems = " + currentMondayTodoItems.innerHTML)})
+        // currentMondayTodoItems.forEach(currentMondayTodoItems => {
+        //     console.log("currentMondayTodoItems = " + currentMondayTodoItems.innerHTML)})
 
         // currentTuesdayTodos.forEach(currentTuesdayTodos => {
         //     console.log("currentTuesdayTodos = " + currentTuesdayTodos)})
@@ -1406,6 +1284,173 @@ addTodoButton.addEventListener("click", function(e) {
 
 
 console.log("currentTuesdayTodos (utanför updateCurrent...) = " + currentTuesdayTodos)
+
+
+//_ _ _
+//_ _ _
+
+
+// createDataIdArray is a NodeList of elements with `data-id` attributes
+var createDataIdArray = document.querySelectorAll('.todo-text');
+
+// let count = -1;
+
+function addDynamicTodoContainer() {
+    // // Select all existing todo containers
+//     count += 1;
+
+// // Find the highest data-id among the existing containers
+
+// // Initialize maxId to be a negative number to ensure it will be updated
+// var maxId = -1;
+
+// // Loop through each element in createDataIdArray
+// createDataIdArray.forEach(element => {
+//     // Get the `data-id` attribute and convert it to an integer
+//     dataId = parseInt(element.getAttribute('data-id'), 10);
+
+//     dataId = dataId + count;
+
+//     console.log("dataId = " + dataId);
+
+//     // If dataId is a valid number, update maxId if dataId is greater
+//     if (!isNaN(dataId) && dataId > maxId) {
+//         maxId = dataId;
+//     }
+// });
+
+// console.log("maxId = " + maxId);
+// let highestId = maxId
+
+
+// _ _ _
+
+    // Set the new data-id to be one higher than the highest existing data-id
+    // let newId = highestId + 1;
+    let newId = plannedTodos.length-1;
+
+    // Create a new div for the todo-container-element
+    const dynamicTodoContainer = document.createElement('div');
+    dynamicTodoContainer.id = 'todo-container';
+    dynamicTodoContainer.classList.add('todo-container-element');
+    dynamicTodoContainer.setAttribute('data-id', newId);
+    dynamicTodoContainer.style.display = "flex";
+
+    // Lägg in data från plannedTodos[sistaIndexNr???]
+
+    // Create and append the first textarea for date
+    const dateTextarea = document.createElement('textarea');
+    dateTextarea.id = `todo-${newId}-date`;
+    dateTextarea.classList.add('todo-date');
+    dateTextarea.setAttribute('type', 'text');
+    dateTextarea.setAttribute('data-id', newId);
+    dateTextarea.setAttribute('data-key', 'date');
+    dateTextarea.setAttribute('name', 'date');
+    dateTextarea.textContent = `Date ${newId}`; // Placeholder text
+    dynamicTodoContainer.appendChild(dateTextarea);
+
+    // Create and append the second textarea for text
+    const textTextarea = document.createElement('textarea');
+    textTextarea.id = `todo-${newId}-text`;
+    textTextarea.classList.add('todo-text');
+    textTextarea.setAttribute('type', 'text');
+    textTextarea.setAttribute('data-id', newId);
+    textTextarea.setAttribute('data-key', 'todo');
+    textTextarea.setAttribute('name', 'text');
+    textTextarea.textContent = `Todo Text ${newId}`; // Placeholder text
+    dynamicTodoContainer.appendChild(textTextarea);
+
+    // Create and append the color div
+    const colorDiv = document.createElement('div');
+    colorDiv.classList.add('todo-color');
+    colorDiv.setAttribute('data-id', newId);
+    colorDiv.setAttribute('data-key', 'color');
+    colorDiv.setAttribute('name', 'color');
+    // colorDiv.style.backgroundColor = "lightgreen"; // Set a color for the color div
+    dynamicTodoContainer.appendChild(colorDiv);
+
+    // Append the new container to the main container
+    const wrapperContainer = document.getElementById('todo-wrapper');
+    wrapperContainer.appendChild(dynamicTodoContainer);
+}
+
+
+
+
+function removeAllTodoContainersWithDataIdGreaterThanTwo() {
+    console.log("removeAllTodoContainersWithDataIdGreaterThanTwo() körs");
+
+    // Select all elements with the class `todo-container-element`
+    const todoContainers = document.querySelectorAll('.todo-container-element');
+
+    // Loop through each container
+    todoContainers.forEach(container => {
+        // Find any child element within the container that has `data-id` attribute
+        const childWithDataId = container.querySelector('[data-id]');
+
+        // If the child element exists, check its `data-id` value
+        if (childWithDataId) {
+            const dataId = parseInt(childWithDataId.getAttribute('data-id'), 10);
+            console.log("dataId = " + dataId)
+
+            // If `data-id` is greater than 2, remove the container
+            if (dataId > 2) {
+                container.remove();
+            }
+        }
+    });
+}
+
+// // Add an event listener to the button to trigger the function on click
+// document.getElementById('clear-all').addEventListener('click', removeAllTodoContainersWithDataIdGreaterThanTwo);
+
+// let currentPlanListContainers = docume
+
+// _ _ _
+
+
+
+// console.log("dynamicTodoContainer[plannedTodos.length - 1].value = " + dynamicTodoContainer[plannedTodos.length - 1].value)
+
+//         // Check if there is at least one container
+//         if (dynamicTodoContainer.length > 0) {
+//             // Get the last container in the list
+//             const lastTodoContainer = dynamicTodoContainer[plannedTodos.length - 1];
+
+//             // Remove the last container
+//             lastTodoContainer.remove();
+//         }
+// }
+
+// // Add an event listener to the button to trigger the function on click
+// document.getElementById('trash-can').addEventListener('click', removeLastTodoContainer);
+
+// _ _ _
+
+// function removeSpecificTodoContainer() {
+//     // Calculate the target data-id value
+//     const targetDataId = plannedTodos.length - 1;
+
+//     console.log("targetDataId = " + targetDataId)
+
+//     // Select all elements with the class `todo-container-element`
+//     const todoContainers = document.querySelectorAll('.todo-container-element');
+
+//     // Loop through each container to find the one with data-id equal to targetDataId
+//     todoContainers.forEach(container => {
+//         // Find a child element within the container that has `data-id`
+//         const childWithDataId = container.querySelector('[data-id]');
+
+//         // If the child element exists and its data-id matches targetDataId, remove the container
+//         if (childWithDataId && parseInt(childWithDataId.getAttribute('data-id'), 10) === targetDataId) {
+//             container.remove();
+//         }
+//     });
+// }
+
+
+//_ _ _
+//_ _ _
 
 // _ _ _
 
