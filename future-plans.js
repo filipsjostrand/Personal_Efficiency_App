@@ -207,6 +207,7 @@ function returnCurrentTodoContainerRowLength(plannedTodos) {
 
 var plannedTodosStart = [];
 var plannedTodosEdit = [];
+var dayArrayToRemove = [];
 
 var currentMondayTodos = [];
 var currentTuesdayTodos = [];
@@ -469,6 +470,8 @@ colorPickerSelect.addEventListener("change", (e) => {
     colorPickerSelect.style.backgroundColor = colorPickerFunction()
 });
 
+let todoContainers = document.querySelectorAll('.todo-container-element');
+
 
 // Funktion för att extrahera tid från todo-text (hh:mm)
 function extractTime(todo) {
@@ -485,8 +488,11 @@ function timeToNumber(time) {
 }
 
 
+// _ _ _
+
 // Function to convert dates to time and sort the objects
 function sortArrayOfObjectsDataByDateAndTIme(arrayOfObjects) {
+    console.log("sortArrayOfObjectsDataByDateAndTIme körs");
     return arrayOfObjects.sort((a, b) => {
     let timeA = new Date(a.date).getTime();
     let timeB = new Date(b.date).getTime();
@@ -580,8 +586,8 @@ function addTaskToList() {
     // Empty todo text input
     textInputValue.value = '';
 
-    // Följande funktioner behöver uppdateras? (2024-10-16)
-    updateTodoSchedule();
+    // // Följande funktioner behöver uppdateras? (2024-10-16)
+    // updateTodoSchedule();
 
     // currentMondayTodos = currentMondayTodosStart;
     updateCurrentWeekSchedule();
@@ -596,6 +602,24 @@ function addTaskToList() {
 
 // Fixa så att edit fungerar för week schedule (2024-10-16)
 // Edit task
+
+function getCurrentDataId() {
+    // Select all divs with the class 'clickable-div'
+    // const divs = document.querySelectorAll('.todo-container-element');
+
+    // Add click event listener to each div
+    todoContainers.forEach(div => {
+    // divs.forEach(div => {
+        console.log("addEventListener for " + div.dataset.id);
+        div.addEventListener('click', function() {
+            // Access the data-id attribute
+            const dataId = div.dataset.id;
+            console.log('Clicked div data-id:', dataId);
+        });
+    });
+}
+
+getCurrentDataId('todo-container-element');
 
 let dataId;
 
@@ -735,95 +759,309 @@ closePanelButton.addEventListener('click', function(event) {
     colorSwitcherPanel.style.display = 'none';
 });
 
+
+// Clear Specific Todo row
     clearSpecificTodoRowButton.addEventListener('click', function() {
-        console.log("clearSpecificTodo")
-        getDataId();
 
-// _ _ _
+                console.log("clearSpecificTodo")
+                getDataId();
 
-// Empty the innerHTML & the backgroundColor in the weekplan (for the current todo, selected/matched from the Current Plan list)
-if (plannedTodos[dataId].date === weekDates[0]) {
+        // _ _ _
 
-    currentMondayTodoItems.forEach(Element => {
-        if (Element.innerHTML == plannedTodos[dataId].todo) {
-            Element.innerHTML = "";
-            Element.style.backgroundColor = "";
+        // Empty the innerHTML & the backgroundColor in the weekplan (for the current todo, selected/matched from the Current Plan list)
+        if (plannedTodos[dataId].date === weekDates[0]) {
+
+            currentMondayTodoItems.forEach(Element => {
+                if (Element.innerHTML == plannedTodos[dataId].todo) {
+                    Element.innerHTML = "";
+                    Element.style.backgroundColor = "";
+                }
+            })
+        } else if (plannedTodos[dataId].date === weekDates[1]) {
+            currentTuesdayTodoItems.forEach(Element => {
+                if (Element.innerHTML == plannedTodos[dataId].todo) {
+                    Element.innerHTML = "";
+                    Element.style.backgroundColor = "";
+                }
+            })
+        } else if (plannedTodos[dataId].date === weekDates[2]) {
+            currentWednesdayTodoItems.forEach(Element => {
+                if (Element.innerHTML == plannedTodos[dataId].todo) {
+                    Element.innerHTML = "";
+                    Element.style.backgroundColor = "";
+                }
+            })
+        } else if (plannedTodos[dataId].date === weekDates[3]) {
+            currentThursdayTodoItems.forEach(Element => {
+                if (Element.innerHTML == plannedTodos[dataId].todo) {
+                    Element.innerHTML = "";
+                    Element.style.backgroundColor = "";
+                }
+            })
+        } else if (plannedTodos[dataId].date === weekDates[4]) {
+            currentFridayTodoItems.forEach(Element => {
+                if (Element.innerHTML == plannedTodos[dataId].todo) {
+                    Element.innerHTML = "";
+                    Element.style.backgroundColor = "";
+                }
+            })
+        } else if (plannedTodos[dataId].date === weekDates[5]) {
+            currentSaturdayTodoItems.forEach(Element => {
+                if (Element.innerHTML == plannedTodos[dataId].todo) {
+                    Element.innerHTML = "";
+                    Element.style.backgroundColor = "";
+                }
+            })
+        } else if (plannedTodos[dataId].date === weekDates[6]) {
+            currentSundayTodoItems.forEach(Element => {
+                if (Element.innerHTML == plannedTodos[dataId].todo) {
+                    Element.innerHTML = "";
+                    Element.style.backgroundColor = "";
+                }
+            })
         }
-    })
-} else if (plannedTodos[dataId].date === weekDates[1]) {
-    currentTuesdayTodoItems.forEach(Element => {
-        if (Element.innerHTML == plannedTodos[dataId].todo) {
-            Element.innerHTML = "";
-            Element.style.backgroundColor = "";
+
+        // _ _ _
+
+        // Add the specific object (to be deleted) to a specific "dayArrayToRemove"
+
+        dayArrayToRemove.push({
+            date: `${plannedTodos[dataId].date}`,
+            todo: `${plannedTodos[dataId].todo}`,
+            color: `${plannedTodos[dataId].color}`,
+            isEmpty: false
+        });
+
+        console.log("dayArrayToRemove = " + JSON.stringify(dayArrayToRemove));
+
+        // _ _ _
+
+        const arraysByDay = {
+            currentMondayTodos,
+            currentTuesdayTodos,
+            currentWednesdayTodos,
+            currentThursdayTodos,
+            currentFridayTodos,
+            currentSaturdayTodos,
+            currentSundayTodos,
+        };
+
+        // Define the specific object you want to find
+        const targetObject = dayArrayToRemove[0];
+
+        // Function to search for the object in each array
+        function findArrayContainingObject(target, arrays) {
+            for (const [arrayName, todosArray] of Object.entries(arrays)) {
+                const found = todosArray.some(todo =>
+                    JSON.stringify(todo) === JSON.stringify(target)
+                );
+                if (found) {
+                    return arrayName;
+                }
+            }
+            return null; // If no matching object is found in any array
         }
-    })
-} else if (plannedTodos[dataId].date === weekDates[2]) {
-    currentWednesdayTodoItems.forEach(Element => {
-        if (Element.innerHTML == plannedTodos[dataId].todo) {
-            Element.innerHTML = "";
-            Element.style.backgroundColor = "";
+
+        // Call the function
+        const resultArray = findArrayContainingObject(targetObject, arraysByDay);
+
+
+
+        console.log("resultArray = " + resultArray); // Outputs: "currentTuesdayTodos" if the object is found
+
+        // _ _ _
+
+        // Function to exclude the target object from each array and collect the rest
+        function excludeObjectFromArrays(target, arrays) {
+            const newArray = [];
+
+            Object.values(arrays).forEach(todosArray => {
+                const filteredArray = todosArray.filter(todo =>
+                    JSON.stringify(todo) !== JSON.stringify(target)
+                );
+                newArray.push(...filteredArray); // Add all non-matching objects to newArray
+            });
+
+            return newArray;
         }
-    })
-} else if (plannedTodos[dataId].date === weekDates[3]) {
-    currentThursdayTodoItems.forEach(Element => {
-        if (Element.innerHTML == plannedTodos[dataId].todo) {
-            Element.innerHTML = "";
-            Element.style.backgroundColor = "";
+
+
+
+        // Call the function
+        const updatedResultArray = excludeObjectFromArrays(targetObject, arraysByDay);
+
+        console.log("JSON.stringify(updatedResultArray) = " + JSON.stringify(updatedResultArray));
+        console.log("updatedResultArray = " + updatedResultArray);
+
+        // _ _ _
+
+        if (resultArray == "currentMondayTodos") {
+            console.log("currentMondayTodos")
+
+            for (let i = 0; i < currentMondayTodos.length; i++) {
+                currentMondayTodoItems.forEach(Element => {
+                    Element.innerHTML = "";
+                    Element.style.backgroundColor = "";
+                });
+            }
+            currentMondayTodos = updatedResultArray;
+            for (let i = 0; i < currentMondayTodos.length; i++) {
+                currentMondayTodoItems.forEach(Element => {
+                    Element.innerHTML = currentMondayTodos[i].todo;
+                    Element.style.backgroundColor = returnRgbColor(currentMondayTodos[i].color);
+                });
+            }
+        } else if (resultArray == "currentTuesdayTodos") {
+            console.log("currentTuesdayTodos")
+
+            for (let i = 0; i < currentTuesdayTodos.length; i++) {
+                currentTuesdayTodoItems.forEach(Element => {
+                    Element.innerHTML = "";
+                    Element.style.backgroundColor = "";
+                });
+            }
+            currentTuesdayTodos = updatedResultArray;
+            for (let i = 0; i < currentTuesdayTodos.length; i++) {
+                currentTuesdayTodoItems[i].innerHTML = currentTuesdayTodos[i].todo;
+                currentTuesdayTodoItems[i].style.backgroundColor = returnRgbColor(currentTuesdayTodos[i].color);
+            }
+        } else if (resultArray == "currentWednesdayTodos") {
+            console.log("currentWednesdayTodos")
+
+            for (let i = 0; i < currentWednesdayTodos.length; i++) {
+                currentWednesdayTodoItems.forEach(Element => {
+                    Element.innerHTML = "";
+                    Element.style.backgroundColor = "";
+                });
+            }
+            currentWednesdayTodos = updatedResultArray;
+            for (let i = 0; i < currentWednesdayTodos.length; i++) {
+                currentWednesdayTodoItems[i].innerHTML = currentWednesdayTodos[i].todo;
+                currentWednesdayTodoItems[i].style.backgroundColor = returnRgbColor(currentWednesdayTodos[i].color);
+            }
+        } else if (resultArray == "currentThursdayTodos") {
+            console.log("currentThursdayTodos")
+
+            for (let i = 0; i < currentThursdayTodos.length; i++) {
+                currentThursdayTodoItems.forEach(Element => {
+                    Element.innerHTML = "";
+                    Element.style.backgroundColor = "";
+                });
+            }
+            currentThursdayTodos = updatedResultArray;
+            for (let i = 0; i < currentThursdayTodos.length; i++) {
+                currentThursdayTodoItems[i].innerHTML = currentThursdayTodos[i].todo;
+                currentThursdayTodoItems[i].style.backgroundColor = returnRgbColor(currentThursdayTodos[i].color);
+            }
+        } else if (resultArray == "currentFridayTodos") {
+            console.log("currentFridayTodos")
+            for (let i = 0; i < currentFridayTodos.length; i++) {
+                currentFridayTodoItems.forEach(Element => {
+                    Element.innerHTML = "";
+                    Element.style.backgroundColor = "";
+                });
+            }
+            currentFridayTodos = updatedResultArray;
+            for (let i = 0; i < currentFridayTodos.length; i++) {
+                currentFridayTodoItems[i].innerHTML = currentFridayTodos[i].todo;
+                currentFridayTodoItems[i].style.backgroundColor = returnRgbColor(currentFridayTodos[i].color);
+            }
+        } else if (resultArray == "currentSaturdayTodos") {
+            console.log("currentSaturdayTodos")
+            for (let i = 0; i < currentSaturdayTodos.length; i++) {
+                currentSaturdayTodoItems.forEach(Element => {
+                    Element.innerHTML = "";
+                    Element.style.backgroundColor = "";
+                });
+            }
+            currentSaturdayTodos = updatedResultArray;
+            for (let i = 0; i < currentSaturdayTodos.length; i++) {
+                currentSaturdayTodoItems[i].innerHTML = currentSaturdayTodos[i].todo;
+                currentSaturdayTodoItems[i].style.backgroundColor = returnRgbColor(currentSaturdayTodos[i].color);
+            }
+        } else if (resultArray == "currentSundayTodos") {
+            console.log("currentSundayTodos")
+            for (let i = 0; i < currentSundayTodos.length; i++) {
+                currentSundayTodoItems.forEach(Element => {
+                    Element.innerHTML = "";
+                    Element.style.backgroundColor = "";
+                });
+            }
+            currentSundayTodos = updatedResultArray;
+            for (let i = 0; i < currentSundayTodos.length; i++) {
+                currentSundayTodoItems[i].innerHTML = currentSundayTodos[i].todo;
+                currentSundayTodoItems[i].style.backgroundColor = returnRgbColor(currentSundayTodos[i].color);
+            }
         }
-    })
-} else if (plannedTodos[dataId].date === weekDates[4]) {
-    currentFridayTodoItems.forEach(Element => {
-        if (Element.innerHTML == plannedTodos[dataId].todo) {
-            Element.innerHTML = "";
-            Element.style.backgroundColor = "";
-        }
-    })
-} else if (plannedTodos[dataId].date === weekDates[5]) {
-    currentSaturdayTodoItems.forEach(Element => {
-        if (Element.innerHTML == plannedTodos[dataId].todo) {
-            Element.innerHTML = "";
-            Element.style.backgroundColor = "";
-        }
-    })
-} else if (plannedTodos[dataId].date === weekDates[6]) {
-    currentSundayTodoItems.forEach(Element => {
-        if (Element.innerHTML == plannedTodos[dataId].todo) {
-            Element.innerHTML = "";
-            Element.style.backgroundColor = "";
-        }
-    })
-}
 
-// _ _ _
+        // _ _ _
+        // _ _ _
 
-        // Empty the Current Plan HTML row (in the DOM)
-        dateCollection[dataId].value = '';
-        dateCollection[dataId].innerHTML = '';
-        todoCollection[dataId].value = '';
-        todoCollection[dataId].innerHTML = '';
-        todoColorCollection[dataId].style.backgroundColor = 'rgb(228, 228, 228)';
+                // Empty the Current Plan HTML row (in the DOM)
+                dateCollection[dataId].value = '';
+                dateCollection[dataId].innerHTML = '';
+                todoCollection[dataId].value = '';
+                todoCollection[dataId].innerHTML = '';
+                todoColorCollection[dataId].style.backgroundColor = 'rgb(228, 228, 228)';
 
-        // Empty the Current Plan object row (in the plannedTodos array of objects)
-        plannedTodos[dataId].date = '';
-        plannedTodos[dataId].todo = '';
-        plannedTodos[dataId].color = '';
-        plannedTodos[dataId].isEmpty = true;
+                // Empty the Current Plan object row (in the plannedTodos array of objects)
+                plannedTodos[dataId].date = '';
+                plannedTodos[dataId].todo = '';
+                plannedTodos[dataId].color = '';
+                plannedTodos[dataId].isEmpty = true;
 
-        plannedTodos.forEach(Element => {
-            if (Element.isEmpty === false) {
-                plannedTodosEdit.push(Element);
-            }})
+                plannedTodos.forEach(Element => {
+                    if (Element.isEmpty === false) {
+                        plannedTodosEdit.push(Element);
 
-            console.log("JSON.stringify(plannedTodosEdit) = " + JSON.stringify(plannedTodosEdit))
+                        console.log("element to save")
 
-        plannedTodos = plannedTodosEdit;
+                    }})
 
-        plannedTodosEdit = plannedTodosStart;
+                    console.log("JSON.stringify(plannedTodosEdit) = " + JSON.stringify(plannedTodosEdit))
+                    console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos))
 
-        console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos));
+                    // Find the unique "extra" object in arrayOfObjectsOne
+                    const uniqueObject = plannedTodos.filter(obj1 =>
+                        !plannedTodosEdit.some(obj2 => JSON.stringify(obj2) === JSON.stringify(obj1))
+                    );
+
+                    console.log("uniqueObject = " + uniqueObject);
+                    console.log("uniqueObject.length = " + uniqueObject.length);
+
+                plannedTodos = plannedTodosEdit;
+
+                plannedTodosEdit = plannedTodosStart;
+
+                console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos));
+
+                for (i = 0; i < plannedTodos.length; i++) {
+                    dateCollection[i].value = plannedTodos[i].date;
+                    dateCollection[i].innerHTML = plannedTodos[i].date;
+                    todoCollection[i].value = plannedTodos[i].todo;
+                    todoCollection[i].innerHTML = plannedTodos[i].todo;
+                    todoColorCollection[i].style.backgroundColor = returnRgbColor(plannedTodos[i].color);
+                }
+
+                let lastElement = dateCollection[dateCollection.length - 1];
+                console.log("lastElement.innerHTML = " + lastElement.innerHTML);
+
+                let lastCollectionNumber = dateCollection.length - 1;
+                console.log("lastCollectionNumber (dateCollection.length - 1) = " + dateCollection.length - 1);
+                console.log("lastCollectionNumber (dateCollection.length - 1) = " + lastCollectionNumber);
+
+                    dateCollection[lastCollectionNumber].value = '';
+                    dateCollection[lastCollectionNumber].innerHTML = '';
+                    todoCollection[lastCollectionNumber].value = '';
+                    todoCollection[lastCollectionNumber].innerHTML = '';
+                    todoColorCollection[lastCollectionNumber].style.backgroundColor = 'rgb(228, 228, 228)';
+
+                if (lastCollectionNumber > 2) {
+                    removeLastDynamicTodoContainer();
+                }
 
 
-        event.stopPropagation();
+                event.stopPropagation();
     });
 
 // _ _ _
@@ -838,6 +1076,7 @@ if (plannedTodos[dataId].date === weekDates[0]) {
 function clearAll() {
     console.log("clearAll() körs")
 
+    // clearthe DOM todo data
     for (let i = 0; i < dateCollection.length; i++) {
         dateCollection[i].value = '';
         dateCollection[i].innerHTML = '';
@@ -845,6 +1084,7 @@ function clearAll() {
         todoCollection[i].innerHTML = '';
         todoColorCollection[i].style.backgroundColor = 'rgb(228, 228, 228)';
     }
+
     dateInputValue.value = '';
     plannedTodos.length = 0;
     plannedTodos = plannedTodosStart;
@@ -878,7 +1118,10 @@ function clearAll() {
         Element.style.backgroundColor = "";
     })
 
-    removeAllTodoContainersWithDataIdGreaterThanTwo();
+    // removeAllTodoContainersWithDataIdGreaterThanTwo();
+    // removeAllExceptThreeDynamicTodoContainers();
+    // removeAllDynamicTodoContainers();
+    restoreTodoWrapper();
 
     // returnRgbColor(colorPickerGray.value) = 'rgb(150, 150, 150)';
     colorPickerSelect.style.backgroundColor = returnRgbColor(colorPickerGray.value);
@@ -894,22 +1137,25 @@ clearAllButton.addEventListener('click', clearAll);
 // clearSpecificTodoRow() körs aldrig (2024-11-06)
 
 // Clear specific todo-row (select the trash can symbol)    //trash can dust bin recycle
-function clearSpecificTodoRow() {
-    console.log("clearSpecificTodo() körs")
-        dateCollection[dataId].value = '';
-        dateCollection[dataId].innerHTML = '';
-        todoCollection[dataId].value = '';
-        todoCollection[dataId].innerHTML = '';
-        todoColorCollection[dataId].style.backgroundColor = 'rgb(228, 228, 228)';
+// function clearSpecificTodoRow() {
+//     console.log("clearSpecificTodo() körs")
 
-        plannedTodos[dataId].date = '';
-        plannedTodos[dataId].todo = '';
-        plannedTodos[dataId].color = '';
-        plannedTodos[dataId].isEmpty = true;
+//     // clearTheDOM();
+
+//         dateCollection[dataId].value = '';
+//         dateCollection[dataId].innerHTML = '';
+//         todoCollection[dataId].value = '';
+//         todoCollection[dataId].innerHTML = '';
+//         todoColorCollection[dataId].style.backgroundColor = 'rgb(228, 228, 228)';
+
+//         plannedTodos[dataId].date = '';
+//         plannedTodos[dataId].todo = '';
+//         plannedTodos[dataId].color = '';
+//         plannedTodos[dataId].isEmpty = true;
 
 
-        console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos));
-}
+//         console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos));
+// }
 
 // _ _ _
 
@@ -1039,22 +1285,23 @@ let currentSunCollection = document.getElementsByClassName("sun-todo-week-item")
 
 // _ _ _
 
-// Gör inget(?) ((2024-10-10))
-function updateTodoSchedule() {
+// // Gör inget(?) ((2024-10-10))
+// function updateTodoSchedule() {
 
-    for (let i = 0; i < plannedTodos.length; i++) {
-        if (plannedTodos[i].isEmpty === false && dateCollection[i].innerHTML == mondayDateDiv.textContent) {
-            alert("This todo date matches the current Monday date");
+//     for (let i = 0; i < plannedTodos.length; i++) {
+//         if (plannedTodos[i].isEmpty === false && dateCollection[i].innerHTML == mondayDateDiv.textContent) {
+//             alert("This todo date matches the current Monday date");
 
-            console.log("i (1) = " + i);
-        }
-        else if (plannedTodos[i].isEmpty === false && dateCollection[i].innerHTML == tuesdayDateDiv.textContent) {
-            alert("This todo date matches the current Tuesday date");
-        }
+//             console.log("i (1) = " + i);
+//         }
+//         else if (plannedTodos[i].isEmpty === false && dateCollection[i].innerHTML == tuesdayDateDiv.textContent) {
+//             alert("This todo date matches the current Tuesday date");
+//         }
 
-    }
-}
+//     }
+// }
 
+// _ _ _
 
 let mondayTodoCollection = document.querySelectorAll(".grid-item day1");
 let tuesdayTodoCollection = document.querySelectorAll(".grid-item day2");
@@ -1088,7 +1335,7 @@ currentSundayTodos = [];
 // console.log("currentMondayTodos efter reset, JSON.stringify = " + JSON.stringify(currentMondayTodos));
 
 plannedTodos.forEach((todo) => {
-    if (todo.date === weekDates[0] && currentMondayTodos.length <= 9) {
+    if (todo.date === weekDates[0] && currentMondayTodos.length < 9) {
         currentMondayTodos.push({
             date: `${todo.date}`,
             todo: `${todo.todo}`,
@@ -1096,42 +1343,42 @@ plannedTodos.forEach((todo) => {
             isEmpty: false
         });
 
-    } else if (todo.date === weekDates[1] && currentTuesdayTodos.length <= 9) {
+    } else if (todo.date === weekDates[1] && currentTuesdayTodos.length < 9) {
         currentTuesdayTodos.push({
             date: `${todo.date}`,
             todo: `${todo.todo}`,
             color: `${todo.color}`,
             isEmpty: false
         });
-    } else if (todo.date === weekDates[2] && currentWednesdayTodos.length <= 9) {
+    } else if (todo.date === weekDates[2] && currentWednesdayTodos.length < 9) {
         currentWednesdayTodos.push({
             date: `${todo.date}`,
             todo: `${todo.todo}`,
             color: `${todo.color}`,
             isEmpty: false
         })
-     } else if (todo.date === weekDates[3] && currentThursdayTodos.length <= 9) {
+     } else if (todo.date === weekDates[3] && currentThursdayTodos.length < 9) {
         currentThursdayTodos.push({
             date: `${todo.date}`,
             todo: `${todo.todo}`,
             color: `${todo.color}`,
             isEmpty: false
         });
-    } else if (todo.date === weekDates[4] && currentFridayTodos.length <= 9) {
+    } else if (todo.date === weekDates[4] && currentFridayTodos.length < 9) {
         currentFridayTodos.push({
             date: `${todo.date}`,
             todo: `${todo.todo}`,
             color: `${todo.color}`,
             isEmpty: false
         });
-    } else if (todo.date === weekDates[5] && currentSaturdayTodos.length <= 9) {
+    } else if (todo.date === weekDates[5] && currentSaturdayTodos.length < 9) {
         currentSaturdayTodos.push({
             date: `${todo.date}`,
             todo: `${todo.todo}`,
             color: `${todo.color}`,
             isEmpty: false
         });
-    } else if (todo.date === weekDates[6] && currentSundayTodos.length <= 9) {
+    } else if (todo.date === weekDates[6] && currentSundayTodos.length < 9) {
         currentSundayTodos.push({
             date: `${todo.date}`,
             todo: `${todo.todo}`,
@@ -1224,50 +1471,54 @@ addTodoButton.addEventListener("click", function(e) {
 })
 
 
-        // _ _ _ ((Används (2024-10-14)?))
+// _ _ _
 
-        function redistributeScheduleContent(scheduleWrappers) {
-            scheduleWrappers.forEach(wrapper => {
-                let emptyChildIndex = -1;
+        // // _ _ _ ((Används (2024-10-14)?))
+
+        // function redistributeScheduleContent(scheduleWrappers) {
+        //     scheduleWrappers.forEach(wrapper => {
+        //         let emptyChildIndex = -1;
 
 
-                // Find the first empty child element
-                for (let i = 0; i < wrapper.children.length; i++) {
-                    if (wrapper.children[i].textContent.trim() === '') {
-                        emptyChildIndex = i;
-                        break;
-                    }
-                }
+        //         // Find the first empty child element
+        //         for (let i = 0; i < wrapper.children.length; i++) {
+        //             if (wrapper.children[i].textContent.trim() === '') {
+        //                 emptyChildIndex = i;
+        //                 break;
+        //             }
+        //         }
 
-                // If an empty child element is found, find a later filled child element
-                if (emptyChildIndex !== -1) {
-                    for (let j = emptyChildIndex + 1; j < wrapper.children.length; j++) {
-                        if (wrapper.children[j].textContent.trim() !== '') {
-                            // Replace the empty child's textContent with the filled child's textContent
-                            wrapper.children[emptyChildIndex].textContent = wrapper.children[j].textContent;
-                            wrapper.children[emptyChildIndex].style.backgroundColor = wrapper.children[j].style.backgroundColor;
-                            // Make the filled child's textContent become empty
-                            wrapper.children[j].textContent = '';
-                            wrapper.children[j].style.backgroundColor = '';
-                            break;
-                        }
-                    }
-                }
-            });
-        }
+        //         // If an empty child element is found, find a later filled child element
+        //         if (emptyChildIndex !== -1) {
+        //             for (let j = emptyChildIndex + 1; j < wrapper.children.length; j++) {
+        //                 if (wrapper.children[j].textContent.trim() !== '') {
+        //                     // Replace the empty child's textContent with the filled child's textContent
+        //                     wrapper.children[emptyChildIndex].textContent = wrapper.children[j].textContent;
+        //                     wrapper.children[emptyChildIndex].style.backgroundColor = wrapper.children[j].style.backgroundColor;
+        //                     // Make the filled child's textContent become empty
+        //                     wrapper.children[j].textContent = '';
+        //                     wrapper.children[j].style.backgroundColor = '';
+        //                     break;
+        //                 }
+        //             }
+        //         }
+        //     });
+        // }
 
-        // Usage
-        const scheduleWrappers = [
-            monScheduleWrapper,
-            tueScheduleWrapper,
-            wedScheduleWrapper,
-            thuScheduleWrapper,
-            friScheduleWrapper,
-            satScheduleWrapper,
-            sunScheduleWrapper
-        ];
+        // // Usage
+        // const scheduleWrappers = [
+        //     monScheduleWrapper,
+        //     tueScheduleWrapper,
+        //     wedScheduleWrapper,
+        //     thuScheduleWrapper,
+        //     friScheduleWrapper,
+        //     satScheduleWrapper,
+        //     sunScheduleWrapper
+        // ];
 
-        redistributeScheduleContent(scheduleWrappers);
+        // redistributeScheduleContent(scheduleWrappers);
+
+// _ _ _
 
         // currentMondayTodos.forEach(currentMondayTodos => {
         //     console.log("currentMondayTodos = " + currentMondayTodos)})
@@ -1294,6 +1545,9 @@ console.log("currentTuesdayTodos (utanför updateCurrent...) = " + currentTuesda
 var createDataIdArray = document.querySelectorAll('.todo-text');
 
 // let count = -1;
+
+// Main todo-list-container
+    const wrapperContainer = document.getElementById('todo-wrapper');
 
 function addDynamicTodoContainer() {
     // // Select all existing todo containers
@@ -1370,36 +1624,149 @@ function addDynamicTodoContainer() {
     dynamicTodoContainer.appendChild(colorDiv);
 
     // Append the new container to the main container
-    const wrapperContainer = document.getElementById('todo-wrapper');
+    // const wrapperContainer = document.getElementById('todo-wrapper');
     wrapperContainer.appendChild(dynamicTodoContainer);
-}
 
-
-
-
-function removeAllTodoContainersWithDataIdGreaterThanTwo() {
-    console.log("removeAllTodoContainersWithDataIdGreaterThanTwo() körs");
-
-    // Select all elements with the class `todo-container-element`
-    const todoContainers = document.querySelectorAll('.todo-container-element');
-
-    // Loop through each container
-    todoContainers.forEach(container => {
-        // Find any child element within the container that has `data-id` attribute
-        const childWithDataId = container.querySelector('[data-id]');
-
-        // If the child element exists, check its `data-id` value
-        if (childWithDataId) {
-            const dataId = parseInt(childWithDataId.getAttribute('data-id'), 10);
-            console.log("dataId = " + dataId)
-
-            // If `data-id` is greater than 2, remove the container
-            if (dataId > 2) {
-                container.remove();
-            }
-        }
+    dynamicTodoContainer.addEventListener('click', function() {
+        // Access the data-id attribute
+        const dataId = dynamicTodoContainer.dataset.id;
+        console.log('Clicked div data-id:', dataId);
     });
+
 }
+
+function removeLastDynamicTodoContainer() {
+    // const wrapperContainer = document.getElementById('todo-wrapper');
+    const specificTodoContainer = wrapperContainer.getElementsByClassName('todo-container-element');
+
+    if (specificTodoContainer.length > 0) {
+        const lastContainer = specificTodoContainer[specificTodoContainer.length - 1];
+        wrapperContainer.removeChild(lastContainer);
+    } else {
+        console.log("No more todo containers to remove.");
+    }
+}
+
+
+// _ _ _
+
+// Function to restore the todo-wrapper to the original structure
+function restoreTodoWrapper() {
+    const wrapperContainer = document.getElementById('todo-wrapper');
+
+    // Clear all existing child elements in wrapperContainer
+    wrapperContainer.innerHTML = '';
+
+    // Create the initial three containers with specific data and structure
+    for (let i = 0; i < 3; i++) {
+        // Create the todo container div
+        const dynamicTodoContainer = document.createElement('div');
+        dynamicTodoContainer.id = 'todo-container';
+        dynamicTodoContainer.classList.add('todo-container-element');
+        dynamicTodoContainer.setAttribute('data-id', i);
+
+        // Create and append the first textarea for date
+        const dateTextarea = document.createElement('textarea');
+        dateTextarea.id = `todo-${i}-date`;
+        dateTextarea.classList.add('todo-date');
+        dateTextarea.setAttribute('type', 'text');
+        dateTextarea.setAttribute('data-id', i);
+        dateTextarea.setAttribute('data-key', 'date');
+        dateTextarea.setAttribute('name', 'date');
+        dateTextarea.placeholder = i === 0 ? 'Next date...' : ''; // Set placeholder for the first one
+        dynamicTodoContainer.appendChild(dateTextarea);
+
+        // Create and append the second textarea for text
+        const textTextarea = document.createElement('textarea');
+        textTextarea.id = `todo-${i}-text`;
+        textTextarea.classList.add('todo-text');
+        textTextarea.setAttribute('type', 'text');
+        textTextarea.setAttribute('data-id', i);
+        textTextarea.setAttribute('data-key', 'todo');
+        textTextarea.setAttribute('name', 'text');
+        textTextarea.placeholder = i === 0 ? 'Planned todo...' : ''; // Set placeholder for the first one
+        dynamicTodoContainer.appendChild(textTextarea);
+
+        // Create and append the color div
+        const colorDiv = document.createElement('div');
+        colorDiv.classList.add('todo-color');
+        colorDiv.setAttribute('data-id', i);
+        colorDiv.setAttribute('data-key', 'color');
+        colorDiv.setAttribute('name', 'color');
+        dynamicTodoContainer.appendChild(colorDiv);
+
+        // Append the new container to the main container
+        wrapperContainer.appendChild(dynamicTodoContainer);
+    }
+}
+
+// _ _ _
+
+// function removeAllExceptThreeDynamicTodoContainers() {
+//     const wrapperContainer = document.getElementById('todo-wrapper');
+//     const todoContainers = wrapperContainer.getElementsByClassName('todo-container-element');
+
+//     // Convert HTMLCollection to an array to work with slice
+//     const containersArray = Array.from(todoContainers);
+
+//     // Calculate the number of elements to keep
+//     const keepCount = 3;
+//     const elementsToRemove = containersArray.slice(0, -keepCount);
+
+//     // Remove each element in elementsToRemove from wrapperContainer
+//     elementsToRemove.forEach(container => wrapperContainer.removeChild(container));
+// }
+
+
+// function removeAllDynamicTodoContainers() {
+//     const wrapperContainer = document.getElementById('todo-wrapper');
+//     const todoContainers = wrapperContainer.getElementsByClassName('todo-container-element');
+
+//     // Convert the HTMLCollection to an array to safely iterate and remove each element
+//     Array.from(todoContainers).forEach(container => wrapperContainer.removeChild(container));
+// }
+
+// _ _ _
+// _ _ _
+
+// function removeAllTodoContainersWithDataIdGreaterThanTwo() {
+//     console.log("removeAllTodoContainersWithDataIdGreaterThanTwo() körs");
+
+// // _ _ _
+
+//     // dataId = dynamicTodoContainer.dataset.id;
+
+// // _ _ _
+
+//     // todoContainers = document.getElementById("todo-container");
+//     // let childNodes = todoContainers.childNodes;
+//     // console.log(todoContainers.length); // let's assume "2"
+
+// // _ _ _
+
+//     // Select all elements with the class `todo-container-element`
+//     // const todoContainers = document.querySelectorAll('.todo-container-element');
+
+//     // Loop through each container
+//     todoContainers.forEach(container => {
+//         // Find any child element within the container that has `data-id` attribute
+//         const childWithDataId = container.querySelector('[data-id]');
+
+//         // If the child element exists, check its `data-id` value
+//         if (childWithDataId) {
+//             const dataId = parseInt(childWithDataId.getAttribute('data-id'), 10);
+//             console.log("dataId = " + dataId)
+
+//             // If `data-id` is greater than 2, remove the container
+//             if (dataId > 2) {
+//                 container.remove();
+//             }
+//         }
+//     });
+// }
+
+// _ _ _
+// _ _ _
 
 // // Add an event listener to the button to trigger the function on click
 // document.getElementById('clear-all').addEventListener('click', removeAllTodoContainersWithDataIdGreaterThanTwo);
