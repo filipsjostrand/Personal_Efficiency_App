@@ -115,6 +115,11 @@ a {
   font-size: 16px;
 }
 
+.grid-item {
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
 /* Weekly schedule (end) */
 
 

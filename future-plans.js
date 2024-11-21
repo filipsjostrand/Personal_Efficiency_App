@@ -207,7 +207,7 @@ function returnCurrentTodoContainerRowLength(plannedTodos) {
 
 var plannedTodosStart = [];
 var plannedTodosEdit = [];
-var dayArrayToRemove = [];
+var dayArrayObjectToRemove = [];
 
 var currentMondayTodos = [];
 var currentTuesdayTodos = [];
@@ -216,6 +216,17 @@ var currentThursdayTodos = [];
 var currentFridayTodos = [];
 var currentSaturdayTodos = [];
 var currentSundayTodos = [];
+
+var currentDynamicDayArray = [];
+var currentDynamicDayArrayEdit = [];
+
+// var currentMondayTodosEdit = [];
+// var currentTuesdayTodosEdit = [];
+// var currentWednesdayTodosEdit = [];
+// var currentThursdayTodosEdit = [];
+// var currentFridayTodosEdit = [];
+// var currentSaturdayTodosEdit = [];
+// var currentSundayTodosEdit = [];
 
 // var currentMondayTodosStart = [];
 
@@ -610,7 +621,7 @@ function getCurrentDataId() {
     // Add click event listener to each div
     todoContainers.forEach(div => {
     // divs.forEach(div => {
-        console.log("addEventListener for " + div.dataset.id);
+        // console.log("addEventListener for " + div.dataset.id);   (Jocke-kommentar 2024-11-13)
         div.addEventListener('click', function() {
             // Access the data-id attribute
             const dataId = div.dataset.id;
@@ -624,10 +635,26 @@ getCurrentDataId('todo-container-element');
 let dataId;
 
 function getDataId(dataId) {
+    if (!dataId) {
+        console.warn("dataId is not provided.");
+    }
     let currentDataId = dataId;
     console.log("currentDataId = " + currentDataId);
     return currentDataId;
 }
+
+// _ _ _
+// _ _ _ (idé 2024-11-20)
+
+// let specificTodoContainerLength = specificTodoContainer.length;
+
+// function getSpecificTodoContainerLength(specificTodoContainerLength) {
+//     if (!specificTodoContainerLength) {
+//         console.warn("SpecificTodoContainer is not provided.");
+//     }
+// }
+
+// _ _ _
 
 // Behöver uppdateras (2024-10-16?)
 function checkIfDateAndTextAreEmpty() {
@@ -732,7 +759,8 @@ parentDiv.addEventListener('click', function(event) {
 // colorSwitcherPanel click
 colorSwitcherPanel.addEventListener('click', function(e) {
         console.log("colorSwitcherPanel körs");
-    getDataId();
+    // getDataId();
+    getDataId(dataId);
         // console.log("colorSwitcherPanel (dataId) = " + dataId);
     todoColorCollection[dataId].value = returnRgbColor(e.target.getAttribute('data-color'));
         // console.log("returnRgbColor(e.target.getAttribute('data-color')) = " + returnRgbColor(e.target.getAttribute('data-color')))
@@ -745,7 +773,92 @@ colorSwitcherPanel.addEventListener('click', function(e) {
     // console.log(" plannedTodos[dataId].color (11) = " +  plannedTodos[dataId].color)
     // console.log("returnDefinedColorText(todoColorCollection[dataId].value) (select) = " + returnDefinedColorText(todoColorCollection[dataId].value))
 
+    // Vilken currentDAY(?)todos har samma date & todo som plannedTodos[dataId].date && plannedTodos[dataId].todo?
+
+    console.log("currentMondayTodos.length = " + currentMondayTodos.length);
+
+    console.log("[...currentMondayTodoItems] = " + [...currentMondayTodoItems]);
+
+    // [...currentMondayTodoItems].forEach(MondayTodoItem => {
+    //     if (MondayTodoItem.date === plannedTodos[dataId].date && MondayTodoItem.todo === plannedTodos[dataId].todo)
+    //     // console.log(MondayTodoItem.innerHTML);
+    //     MondayTodoItem.style.backgroundColor = returnRgbColor(e.target.getAttribute('data-color'));
+    // });
+
+    // currentMondayTodoItems.forEach(Element =>
+    // if (Element.innerHTML == plannedTodos[dataId] && ) {
+    // })
+    console.log("currentMondayTodoItems[0].color = " + currentMondayTodoItems[0].color)
+    console.log("currentMondayTodoItems[0].innerHTML = " + currentMondayTodoItems[0].innerHTML)
+    console.log("currentMondayTodoItems[0].style.backgroundColor = " + currentMondayTodoItems[0].style.backgroundColor)
+
+    // 1. Hitta currentDayTodos[i] som matchar plannedTodos[dataId].date && plannedTodos[dataId].todo
+    // 2. Ändra färg för aktuellt index ([i]), (currentDayTodos[i].color && currentDayTodoItems[i].style.backgroundColor)
+
+    // _ _ _
+
+
+    if (currentMondayTodos.length > 0) {
+        for (let i = 0; i < currentMondayTodos.length; i++) {
+            if (currentMondayTodos[i].date === plannedTodos[dataId].date && currentMondayTodos[i].todo === plannedTodos[dataId].todo) {
+                currentMondayTodos[i].color = returnDefinedColorText(todoColorCollection[dataId].value);
+                currentMondayTodoItems[i].style.backgroundColor = returnRgbColor(e.target.getAttribute('data-color'));
+            }
+        }
+    }
+    else if (currentTuesdayTodos.length > 0) {
+        for (let i = 0; i < currentTuesdayTodos.length; i++) {
+            if (currentTuesdayTodos[i].date === plannedTodos[dataId].date && currentTuesdayTodos[i].todo === plannedTodos[dataId].todo) {
+                currentTuesdayTodos[i].color = returnDefinedColorText(todoColorCollection[dataId].value);
+                currentTuesdayTodoItems[i].style.backgroundColor = returnRgbColor(e.target.getAttribute('data-color'));
+            }
+        }
+    }
+    else if (currentWednesdayTodos.length > 0) {
+        for (let i = 0; i < currentWednesdayTodos.length; i++) {
+            if (currentWednesdayTodos[i].date === plannedTodos[dataId].date && currentWednesdayTodos[i].todo === plannedTodos[dataId].todo) {
+                currentWednesdayTodos[i].color = returnDefinedColorText(todoColorCollection[dataId].value);
+                currentWednesdayTodoItems[i].style.backgroundColor = returnRgbColor(e.target.getAttribute('data-color'));
+            }
+        }
+    }
+    else if (currentThursdayTodos.length > 0) {
+        for (let i = 0; i < currentThursdayTodos.length; i++) {
+            if (currentThursdayTodos[i].date === plannedTodos[dataId].date && currentThursdayTodos[i].todo === plannedTodos[dataId].todo) {
+                currentThursdayTodos[i].color = returnDefinedColorText(todoColorCollection[dataId].value);
+                currentThursdayTodoItems[i].style.backgroundColor = returnRgbColor(e.target.getAttribute('data-color'));
+            }
+        }
+    }
+    else if (currentFridayTodos.length > 0) {
+        for (let i = 0; i < currentFridayTodos.length; i++) {
+            if (currentFridayTodos[i].date === plannedTodos[dataId].date && currentFridayTodos[i].todo === plannedTodos[dataId].todo) {
+                currentFridayTodos[i].color = returnDefinedColorText(todoColorCollection[dataId].value);
+                currentFridayTodoItems[i].style.backgroundColor = returnRgbColor(e.target.getAttribute('data-color'));
+            }
+        }
+    }
+    else if (currentSaturdayTodos.length > 0) {
+        for (let i = 0; i < currentSaturdayTodos.length; i++) {
+            if (currentSaturdayTodos[i].date === plannedTodos[dataId].date && currentSaturdayTodos[i].todo === plannedTodos[dataId].todo) {
+                currentSaturdayTodos[i].color = returnDefinedColorText(todoColorCollection[dataId].value);
+                currentSaturdayTodoItems[i].style.backgroundColor = returnRgbColor(e.target.getAttribute('data-color'));
+            }
+        }
+    }
+    else if (currentSundayTodos.length > 0) {
+        for (let i = 0; i < currentSundayTodos.length; i++) {
+            if (currentSundayTodos[i].date === plannedTodos[dataId].date && currentSundayTodos[i].todo === plannedTodos[dataId].todo) {
+                currentSundayTodos[i].color = returnDefinedColorText(todoColorCollection[dataId].value);
+                currentSundayTodoItems[i].style.backgroundColor = returnRgbColor(e.target.getAttribute('data-color'));
+            }
+        }
+    }
+
+    // _ _ _
+
     plannedTodos[dataId].color = returnDefinedColorText(todoColorCollection[dataId].value)
+
 
     // console.log(" plannedTodos[dataId].color (22) = " +  plannedTodos[dataId].color)
     // console.log("JSON.stringify(plannedTodos) (2) = " + JSON.stringify(plannedTodos));
@@ -760,11 +873,30 @@ closePanelButton.addEventListener('click', function(event) {
 });
 
 
-// Clear Specific Todo row
+    function resetWeekdayEditArrays() {
+        currentMondayTodosEdit = [];
+        currentTuesdayTodosEdit = [];
+        currentWednesdayTodosEdit = [];
+        currentThursdayTodosEdit = [];
+        currentFridayTodosEdit = [];
+        currentSaturdayTodosEdit = [];
+        currentSundayTodosEdit = [];
+    };
+
+// Remove specific todo
+// delete specific todo
+// removespecific
+
+let wrapperContainer = document.getElementById('todo-wrapper');
+let specificTodoContainer = wrapperContainer.getElementsByClassName('todo-container-element');
+
+// Clear Specific Todo row (start)
     clearSpecificTodoRowButton.addEventListener('click', function() {
 
-                console.log("clearSpecificTodo")
-                getDataId();
+                console.log("clearSpecificTodo-function() körs")
+                // getDataId();
+                getDataId(dataId);
+                console.log("getDataId(dataId) körs i clear specifictodo (= #" + getDataId(dataId) + " )");
 
         // _ _ _
 
@@ -825,14 +957,16 @@ closePanelButton.addEventListener('click', function(event) {
 
         // Add the specific object (to be deleted) to a specific "dayArrayToRemove"
 
-        dayArrayToRemove.push({
-            date: `${plannedTodos[dataId].date}`,
-            todo: `${plannedTodos[dataId].todo}`,
-            color: `${plannedTodos[dataId].color}`,
-            isEmpty: false
-        });
+        if (plannedTodos[dataId].date === weekDates[0] || plannedTodos[dataId].date === weekDates[1] || plannedTodos[dataId].date === weekDates[2] || plannedTodos[dataId].date === weekDates[3] || plannedTodos[dataId].date === weekDates[4] || plannedTodos[dataId].date === weekDates[5] || plannedTodos[dataId].date === weekDates[6]) {
 
-        console.log("dayArrayToRemove = " + JSON.stringify(dayArrayToRemove));
+            dayArrayObjectToRemove.push({
+                date: `${plannedTodos[dataId].date}`,
+                todo: `${plannedTodos[dataId].todo}`,
+                color: `${plannedTodos[dataId].color}`,
+                isEmpty: false
+            });
+        }
+        console.log("dayArrayObjectToRemove = " + JSON.stringify(dayArrayObjectToRemove));
 
         // _ _ _
 
@@ -847,7 +981,9 @@ closePanelButton.addEventListener('click', function(event) {
         };
 
         // Define the specific object you want to find
-        const targetObject = dayArrayToRemove[0];
+        let targetObject = dayArrayObjectToRemove[0];
+
+        console.log("targetObject = " + JSON.stringify(targetObject));
 
         // Function to search for the object in each array
         function findArrayContainingObject(target, arrays) {
@@ -869,6 +1005,36 @@ closePanelButton.addEventListener('click', function(event) {
 
         console.log("resultArray = " + resultArray); // Outputs: "currentTuesdayTodos" if the object is found
 
+        let key = resultArray;
+        currentDynamicDayArray = arraysByDay[key];
+
+        console.log("JSON.stringify(currentDynamicDayArray) (1) = " + JSON.stringify(currentDynamicDayArray));
+
+        for ( i = 0; i < currentDynamicDayArray.length; i++) {
+            console.log("targetObject.date = " +  targetObject.date)
+            console.log("currentDynamicDayArray[0].date = " + currentDynamicDayArray[0].date)
+            console.log("currentDynamicDayArray[i].todo == targetObject.date = " + currentDynamicDayArray[i].todo == targetObject.date)
+
+            if (currentDynamicDayArray[i].todo !== targetObject.todo) {
+
+                currentDynamicDayArrayEdit.push({
+                    date: `${currentDynamicDayArray[i].date}`,
+                    todo: `${currentDynamicDayArray[i].todo}`,
+                    color: `${currentDynamicDayArray[i].color}`,
+                    isEmpty: false
+                });
+            }
+        }
+
+        currentDynamicDayArray = currentDynamicDayArrayEdit;
+
+        // currentDynamicDayArrayEdit = [];
+
+        console.log("JSON.stringify(currentDynamicDayArrayEdit) = " + JSON.stringify(currentDynamicDayArrayEdit));
+
+        console.log("currentDynamicDayArray = " + currentDynamicDayArray);
+        console.log("JSON.stringify(currentDynamicDayArray) (2) = " + JSON.stringify(currentDynamicDayArray));
+
         // _ _ _
 
         // Function to exclude the target object from each array and collect the rest
@@ -888,7 +1054,7 @@ closePanelButton.addEventListener('click', function(event) {
 
 
         // Call the function
-        const updatedResultArray = excludeObjectFromArrays(targetObject, arraysByDay);
+        let updatedResultArray = excludeObjectFromArrays(targetObject, arraysByDay);
 
         console.log("JSON.stringify(updatedResultArray) = " + JSON.stringify(updatedResultArray));
         console.log("updatedResultArray = " + updatedResultArray);
@@ -896,7 +1062,7 @@ closePanelButton.addEventListener('click', function(event) {
         // _ _ _
 
         if (resultArray == "currentMondayTodos") {
-            console.log("currentMondayTodos")
+            console.log("töm ('') currentMondayTodos")
 
             for (let i = 0; i < currentMondayTodos.length; i++) {
                 currentMondayTodoItems.forEach(Element => {
@@ -904,15 +1070,19 @@ closePanelButton.addEventListener('click', function(event) {
                     Element.style.backgroundColor = "";
                 });
             }
-            currentMondayTodos = updatedResultArray;
+            console.log("currentMondayTodos = arraysByDay(monday), not updatedResultArray!, arraysByDay = " + arraysByDay)
+            // currentMondayTodos = updatedResultArray;
+            currentMondayTodos = currentDynamicDayArray;
             for (let i = 0; i < currentMondayTodos.length; i++) {
-                currentMondayTodoItems.forEach(Element => {
-                    Element.innerHTML = currentMondayTodos[i].todo;
-                    Element.style.backgroundColor = returnRgbColor(currentMondayTodos[i].color);
-                });
+                currentMondayTodoItems[i].innerHTML = currentMondayTodos[i].todo;
+                currentMondayTodoItems[i].style.backgroundColor = returnRgbColor(currentMondayTodos[i].color);
+                // currentMondayTodoItems.forEach(Element => {
+                //     Element.innerHTML = currentMondayTodos[i].todo;
+                //     Element.style.backgroundColor = returnRgbColor(currentMondayTodos[i].color);
+                // });
             }
         } else if (resultArray == "currentTuesdayTodos") {
-            console.log("currentTuesdayTodos")
+            console.log("töm ('') currentTuesdayTodos")
 
             for (let i = 0; i < currentTuesdayTodos.length; i++) {
                 currentTuesdayTodoItems.forEach(Element => {
@@ -920,13 +1090,14 @@ closePanelButton.addEventListener('click', function(event) {
                     Element.style.backgroundColor = "";
                 });
             }
-            currentTuesdayTodos = updatedResultArray;
+            // currentTuesdayTodos = updatedResultArray;
+            currentTuesdayTodos = currentDynamicDayArray;
             for (let i = 0; i < currentTuesdayTodos.length; i++) {
                 currentTuesdayTodoItems[i].innerHTML = currentTuesdayTodos[i].todo;
                 currentTuesdayTodoItems[i].style.backgroundColor = returnRgbColor(currentTuesdayTodos[i].color);
             }
         } else if (resultArray == "currentWednesdayTodos") {
-            console.log("currentWednesdayTodos")
+            console.log("töm ('') currentWednesdayTodos")
 
             for (let i = 0; i < currentWednesdayTodos.length; i++) {
                 currentWednesdayTodoItems.forEach(Element => {
@@ -934,13 +1105,14 @@ closePanelButton.addEventListener('click', function(event) {
                     Element.style.backgroundColor = "";
                 });
             }
-            currentWednesdayTodos = updatedResultArray;
+            // currentWednesdayTodos = updatedResultArray;
+            currentWednesdayTodos = currentDynamicDayArray;
             for (let i = 0; i < currentWednesdayTodos.length; i++) {
                 currentWednesdayTodoItems[i].innerHTML = currentWednesdayTodos[i].todo;
                 currentWednesdayTodoItems[i].style.backgroundColor = returnRgbColor(currentWednesdayTodos[i].color);
             }
         } else if (resultArray == "currentThursdayTodos") {
-            console.log("currentThursdayTodos")
+            console.log("töm ('') currentThursdayTodos")
 
             for (let i = 0; i < currentThursdayTodos.length; i++) {
                 currentThursdayTodoItems.forEach(Element => {
@@ -948,46 +1120,50 @@ closePanelButton.addEventListener('click', function(event) {
                     Element.style.backgroundColor = "";
                 });
             }
-            currentThursdayTodos = updatedResultArray;
+            // currentThursdayTodos = updatedResultArray;
+            currentThursdayTodos= currentDynamicDayArray;
             for (let i = 0; i < currentThursdayTodos.length; i++) {
                 currentThursdayTodoItems[i].innerHTML = currentThursdayTodos[i].todo;
                 currentThursdayTodoItems[i].style.backgroundColor = returnRgbColor(currentThursdayTodos[i].color);
             }
         } else if (resultArray == "currentFridayTodos") {
-            console.log("currentFridayTodos")
+            console.log("töm ('') currentFridayTodos")
             for (let i = 0; i < currentFridayTodos.length; i++) {
                 currentFridayTodoItems.forEach(Element => {
                     Element.innerHTML = "";
                     Element.style.backgroundColor = "";
                 });
             }
-            currentFridayTodos = updatedResultArray;
+            // currentFridayTodos = updatedResultArray;
+            currentFridayTodos = currentDynamicDayArray;
             for (let i = 0; i < currentFridayTodos.length; i++) {
                 currentFridayTodoItems[i].innerHTML = currentFridayTodos[i].todo;
                 currentFridayTodoItems[i].style.backgroundColor = returnRgbColor(currentFridayTodos[i].color);
             }
         } else if (resultArray == "currentSaturdayTodos") {
-            console.log("currentSaturdayTodos")
+            console.log("töm ('') currentSaturdayTodos")
             for (let i = 0; i < currentSaturdayTodos.length; i++) {
                 currentSaturdayTodoItems.forEach(Element => {
                     Element.innerHTML = "";
                     Element.style.backgroundColor = "";
                 });
             }
-            currentSaturdayTodos = updatedResultArray;
+            // currentSaturdayTodos = updatedResultArray;
+            currentSaturdayTodos = currentDynamicDayArray;
             for (let i = 0; i < currentSaturdayTodos.length; i++) {
                 currentSaturdayTodoItems[i].innerHTML = currentSaturdayTodos[i].todo;
                 currentSaturdayTodoItems[i].style.backgroundColor = returnRgbColor(currentSaturdayTodos[i].color);
             }
         } else if (resultArray == "currentSundayTodos") {
-            console.log("currentSundayTodos")
+            console.log("töm ('') currentSundayTodos")
             for (let i = 0; i < currentSundayTodos.length; i++) {
                 currentSundayTodoItems.forEach(Element => {
                     Element.innerHTML = "";
                     Element.style.backgroundColor = "";
                 });
             }
-            currentSundayTodos = updatedResultArray;
+            // currentSundayTodos = updatedResultArray;
+            currentSundayTodos = currentDynamicDayArray;
             for (let i = 0; i < currentSundayTodos.length; i++) {
                 currentSundayTodoItems[i].innerHTML = currentSundayTodos[i].todo;
                 currentSundayTodoItems[i].style.backgroundColor = returnRgbColor(currentSundayTodos[i].color);
@@ -1004,38 +1180,128 @@ closePanelButton.addEventListener('click', function(event) {
                 todoCollection[dataId].innerHTML = '';
                 todoColorCollection[dataId].style.backgroundColor = 'rgb(228, 228, 228)';
 
-                // Empty the Current Plan object row (in the plannedTodos array of objects)
-                plannedTodos[dataId].date = '';
-                plannedTodos[dataId].todo = '';
-                plannedTodos[dataId].color = '';
-                plannedTodos[dataId].isEmpty = true;
+                // // Empty the Current Plan object row (in the plannedTodos array of objects)
+                // plannedTodos[dataId].date = '';
+                // plannedTodos[dataId].todo = '';
+                // plannedTodos[dataId].color = '';
+                // plannedTodos[dataId].isEmpty = true;
 
-                plannedTodos.forEach(Element => {
-                    if (Element.isEmpty === false) {
-                        plannedTodosEdit.push(Element);
+                // plannedTodos.forEach(Element => {
+                //     if (Element.isEmpty === false) {
+                //         plannedTodosEdit.push(Element);
 
-                        console.log("element to save")
+                //         console.log("element to save")
 
-                    }})
+                //     }})
 
-                    console.log("JSON.stringify(plannedTodosEdit) = " + JSON.stringify(plannedTodosEdit))
-                    console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos))
+                //     console.log("JSON.stringify(plannedTodosEdit) = " + JSON.stringify(plannedTodosEdit))
+                //     console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos))
 
-                    // Find the unique "extra" object in arrayOfObjectsOne
-                    const uniqueObject = plannedTodos.filter(obj1 =>
-                        !plannedTodosEdit.some(obj2 => JSON.stringify(obj2) === JSON.stringify(obj1))
-                    );
+                //     // Find the unique "extra" object in arrayOfObjectsOne
+                //     const uniqueObject = plannedTodos.filter(obj1 =>
+                //         !plannedTodosEdit.some(obj2 => JSON.stringify(obj2) === JSON.stringify(obj1))
+                //     );
 
-                    console.log("uniqueObject = " + uniqueObject);
-                    console.log("uniqueObject.length = " + uniqueObject.length);
+                //     console.log("uniqueObject = " + uniqueObject);
+                //     console.log("uniqueObject.length = " + uniqueObject.length);
 
+                // _ _ _
+                // _ _ _
+
+                // _ _ _
+
+                var lastDomRowNumber;
+                var lastDomRowNumberIndexNr;
+
+                if (plannedTodos.length <= 3) {
+                    console.log("plannedTodos.length <= 3")
+                    lastDomRowNumber = 2;
+                } else if (plannedTodos.length > 3) {
+                    console.log("plannedTodos.length > 3")
+                    lastDomRowNumber = plannedTodos.length - 1;
+                } else if (!plannedTodos.length) {
+                    console.log("!plannedTodos.length")
+                    lastDomRowNumber = 2;
+                    currentMondayTodos = [];
+                    currentTuesdayTodos = [];
+                    currentWednesdayTodos = [];
+                    currentThursdayTodos = [];
+                    currentFridayTodos = [];
+                    currentSaturdayTodos = [];
+                    currentSundayTodos = [];
+                }
+
+                console.log("lastDomRowNumber = " + lastDomRowNumber);
+                console.log("lastDomRowNumber === 'number' = " + lastDomRowNumber === "number");
+                if (typeof lastDomRowNumber === "number") {
+                lastDomRowNumberIndexNr = lastDomRowNumber-1
+                console.log("lastDomRowNumberIndex = " + lastDomRowNumberIndexNr);
+                }
+
+                // _ _ _
+
+                console.log("plannedTodos.length (1) = " + plannedTodos.length);
+
+                // Fyll på Edit-objektet (ny plannedTodo)
+
+                if (plannedTodosEdit.length > 0) {
+                    console.log("JSON.stringify(plannedTodosEdit) (if plannedTodosEdit.length > 0) = " + JSON.stringify(plannedTodosEdit));
+                }
+
+                plannedTodos.forEach(plannedTodosElement => {
+                    console.log("plannedTodosElement.todo = " + plannedTodosElement.todo);
+                    console.log("targetObject.todo = " + targetObject.todo);
+                    if (plannedTodosElement.todo !== targetObject.todo) {
+                        plannedTodosEdit.push({
+                            date: `${plannedTodosElement.date}`,
+                            todo: `${plannedTodosElement.todo}`,
+                            color: `${plannedTodosElement.color}`,
+                            isEmpty: false
+                        });
+                    }
+                });
+
+                console.log("Här 5")
+                // _ _ _
+
+                console.log("JSON.stringify(plannedTodosEdit) (after) = " + JSON.stringify(plannedTodosEdit));
+
+                // Ny plannedTodos (med ett färre objekt än tidigare)
                 plannedTodos = plannedTodosEdit;
 
-                plannedTodosEdit = plannedTodosStart;
+                // plannedTodosEdit = plannedTodosStart;
+                plannedTodosEdit = [];
 
                 console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos));
+                console.log("plannedTodos.length (2) = " + plannedTodos.length);
+
+                // Uppdatera DOM:en (med plannedTodos-objekt-data)
+
+                // plannedTodos.forEach((todo, index) => {
+                //     dateCollection[index].value = todo.date;
+                //     dateCollection[index].innerHTML = todo.date;
+                //     todoCollection[index].value = todo.todo;
+                //     todoCollection[index].innerHTML = todo.todo;
+                //     todoColorCollection[index].style.backgroundColor = returnRgbColor(todo.color);
+                // });
+
+                //_ _ _
 
                 for (i = 0; i < plannedTodos.length; i++) {
+                    console.log("'i' vid iterering över plannedTodos.length: " + i);
+                }
+
+                [...dateCollection].forEach(item => {
+                    console.log("item.innerHTML: " + item.innerHTML);
+                });
+
+                for (i = 0; i < plannedTodos.length; i++) {
+                    console.log("'i' in remove specific todo: " + i);
+                    console.log("plannedTodos[i].date = " + plannedTodos[i].date);
+                    console.log("dateCollection.length = " + dateCollection.length);
+                    console.log("todoCollection.length = " + todoCollection.length);
+                    console.log("[...dateCollection][i].value = " + [...dateCollection][i].value);
+                    console.log("[...todoCollection][i].value = " + [...todoCollection][i].value);
                     dateCollection[i].value = plannedTodos[i].date;
                     dateCollection[i].innerHTML = plannedTodos[i].date;
                     todoCollection[i].value = plannedTodos[i].todo;
@@ -1043,27 +1309,251 @@ closePanelButton.addEventListener('click', function(event) {
                     todoColorCollection[i].style.backgroundColor = returnRgbColor(plannedTodos[i].color);
                 }
 
-                let lastElement = dateCollection[dateCollection.length - 1];
-                console.log("lastElement.innerHTML = " + lastElement.innerHTML);
+                // [...dateCollection].forEach(item => {
+                //     console.log(item.innerHTML);
+                // plannedTodos.forEach()
 
-                let lastCollectionNumber = dateCollection.length - 1;
-                console.log("lastCollectionNumber (dateCollection.length - 1) = " + dateCollection.length - 1);
-                console.log("lastCollectionNumber (dateCollection.length - 1) = " + lastCollectionNumber);
+                //_ _ _
+                //_ _ _
 
-                    dateCollection[lastCollectionNumber].value = '';
-                    dateCollection[lastCollectionNumber].innerHTML = '';
-                    todoCollection[lastCollectionNumber].value = '';
-                    todoCollection[lastCollectionNumber].innerHTML = '';
-                    todoColorCollection[lastCollectionNumber].style.backgroundColor = 'rgb(228, 228, 228)';
+                // let lastElement;
 
-                if (lastCollectionNumber > 2) {
-                    removeLastDynamicTodoContainer();
-                }
+                // if (dateCollection.length > 3) {
 
+                //_ _ _
+                //_ _ _
+
+                // let lastElement = dateCollection[dateCollection.length - 1];
+
+                //_ _ _
+                //_ _ _
+
+                console.log("plannedTodos.length (3) = " + plannedTodos.length);
+
+                // let lastElement = dateCollection[plannedTodos.length];
+
+                // console.log("lastElement = dateCollection[plannedTodos.length] = " + dateCollection[plannedTodos.length]);
+
+                // let lastCollectionNumber = dateCollection.length - 1;
+                // console.log("lastCollectionNumber (dateCollection.length - 1) = " + dateCollection.length - 1);
+                // console.log("lastCollectionNumber (dateCollection.length - 1) = " + lastCollectionNumber);
+
+                //_ _ _
+                //_ _ _
+
+                // 1. Töm sista raden i DOM:en
+                // 2. Ta (eventuellt) bort sista raden i DOM:En (om fler än 3)
+
+                // let lastDomRowNumber;
+
+                // if (plannedTodos.length <= 3) {
+                //     lastDomRowNumber = 2;
+                // } else if (plannedTodos.length > 3) {
+                //     lastDomRowNumber = plannedTodos.length - 1;
+                // } else if (!plannedTodos.length) {
+                //     currentMondayTodos = [];
+                //     currentTuesdayTodos = [];
+                //     currentWednesdayTodos = [];
+                //     currentThursdayTodos = [];
+                //     currentFridayTodos = [];
+                //     currentSaturdayTodos = [];
+                //     currentSundayTodos = [];
+                // }
+
+                // console.log("lastDomRowNumber = " + lastDomRowNumber);
+
+                // _ _ _
+
+                // let lastDomRowNumberConvertedToIndexNr = lastDomRowNumber-1;
+
+                // console.log("To remove:");
+                // console.log("lastDomRowNumber = " + lastDomRowNumberConvertedToIndexNr);
+                // console.log("dateCollection[lastDomRowNumber].value: " + dateCollection[lastDomRowNumberConvertedToIndexNr].value);
+                // console.log("dateCollection[lastDomRowNumber].innerHTML: " + dateCollection[lastDomRowNumberConvertedToIndexNr].innerHTML);
+                // console.log("todoCollection[lastDomRowNumber].value: " + todoCollection[lastDomRowNumberConvertedToIndexNr].value);
+                // console.log("todoCollection[lastDomRowNumber].innerHTML: " + todoCollection[lastDomRowNumberConvertedToIndexNr].innerHTML);
+                // console.log("todoColorCollection[lastDomRowNumber].style.backgroundColor: " + todoColorCollection[lastDomRowNumberConvertedToIndexNr].style.backgroundColor);
+
+                // dateCollection[lastDomRowNumberConvertedToIndexNr].value = '';
+                // dateCollection[lastDomRowNumberConvertedToIndexNr].innerHTML = '';
+                // todoCollection[lastDomRowNumberConvertedToIndexNr].value = '';
+                // todoCollection[lastDomRowNumberConvertedToIndexNr].innerHTML = '';
+                // todoColorCollection[lastDomRowNumberConvertedToIndexNr].style.backgroundColor = 'rgb(228, 228, 228)';
+
+                // _ _ _
+                // _ _ _ (modellering, ta bort specifik todo)
+
+                [...dateCollection].forEach(date => {
+                    console.log("[...dateCollection].forEach (innerHTML & value) = " + date.innerHTML + " & " + date.value);
+                });
+
+                console.log("plannedTodos.length = " + plannedTodos.length);
+                console.log("specificTodoContainer.length = " + specificTodoContainer.length);
+                console.log("currentWednesdayTodos.length = " + currentWednesdayTodos.length);
+                console.log("dateCollection.length = " + dateCollection.length);
+                console.log("todoCollection.length = " + todoCollection.length);
+
+                plannedTodos.forEach(element => {console.log("JSON.sfy(plannedTodos-element) = " + JSON.stringify(element))})
+                currentWednesdayTodos.forEach(element => {console.log("JSON.sfy(wed-element) = " + JSON.stringify(element))})
+
+                console.log("lastDomRowNumber = " + lastDomRowNumber)
+                console.log("lastDomRowNumberIndexNr = " + lastDomRowNumberIndexNr)
+
+                console.log("dataId = " + dataId);
+                // console.log("currentDataId = " + currentDataId);
+
+
+                // _ _ _
+
+                console.log("To remove:");
+                console.log("lastDomRowNumber = " + lastDomRowNumber);
+                console.log("dateCollection[lastDomRowNumber].value: " + dateCollection[lastDomRowNumber].value);
+                console.log("dateCollection[lastDomRowNumber].innerHTML: " + dateCollection[lastDomRowNumber].innerHTML);
+                console.log("todoCollection[lastDomRowNumber].value: " + todoCollection[lastDomRowNumber].value);
+                console.log("todoCollection[lastDomRowNumber].innerHTML: " + todoCollection[lastDomRowNumber].innerHTML);
+                console.log("todoColorCollection[lastDomRowNumber].style.backgroundColor: " + todoColorCollection[lastDomRowNumber].style.backgroundColor);
+
+                console.log("dateCollection[lastDomRowNumberIndexNr].value: " + dateCollection[lastDomRowNumberIndexNr].value);
+                console.log("dateCollection[lastDomRowNumberIndexNr].innerHTML: " + dateCollection[lastDomRowNumberIndexNr].innerHTML);
+                console.log("todoCollection[lastDomRowNumberIndexNr].value: " + todoCollection[lastDomRowNumberIndexNr].value);
+                console.log("todoCollection[lastDomRowNumberIndexNr].innerHTML: " + todoCollection[lastDomRowNumberIndexNr].innerHTML);
+                console.log("todoColorCollection[lastDomRowNumberIndexNr].style.backgroundColor: " + todoColorCollection[lastDomRowNumberIndexNr].style.backgroundColor);
+
+                dateCollection[lastDomRowNumber].value = '';
+                dateCollection[lastDomRowNumber].innerHTML = '';
+                todoCollection[lastDomRowNumber].value = '';
+                todoCollection[lastDomRowNumber].innerHTML = '';
+                todoColorCollection[lastDomRowNumber].style.backgroundColor = 'rgb(228, 228, 228)';
+
+                // _ _ _
+                // _ _ _
+                // _ _ _
+
+                removeLastDynamicTodoContainer();
+
+                // _ _ _
+                // Loop backward to avoid issues with live updates to the collection
+                console.log("dateCollection.length === plannedTodos.length+1: " + dateCollection.length === plannedTodos.length+1);
+                // if (dateCollection.length === plannedTodos.length+1) {
+                //     dateCollection[plannedTodos.length].remove();
+                // }
+                // _ _ _
+
+                // for (let i = dateCollection.length - 1; i >= 0; i--) {
+                //     if (items[i].innerHTML === "Second") {
+                //         items[i].remove(); // Remove the element from the DOM
+                //     }
+                // }
+
+                // _ _ _
+                // _ _ _
+                // _ _ _
+
+        //         // console.log("specificTodoContainer.length (i removespecifictodo) = " + specificTodoContainer.length);
+
+        //         let lastCollectionNumber;
+
+        //         if (plannedTodos.length <= 3) {
+        //                 lastCollectionNumber = 2;
+
+
+        //             if (lastCollectionNumber === 2) {
+        //             // console.log("lastCollectionNumber (plannedTodos.length) = " + dateCollection.plannedTodos.length);
+        //             // console.log("plannedTodos.length - 1 (lastCollectionNumber) = " + plannedTodos.length - 1);
+        //             console.log("lastCollectionNumber (1)  = " + lastCollectionNumber);
+
+        //                 if (lastCollectionNumber === 2 && plannedTodos.length === 1) {
+
+        //                     let emptyRowOne = 0;
+        //                 // } else if (dateCollection.length === 3)
+        //                 // console.log("lastElement.innerHTML = " + lastElement.innerHTML);
+
+        //                     dateCollection[emptyRowOne].value = '';
+        //                     dateCollection[emptyRowOne].innerHTML = '';
+        //                     todoCollection[emptyRowOne].value = '';
+        //                     todoCollection[emptyRowOne].innerHTML = '';
+        //                     todoColorCollection[emptyRowOne].style.backgroundColor = 'rgb(228, 228, 228)';
+
+        //                 }
+        //                 else if (lastCollectionNumber === 2 && plannedTodos.length === 2) {
+        //                     let emptyRowTwo = 1;
+        //                             dateCollection[emptyRowTwo].value = '';
+        //                             dateCollection[emptyRowTwo].innerHTML = '';
+        //                             todoCollection[emptyRowTwo].value = '';
+        //                             todoCollection[emptyRowTwo].innerHTML = '';
+        //                             todoColorCollection[emptyRowTwo].style.backgroundColor = 'rgb(228, 228, 228)';
+        //                 }
+        //                 else if (lastCollectionNumber === 2 && plannedTodos.length === 3) {
+        //                     let emptyRowThree = 2;
+        //                             dateCollection[emptyRowThree].value = '';
+        //                             dateCollection[emptyRowThree].innerHTML = '';
+        //                             todoCollection[emptyRowThree].value = '';
+        //                             todoCollection[emptyRowThree].innerHTML = '';
+        //                             todoColorCollection[emptyRowThree].style.backgroundColor = 'rgb(228, 228, 228)';
+        //                 }
+
+        //             }
+        //         }
+        // //     else if (plannedTodos.length === 3) {
+        // //         lastCollectionNumber = plannedTodos.length;
+        // //         console.log("lastCollectionNumber = plannedTodos.length: " + lastCollectionNumber)
+        // //         dateCollection[lastCollectionNumber].value = '';
+        // //         dateCollection[lastCollectionNumber].innerHTML = '';
+        // //         todoCollection[lastCollectionNumber].value = '';
+        // //         todoCollection[lastCollectionNumber].innerHTML = '';
+        // //         todoColorCollection[lastCollectionNumber].style.backgroundColor = 'rgb(228, 228, 228)';
+        // // }
+        //         // else if (plannedTodos.length === 3) {
+        //         else if (plannedTodos.length > 3) {
+        //             lastCollectionNumber = plannedTodos.length - 1;
+        //             console.log("lastCollectionNumber = plannedTodos.length: " + lastCollectionNumber)
+        //             dateCollection[lastCollectionNumber].value = '';
+        //             dateCollection[lastCollectionNumber].innerHTML = '';
+        //             todoCollection[lastCollectionNumber].value = '';
+        //             todoCollection[lastCollectionNumber].innerHTML = '';
+        //             todoColorCollection[lastCollectionNumber].style.backgroundColor = 'rgb(228, 228, 228)';
+        //         removeLastDynamicTodoContainer();
+        //     }
+        //         // else if (plannedTodos.length > 3) {
+        //         //     lastCollectionNumber = plannedTodos.length;
+        //         //     dateCollection[lastCollectionNumber].value = '';
+        //         //     dateCollection[lastCollectionNumber].innerHTML = '';
+        //         //     todoCollection[lastCollectionNumber].value = '';
+        //         //     todoCollection[lastCollectionNumber].innerHTML = '';
+        //         //     todoColorCollection[lastCollectionNumber].style.backgroundColor = 'rgb(228, 228, 228)';
+        //         //     removeLastDynamicTodoContainer();
+        //         // }
+
+
+
+
+        //         else if (!lastCollectionNumber) {
+        //             currentMondayTodos = [];
+        //             currentTuesdayTodos = [];
+        //             currentWednesdayTodos = [];
+        //             currentThursdayTodos = [];
+        //             currentFridayTodos = [];
+        //             currentSaturdayTodos = [];
+        //             currentSundayTodos = [];
+        //         }
+
+                // _ _ _
+                // _ _ _
+                // _ _ _
+
+                dayArrayObjectToRemove = [];
+                currentDynamicDayArray = [];
+                currentDynamicDayArrayEdit = [];
+                // resetWeekdayEditArrays();
+                // updatedResultArray = 0;
+                // updatedResultArray = [];
 
                 event.stopPropagation();
+                colorSwitcherPanel.classList.add('hidden');
+                colorSwitcherPanel.style.display = 'none';
     });
 
+// Clear Specific Todo row (slut)
 // _ _ _
 // _ _ _
 
@@ -1128,6 +1618,15 @@ function clearAll() {
     colorPickerSelect.value = colorPickerGray.value;
     // _ _ _
     // _ _ _
+
+    currentMondayTodos = [];
+    currentTuesdayTodos = [];
+    currentWednesdayTodos = [];
+    currentThursdayTodos = [];
+    currentFridayTodos = [];
+    currentSaturdayTodos = [];
+    currentSundayTodos = [];
+
 }
 
 clearAllButton.addEventListener('click', clearAll);
@@ -1197,7 +1696,7 @@ let newSunWeekDiv = document.createElement("sun-schedule-div");
 
 function addTodoDivs() {
 
-    for (let i = 0; i < 9; i++) {
+    for (let i = 0; i < 8; i++) {
 
         // Create 9 Monday divs
         newMonWeekDiv.classList.add("mon-todo-week-item");
@@ -1400,7 +1899,7 @@ addTodoButton.addEventListener("click", function(e) {
         // Loop through the current...dayTodos and fill in the corresponding divs
         for (let i = 0; i < currentMondayTodos.length; i++) {
 
-            console.log("i = " + i)
+            // console.log("i = " + i)
 
             if (i < currentMondayTodoItems.length) {
                 currentMondayTodoItems[i].innerHTML = currentMondayTodos[i].todo;
@@ -1410,7 +1909,7 @@ addTodoButton.addEventListener("click", function(e) {
 
         for (let i = 0; i < currentTuesdayTodos.length; i++) {
 
-            console.log("i = " + i)
+            // console.log("i = " + i)
 
             if (i < currentTuesdayTodoItems.length) {
                 currentTuesdayTodoItems[i].innerHTML = currentTuesdayTodos[i].todo;
@@ -1420,7 +1919,7 @@ addTodoButton.addEventListener("click", function(e) {
 
         for (let i = 0; i < currentWednesdayTodos.length; i++) {
 
-            console.log("i = " + i)
+            // console.log("i = " + i)
 
             if (i < currentWednesdayTodoItems.length) {
                 currentWednesdayTodoItems[i].innerHTML = currentWednesdayTodos[i].todo;
@@ -1430,7 +1929,7 @@ addTodoButton.addEventListener("click", function(e) {
 
         for (let i = 0; i < currentThursdayTodos.length; i++) {
 
-            console.log("i = " + i)
+            // console.log("i = " + i)
 
             if (i < currentThursdayTodoItems.length) {
                 currentThursdayTodoItems[i].innerHTML = currentThursdayTodos[i].todo;
@@ -1440,7 +1939,7 @@ addTodoButton.addEventListener("click", function(e) {
 
         for (let i = 0; i < currentFridayTodos.length; i++) {
 
-            console.log("i = " + i)
+            // console.log("i = " + i)
 
             if (i < currentFridayTodoItems.length) {
                 currentFridayTodoItems[i].innerHTML = currentFridayTodos[i].todo;
@@ -1450,7 +1949,7 @@ addTodoButton.addEventListener("click", function(e) {
 
         for (let i = 0; i < currentSaturdayTodos.length; i++) {
 
-            console.log("i = " + i)
+            // console.log("i = " + i)
 
             if (i < currentSaturdayTodoItems.length) {
                 currentSaturdayTodoItems[i].innerHTML = currentSaturdayTodos[i].todo;
@@ -1460,7 +1959,7 @@ addTodoButton.addEventListener("click", function(e) {
 
         for (let i = 0; i < currentSundayTodos.length; i++) {
 
-            console.log("i = " + i)
+            // console.log("i = " + i)
 
             if (i < currentSundayTodoItems.length) {
                 currentSundayTodoItems[i].innerHTML = currentSundayTodos[i].todo;
@@ -1547,7 +2046,7 @@ var createDataIdArray = document.querySelectorAll('.todo-text');
 // let count = -1;
 
 // Main todo-list-container
-    const wrapperContainer = document.getElementById('todo-wrapper');
+    // let wrapperContainer = document.getElementById('todo-wrapper');
 
 function addDynamicTodoContainer() {
     // // Select all existing todo containers
@@ -1635,16 +2134,60 @@ function addDynamicTodoContainer() {
 
 }
 
-function removeLastDynamicTodoContainer() {
-    // const wrapperContainer = document.getElementById('todo-wrapper');
-    const specificTodoContainer = wrapperContainer.getElementsByClassName('todo-container-element');
+// let specificTodoContainer = wrapperContainer.getElementsByClassName('todo-container-element');
 
-    if (specificTodoContainer.length > 0) {
-        const lastContainer = specificTodoContainer[specificTodoContainer.length - 1];
+function removeLastDynamicTodoContainer() {
+    console.log("removeLastDynamicTodoContainer() körs");
+    // const wrapperContainer = document.getElementById('todo-wrapper');
+
+    // _ _ _
+    // let specificTodoContainer = wrapperContainer.getElementsByClassName('todo-container-element');
+    // _ _ _
+
+    console.log("specificTodoContainer.length (i removeLastDynamicTodoContainer) = " + specificTodoContainer.length);
+
+    // let lastContainerNumber = plannedTodos.length + 1
+    // let lastContainerNumber = plannedTodos.length;
+    let lastContainerNumber = specificTodoContainer.length - 1
+
+    console.log("specificTodoContainer (i removeLastDynamicTodoContainer) = " + specificTodoContainer);
+
+    // if (specificTodoContainer.length > 0) {
+    // if (lastContainerNumber >= 3) {
+        // const lastContainer = specificTodoContainer[specificTodoContainer.length - 1];
+    if (specificTodoContainer.length > 3) {
+        let lastContainer = specificTodoContainer[lastContainerNumber];
         wrapperContainer.removeChild(lastContainer);
-    } else {
+    } else if (specificTodoContainer.length <= 3) {
         console.log("No more todo containers to remove.");
     }
+
+    // _ _ _
+
+    console.log("plannedTodos.length = " + plannedTodos.length);
+    console.log("specificTodoContainer.length = " + specificTodoContainer.length);
+    console.log("currentWednesdayTodos.length = " + currentWednesdayTodos.length);
+
+    console.log("dateCollection.length = " + dateCollection.length);
+    console.log("todoCollection.length = " + todoCollection.length);
+
+    console.log("currentDynamicDayArray.length = " + currentDynamicDayArray.length);
+    console.log("currentDynamicDayArray" + currentDynamicDayArray);
+
+    plannedTodos.forEach(element => {console.log("JSON.sfy(plannedTodos-element) = " + JSON.stringify(element))})
+    currentWednesdayTodos.forEach(element => {console.log("JSON.sfy(wed-element) = " + JSON.stringify(element))})
+
+
+    // console.log("lastDomRowNumber = " + lastDomRowNumber)
+    //lastDomRowNumber is not defined
+
+    // console.log("lastDomRowNumberIndexNr = " + lastDomRowNumberIndexNr)
+    // lastDomRowNumberIndexNr is not defined
+
+    console.log("dataId = " + dataId);
+
+    // _ _ _
+
 }
 
 
@@ -1652,7 +2195,7 @@ function removeLastDynamicTodoContainer() {
 
 // Function to restore the todo-wrapper to the original structure
 function restoreTodoWrapper() {
-    const wrapperContainer = document.getElementById('todo-wrapper');
+    // let wrapperContainer = document.getElementById('todo-wrapper');
 
     // Clear all existing child elements in wrapperContainer
     wrapperContainer.innerHTML = '';
