@@ -313,6 +313,10 @@ a {
   margin-top: 10px;
 }
 
+#todo-recurring-input {
+  transform: scale(1.75);
+}
+
 /* Future plans (end) */
 
 /* _ _ _
