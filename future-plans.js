@@ -501,6 +501,22 @@ function returnDefinedColorText(rgbColor) {
     }
 }
 
+function returnColorText(colorText) {
+    if (colorText === "grayColor") {
+        return "gray";
+    } else if (colorText === "yellowColor") {
+        return "yellow";
+    } else if (colorText === "greenColor") {
+        return "green";
+    } else if (colorText === "blueColor") {
+        return "blue";
+    } else if (colorText === "purpleColor") {
+        return "purple";
+    } else if (colorText === "redColor") {
+        return "red";
+    }
+}
+
 // Color picker drop down (change)
 colorPickerSelect.addEventListener("change", (e) => {
     colorPickerSelect.style.backgroundColor = colorPickerFunction()
@@ -805,6 +821,7 @@ function addTaskToList() {
 
     // Update the week schedule (when a new task is added)
     updateCurrentWeekSchedule();
+    ifPlannedTodosIsPastPutToPastPlans();
 
     // Skapa vecko-specifika array-objekt?
 
@@ -2270,6 +2287,8 @@ function clearAll() {
     currentSaturdayTodos = [];
     currentSundayTodos = [];
 
+    pastPlansTextArea.innerHTML = '';
+
 }
 
 clearAllButton.addEventListener('click', clearAll);
@@ -3695,6 +3714,47 @@ function restoreTodoWrapper() {
 
 // _ _ _
 
+// Old todos (start)
+// Old tasks
+// Past plans
+
+let pastPlansTextArea = document.getElementById('past-plans-input-field');
+var pastPlansTextString;
+// let pastTasks = [];
+var pastTasks = [];
+
+// const comaButtonRm = document.getElementById("removeCommasBtn");
+
+// comaButtonRm.addEventListener("click", () => {
+// pastPlansTextArea.value.replaceAll(/,+/g, "")
+// pastPlansTextArea.innerHTML.replaceAll(/,+/g, "")
+// })
+
+function ifPlannedTodosIsPastPutToPastPlans() {
+
+    // 1. Check if plannedTodos is past
+    // 2. Put to past plans
+    // 3. Update plannedTodos && dateCollection && todoCollection colorCollection (&& currentDayTodos && currentDayTodosItems ?)
+
+    pastPlansTextArea.innerHTML = '';
+
+    plannedTodos.forEach(todoRow => {
+        if (todoRow.date < dateDisplay.textContent && todoRow.isRecurring !== true) {
+
+            pastPlansTextString = todoRow.date + "    " + todoRow.todo + "    " + returnColorText(todoRow.color) + "\n";
+            pastTasks.push(pastPlansTextString)
+            console.log("pastPlansTextString = " + pastPlansTextString);
+            pastPlansTextArea.innerHTML = pastTasks
+            pastPlansTextArea.innerHTML = pastPlansTextArea.innerHTML.replaceAll(/,+/g, "")
+        }
+    })
+        pastTasks = []
+    }
+
+
+
+// Old todos (end)
+
 
 // Hur hantera data som finns i input-fält (i browsern) vid uppstart? (2024-10-07)
 
@@ -3702,6 +3762,7 @@ window.addEventListener("load", (event) => {
     console.log("page is fully loaded");
     // console.log("plannedTodos before DOM update" + JSON.stringify(plannedTodos))
     updatePlannedTodosWithDomData();
+    ifPlannedTodosIsPastPutToPastPlans();
     // updateCurrentWeekSchedule();
     console.log("plannedTodos after DOM update" + JSON.stringify(plannedTodos))
     console.log("object updated with DOM data?");

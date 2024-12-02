@@ -317,6 +317,22 @@ a {
   transform: scale(1.75);
 }
 
+#past-plan-heading {
+  display:flex;
+  justify-content: center;
+}
+
+#past-plan-div {
+  display: flex;
+  justify-content: center;
+}
+
+#past-plans-input-field {
+  width: 70vh;
+  height: 400px;
+  background-color: rgb(119, 119, 119);
+}
+
 /* Future plans (end) */
 
 /* _ _ _
