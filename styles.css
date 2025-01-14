@@ -317,9 +317,38 @@ a {
   transform: scale(1.75);
 }
 
+#periodicity, #per-weekday, #per-week, #per-month, #per-year {
+  display: none;
+}
+
+.day-selection-container {
+  display: flex;
+}
+
+.weekday-selection-wrapper-one {
+  display: flex;
+  flex-direction: column;
+}
+
+.weekday-selection-wrapper-two {
+  display: flex;
+  flex-direction: column;
+  padding-left: 1.5em;
+}
+
+#each-week {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 10px;
+}
+
+#rec-day-days, #rec-week-days, #rec-month-days, #rec-year-days {
+  width: 23px;
+}
+
 #past-plan-heading {
   display:flex;
-  justify-content: center;
+  /* justify-content: center; */
 }
 
 #past-plan-div {
@@ -327,7 +356,7 @@ a {
   justify-content: center;
 }
 
-#past-plans-input-field {
+#past-tasks-input-field {
   width: 70vh;
   height: 400px;
   background-color: rgb(119, 119, 119);

@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <!-- <script src="website-loaded.js"></script> -->
 </head>
 <body>
   <!-- <div id="top-div"></div> -->
@@ -212,6 +213,134 @@
             <input id="todo-recurring-input" type="checkbox" />
             Recurring Task
         </label>
+        <br><br>
+
+        <!-- default: display: "none" (-> block) -->
+          <fieldset id="periodicity">
+            <legend>Periodicity:</legend>
+
+            <div>
+              <input type="radio" id="day" name="select-period" value="day"/>
+              <label for="day">Days (per week)</label>
+            </div>
+
+            <div>
+              <input type="radio" id="week" name="select-period" value="week"/>
+              <label for="week">Week</label>
+            </div>
+
+            <div>
+              <input type="radio" id="month" name="select-period" value="month"/>
+              <label for="month">Month</label>
+            </div>
+
+            <div>
+              <input type="radio" id="year" name="select-period" value="year"/>
+              <label for="year">Year</label>
+            </div>
+          </fieldset>
+
+          <fieldset id="per-weekday">
+            <legend>Day choices:</legend>
+              <div class="day-selection-container">
+                  <div class="weekday-selection-wrapper-one">
+                    <div>
+                      <input type="radio" id="day-name" name="days-periodicity" value="select"/>
+                      <label for="select">Select days</label>
+                    </div>
+                    <div>
+                      <input type="radio" id="day-count" name="days-periodicity" value="duration"/>
+                      <label for="duration">Duration (days)</label>
+                    </div>
+                  </div>
+                  <div class="weekday-selection-wrapper-two">
+                    <div>
+                      <input type="checkbox" id="rec-mon" name="rec-mon"/>
+                      <label for="rec-mon">Mon</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" id="rec-tue" name="rec-tue"/>
+                      <label for="rec-tue">Tue</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" id="rec-wed" name="rec-wed"/>
+                      <label for="rec-wed">Wed</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" id="rec-thu" name="rec-thu"/>
+                      <label for="rec-thu">Thu</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" id="rec-fri" name="rec-fri"/>
+                      <label for="rec-fri">Fri</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" id="rec-sat" name="rec-sat"/>
+                      <label for="rec-sat">Sat</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" id="rec-sun" name="rec-sun"/>
+                      <label for="rec-sun">Sun</label>
+                    </div>
+                  </div>
+              </div>
+            <br>
+            <div>
+              <label for="rec-month-days">Event duration (days):</label>
+              <input type="number" id="rec-day-days" name="rec-days" min=1 value="1"/>
+            </div>
+            <div id="each-week">
+              <input type="checkbox" id="every-week" name="every-week"/>
+              <label for="every-week">Every week</label>
+            </div>
+          </fieldset>
+
+          <fieldset id="per-week">
+            <legend>Weekly choices:</legend>
+            <span>Every:</span>
+          <div>
+            <input type="radio" id="rec-1-week" name="select-week-periodicity" value="1"/>
+            <label for="1">1</label>
+          </div>
+
+          <div>
+            <input type="radio" id="rec-2-week" name="select-week-periodicity" value="2"/>
+            <label for="2">2</label>
+          </div>
+
+          <div>
+            <input type="radio" id="rec-3-week" name="select-week-periodicity" value="3"/>
+            <label for="3">3</label>
+          </div>
+
+          <div>
+            <input type="radio" id="rec-4-week" name="select-week-periodicity" value="4"/>
+            <label for="4">4</label>
+          </div>
+          <span>weeks</span><br><br>
+            <div>
+              <label for="rec-month-days">Event duration (days):</label>
+              <input type="number" id="rec-week-days" name="rec-week-days" min=1 max=7 value="1"/>
+            </div>
+          </fieldset>
+
+
+          <fieldset id="per-month">
+            <legend>Monthly:</legend>
+            <div>
+              <label for="rec-month-days">Event duration (days):</label>
+              <input type="number" id="rec-month-days" name="rec-month-days" min=1 max=31 value="1"/>
+            </div>
+          </fieldset>
+
+          <fieldset id="per-year">
+            <legend>Yearly:</legend>
+          <div>
+            <label for="rec-year-days">Event duration (days):</label>
+            <input type="number" id="rec-year-days" name="rec-year-days" min=1 max=365 value="1"/>
+          </div>
+        </fieldset>
+
     <!-- </div> -->
           </form>
             <pre id="textarea" contenteditable></pre>
@@ -258,8 +387,15 @@
             </div>
           </div>
 
+          <br>
+          <span>Load Plan</span><br>
+          <button onclick="loadPlan()"> Load (Chrome) </button><br><br>
+          <input id="load" type="file" value="load" onChange="load_func()"></input><br><br>
+
+          <span>Save Plan</span><br>
           <button onclick="saveAs()"> Save As </button>
-          <button onclick="save()"> Save </button><br><br>
+          <button onclick="save()"> Save (Chrome) </button><br><br>
+          <button onclick="save_func()"> Save (any browser) </button><br><br>
 
           hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
           dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadd
@@ -269,10 +405,12 @@
           hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
           dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadd<br><br>
 
-          <span id="past-plan-heading">Past Plans</span>
+          <span id="past-plan-heading">Past Tasks</span>
           <div id="past-plan-div">
-            <textarea id="past-plans-input-field"></textarea>
+            <!-- <textarea id="past-tasks-input-field" readonly></textarea> -->
+            <textarea id="past-tasks-input-field"></textarea>
           </div>
+          <button id="clear-past-tasks">Clear Past</button>
 
       </section>
 
@@ -381,6 +519,30 @@
         <a href="#top-todos"><i class="fa-regular fa-circle-up" id="fontawesome-arrow-up" ></i></a>
         <a href="#about-heading"><i class="fa-regular fa-circle-down" id="fontawesome-arrow-down" ></i></a>
       </div> -->
-      <script src="future-plans.js"></script>
+
+      <!-- <script>
+        // Run a function when the DOM has fully loaded
+        document.addEventListener("DOMContentLoaded", function () {
+
+          document.getElementById("todo-0-date").value = "";
+          document.getElementById("todo-1-date").value = "";
+          document.getElementById("todo-2-date").value = "";
+          document.getElementById("todo-0-text").value = "";
+          document.getElementById("todo-1-text").value = "";
+          document.getElementById("todo-2-text").value = "";
+
+          document.getElementById("todo-0-date").innerHTML = "";
+          document.getElementById("todo-1-date").innerHTML = "";
+          document.getElementById("todo-2-date").innerHTML = "";
+          document.getElementById("todo-0-text").innerHTML = "";
+          document.getElementById("todo-1-text").innerHTML = "";
+          document.getElementById("todo-2-text").innerHTML = "";
+
+        });
+    </script> -->
+
+
+      <!-- <script async src="future-plans.js"></script> -->
+      <script async src="future-plans.js"></script>
 </body>
 </html>
