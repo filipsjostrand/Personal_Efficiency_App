@@ -119,7 +119,11 @@ var currentDynamicDayArrayEdit = [];
 
 // var currentMondayTodosStart = [];
 
-//
+// Current Plan-div:ar
+var todoContainer = document.getElementById('todo-container');
+var todoElements = todoContainer.querySelectorAll('[data-id]');
+var specificRecDiv;
+
 var firstDateDiv = document.getElementById("todo-0-date")
 var secondDateDiv = document.getElementById("todo-0-date")
 var thirdDateDiv = document.getElementById("todo-0-date")
@@ -1604,6 +1608,38 @@ let plannedTodosObjectsArray = [];
     // _ _ _
     // _ _ _
 
+    function getDuration(selectedPeriod) {
+        if (selectedPeriod === "day" && dayInput.value !== '' && dayInput.value !== null && dayInput.value !== undefined) {
+            return duration = dayInput.value;
+          } else if (selectedPeriod === "week" && weekInput.value !== '' && weekInput.value !== null && weekInput.value !== undefined) {
+            return duration = weekInput.value;
+          } else if (selectedPeriod === "month" && monthInput.value !== '' && monthInput.value !== null && monthInput.value !== undefined) {
+            return duration = monthInput.value;
+          } else if (selectedPeriod === "year" && yearInput.value !== '' && yearInput.value !== null && yearInput.value !== undefined) {
+            return duration = yearInput.value;
+          } else {
+          return duration = "1";
+          }
+    }
+
+    function updateRecDivBgColor() {
+        for (let i = 0; i < plannedTodos.length; i++) {
+
+            // Select each specific todo container
+            specificRecDiv = document.querySelector(`.todo-rec[data-id="${i}"]`)
+
+            // If the plannedTodo-object is recurring, change container bg-color to blue
+            if (plannedTodos[i].isRecurring === true) {
+                specificRecDiv.style.backgroundColor = 'rgb(0, 117, 255)';  // Change to desired color
+            }
+            // else if the plannedTodo-object is !recurring, change container bg-color opacity to 0
+            else if (plannedTodos[i].isRecurring === false) {
+                specificRecDiv.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+            }
+        };
+    }
+
+
 // function addTaskToList() (start)
 // function addTaskToList(dateInputValue) {
     function addTaskToList(resultString) {
@@ -1611,6 +1647,7 @@ let plannedTodosObjectsArray = [];
 
         console.log("addTaskToList() körs")
 
+        console.log("resultString = " + resultString);
 
     // _ _ _
     // _ _ _
@@ -1703,7 +1740,7 @@ let plannedTodosObjectsArray = [];
                 recurringType: getRecurringType(selectedPeriod) || '',
                 everyWeek: everyWeek,
                 weekPeriod: weekPeriod,
-                duration: duration,
+                duration: getDuration(selectedPeriod),
                 dataDate: '',
                 isEmpty: false
             }
@@ -1757,7 +1794,7 @@ let plannedTodosObjectsArray = [];
 
         // newTodo.recurringType
         newTodo.weekPeriod
-        newTodo.duration
+        // newTodo.duration
         newTodo.dataDate = weekdayNameToWeekDayNumber(dateInputValue);
 
         // Check: No existing task copies exist
@@ -1791,7 +1828,9 @@ let plannedTodosObjectsArray = [];
         if (plannedTodos.length > 0 && isCopy === true) {
             alert("Current todo already exists.");
             return 0;
-        } else if (plannedTodos.length >= 0 && isCopy === false && newTodo.date >= dateDisplay.textContent) {
+        }
+        // Add todo-object to plannedTodos (object array)
+        else if (plannedTodos.length >= 0 && isCopy === false && newTodo.date >= dateDisplay.textContent) {
             plannedTodos.push(newTodo);
         }
         // Past dates should not be added!?
@@ -1843,9 +1882,45 @@ let plannedTodosObjectsArray = [];
 
         // Change color on created todo element
         todoColorElements.forEach((todoColorElement) => colorPickerElementFunction(todoColorElement));
+
     }
 
 // _ _ _
+
+    updateRecDivBgColor();
+
+    // // todoContainer.forEach((element) => {
+    // //     console.log("todoContainer element = " + element)
+    // // });
+
+    // // const todoContainer = document.getElementById('todo-container');
+    // // var todoElements = todoContainer.querySelectorAll('[data-id]');
+
+    // for (let i = 0; i < plannedTodos.length; i++) {
+
+    // // todoElements.forEach(todo => {
+    //     // let containerDataId = todo.getAttribute('data-id');
+
+    //     // const innerHTML = todo.innerHTML.trim();  // Add specific check if needed
+
+    //     // console.log("containerDataId = " + containerDataId)
+    //     // console.log("plannedTodos[containerDataId].isRecurring = " + plannedTodos[containerDataId].isRecurring)
+
+    //     specificRecDiv = document.querySelector(`.todo-container-element[data-id="${i}"]`)
+
+    //     // if (innerHTML === "specific content" && plannedTodos[dataId] && plannedTodos[dataId].isRecurring) {
+    //         // if (plannedTodos[containerDataId].isRecurring === true) {
+    //     if (plannedTodos[i].isRecurring === true) {
+    //         specificRecDiv.style.backgroundColor = 'rgb(0, 117, 255)';  // Change to desired color
+    //     }
+    //     // else if (plannedTodos[containerDataId].isRecurring === false) {
+    //     else if (plannedTodos[i].isRecurring === false) {
+    //         specificRecDiv.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+    //     }
+    // };
+
+
+    // _ _ _
 
 
     // Empty todo text input
@@ -1983,10 +2058,10 @@ if (plannedTodos.length > 0) {
                     // Check if the task date is in the future and matches the display year
                     if (
                         taskDate.getFullYear() === displayYear &&
-                        taskDate > new Date()
+                        taskDate < new Date()
                     ) {
                         // Replace the year with the previous year
-                        taskDate.setFullYear(taskDate.getFullYear() - 1);
+                        taskDate.setFullYear(taskDate.getFullYear() + 1);
 
                         // Update task.date with the adjusted date in 'YYYY-MM-DD' format
                         task.date = taskDate.toISOString().split('T')[0];
@@ -2600,6 +2675,23 @@ let specificTodoContainer = wrapperContainer.getElementsByClassName('todo-contai
 //     }
 // }
 
+    // TEST (Fungerar ej 2025-01-15)
+        function changeRecDivBackgroundColor(todoContainerId) {
+            console.log("changeContainerBackgroundColor(dataId) körs")
+
+            let specificRecDiv = document.querySelector(`.todo-rec[data-id="${todoContainerId}"]`);
+
+            console.log("specificRecDiv.style.backgroundColor = " + specificRecDiv.style.backgroundColor);
+            console.log("plannedTodos[todoContainerId].isRecurring = " + plannedTodos[todoContainerId].isRecurring);
+
+            if (plannedTodos[todoContainerId].isRecurring === true && specificRecDiv.style.backgroundColor === 'rgb(0, 117, 255)') {
+                specificRecDiv.style.backgroundColor = 'rgba(0, 0, 0, 0)';  // Change to desired color
+            }
+        }
+
+       // (Fungerar ej 2025-01-15)
+    // _ _ _
+
 // Clear Specific Todo row (start)
     // clearSpecificTodoRowButton.addEventListener('click', function() {
         clearSpecificTodoRowButton.addEventListener('click', function() {
@@ -2608,6 +2700,13 @@ let specificTodoContainer = wrapperContainer.getElementsByClassName('todo-contai
                 // getDataId();
                 getDataId(dataId);
                 console.log("getDataId(dataId) körs i clear specifictodo (= #" + getDataId(dataId) + " )");
+
+                // TEST (Fungerar ej 2025-01-15)
+                    changeRecDivBackgroundColor(dataId);
+                // (Fungerar ej 2025-01-15)
+                // _ _ _
+
+                //let specificContainerDataId = todo.getAttribute('data-id');
 
         // _ _ _
 
@@ -2782,23 +2881,25 @@ let specificTodoContainer = wrapperContainer.getElementsByClassName('todo-contai
 
         console.log("JSON.stringify(currentDynamicDayArray) (1) = " + JSON.stringify(currentDynamicDayArray));
 
-        for ( i = 0; i < currentDynamicDayArray.length; i++) {
-            console.log("targetObject.date = " +  targetObject.date)
-            console.log("currentDynamicDayArray[0].date = " + currentDynamicDayArray[0].date)
-            console.log("currentDynamicDayArray[i].todo == targetObject.date = " + currentDynamicDayArray[i].todo == targetObject.date)
+        if (currentDynamicDayArray.length > 0) {
+            for ( i = 0; i < currentDynamicDayArray.length; i++) {
+                console.log("targetObject.date = " +  targetObject.date)
+                console.log("currentDynamicDayArray[0].date = " + currentDynamicDayArray[0].date)
+                console.log("currentDynamicDayArray[i].todo == targetObject.date = " + currentDynamicDayArray[i].todo == targetObject.date)
 
-            if (currentDynamicDayArray[i].todo !== targetObject.todo) {
+                if (currentDynamicDayArray[i].todo !== targetObject.todo) {
 
-            console.log("KÖR: currentDynamicDayArray[i].todo !== targetObject.todo = " + currentDynamicDayArray[i].todo !== targetObject.todo)
+                console.log("KÖR: currentDynamicDayArray[i].todo !== targetObject.todo = " + currentDynamicDayArray[i].todo !== targetObject.todo)
 
-                currentDynamicDayArrayEdit.push({
-                    date: `${currentDynamicDayArray[i].date}`,
-                    todo: `${currentDynamicDayArray[i].todo}`,
-                    color: `${currentDynamicDayArray[i].color}`,
-                    isRecurring: convertStringToBoolean(`${currentDynamicDayArray[i].isRecurring}`),
-                    dataDate: `${currentDynamicDayArray[i].dataDate}`,
-                    isEmpty: false
-                });
+                    currentDynamicDayArrayEdit.push({
+                        date: `${currentDynamicDayArray[i].date}`,
+                        todo: `${currentDynamicDayArray[i].todo}`,
+                        color: `${currentDynamicDayArray[i].color}`,
+                        isRecurring: convertStringToBoolean(`${currentDynamicDayArray[i].isRecurring}`),
+                        dataDate: `${currentDynamicDayArray[i].dataDate}`,
+                        isEmpty: false
+                    });
+                }
             }
         }
 
@@ -3288,6 +3389,10 @@ let specificTodoContainer = wrapperContainer.getElementsByClassName('todo-contai
 // Clear All todos
 function clearAll() {
     console.log("clearAll() körs")
+
+    todoElements.forEach((element) => {
+        element.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+    });
 
     // clear the DOM todo data
     for (let i = 0; i < dateCollection.length; i++) {
@@ -4266,6 +4371,15 @@ function addDynamicTodoContainer() {
     // colorDiv.style.backgroundColor = "lightgreen"; // Set a color for the color div
     dynamicTodoContainer.appendChild(colorDiv);
 
+    // Create and append the recurring div
+    const recurringDiv = document.createElement('div');
+    recurringDiv.classList.add('todo-rec');
+    recurringDiv.setAttribute('data-id', newId);
+    recurringDiv.setAttribute('data-key', 'rec');
+    recurringDiv.setAttribute('name', 'rec');
+    // colorDiv.style.backgroundColor = "lightgreen"; // Set a color for the color div
+    dynamicTodoContainer.appendChild(recurringDiv);
+
     // Append the new container to the main container
     // const wrapperContainer = document.getElementById('todo-wrapper');
     wrapperContainer.appendChild(dynamicTodoContainer);
@@ -4655,6 +4769,14 @@ function restoreTodoWrapper() {
         colorDiv.setAttribute('name', 'color');
         dynamicTodoContainer.appendChild(colorDiv);
 
+        // Create and append the recurring div
+        const recurringDiv = document.createElement('div');
+        recurringDiv.classList.add('todo-rec');
+        recurringDiv.setAttribute('data-id', i);
+        recurringDiv.setAttribute('data-key', 'rec');
+        recurringDiv.setAttribute('name', 'rec');
+        dynamicTodoContainer.appendChild(recurringDiv);
+
         // Append the new container to the main container
         wrapperContainer.appendChild(dynamicTodoContainer);
     }
@@ -5036,7 +5158,7 @@ function save_func() {
         var anchor = document.createElement("a");
         // I want to create a file from this location: "file:///C:/Users/filip/Desktop/Personal_Efficiency_App/index.html"
         anchor.href = URL.createObjectURL(file);
-        anchor.download = "save.txt";
+        anchor.download = "saved_plans.txt";
         anchor.click();
 
     // _ _ _
@@ -5249,6 +5371,7 @@ function readFile(file) {
         // ifPlannedTodosIsPastPutToPastPlans();
         updateCurrentWeekSchedule();
         updateRecurringPlannedTodos(plannedTodos);
+        updateTodoContainerBgColor();
     };
     reader.readAsText(file);
 }

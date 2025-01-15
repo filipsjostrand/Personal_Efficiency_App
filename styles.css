@@ -182,6 +182,12 @@ a {
 
 /* Remove field - save to file (end) */
 
+#rec-text-span {
+  text-decoration-line: underline;
+  text-decoration-color: rgba(0,117,255,0.5);
+  text-decoration-thickness: 3px;
+}
+
 .todo-color {
   width: 30px;
   height: 34px;
@@ -209,6 +215,11 @@ a {
   width: 30px;
   height: 30px;
   cursor: pointer;
+}
+
+.todo-rec {
+  width: 7px;
+  height: 30px;
 }
 
 #todo-container-one {
