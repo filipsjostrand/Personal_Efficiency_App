@@ -132,7 +132,8 @@ let dateInputValue = document.getElementById('date-input');
 let textInputValue = document.getElementById('add-todo-text');
 let isRecurringCheckbox = document.getElementById("todo-recurring-input");
 
-
+// Recurring Task Menu
+let recUnderline = document.getElementById("rec-text-span");
 
 // Day Choices (Selections)
 let isRecurringDayRadioButton = document.getElementById('day');
@@ -1307,8 +1308,10 @@ isRecurringCheckbox.addEventListener("click", (e) => {
     if (isRecurringCheckbox.checked) {
         periodicityMenu.style.display = "block";
         PeriodicityYearMenu.style.display = "none";
+        recUnderline.style.textDecorationColor = "rgba(235,235,235,0.5)";
     }
     else if (!isRecurringCheckbox.checked) {
+        recUnderline.style.textDecorationColor = "rgba(0,117,255,0.5)";
         periodicityMenu.style.display = "none";
         PeriodicityDayMenu.style.display = "none";
         PeriodicityWeekMenu.style.display = "none";
