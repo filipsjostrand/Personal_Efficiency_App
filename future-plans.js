@@ -1,3 +1,5 @@
+"use strict"
+
 let fileHandle;
 const dateInput = document.getElementById('date-input');
 
@@ -5,57 +7,60 @@ const dateInput = document.getElementById('date-input');
 
 var plannedTodos = [];
 
+// _ _ _
+// _ _ _
+
 // Skapa plannedTodos-objekt med en klass
 
-class PlannedTodosClass {
-    // constructor(date, todo, color, isRecurring, dateData, intervalType, isEmpty) {
-        constructor(date, todo, color, isRecurring, recurringType, duration, everyWeek, weekPeriod, dateData, isEmpty) {
-            this.date = date;
-            this.todo = todo;
-            this.color = color;
-            this.isRecurring = isRecurring;
-            this.recurringType = recurringType;
-            this.duration = duration;
-            this.everyWeek = everyWeek;
-            this.weekPeriod = weekPeriod;
-            this.dateData = dateData;
-            this.isEmpty = isEmpty;
-        }
+// class PlannedTodosClass {
+//     // constructor(date, todo, color, isRecurring, dateData, intervalType, isEmpty) {
+//         constructor(date, todo, color, isRecurring, recurringType, duration, everyWeek, weekPeriod, dateData, isEmpty) {
+//             this.date = date;
+//             this.todo = todo;
+//             this.color = color;
+//             this.isRecurring = isRecurring;
+//             this.recurringType = recurringType;
+//             this.duration = duration;
+//             this.everyWeek = everyWeek;
+//             this.weekPeriod = weekPeriod;
+//             this.dateData = dateData;
+//             this.isEmpty = isEmpty;
+//         }
 
-        // Generera HTML för det aktuella objektet
-        // Ändra färg
-        // Anropa alla ställen där färg ska uppdateras (mha set:er) ((Anropa flera funktioner samtidigt(?)))
-        // När något ändras (i eventListener, kan man ha eventListener (som anropar olika funktioner/saker som ska uppdateras) i sin klass) ((Exempel: en klass ansvarar för (att funktioner kopplade till klassen) uppdaterar färger (överallt), automatisera uppdateringen))
+//         // Generera HTML för det aktuella objektet
+//         // Ändra färg
+//         // Anropa alla ställen där färg ska uppdateras (mha set:er) ((Anropa flera funktioner samtidigt(?)))
+//         // När något ändras (i eventListener, kan man ha eventListener (som anropar olika funktioner/saker som ska uppdateras) i sin klass) ((Exempel: en klass ansvarar för (att funktioner kopplade till klassen) uppdaterar färger (överallt), automatisera uppdateringen))
 
-    addDivToList() {
-        let addDiv = console.log("add div")
-        return addDiv;
-    }
+//     addDivToList() {
+//         let addDiv = console.log("add div")
+//         return addDiv;
+//     }
 
-    removeDivFromList() {
-        let removeDiv = console.log("remove div")
-        return removeDiv;
-    }
+//     removeDivFromList() {
+//         let removeDiv = console.log("remove div")
+//         return removeDiv;
+//     }
 
-    addPlannedTodoToDiv() {
-        let addDivObject = console.log("add object to div")
-        return addDivObject;
-    }
+//     addPlannedTodoToDiv() {
+//         let addDivObject = console.log("add object to div")
+//         return addDivObject;
+//     }
 
-    removePlannedTodoFromDiv() {
-        let removeDiv = console.log("remove object from div")
-        return removeDiv;
-    }
+//     removePlannedTodoFromDiv() {
+//         let removeDiv = console.log("remove object from div")
+//         return removeDiv;
+//     }
 
-    editPlannedTodoInDiv() {
-        let removeDivObject = console.log("edit (div and) object in div")
-        return removeDivObject;
-    }
+//     editPlannedTodoInDiv() {
+//         let removeDivObject = console.log("edit (div and) object in div")
+//         return removeDivObject;
+//     }
 
 
 
-    //Getters & Setters?
-}
+//     //Getters & Setters?
+// }
 
 // _ _ _
 
@@ -72,6 +77,8 @@ class PlannedTodosClass {
 
 // }
 
+// _ _ _
+// _ _ _
 
 // _ _ _
 
@@ -132,6 +139,14 @@ let dateInputValue = document.getElementById('date-input');
 let textInputValue = document.getElementById('add-todo-text');
 let isRecurringCheckbox = document.getElementById("todo-recurring-input");
 
+// _ _ _
+
+// var defaultDate; // Variable to store default date
+var defaultDate; // Variable to store default date
+var defaultTodoText; // Variable to store default todo text
+
+// _ _ _
+
 // Recurring Task Menu
 let recUnderline = document.getElementById("rec-text-span");
 
@@ -186,6 +201,12 @@ const yearInput = document.getElementById('rec-year-days');
 
 // If old plannedTodos exists (in plannedTodos)
 var pastTasksSet = new Set();
+
+// _ _ _
+
+var dynamicContainerToken;
+var dynamicContainerDataId;
+var newId;
 
 // _ _ _
 // _ _ _
@@ -905,6 +926,7 @@ daySelectOrDuration.addEventListenerToAll('change', (e) => {
 
 // Ska ...Collection ha "let" eller "const"(?)
 
+// var dateField = document.querySelector('.todo-date');
 var dateFields = document.querySelectorAll('.todo-date');
 var todoFields = document.querySelectorAll('.todo-text');
 
@@ -1269,35 +1291,90 @@ let blockedDates = new Set();
 // Function to validate date format (YYYY-MM-DD)
 function isValidDateFormat(dateString) {
     const dateRegex = /^\d{4}-\d{2}-\d{2}$/; // Regex for YYYY-MM-DD
+    console.log("dateRegex.test(dateString) in isValidDateFormat(dateString): " + dateRegex.test(dateString))
     return dateRegex.test(dateString);
 }
 
 // Function to handle date input
 
+// // dataId is defined here
+// let dataId;
+
+var resultString;
+
 // function handleDateInput(event) {
-    function handleDateInput(dateInputString) {
+    function handleDateInput(dateInputString, defaultDate) {
     // const resultString = event.target.value.trim(); // Get the input value and trim whitespace
 
     console.log("handleDateInput() körs")
 
-    const resultString = dateInputString.trim(); // Get the input value and trim whitespace
+        // let dataId = getDataId(dataId);
+
+    // const resultString = dateInputString.trim(); // Get the input value and trim whitespace
+    // let resultString = dateInputString.trim(); // Get the input value and trim whitespace
+    console.log("dateInputString (handle) = " + dateInputString)
+    resultString = dateInputString.trim(); // Get the input value and trim whitespace
+    console.log("resultString (handle) = " + resultString)
 
     if (isValidDateFormat(resultString)) {
         if (blockedDates.has(resultString)) {
             console.log(`Date ${resultString} is blocked.`);
-            addTaskToList(""); // Send an empty string to `addTaskToList()` for blocked dates
+            // addTaskToList(""); // Send an empty string to `addTaskToList()` for blocked dates
         } else {
             console.log(`Date ${resultString} is valid and unblocked.`);
-            plannedTodos[dataId].dataDate = weekdayNameToWeekDayNumber(dateCollection[dataId])
-                console.log("plannedTodos[dataId].dataDate = " +  weekdayNameToWeekDayNumber(dateCollection[dataId]))
-            updateCurrentWeekSchedule(resultString); // Send valid, unblocked date to `updateCurrentWeekSchedule()`
+
+            // _ _ _
+            // console.log(" dataId = " + dataId)
+            // console.log(" dateCollection[dataId].value = " + dateCollection[dataId].value)
+            // plannedTodos[dataId].dataDate = weekdayNameToWeekDayNumber(dateCollection[dataId].value)
+            //     console.log("plannedTodos[dataId].dataDate = " +  weekdayNameToWeekDayNumber(dateCollection[dataId].value))
+            // _ _ _
+
+            // updateCurrentWeekSchedule(resultString); // Send valid, unblocked date to `updateCurrentWeekSchedule()`
+            // updateCurrentWeekSchedule(); // Send valid, unblocked date to `updateCurrentWeekSchedule()`
         }
     } else {
-        console.log(`Invalid date format: ${resultString}`);
+        console.log(`is Invalid date format: ${resultString}`);
+        resultString = defaultDate;
         checkIfDateAndTextAreEmpty();
-        addTaskToList(""); // Send an empty string for invalid dates
+        // addTaskToList(""); // Send an empty string for invalid dates
+
+        // dateCollection[dataId].value = defaultDate;
+        // dateCollection[dataId].innerHTML = defaultDate;
     }
+    console.log("resultString (end of handleDateInput = " + resultString)
+    updateCurrentWeekSchedule();
+    return resultString;
 }
+
+// _ _ _
+
+function getCurrentDataIdOnClick(dataFieldClass) {
+    // Select all elements with the specified class (or datafield type)
+    const dataFields = document.querySelectorAll(`.${dataFieldClass}`);
+
+    // Add a click event listener to each element
+    dataFields.forEach(dataField => {
+        dataField.addEventListener('click', () => {
+            // Get the value of the data-id attribute of the clicked element
+            const currentDataId = dataField.getAttribute('data-id');
+            console.log(`Current data-id: ${currentDataId}`);
+
+            // Return the current data-id
+            // (Optional: Call a function or process the data-id here)
+            processDataId(currentDataId);
+        });
+    });
+}
+
+// Example function to process the data-id
+function processDataId(dataId) {
+    console.log(`Processing data-id: ${dataId}`);
+    return dataId;
+}
+
+// Example usage: Attach to fields with the class 'todo-date'
+getCurrentDataIdOnClick('todo-date');
 
 // _ _ _
 
@@ -1466,7 +1543,10 @@ let sortedData;
 
 var weekDayNumber;
 
+// Convert
 function weekdayNameToWeekDayNumber(dateInputValue) {
+    console.log("dateInputValue =" + dateInputValue);
+
     if (getDayOfWeek(dateInputValue.value) === "mon") {
         weekDayNumber = "0";
     }
@@ -1625,23 +1705,72 @@ let plannedTodosObjectsArray = [];
           }
     }
 
-    function updateRecDivBgColor() {
-        for (let i = 0; i < plannedTodos.length; i++) {
 
-            // Select each specific todo container
-            specificRecDiv = document.querySelector(`.todo-rec[data-id="${i}"]`)
+    // _ _ _
+    // _ _ _
 
-            // If the plannedTodo-object is recurring, change container bg-color to blue
-            if (plannedTodos[i].isRecurring === true) {
-                specificRecDiv.style.backgroundColor = 'rgb(0, 117, 255)';  // Change to desired color
+    // Fungerar inte 2025-01-24
+    // function updateRecDivBgColor() {
+    //     for (let i = 0; i < plannedTodos.length; i++) {
+
+    //         // Select each specific todo container
+    //         specificRecDiv = document.querySelector(`.todo-rec[data-id="${i}"]`)
+    //         console.log("specificRecDiv = " + specificRecDiv)
+
+    //         // If the plannedTodo-object is recurring, change container bg-color to blue
+    //         if (plannedTodos[i].isRecurring === true) {
+    //             specificRecDiv.style.backgroundColor = 'rgb(0, 117, 255)';  // Change to desired color
+    //         }
+    //         // else if the plannedTodo-object is !recurring, change container bg-color opacity to 0
+    //         else if (plannedTodos[i].isRecurring === false) {
+    //             specificRecDiv.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+    //         }
+    //     };
+    // }
+    // _ _ _
+    // _ _ _
+
+    function sortPlannedTodos(plannedTodos) {
+        // Sorteringsfunktion (sortera 1. Datum, 2. Tid)
+        plannedTodos.sort(function(a, b) {
+            // Jämför datum först
+            if (a.date < b.date) return -1;
+            if (a.date > b.date) return 1;
+
+            // Om datum är lika, försök jämföra tid från "time" eller "todo"
+            const timeA = a.time || extractTimeFromTodo(a.todo); // Kolla om tid finns i "time" eller i "todo"
+            const timeB = b.time || extractTimeFromTodo(b.todo);
+
+            if (timeA && timeB) {
+                if (timeA < timeB) return -1;
+                if (timeA > timeB) return 1;
             }
-            // else if the plannedTodo-object is !recurring, change container bg-color opacity to 0
-            else if (plannedTodos[i].isRecurring === false) {
-                specificRecDiv.style.backgroundColor = 'rgba(0, 0, 0, 0)';
-            }
-        };
+
+            return 0; // Om både datum och tid (från time eller todo) är lika
+        });
     }
 
+    function updateCurrentPlan(plannedTodos) {
+        for (let i = 0; i < plannedTodos.length; i++) {
+
+            console.log("plannedTodos[i] (1) = " + JSON.stringify(plannedTodos[i]))
+
+            //Update HTML to (input order) plannedTodos values
+            dateCollection[i].innerHTML = plannedTodos[i].date;
+            dateCollection[i].value = plannedTodos[i].date;
+            todoCollection[i].innerHTML = plannedTodos[i].todo;
+            todoCollection[i].value = plannedTodos[i].todo;
+            todoColorCollection[i].value = plannedTodos[i].todo
+
+            todoColorCollection[i].style.backgroundColor = returnRgbColor(plannedTodos[i].color);
+
+            // Change color on created todo element
+            todoColorElements.forEach((todoColorElement) => colorPickerElementFunction(todoColorElement));
+
+        }
+    }
+
+    // _ _ _
 
 // function addTaskToList() (start)
 // function addTaskToList(dateInputValue) {
@@ -1674,7 +1803,8 @@ let plannedTodosObjectsArray = [];
 
 
         if (resultString === "" || dateInputValue.value === "") {
-            // alert("Select a valid date (YYYY-MM-DD)");
+            // alert("Select a valid date (YYYY-MM-DD), date is set to default (today)");
+            // dateInputValue.value = dateDisplay.textContent;
         }
         else if (dateInputValue.value === weekDates[0] && currentMondayTodos.length === 9) {
             // blockedDates.push(weekDates[0]);
@@ -1734,6 +1864,7 @@ let plannedTodosObjectsArray = [];
             return 0;
         }
         else if(dateInputValue.value !== "") {
+            // else if(dateInputValue.value !== undefined && dateInputValue.value !== null) {
             let newTodo = {
                 date: dateInputValue.value,
                 todo: textInputValue.value,
@@ -1752,17 +1883,24 @@ let plannedTodosObjectsArray = [];
 
             console.log("aa");
 
-        // Create plannedTodos-object with PlannedTodosClass (#2)
-        // PlannedTodosClass.createObjectsArray()
+            // _ _ _
+            // _ _ _
 
-            // Create plannedTodos-object with PlannedTodosClass (#A)
-            // let plannedTodosObject = new PlannedTodosClass(dateInputValue.value, textInputValue.value, colorPickerSelect.value, isRecurringCheckbox.checked, '', false)
-            let plannedTodosObject = new PlannedTodosClass(dateInputValue.value, textInputValue.value, colorPickerSelect.value, isRecurringCheckbox.checked, '', '', '','', false)
+            // 2025-01-16 Skapas plannedTodos via PlannedTodosClass!? (Nej?)
+        // // Create plannedTodos-object with PlannedTodosClass (#2)
+        // // PlannedTodosClass.createObjectsArray()
 
-            // // let newTodoAlpha = plannedTodosObject
-            // // let plannedTodosObjectArray = [];
-            plannedTodosObjectsArray.push(plannedTodosObject)
-            console.log("JSON.stringify(plannedTodosObjectsArray) = " + JSON.stringify(plannedTodosObjectsArray))
+        //     // Create plannedTodos-object with PlannedTodosClass (#A)
+        //     // let plannedTodosObject = new PlannedTodosClass(dateInputValue.value, textInputValue.value, colorPickerSelect.value, isRecurringCheckbox.checked, '', false)
+        //     let plannedTodosObject = new PlannedTodosClass(dateInputValue.value, textInputValue.value, colorPickerSelect.value, isRecurringCheckbox.checked, '', '', '','', false)
+
+        //     // // let newTodoAlpha = plannedTodosObject
+        //     // // let plannedTodosObjectArray = [];
+        //     plannedTodosObjectsArray.push(plannedTodosObject)
+        //     console.log("JSON.stringify(plannedTodosObjectsArray) = " + JSON.stringify(plannedTodosObjectsArray))
+
+            // _ _ _
+            // _ _ _
 
             // plannedTodosObject.addDivToList();
             // plannedTodosObject.addPlannedTodoToDiv();
@@ -1843,54 +1981,30 @@ let plannedTodosObjectsArray = [];
 
     if (plannedTodos.length > 1) {
 
-        // Sorteringsfunktion (sortera 1. Datum, 2. Tid)
-        plannedTodos.sort(function(a, b) {
-            // Jämför datum först
-            if (a.date < b.date) return -1;
-            if (a.date > b.date) return 1;
-
-            // Om datum är lika, försök jämföra tid från "time" eller "todo"
-            const timeA = a.time || extractTimeFromTodo(a.todo); // Kolla om tid finns i "time" eller i "todo"
-            const timeB = b.time || extractTimeFromTodo(b.todo);
-
-            if (timeA && timeB) {
-                if (timeA < timeB) return -1;
-                if (timeA > timeB) return 1;
-            }
-
-            return 0; // Om både datum och tid (från time eller todo) är lika
-        });
+        // Sorteringsfunktion (sortera 1. Datum, 2. Tid (Senast sist))
+        sortPlannedTodos(plannedTodos);
 
 
         console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos))
     }
 
-    // if (plannedTodos.length > 3) {
+
+    // Add container (if plannedTodoos > 3)
+    // add div
         if (plannedTodos.length > 3) {
-            addDynamicTodoContainer();
+            dynamicContainerToken = "addTaskToList";
+            // dynamicContainerDataId = plannedTodos.length-1;
+            addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
         }
 
-    for (let i = 0; i < plannedTodos.length; i++) {
+    // Update Current Plan (DOM)
+    updateCurrentPlan(plannedTodos);
 
-        console.log("plannedTodos[i] (1) = " + JSON.stringify(plannedTodos[i]))
-
-        //Update HTML to (input order) values
-        dateCollection[i].innerHTML = plannedTodos[i].date;
-        dateCollection[i].value = plannedTodos[i].date;
-        todoCollection[i].innerHTML = plannedTodos[i].todo;
-        todoCollection[i].value = plannedTodos[i].todo;
-        todoColorCollection[i].value = plannedTodos[i].todo
-
-        todoColorCollection[i].style.backgroundColor = returnRgbColor(plannedTodos[i].color);
-
-        // Change color on created todo element
-        todoColorElements.forEach((todoColorElement) => colorPickerElementFunction(todoColorElement));
-
-    }
-
-// _ _ _
-
-    updateRecDivBgColor();
+    // _ _ _
+    // _ _ _
+        // Fungerar inte 2025-01-24
+    // updateRecDivBgColor();
+    // _ _ _
 
     // // todoContainer.forEach((element) => {
     // //     console.log("todoContainer element = " + element)
@@ -1961,6 +2075,8 @@ let plannedTodosObjectsArray = [];
 
 // function addTaskToList() (end)
 
+// _ _ _
+// _ _ _
 // _ _ _
 // _ _ _
 
@@ -2052,6 +2168,7 @@ if (dateDisplay.textContent) {
 
 if (plannedTodos.length > 0) {
 
+    // If yearly recurring:
         plannedTodos.forEach(task => {
             // Ensure the task is recurring yearly and its date is valid
             if (task.recurringType === 'y' && task.date) {
@@ -2091,46 +2208,709 @@ updateCurrentWeekSchedule();
 updateRecurringPlannedTodos(plannedTodos);
 
 
-// _ _ _
-// _ _ _
+    // _ _ _
+    // _ _ _
 
-// Fixa så att edit fungerar för week schedule (2024-10-16)
-// Edit task (change todo)
+        // Fixa så att edit fungerar för week schedule (2024-10-16)
+        // Edit task (change todo)
 
-// let currentTodoInitialValue;
+
+        // const textareas = document.querySelectorAll('textarea');
+        // const textareas = dateFields
+
+        // _ _ _
+        // _ _ _
+
+        // (OBS!) dateFields === document.querySelectorAll(".todo-date");
+
+        // _ _ _
+        // textareas används inte? (2025-01-20)
+        const textareas = document.querySelectorAll('textarea');
+
+        const status = document.getElementById('status');
+
+        // var defaultDate; // Variable to store default date
+        var currentDateDiv;
+        var editDate; // Variable to store edited date
+        let currentDataId; // To keep track of the current data-id
+        // _ _ _
+
+        var editDateButton;
+
+        // let newDate = editDate;
+        var newDate;
+
+        // dateFieldTextarea.addEventListener('onChange', () => {
+        //     newDate = dateCollection[dataId].value;
+        //     console.log("newDate  ( dateFieldTextarea (addEventListener onChange) ) = " + newDate);
+        //     console.log("defaultDate  ( dateFieldTextarea (addEventListener onChange) ) = " + defaultDate);
+        //     return newDate;
+        // });
+
+        // _ _ _
+        // _ _ _
+
+        // Attach focus event listener to all todo-text textareas
+        document.querySelectorAll(".todo-text").forEach(todoTextArea => {
+            todoTextArea.addEventListener("focus", () => {
+                // Get the current data-id of the focused textarea
+                const dataId = todoTextArea.getAttribute("data-id");
+
+                // Get the value of the todo-text textarea for this data-id
+                const todoValue = todoTextArea.value;
+
+                // Log the data-id and value
+                console.log(`Focused todo-text with data-id="${dataId}"`);
+                console.log(`Value: "${todoValue}"`);
+                defaultTodoText = todoValue;
+                console.log("defaultDate = " + defaultDate + ", " + "defaultTodoText = " + defaultTodoText);
+
+                // Optional: Update a status or display this information somewhere in the UI
+                const status = document.getElementById("status");
+                if (status) {
+                    status.textContent = `Focused todo-text (data-id: ${dataId}): "${todoValue}"`;
+                }
+            });
+        });
+
+        var isDateCopy = false;
+        var isTodoCopy = false;
+        var isEditDuplicate = false;
+
+        // if (plannedTodos.length > 0) {
+        //     plannedTodos.forEach(todoRow => {
+        //     if (todoRow.date === newTodo.date && todoRow.todo === newTodo.todo) {
+        //         isCopy = true
+        //     }
+
+        // _ _ _
+
+        // function checkForTodoDuplicates(dataId) {
+        //     plannedTodos.forEach((todo) => {
+        //         for (let i = 0; i < plannedTodos.length; i++) {
+        //             console.log("todo === plannedTodos[i].todo = " + todo === todoCollection[dataId].value)
+        //             if (todo === todoCollection[dataId].value) {
+        //                 console.log("Todo copy exists, check for dates")
+        //                 // isTodoCopy = true;
+        //                 return isTodoCopy = true;
+        //             }
+        //             // else if (todo !== plannedTodos[i].todo) {
+        //             //     isTodoCopy = false;
+        //             // }
+        //         }
+        //     });
+        // }
+
+        // function checkForDateDuplicates(dataId) {
+        //     plannedTodos.forEach((date) => {
+        //         for (let i = 0; i < plannedTodos.length; i++) {
+        //             if (date === dateCollection[dataId].value) {
+        //                 console.log("Date copy exists")
+        //                 // isDateCopy = true;
+        //                 return isDateCopy = true;
+        //             }
+        //         }
+        //     });
+        // }
+
+        // _ _ _
+
+        function checkForTodoDateDuplicates(defaultDate, defaultTodoText, dateCollection, todoCollection, dataId) {
+            // let defaultDateForId = dateCollection[dataId].value;
+            // let defaultTodoForId = todoCollection[dataId].value;
+
+            // let isDateCopy;
+            // let isTodoCopy;
+            // isDuplicate = false;
+
+            // checkForTodoDuplicates(dataId);
+            // console.log("isTodoCopy: " + isTodoCopy);
+            // checkForDateDuplicates(dataId);
+            // console.log("isDateCopy: " + isDateCopy);
+
+            plannedTodos.forEach(todoRow => {
+                if (todoRow.date === dateCollection[dataId].value && todoRow.todo === todoCollection[dataId].value) {
+                    dateCollection[dataId].value = defaultDate
+                    dateCollection[dataId].innerHTML = defaultDate
+                    todoCollection[dataId].value = defaultTodoText
+                    todoCollection[dataId].innerHTML = defaultTodoText
+
+                    return isEditDuplicate = true
+                }
+            });
+
+            // if (plannedTodos.length > 0 && isCopy === true) {
+            //     alert("Current todo already exists.");
+            //     return 0;
+            // }
+            // // Add todo-object to plannedTodos (object array)
+            // else if (plannedTodos.length >= 0 && isCopy === false && newTodo.date >= dateDisplay.textContent) {
+            //     plannedTodos.push(newTodo);
+            // }
+            // // Past dates should not be added!?
+            // else if (plannedTodos.length >= 0 && isCopy === false && newTodo.date < dateDisplay.textContent) {
+            //     alert("You can't make plans for yesterdays :)");
+            // }
+
+                    // if (isDateCopy === true && isTodoCopy === true) {
+                    //     dateCollection[dataId].value = defaultDate
+                    //     dateCollection[dataId].innerHTML = defaultDate
+                    //     todoCollection[dataId].value = defaultTodoText
+                    //     todoCollection[dataId].innerHTML = defaultTodoText
+                    //     return isDuplicate = true;
+                    // }
+        }
+
+        // _ _ _
+        // _ _ _
+
+        // Check newDate format and time -> editDate = ...
+        function validateAndAssignDate(newDate, defaultDate, dataId) {
+
+            console.log("in validateAndAssignDate, newDate = " + newDate);
+            console.log("in validateAndAssignDate, defaultDate = " + defaultDate);
+            console.log("in validateAndAssignDate, dataId = " + dataId);
+
+            // Regular expression to check if the string is in the format "YYYY-MM-DD"
+            const regexA = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;
+            const regexB = /^\d{4}-\d{2}-\d{2}$/;
+
+            // Helper function to check if the date is today or later
+            function isTodayOrLater(dateString) {
+                const today = new Date();
+                const inputDate = new Date(dateString);
+
+                // Compare only dates, ignoring time
+                today.setHours(0, 0, 0, 0);
+                inputDate.setHours(0, 0, 0, 0);
+
+                return inputDate >= today;
+            }
+
+            // Validate the date format and check if it's a valid calendar date
+            if (regexA.test(newDate) && regexB.test(newDate)) {
+                const [year, month, day] = newDate.split("-").map(Number);
+                const date = new Date(year, month - 1, day);
+
+                if (
+                    date.getFullYear() === year &&
+                    date.getMonth() === month - 1 &&
+                    date.getDate() === day &&
+                    isTodayOrLater(newDate)
+                ) {
+                    // If valid and today or later, return newDate
+                    // return newDate;
+                    console.log("The edited date is a valid date");
+                    editDate = newDate;
+                }
+            } else if (newDate === undefined || regexA.test(newDate) === false || regexB.test(newDate) === false) {
+                // If invalid or not today or later, assign defaultDate
+                alert("Invalid date. Assigning default date.");
+
+                newDate = defaultDate;
+                dateCollection[dataId].value = defaultDate;
+                dateCollection[dataId].innerHTML = defaultDate;
+
+                console.log("defaultDate (if invalid date): " + defaultDate);
+                console.log("dataId = " + dataId)
+                console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos))
+                if (plannedTodos.length === 0) {
+                    editDate = '';
+                }
+                else if (defaultDate !== plannedTodos[dataId].date) {
+                    defaultDate = plannedTodos[dataId].date;
+                }
+                editDate = defaultDate;
+                // return defaultDate;
+            }
+            // else if (editDate === '') {
+            //     alert("Invalid date. Please select a valid date (YYYY-MM-DD).");
+            // }
+
+            // return editDate;
+        }
+
+        function editDateButtonFunctionality(newDate, dataId) {
+
+            console.log("editDateButtonFunctionality() körs!");
+
+            // dataId = ?
+
+            newDate = dateCollection[dataId].value;
+            console.log("newDate to be edited ooa = " + newDate)
+
+            validateAndAssignDate(newDate, defaultDate, dataId);
+            // let currentDate = new Date().toISOString().split('T')[0]; // Get today's date
+            // let currentCollectionDate = dateCollection[dataId].value;
+
+            // if (currentCollectionDate && /^\d{4}-\d{2}-\d{2}$/.test(currentCollectionDate) && currentCollectionDate >= currentDate) {
+            //     // Store the dateCollection value in the editedDate variable if valid
+            //     editDate = currentCollectionDate;
+            //     console.log(`editDate: ${editDate}`);
+            // } else {
+            //     alert("Invalid date! Please enter a date in the format YYYY-MM-DD. It should be today or a future date.");
+            //     editDate = defaultDate;
+            // }
+            // return editDate;
+            console.log("editDate (in editDateButtonFunctionality) = " + editDate)
+
+            console.log("dateCollection[dataId].date = " + dateCollection[dataId].date);
+            console.log("defaultDate = " + defaultDate);
+
+            if (dateCollection[dataId].date === defaultDate) {
+                console.log("Date hasn't been edited");
+            } else if (dateCollection[dataId].date !== defaultDate) {
+                console.log("Date has been edited");
+            updateCurrentWeekSchedule();
+            }
+        }
+
+
+        function createEditDateButton(currentDateDiv, dataId) {
+            console.log("currentDateDiv = " + currentDateDiv)
+            // Create the orange button
+            // const editDateButton = document.createElement('button');
+            editDateButton = document.createElement('button');
+            editDateButton.textContent = 'Edit Date';
+            editDateButton.classList.add('edit-date-button');
+
+            console.log("Edit Date button created!");
+            console.log("editDateButton = " + editDateButton)
+
+            // Add click event listener to the button
+            editDateButton.addEventListener('click', () => {
+
+                console.log("Edit Date button clicked!");
+
+                // What should happen when the Edit Button is clicked!?
+                // Return "editDate"
+                editDateButtonFunctionality(newDate, dataId);
+                console.log("editDate = " + editDate)
+
+                // -
+
+                // const currentDate = new Date().toISOString().split('T')[0]; // Get today's date
+                // const currentCollectionDate = dateCollection[dataId].value;
+
+                // if (currentCollectionDate && /^\d{4}-\d{2}-\d{2}$/.test(currentCollectionDate) && currentCollectionDate >= currentDate) {
+                //     // Store the dateCollection value in the editedDate variable if valid
+                //     editDate = currentCollectionDate;
+                //     console.log(`editDate: ${editDate}`);
+                // } else {
+                //     alert("Invalid date! Please enter a valid date in the format YYYY-MM-DD and make sure it is today's date or a future date.");
+                // }
+                removeEditDateButton(dataId);
+                isDateFieldFocus = false;
+                changeDateFieldBackgroundColor(isDateFieldFocus, currentDateDiv) // Optional: Highlight when active });
+            });
+
+            // Add the button after the currentDateDiv
+            if (!document.getElementById(`edit-button-${dataId}`)) {
+                editDateButton.id = `edit-button-${dataId}`;
+                currentDateDiv.parentNode.appendChild(editDateButton);
+            }
+        }
+
+        function validateDate(newDate, defaultDate) {
+            // Regular expression to check if the date is in "YYYY-MM-DD" format
+            const datePattern = /^\d{4}-\d{2}-\d{2}$/;
+
+            // Check if newDate matches the pattern
+            if (!datePattern.test(newDate)) {
+                console.log('Invalid date format. Setting newDate to defaultDate.');
+                return defaultDate;
+            }
+
+            // Check if newDate is today or later
+            const currentDate = new Date().toISOString().split('T')[0];
+            if (newDate < currentDate) {
+                console.log('Date is earlier than today. Setting newDate to defaultDate.');
+                return defaultDate;
+            }
+
+            // If newDate is valid and today or later, return newDate
+            return newDate;
+        }
+
+        // _ _ _
+
+        // dateFields.forEach(dateFieldTextarea => {
+
+        //         if (dateFieldTextarea.editDateButton != undefined) {
+        //             console.log("editDateButton isn't undefined");
+        //             // Add click event listener to the Add Event button
+        //             editDateButton.addEventListener('click', (event) => {
+
+        //                 console.log("Edit Date button clicked!");
+
+        //                 // What should happen when the Edit Button is clicked!?
+        //                 // Return "editDate"
+        //                 editDateButtonFunctionality(newDate, dataId);
+        //                 console.log("editDate = " + editDate)
+
+        //             });
+        //         }
+
+        // })
+
+
+        // _ _ _
+
+        var isDateFieldFocus;
+        // Change date text field background color
+
+        function changeDateFieldBackgroundColor(isDateFieldFocus, currentDateDiv) {
+
+            if (isDateFieldFocus === false) {
+                    // dateFieldTextarea.style.backgroundColor = 'rgb(202, 202, 202)';
+                    currentDateDiv.style.backgroundColor = 'rgb(202, 202, 202)';
+
+            } else if (isDateFieldFocus === true) {
+                currentDateDiv.style.backgroundColor = 'lightyellow';
+            }
+
+        }
+        // _ _ _
+
+        dateFields.forEach(dateFieldTextarea => {
+
+            // Event listener for focus event
+            dateFieldTextarea.addEventListener('focus', () => {
+
+                console.log(" dateFieldTextarea (focus) addEventListener ")
+
+                if (plannedTodos.length === 0) {
+                    // alert("Add tasks before editing");
+                    console.log("Add tasks before editing");
+                }
+
+                // newDate = dateCollection[dataId].value;
+                // validateDate(newDate, defaultDate)
+
+                let dataId = `${dateFieldTextarea.getAttribute('data-id')}`
+                defaultDate = dateCollection[dataId].value;
+
+                console.log(`Date textarea with data-id="${dateFieldTextarea.getAttribute('data-id')}" is active.`)
+                status.textContent = `Date textarea with data-id="${dateFieldTextarea.getAttribute('data-id')}" is active.`;
+                // dateFieldTextarea.style.backgroundColor = 'lightyellow'; // Optional: Highlight when active });
+                isDateFieldFocus = true;
+                changeDateFieldBackgroundColor(isDateFieldFocus, dateFieldTextarea) // Optional: Highlight when active });
+
+
+                currentDateDiv = document.querySelector(`.todo-date[data-id="${dataId}"]`);
+
+                createEditDateButton(currentDateDiv, dataId);
+                // createEditDateButton(dateFieldTextarea, dataId);
+
+                // _ _ _
+
+
+                if (editDateButton) {
+                    console.log("editDateButton exists!");
+
+                    // Add click event listener to the Add Event button
+                    editDateButton.addEventListener('click', () => {
+
+                        console.log("Edit Date button clicked!");
+
+                        // What should happen when the Edit Button is clicked!?
+                        // Return "editDate"
+                        editDateButtonFunctionality();
+                        console.log("editDate = " + editDate)
+
+                    });
+
+                }
+
+
+
+                // _ _ _
+
+                // Example usage
+                // const newDate = "2026-02-20";
+                // defaultDate = plannedTodos[dataId].date;
+
+                // defaultDate = dateCollection[dataId].value;
+
+                // currentDateDiv = document.querySelector(`.todo-date[data-id="${dataId}"]`);
+                // createEditDateButton(currentDateDiv, dataId);
+                console.log("defaultDate = " + defaultDate);
+                editDate = dateCollection[dataId].value
+
+            });
+
+            // _ _ _
+
+            function getLastDateOfCurrentMonth() {
+                // Get the current date
+                const today = new Date();
+
+                // Get the current year and month
+                const year = today.getFullYear();
+                const month = today.getMonth();
+
+                // Create a new date object for the first day of the next month
+                const firstDayNextMonth = new Date(year, month + 1, 1);
+
+                // Subtract one day to get the last day of the current month
+                const lastDay = new Date(firstDayNextMonth - 1);
+
+                // Format the date as YYYY-MM-DD
+                const formattedDate = lastDay.toISOString().split('T')[0];
+
+                return formattedDate;
+            }
+
+            // Example usage:
+            var lastDate = getLastDateOfCurrentMonth();
+            console.log(`The last date of the current month is: ${lastDate}`);
+
+
+            // _ _ _
+
+            // Event listener for blur event (start)
+
+            dateFieldTextarea.addEventListener('blur', (event) => {
+                console.log(" dateFieldTextarea (blur) addEventListener ")
+                let dataId = `${dateFieldTextarea.getAttribute('data-id')}`
+
+                // Prevent blur event if the Edit Date button is clicked
+                if (event.relatedTarget && event.relatedTarget.id === `edit-button-${dataId}`) {
+                    console.log("Blur prevented because Edit Date button was clicked.");
+                    return;
+                }
+
+                console.log("JSON.stringify(plannedTodos) (on blur) (1) = " + JSON.stringify(plannedTodos));
+
+                // console.log("ADD dateInputString HERE!? = " + dateInputString);
+
+                if (dateInputString >= dateDisplay.textContent && dateInputString <= lastDate) {
+                    handleDateInput(dateInputString, defaultDate);
+                } else if (dateInputString < dateDisplay.textContent) {
+                    // alert("Date must be today (or future) and in a valid format (YYYY-MM-DD)")
+                    console.log("dateInputString (< dateDisplay.textContent) = " + dateInputString)
+                    console.log("dataId = " + dataId);
+                    console.log("dateCollection[dataId].value = " + dateCollection[dataId].value);
+                    dateCollection[dataId].value = defaultDate;
+                    dateCollection[dataId].innerHTML = defaultDate;
+                    // plannedTodos[dataId].date = defaultDate
+
+                    if (plannedTodos.length > 0) {
+                        console.log("plannedTodos[dataId].date (1) = " + plannedTodos[dataId].date)
+                        plannedTodos[dataId].date = defaultDate
+                        console.log("plannedTodos[dataId].date (2) = " + plannedTodos[dataId].date)
+                        plannedTodos[dataId].dataDate = weekdayNameToWeekDayNumber(dateCollection[dataId])
+                    }
+
+                    dateInputString = defaultDate;
+                    console.log("dateInputString (< dateDisplay.textContent) = " + dateInputString)
+                    handleDateInput(dateInputString, defaultDate);
+                    updateCurrentWeekSchedule()
+                // } else if (dateInputString < dateDisplay.textContent || dateInputString === undefined || dateInputString > lastDate) {
+                } else if (dateInputString === undefined) {
+                    // alert("Date must be in a valid format (YYYY-MM-DD)")
+                    console.log("dateInputString (undefined) = " + dateInputString)
+                    dateInputString = defaultDate;
+                    // console.log("defaultDate = " + defaultDate)
+                    // console.log("dateInputString (undefined / too big) = " + dateInputString)
+                    // console.log("handleDateInput(dateInputString, defaultDate) = " + handleDateInput(dateInputString, defaultDate));
+                    handleDateInput(dateInputString, defaultDate);
+                } else if (dateInputString > lastDate) {
+                        // alert("Date must be in a valid format (YYYY-MM-DD)")
+                        console.log("dateInputString (date number too high) = " + dateInputString)
+                        dateInputString = defaultDate;
+                        // console.log("defaultDate = " + defaultDate)
+                        // console.log("dateInputString (undefined / too big) = " + dateInputString)
+                        // console.log("handleDateInput(dateInputString, defaultDate) = " + handleDateInput(dateInputString, defaultDate));
+                        handleDateInput(dateInputString, defaultDate);
+                } else if (dateInputString = '') {
+                    // alert("Add dates before editing")
+                    console.log("dateInputString is empty");
+                }
+
+                // handleDateInput(dateInputString, defaultDate);
+
+
+                console.log("dataId (1) = " + dataId)
+                console.log("dateCollection[dataId].value (1) = " + dateCollection[dataId].value)
+                console.log(`Date textarea  with data-id="${dateFieldTextarea.getAttribute('data-id')}" is inactive.`)
+                status.textContent = 'No Date textarea is active.';
+
+                // defaultDate = dateCollection[dataId].value;
+                console.log("defaultDate (blur) = " + defaultDate);
+
+                // if (dateCollection[dataId].value = defaultDate) {
+                //     // ...
+                // }
+
+                // (2025-01-23 change)
+                // dateCollection[dataId].value = defaultDate;
+                // dateCollection[dataId].innerHTML = defaultDate;
+
+                // plannedTodos[dataId].date = dateCollection[dataId].value;
+
+                //  if (resultString >= dateDisplay.textContent) {
+
+                    console.log("resultString = " + resultString);
+                    plannedTodos[dataId].date = resultString;
+
+                    dateCollection[dataId].value = resultString;
+                    dateCollection[dataId].innerHTML = resultString;
+
+                    sortPlannedTodos(plannedTodos);
+
+                    console.log("JSON.stringify(plannedTodos) (on blur) (2) = " + JSON.stringify(plannedTodos));
+
+                updateCurrentWeekSchedule();
+
+                removeEditDateButton(dataId);
+                isDateFieldFocus = false;
+                changeDateFieldBackgroundColor(isDateFieldFocus, dateFieldTextarea) // Optional: Highlight when active });
+                dateFieldTextarea.style.backgroundColor = ''; // Optional: Reset background color }); });
+            });
+
+            // _ _ _
+
+        });
+        //Event listener for blur event (end)
+
+        // _ _ _
+        // _ _ _
+
+
+        // _ _ _
+        // _ _ _
+
+        // const textareas = document.querySelectorAll('textarea');
+        // const status = document.getElementById('status');
+
+        // Dummy dateCollection for demonstration
+        // const dateCollection = {
+        //     "0": "2025-01-18",
+        //     "1": "2026-02-20",
+        //     "2": null
+        // };
+
+        // var defaultDate; // Variable to store default date
+        // let editedDate; // Variable to store edited date
+        // let currentDataId; // To keep track of the current data-id
+
+        // _ _ _
+        // _ _ _
+
+        // textareas.forEach(textarea => {
+        //     // Event listener for focus event
+        //     textarea.addEventListener('focus', (event) => {
+        //         const dataId = textarea.getAttribute('data-id');
+
+        //         // Show alert if the textarea is empty
+        //         if (!textarea.value.trim()) {
+        //             alert("Please add tasks (before edit)");
+        //             textarea.blur(); // Blur the current textarea
+        //             return;
+        //         }
+
+        //         const validDate = dateCollection[dataId];
+        //         console.log("validDate = " + validDate);
+
+        //         // If switching from one textarea to another
+        //         if (currentDataId !== undefined && currentDataId !== dataId) {
+        //             updateDateCollection(currentDataId);
+        //             removeEditDateButton(currentDataId);
+        //         }
+
+        //         currentDataId = dataId;
+
+        //         if (validDate && /^\d{4}-\d{2}-\d{2}$/.test(validDate)) {
+        //             status.textContent = `Textarea with data-id="${dataId}" is active.`;
+        //             console.log("status.textContent = " + status.textContent)
+        //             textarea.style.backgroundColor = 'lightyellow'; // Optional: Highlight when active
+
+        //             // Create the orange button
+        //             createEditDateButton(currentDateDiv, dataId);
+
+        //             // Set the variable with the valid date
+        //             defaultDate = validDate;
+        //             console.log(`defaultDate: ${defaultDate}`);
+        //         }
+        //     });
+
+        //     // Event listener for blur event
+        //     textarea.addEventListener('blur', () => {
+        //         const dataId = textarea.getAttribute('data-id');
+        //         status.textContent = 'No textarea is active.';
+        //         textarea.style.backgroundColor = ''; // Optional: Reset background color
+
+        //         updateDateCollection(dataId);
+        //         removeEditDateButton(dataId);
+        //         currentDataId = undefined; // Reset currentDataId when blurring
+        //     });
+        // });
+
+        // _ _ _
+        // _ _ _
+
+        // _ _ _
+        // _ _ _
+
+        // function createEditDateButton(textarea, dataId) {
+        //     // Create the orange button
+        //     const button = document.createElement('button');
+        //     button.textContent = 'Edit Date';
+        //     button.classList.add('edit-date-button');
+
+        //     // Add click event listener to the button
+        //     button.addEventListener('click', () => {
+        //         console.log("Edit date button clicked!");
+        //         const currentDate = new Date().toISOString().split('T')[0]; // Get today's date
+        //         const currentCollectionDate = dateCollection[dataId];
+
+        //         if (currentCollectionDate && /^\d{4}-\d{2}-\d{2}$/.test(currentCollectionDate) && currentCollectionDate >= currentDate) {
+        //             // Store the dateCollection value in the editedDate variable if valid
+        //             editDate = currentCollectionDate;
+        //             console.log(`editedDate: ${editDate}`);
+        //         } else {
+        //             alert("Invalid date! Please enter a date in the format YYYY-MM-DD. It should be today or a future date.");
+        //         }
+        //     });
+
+        //     // Add the button after the textarea
+        //     if (!document.getElementById(`edit-button-${dataId}`)) {
+        //         button.id = `edit-button-${dataId}`;
+        //         textarea.parentNode.appendChild(button);
+        //     }
+        // }
+
+        // _ _ _
+        // _ _ _
+
+        function removeEditDateButton(dataId) {
+            defaultDate = '';
+            // Remove the "Edit Date" button
+            const button = document.getElementById(`edit-button-${dataId}`);
+            if (button) {
+                button.remove();
+            }
+        }
+
+        function updateDateCollection(dataId) {
+            // Set dateCollection value to defaultDate and update innerHTML
+            if (defaultDate) {
+                dateCollection[dataId].value = defaultDate;
+                dateCollection[dataId].innerHTML = defaultDate;
+                const planCurrentDdateDiv = document.querySelector(`.todo-date[data-id="${dataId}"]`);
+                if (planCurrentDdateDiv) {
+                    planCurrentDdateDiv.value = defaultDate; // Update the textarea value
+                }
+                console.log(`Updated dateCollection for data-id="${dataId}": ${dateCollection[dataId]}`);
+            }
+        }
+
 
 // ooooooo
-
-// Konstig funktion (2024-12-03)
-// function getCurrentDataId() {
-//     // Select all divs with the class 'clickable-div'
-//     // const divs = document.querySelectorAll('.todo-container-element');
-
-//     // Add click event listener to each div
-//     todoContainers.forEach(div => {
-//     // divs.forEach(div => {
-//         // console.log("addEventListener for " + div.dataset.id);   (Jocke-kommentar 2024-11-13)
-//         div.addEventListener('click', function() {
-//             // Access the data-id attribute
-//             const dataId = div.dataset.id;
-//             console.log('Clicked div data-id:', dataId);
-
-//             // let currentTodoInitialValue = plannedTodos[dataId].todo;
-//             // console.log("currentTodoInitialValue (start) = " + currentTodoInitialValue);
-
-//             // currentTodoInitialValue = plannedTodos[dataId].todo;
-//             // console.log("currentTodoInitialValue (1) = " + currentTodoInitialValue);
-//         });
-//     });
-// }
-
-// console.log("getCurrentDataId('todo-container-element') = " + getCurrentDataId('todo-container-element'))
-
-// Konstigt anrop(?) (2024-12-03)
-// getCurrentDataId('todo-container-element');
-
 // ooooooo
 
+// dataId is defined here
 let dataId;
 
 function getDataId(dataId) {
@@ -2192,6 +2972,10 @@ function checkIfDateAndTextAreEmpty() {
 
         // _ _ _
 
+        // dateInputString (sträng som skickas in i handleDateInput()-funktionen)
+        var dateInputString;
+
+        // When input is changed for any date field (in Current Plan)... (start)
         dateFields.forEach(function(field) {
 
             console.log("blockedDates = " + blockedDates)
@@ -2208,9 +2992,10 @@ function checkIfDateAndTextAreEmpty() {
 
                 // handleDateInput(event);
 
-                let dateInputString = dateCollection[dataId].value
+                // let dateInputString = dateCollection[dataId].value
+                dateInputString = dateCollection[dataId].value
 
-                handleDateInput(dateInputString);
+                // handleDateInput(dateInputString);
 
                 // gggggggg
                 // // Check if the value contains a blocked date
@@ -2242,6 +3027,9 @@ function checkIfDateAndTextAreEmpty() {
                 // 2. Lägg till ny todo-vecko-div i vecko-vy (för nytt datum) ((där style.backgroundColor === ''(?)))
 
 
+                console.log("vid date input change, plannedTodos[dataId].date = " + plannedTodos[dataId].date);
+                console.log("vid date input change, plannedTodos[dataId].dataDate = " + plannedTodos[dataId].dataDate);
+
                 plannedTodos[dataId].dataDate = weekdayNameToWeekDayNumber(dateCollection[dataId])
                 console.log("plannedTodos[dataId].dataDate = " +  weekdayNameToWeekDayNumber(dateCollection[dataId]))
 
@@ -2249,7 +3037,12 @@ function checkIfDateAndTextAreEmpty() {
 
                 // _ _ _
 
-                    plannedTodos[dataId][key] = dateCollection[dataId].value;
+                // (change 2025-01-23)
+                // console.log("JSON.stringify(plannedTodos) (on input change) (1) = " + JSON.stringify(plannedTodos));
+
+                //     plannedTodos[dataId][key] = dateCollection[dataId].value;
+
+                // console.log("JSON.stringify(plannedTodos) (on input change) (2) = " + JSON.stringify(plannedTodos));
 
                     currentMondayTodoItems.forEach(Element => {
                         Element.innerHTML = "";
@@ -2284,7 +3077,10 @@ function checkIfDateAndTextAreEmpty() {
                     // })
 
                     // Update the week schedule (when a task has been edited)
-                    updateCurrentWeekSchedule();
+
+                    // (2025-01-23) x updateCurrentWeekSchedule();
+                    // updateCurrentWeekSchedule();
+
                     // domUpdateCurrentWeekSchedule();
 
 
@@ -2300,6 +3096,7 @@ function checkIfDateAndTextAreEmpty() {
                 // console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos));
             });
         });
+        // When input is changed for any date field (in Current Plan)... (end)
 
         // _ _ _
         // _ _ _
@@ -2474,164 +3271,165 @@ function checkIfDateAndTextAreEmpty() {
         });
 
 
-// currentTodoField.addEventListener('click', function() {
-//     console.log("Todo field is clicked?")
-// });
+        // Edit color (for specific task)
+        // currentTodoField.addEventListener('click', function() {
+        //     console.log("Todo field is clicked?")
+        // });
 
-// Select the parent element and the childDivs
-const parentDiv = document.getElementById('todo-wrapper');
+        // Select the parent element and the childDivs
+        const parentDiv = document.getElementById('todo-wrapper');
 
-// childDivsColor  (old & new color switcher panel-divs)
-const childDivsColor = parentDiv.querySelectorAll('.todo-color');
+        // childDivsColor  (old & new color switcher panel-divs)
+        const childDivsColor = parentDiv.querySelectorAll('.todo-color');
 
-const colorSwitcherPanel = document.getElementById('color-switcher-panel');
-const closePanelButton = document.getElementById('close-panel');
+        const colorSwitcherPanel = document.getElementById('color-switcher-panel');
+        const closePanelButton = document.getElementById('close-panel');
 
-const colorOption = document.querySelector('.color-option');
+        const colorOption = document.querySelector('.color-option');
 
-// _ _ _
+        // _ _ _
 
-// Add event listener to the parent element
-parentDiv.addEventListener('click', function(event) {
-    // Check if the clicked element is a div with the name "color"
-    if (event.target && event.target.getAttribute('name') === 'color') {
-        dataId = event.target.getAttribute('data-id');
-    }
-});
-
-
-// Add event listener to the parent div (event delegation)
-parentDiv.addEventListener('click', function(event) {
-    if (event.target && event.target.getAttribute('name') === 'color') {
-        // Open the color switcher panel by removing the 'hidden' class
-        // colorSwitcherPanel.classList.remove('hidden');
-        colorSwitcherPanel.style.display = 'flex';
-    }
-});
-
-
-// colorSwitcherPanel click
-colorSwitcherPanel.addEventListener('click', function(e) {
-        console.log("colorSwitcherPanel körs");
-    // getDataId();
-    getDataId(dataId);
-        // console.log("colorSwitcherPanel (dataId) = " + dataId);
-    todoColorCollection[dataId].value = returnRgbColor(e.target.getAttribute('data-color'));
-        // console.log("returnRgbColor(e.target.getAttribute('data-color')) = " + returnRgbColor(e.target.getAttribute('data-color')))
-    todoColorCollection[dataId].style.backgroundColor = returnRgbColor(e.target.getAttribute('data-color'));
-
-
-    // const key = e.target.getAttribute('data-key');
-
-    // console.log("JSON.stringify(plannedTodos) (1) = " + JSON.stringify(plannedTodos));
-    // console.log(" plannedTodos[dataId].color (11) = " +  plannedTodos[dataId].color)
-    // console.log("returnDefinedColorText(todoColorCollection[dataId].value) (select) = " + returnDefinedColorText(todoColorCollection[dataId].value))
-
-    // Vilken currentDAY(?)todos har samma date & todo som plannedTodos[dataId].date && plannedTodos[dataId].todo?
-
-    console.log("currentMondayTodos.length = " + currentMondayTodos.length);
-
-    console.log("[...currentMondayTodoItems] = " + [...currentMondayTodoItems]);
-
-    // [...currentMondayTodoItems].forEach(MondayTodoItem => {
-    //     if (MondayTodoItem.date === plannedTodos[dataId].date && MondayTodoItem.todo === plannedTodos[dataId].todo)
-    //     // console.log(MondayTodoItem.innerHTML);
-    //     MondayTodoItem.style.backgroundColor = returnRgbColor(e.target.getAttribute('data-color'));
-    // });
-
-    // currentMondayTodoItems.forEach(Element =>
-    // if (Element.innerHTML == plannedTodos[dataId] && ) {
-    // })
-    console.log("currentMondayTodoItems[0].color = " + currentMondayTodoItems[0].color)
-    console.log("currentMondayTodoItems[0].innerHTML = " + currentMondayTodoItems[0].innerHTML)
-    console.log("currentMondayTodoItems[0].style.backgroundColor = " + currentMondayTodoItems[0].style.backgroundColor)
-
-    // 1. Hitta currentDayTodos[i] som matchar plannedTodos[dataId].date && plannedTodos[dataId].todo
-    // 2. Ändra färg för aktuellt index ([i]), (currentDayTodos[i].color && currentDayTodoItems[i].style.backgroundColor)
-
-    // _ _ _
-
-    console.log("which day ooa");
-
-    for (let i = 0; i < 8; i++) {
-    if (currentMondayTodos.length > 0 &&
-        // Om currentMondayTodos-objekt och plannedTodos-objekt är lika ==> hämta färg för currentMondayTodos-objekt från plannedTodos-DOM-färg-listan (todoColorCollection)
-        currentMondayTodos[i]?.date === plannedTodos[dataId]?.date &&
-        currentMondayTodos[i]?.todo === plannedTodos[dataId]?.todo) {
-        console.log("Monday ooa");
-                currentMondayTodos[i].color = returnDefinedColorText(todoColorCollection[dataId].value);
-                console.log("here, Monday, returnRgbColor(e.target.getAttribute('data-color')) = " + returnRgbColor(e.target.getAttribute('data-color')))
-                currentMondayTodoItems[i].style.backgroundColor = returnRgbColor(e.target.getAttribute('data-color'));
+        // Add event listener to the parent element
+        parentDiv.addEventListener('click', function(event) {
+            // Check if the clicked element is a div with the name "color"
+            if (event.target && event.target.getAttribute('name') === 'color') {
+                dataId = event.target.getAttribute('data-id');
             }
-    else if (currentTuesdayTodos.length > 0 &&
-        currentTuesdayTodos[i]?.date === plannedTodos[dataId]?.date &&
-        currentTuesdayTodos[i]?.todo === plannedTodos[dataId]?.todo) {
-                currentTuesdayTodos[i].color = returnDefinedColorText(todoColorCollection[dataId].value);
-                currentTuesdayTodoItems[i].style.backgroundColor = returnRgbColor(e.target.getAttribute('data-color'));
+        });
+
+
+        // Add event listener to the parent div (event delegation)
+        parentDiv.addEventListener('click', function(event) {
+            if (event.target && event.target.getAttribute('name') === 'color') {
+                // Open the color switcher panel by removing the 'hidden' class
+                // colorSwitcherPanel.classList.remove('hidden');
+                colorSwitcherPanel.style.display = 'flex';
             }
-    else if (currentWednesdayTodos.length > 0 &&
-        currentWednesdayTodos[i]?.date === plannedTodos[dataId]?.date &&
-        currentWednesdayTodos[i]?.todo === plannedTodos[dataId]?.todo) {
-                currentWednesdayTodos[i].color = returnDefinedColorText(todoColorCollection[dataId].value);
-                currentWednesdayTodoItems[i].style.backgroundColor = returnRgbColor(e.target.getAttribute('data-color'));
+        });
+
+
+        // colorSwitcherPanel click
+        colorSwitcherPanel.addEventListener('click', function(e) {
+                console.log("colorSwitcherPanel körs");
+            // getDataId();
+            getDataId(dataId);
+                // console.log("colorSwitcherPanel (dataId) = " + dataId);
+            todoColorCollection[dataId].value = returnRgbColor(e.target.getAttribute('data-color'));
+                // console.log("returnRgbColor(e.target.getAttribute('data-color')) = " + returnRgbColor(e.target.getAttribute('data-color')))
+            todoColorCollection[dataId].style.backgroundColor = returnRgbColor(e.target.getAttribute('data-color'));
+
+
+            // const key = e.target.getAttribute('data-key');
+
+            // console.log("JSON.stringify(plannedTodos) (1) = " + JSON.stringify(plannedTodos));
+            // console.log(" plannedTodos[dataId].color (11) = " +  plannedTodos[dataId].color)
+            // console.log("returnDefinedColorText(todoColorCollection[dataId].value) (select) = " + returnDefinedColorText(todoColorCollection[dataId].value))
+
+            // Vilken currentDAY(?)todos har samma date & todo som plannedTodos[dataId].date && plannedTodos[dataId].todo?
+
+            console.log("currentMondayTodos.length = " + currentMondayTodos.length);
+
+            console.log("[...currentMondayTodoItems] = " + [...currentMondayTodoItems]);
+
+            // [...currentMondayTodoItems].forEach(MondayTodoItem => {
+            //     if (MondayTodoItem.date === plannedTodos[dataId].date && MondayTodoItem.todo === plannedTodos[dataId].todo)
+            //     // console.log(MondayTodoItem.innerHTML);
+            //     MondayTodoItem.style.backgroundColor = returnRgbColor(e.target.getAttribute('data-color'));
+            // });
+
+            // currentMondayTodoItems.forEach(Element =>
+            // if (Element.innerHTML == plannedTodos[dataId] && ) {
+            // })
+            console.log("currentMondayTodoItems[0].color = " + currentMondayTodoItems[0].color)
+            console.log("currentMondayTodoItems[0].innerHTML = " + currentMondayTodoItems[0].innerHTML)
+            console.log("currentMondayTodoItems[0].style.backgroundColor = " + currentMondayTodoItems[0].style.backgroundColor)
+
+            // 1. Hitta currentDayTodos[i] som matchar plannedTodos[dataId].date && plannedTodos[dataId].todo
+            // 2. Ändra färg för aktuellt index ([i]), (currentDayTodos[i].color && currentDayTodoItems[i].style.backgroundColor)
+
+            // _ _ _
+
+            console.log("which day ooa");
+
+            for (let i = 0; i < 8; i++) {
+            if (currentMondayTodos.length > 0 &&
+                // Om currentMondayTodos-objekt och plannedTodos-objekt är lika ==> hämta färg för currentMondayTodos-objekt från plannedTodos-DOM-färg-listan (todoColorCollection)
+                currentMondayTodos[i]?.date === plannedTodos[dataId]?.date &&
+                currentMondayTodos[i]?.todo === plannedTodos[dataId]?.todo) {
+                console.log("Monday ooa");
+                        currentMondayTodos[i].color = returnDefinedColorText(todoColorCollection[dataId].value);
+                        console.log("here, Monday, returnRgbColor(e.target.getAttribute('data-color')) = " + returnRgbColor(e.target.getAttribute('data-color')))
+                        currentMondayTodoItems[i].style.backgroundColor = returnRgbColor(e.target.getAttribute('data-color'));
+                    }
+            else if (currentTuesdayTodos.length > 0 &&
+                currentTuesdayTodos[i]?.date === plannedTodos[dataId]?.date &&
+                currentTuesdayTodos[i]?.todo === plannedTodos[dataId]?.todo) {
+                        currentTuesdayTodos[i].color = returnDefinedColorText(todoColorCollection[dataId].value);
+                        currentTuesdayTodoItems[i].style.backgroundColor = returnRgbColor(e.target.getAttribute('data-color'));
+                    }
+            else if (currentWednesdayTodos.length > 0 &&
+                currentWednesdayTodos[i]?.date === plannedTodos[dataId]?.date &&
+                currentWednesdayTodos[i]?.todo === plannedTodos[dataId]?.todo) {
+                        currentWednesdayTodos[i].color = returnDefinedColorText(todoColorCollection[dataId].value);
+                        currentWednesdayTodoItems[i].style.backgroundColor = returnRgbColor(e.target.getAttribute('data-color'));
+                    }
+            else if (currentThursdayTodos.length > 0 &&
+                currentThursdayTodos[i]?.date === plannedTodos[dataId]?.date &&
+                currentThursdayTodos[i]?.todo === plannedTodos[dataId]?.todo) {
+                        currentThursdayTodos[i].color = returnDefinedColorText(todoColorCollection[dataId].value);
+                        currentThursdayTodoItems[i].style.backgroundColor = returnRgbColor(e.target.getAttribute('data-color'));
+                    }
+            else if (currentFridayTodos.length > 0 &&
+                currentFridayTodos[i]?.date === plannedTodos[dataId]?.date &&
+                currentFridayTodos[i]?.todo === plannedTodos[dataId]?.todo) {
+                        currentFridayTodos[i].color = returnDefinedColorText(todoColorCollection[dataId].value);
+                        currentFridayTodoItems[i].style.backgroundColor = returnRgbColor(e.target.getAttribute('data-color'));
+                    }
+            else if (currentSaturdayTodos.length > 0 &&
+                currentSaturdayTodos[i]?.date === plannedTodos[dataId]?.date &&
+                currentSaturdayTodos[i]?.todo === plannedTodos[dataId]?.todo) {
+                        currentSaturdayTodos[i].color = returnDefinedColorText(todoColorCollection[dataId].value);
+                        currentSaturdayTodoItems[i].style.backgroundColor = returnRgbColor(e.target.getAttribute('data-color'));
+                    }
+            else if (currentSundayTodos.length > 0 &&
+                currentSundayTodos[i]?.date === plannedTodos[dataId]?.date &&
+                currentSundayTodos[i]?.todo === plannedTodos[dataId]?.todo) {
+                        currentSundayTodos[i].color = returnDefinedColorText(todoColorCollection[dataId].value);
+                        currentSundayTodoItems[i].style.backgroundColor = returnRgbColor(e.target.getAttribute('data-color'));
+                    }
             }
-    else if (currentThursdayTodos.length > 0 &&
-        currentThursdayTodos[i]?.date === plannedTodos[dataId]?.date &&
-        currentThursdayTodos[i]?.todo === plannedTodos[dataId]?.todo) {
-                currentThursdayTodos[i].color = returnDefinedColorText(todoColorCollection[dataId].value);
-                currentThursdayTodoItems[i].style.backgroundColor = returnRgbColor(e.target.getAttribute('data-color'));
-            }
-    else if (currentFridayTodos.length > 0 &&
-        currentFridayTodos[i]?.date === plannedTodos[dataId]?.date &&
-        currentFridayTodos[i]?.todo === plannedTodos[dataId]?.todo) {
-                currentFridayTodos[i].color = returnDefinedColorText(todoColorCollection[dataId].value);
-                currentFridayTodoItems[i].style.backgroundColor = returnRgbColor(e.target.getAttribute('data-color'));
-            }
-    else if (currentSaturdayTodos.length > 0 &&
-        currentSaturdayTodos[i]?.date === plannedTodos[dataId]?.date &&
-        currentSaturdayTodos[i]?.todo === plannedTodos[dataId]?.todo) {
-                currentSaturdayTodos[i].color = returnDefinedColorText(todoColorCollection[dataId].value);
-                currentSaturdayTodoItems[i].style.backgroundColor = returnRgbColor(e.target.getAttribute('data-color'));
-            }
-    else if (currentSundayTodos.length > 0 &&
-        currentSundayTodos[i]?.date === plannedTodos[dataId]?.date &&
-        currentSundayTodos[i]?.todo === plannedTodos[dataId]?.todo) {
-                currentSundayTodos[i].color = returnDefinedColorText(todoColorCollection[dataId].value);
-                currentSundayTodoItems[i].style.backgroundColor = returnRgbColor(e.target.getAttribute('data-color'));
-            }
-    }
 
-    // _ _ _
+            // _ _ _
 
-    plannedTodos[dataId].color = returnDefinedColorText(todoColorCollection[dataId].value)
+            plannedTodos[dataId].color = returnDefinedColorText(todoColorCollection[dataId].value)
 
-    console.log("e.target.getAttribute('data-color') = " + e.target.getAttribute('data-color'));
-    console.log(" plannedTodos[dataId].color (22) = " +  plannedTodos[dataId].color)
-    // console.log("JSON.stringify(plannedTodos) (2) = " + JSON.stringify(plannedTodos));
-});
+            console.log("e.target.getAttribute('data-color') = " + e.target.getAttribute('data-color'));
+            console.log(" plannedTodos[dataId].color (22) = " +  plannedTodos[dataId].color)
+            // console.log("JSON.stringify(plannedTodos) (2) = " + JSON.stringify(plannedTodos));
+        });
 
 
-// Add event listener to close the panel
-closePanelButton.addEventListener('click', function(event) {
-    event.stopPropagation();
-    colorSwitcherPanel.classList.add('hidden');
-    colorSwitcherPanel.style.display = 'none';
-});
+        // Add event listener to close the panel
+        closePanelButton.addEventListener('click', function(event) {
+            event.stopPropagation();
+            colorSwitcherPanel.classList.add('hidden');
+            colorSwitcherPanel.style.display = 'none';
+        });
 
-// _ _ _
+        // _ _ _
 
-//  resetWeekdayEditArrays() körs inte !?!? (2024-11-28)
-    // function resetWeekdayEditArrays() {
-    //     currentMondayTodosEdit = [];
-    //     currentTuesdayTodosEdit = [];
-    //     currentWednesdayTodosEdit = [];
-    //     currentThursdayTodosEdit = [];
-    //     currentFridayTodosEdit = [];
-    //     currentSaturdayTodosEdit = [];
-    //     currentSundayTodosEdit = [];
-    // };
+        //  resetWeekdayEditArrays() körs inte !?!? (2024-11-28)
+            // function resetWeekdayEditArrays() {
+            //     currentMondayTodosEdit = [];
+            //     currentTuesdayTodosEdit = [];
+            //     currentWednesdayTodosEdit = [];
+            //     currentThursdayTodosEdit = [];
+            //     currentFridayTodosEdit = [];
+            //     currentSaturdayTodosEdit = [];
+            //     currentSundayTodosEdit = [];
+            // };
 
-// _ _ _
+        // _ _ _
 
 let recurringOutput;
 
@@ -2679,18 +3477,18 @@ let specificTodoContainer = wrapperContainer.getElementsByClassName('todo-contai
 // }
 
     // TEST (Fungerar ej 2025-01-15)
-        function changeRecDivBackgroundColor(todoContainerId) {
-            console.log("changeContainerBackgroundColor(dataId) körs")
+        // function changeRecDivBackgroundColor(todoContainerId) {
+        //     console.log("changeContainerBackgroundColor(dataId) körs")
 
-            let specificRecDiv = document.querySelector(`.todo-rec[data-id="${todoContainerId}"]`);
+        //     let specificRecDiv = document.querySelector(`.todo-rec[data-id="${todoContainerId}"]`);
 
-            console.log("specificRecDiv.style.backgroundColor = " + specificRecDiv.style.backgroundColor);
-            console.log("plannedTodos[todoContainerId].isRecurring = " + plannedTodos[todoContainerId].isRecurring);
+        //     console.log("specificRecDiv.style.backgroundColor = " + specificRecDiv.style.backgroundColor);
+        //     console.log("plannedTodos[todoContainerId].isRecurring = " + plannedTodos[todoContainerId].isRecurring);
 
-            if (plannedTodos[todoContainerId].isRecurring === true && specificRecDiv.style.backgroundColor === 'rgb(0, 117, 255)') {
-                specificRecDiv.style.backgroundColor = 'rgba(0, 0, 0, 0)';  // Change to desired color
-            }
-        }
+        //     if (plannedTodos[todoContainerId].isRecurring === true && specificRecDiv.style.backgroundColor === 'rgb(0, 117, 255)') {
+        //         specificRecDiv.style.backgroundColor = 'rgba(0, 0, 0, 0)';  // Change to desired color
+        //     }
+        // }
 
        // (Fungerar ej 2025-01-15)
     // _ _ _
@@ -2705,7 +3503,7 @@ let specificTodoContainer = wrapperContainer.getElementsByClassName('todo-contai
                 console.log("getDataId(dataId) körs i clear specifictodo (= #" + getDataId(dataId) + " )");
 
                 // TEST (Fungerar ej 2025-01-15)
-                    changeRecDivBackgroundColor(dataId);
+                    // changeRecDivBackgroundColor(dataId);
                 // (Fungerar ej 2025-01-15)
                 // _ _ _
 
@@ -2885,7 +3683,7 @@ let specificTodoContainer = wrapperContainer.getElementsByClassName('todo-contai
         console.log("JSON.stringify(currentDynamicDayArray) (1) = " + JSON.stringify(currentDynamicDayArray));
 
         if (currentDynamicDayArray.length > 0) {
-            for ( i = 0; i < currentDynamicDayArray.length; i++) {
+            for ( let i = 0; i < currentDynamicDayArray.length; i++) {
                 console.log("targetObject.date = " +  targetObject.date)
                 console.log("currentDynamicDayArray[0].date = " + currentDynamicDayArray[0].date)
                 console.log("currentDynamicDayArray[i].todo == targetObject.date = " + currentDynamicDayArray[i].todo == targetObject.date)
@@ -3162,7 +3960,7 @@ let specificTodoContainer = wrapperContainer.getElementsByClassName('todo-contai
 
                 //_ _ _
 
-                for (i = 0; i < plannedTodos.length; i++) {
+                for (let i = 0; i < plannedTodos.length; i++) {
                     console.log("'i' vid iterering över plannedTodos.length: " + i);
                 }
 
@@ -3170,7 +3968,7 @@ let specificTodoContainer = wrapperContainer.getElementsByClassName('todo-contai
                     console.log("item.innerHTML: " + item.innerHTML);
                 });
 
-                for (i = 0; i < plannedTodos.length; i++) {
+                for (let i = 0; i < plannedTodos.length; i++) {
                     console.log("'i' in remove specific todo: " + i);
                     console.log("plannedTodos[i].date = " + plannedTodos[i].date);
                     console.log("dateCollection.length = " + dateCollection.length);
@@ -3662,6 +4460,7 @@ function updateCurrentWeekSchedule() {
     // console.log("currentMondayTodos.object, JSON.stringify(currentMondayTodos) (i updateCurrentWeekSchedule)  = " + JSON.stringify(currentMondayTodos))
 
     console.log("plannedTodos.length = " + plannedTodos.length)
+    console.log("JSON.stringify(plannedTodos) (i updateCrurrentWeekSchedule) = " + JSON.stringify(plannedTodos))
 
         // _ _ _
         // _ _ _ (2025-01-07 test)
@@ -3689,7 +4488,7 @@ function updateCurrentWeekSchedule() {
             // }
 
             if (element.date >= dateDisplay.textContent) {
-            console.log("element.date < dateDisplay: delete the plannedTodos from the DOM");
+            console.log("if (element.date < dateDisplay: delete the plannedTodos from the DOM)");
             plannedTodosEdit.push(element);
             }
 
@@ -3703,6 +4502,8 @@ function updateCurrentWeekSchedule() {
             for (let i = 0; i < plannedTodos.length; i++) {
 
                 console.log("plannedTodos[i] (1) = " + JSON.stringify(plannedTodos[i]))
+                console.log("plannedTodos.length = " + plannedTodos.length);
+                console.log("i (update current plan) = " + i);
 
                 //Update HTML to (input order) values
                 dateCollection[i].innerHTML = plannedTodos[i].date;
@@ -3771,67 +4572,67 @@ function updateCurrentWeekSchedule() {
     // console.log("blockedDatesBoolean = " + blockedDatesBoolean)
 
 
-// _ _ _
+        // _ _ _
 
-if (blockedDatesBoolean === false) {
+        if (blockedDatesBoolean === false) {
 
-currentMondayTodos = [];
-currentTuesdayTodos = [];
-currentWednesdayTodos = [];
-currentThursdayTodos = [];
-currentFridayTodos = [];
-currentSaturdayTodos = [];
-currentSundayTodos = [];
+        currentMondayTodos = [];
+        currentTuesdayTodos = [];
+        currentWednesdayTodos = [];
+        currentThursdayTodos = [];
+        currentFridayTodos = [];
+        currentSaturdayTodos = [];
+        currentSundayTodos = [];
 
-// Om dag (datum, plannedTodos[x].date) ändras ska även recurringTodosArray-datum ändras för aktuell todo)
-// Lägg in, push recurringTodosArray-värden för aktuell dag (Day: currentDayTodos..)
+        // Om dag (datum, plannedTodos[x].date) ändras ska även recurringTodosArray-datum ändras för aktuell todo)
+        // Lägg in, push recurringTodosArray-värden för aktuell dag (Day: currentDayTodos..)
 
 
 
-// console.log("currentMondayTodoItems[0].innerHTML = " + currentMondayTodoItems[0].innerHTML);
-// console.log("currentMondayTodos efter reset, JSON.stringify = " + JSON.stringify(currentMondayTodos));
+        // console.log("currentMondayTodoItems[0].innerHTML = " + currentMondayTodoItems[0].innerHTML);
+        // console.log("currentMondayTodos efter reset, JSON.stringify = " + JSON.stringify(currentMondayTodos));
 
-plannedTodos.forEach(todoRow => {
+        plannedTodos.forEach(todoRow => {
 
-console.log("ooa");
+        console.log("ooa");
 
-    // . . .
-    // . . .
+            // . . .
+            // . . .
 
-//     1. 	Ändrar plannedTodos[x].date (i DOM:en)
+        //     1. 	Ändrar plannedTodos[x].date (i DOM:en)
 
-//      2.	if (getWeekDay(plannedTodos[x].date === "mon") {   plannedTodos[x].dataDate = "0"  }
-// 	    else if ((getWeekDay(plannedTodos[x].date === "tue") {   plannedTodos[x].dataDate = "1"  }
-// 	    …
+        //      2.	if (getWeekDay(plannedTodos[x].date === "mon") {   plannedTodos[x].dataDate = "0"  }
+        // 	    else if ((getWeekDay(plannedTodos[x].date === "tue") {   plannedTodos[x].dataDate = "1"  }
+        // 	    …
 
-//      3.	Töm (currentDayTodos)
+        //      3.	Töm (currentDayTodos)
 
-//      4.	Fyll på (currentDayTodos)    ((med plannedTodos-objekt))
-// 	    (uppdatera currentDayTodos[ooa].date (med plannedTodos[x].dataDate (= "0")))
+        //      4.	Fyll på (currentDayTodos)    ((med plannedTodos-objekt))
+        // 	    (uppdatera currentDayTodos[ooa].date (med plannedTodos[x].dataDate (= "0")))
 
-// 	    if (plannedTodos[x].dataDate === "0" && plannedTodos[x].isRecurring === true) { currentDayTodos.push(
-// 	    {
-// 		    date: 		weekDates[0],
-// 		    todo: 		plannedTodos[x].todo,
-// 		    color: 		plannedTodos[x].color,
-// 		    isRecurring: 		plannedTodos[x].isRecurring,
-// 		    dataDate: 		plannedTodos[x].dataDate
-// 	    })
+        // 	    if (plannedTodos[x].dataDate === "0" && plannedTodos[x].isRecurring === true) { currentDayTodos.push(
+        // 	    {
+        // 		    date: 		weekDates[0],
+        // 		    todo: 		plannedTodos[x].todo,
+        // 		    color: 		plannedTodos[x].color,
+        // 		    isRecurring: 		plannedTodos[x].isRecurring,
+        // 		    dataDate: 		plannedTodos[x].dataDate
+        // 	    })
 
-    // _ _ _
+            // _ _ _
 
-console.log("JSON.stringify(todoRow) = " + JSON.stringify(todoRow));
-console.log("todoRow.date = " + todoRow.date)
-console.log("getDayOfWeek(todoRow.date) = " + getDayOfWeek(todoRow.date))
-console.log("todoRow.dataDate = " + todoRow.dataDate)
-console.log("todoRow.date + weekDates[0] = " + todoRow.date + " " + weekDates[0])
-console.log("currentMondayTodos.length = " + currentMondayTodos.length)
+        console.log("JSON.stringify(todoRow) = " + JSON.stringify(todoRow));
+        console.log("todoRow.date = " + todoRow.date)
+        console.log("getDayOfWeek(todoRow.date) = " + getDayOfWeek(todoRow.date))
+        console.log("todoRow.dataDate = " + todoRow.dataDate)
+        console.log("todoRow.date + weekDates[0] = " + todoRow.date + " " + weekDates[0])
+        console.log("currentMondayTodos.length = " + currentMondayTodos.length)
 
-console.log("getDayOfWeek(todoRow.date) === 'mon' = " + getDayOfWeek(todoRow.date) === "mon")
-console.log("todoRow.isRecurring === false = " + todoRow.isRecurring === false)
-console.log("todoRow.dataDate === '0' = " + todoRow.dataDate === '0')
-console.log("todoRow.date <= weekDates[0] = " + todoRow.date === weekDates[0])
-console.log("currentMondayTodos.length < 9 = " + currentMondayTodos.length < 9)
+        console.log("getDayOfWeek(todoRow.date) === 'mon' = " + getDayOfWeek(todoRow.date) === "mon")
+        console.log("todoRow.isRecurring === false = " + todoRow.isRecurring === false)
+        console.log("todoRow.dataDate === '0' = " + todoRow.dataDate === '0')
+        console.log("todoRow.date <= weekDates[0] = " + todoRow.date === weekDates[0])
+        console.log("currentMondayTodos.length < 9 = " + currentMondayTodos.length < 9)
 
     // plannedTodos (isRecurring === true, todoRow <= weekDates[x])
     if (getDayOfWeek(todoRow.date) === "mon" && todoRow.isRecurring === true && todoRow.dataDate === "0" && todoRow.date <= weekDates[0] && currentMondayTodos.length < 9) {
@@ -4008,6 +4809,7 @@ console.log("currentMondayTodos.length < 9 = " + currentMondayTodos.length < 9)
 
 
 })
+// updateCurrentWeekSchedule() (end)
 
 } else if (blockedDatesBoolean === true) {
 
@@ -4059,6 +4861,10 @@ domUpdateCurrentWeekSchedule();
 function domUpdateCurrentWeekSchedule() {
 
     console.log("domUpdateCurrentWeekSchedule() körs");
+
+    console.log("plannedTodos.length = " + plannedTodos.length);
+    console.log("JSON.stringify(plannedTodos) (i updateDOM) = " + JSON.stringify(plannedTodos));
+
     // Loop through the current...dayTodos and fill in the corresponding divs
     for (let i = 0; i < currentMondayTodos.length; i++) {
 
@@ -4299,39 +5105,61 @@ console.log("currentTuesdayTodos (utanför updateCurrent...) = " + currentTuesda
 // Main todo-list-container
     // let wrapperContainer = document.getElementById('todo-wrapper');
 
-function addDynamicTodoContainer() {
-    // // Select all existing todo containers
-//     count += 1;
+// var dynamicContainerToken;
+// var dynamicContainerDataId;
 
-// // Find the highest data-id among the existing containers
+// add divs
+// add containers
+function addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId) {
+    console.log("addDynamicTodoContainer() körs");
+        // // Select all existing todo containers
+    //     count += 1;
 
-// // Initialize maxId to be a negative number to ensure it will be updated
-// var maxId = -1;
+    // // Find the highest data-id among the existing containers
 
-// // Loop through each element in createDataIdArray
-// createDataIdArray.forEach(element => {
-//     // Get the `data-id` attribute and convert it to an integer
-//     dataId = parseInt(element.getAttribute('data-id'), 10);
+    // // Initialize maxId to be a negative number to ensure it will be updated
+    // var maxId = -1;
 
-//     dataId = dataId + count;
+    // // Loop through each element in createDataIdArray
+    // createDataIdArray.forEach(element => {
+    //     // Get the `data-id` attribute and convert it to an integer
+    //     dataId = parseInt(element.getAttribute('data-id'), 10);
 
-//     console.log("dataId = " + dataId);
+    //     dataId = dataId + count;
 
-//     // If dataId is a valid number, update maxId if dataId is greater
-//     if (!isNaN(dataId) && dataId > maxId) {
-//         maxId = dataId;
-//     }
-// });
+    //     console.log("dataId = " + dataId);
 
-// console.log("maxId = " + maxId);
-// let highestId = maxId
+    //     // If dataId is a valid number, update maxId if dataId is greater
+    //     if (!isNaN(dataId) && dataId > maxId) {
+    //         maxId = dataId;
+    //     }
+    // });
+
+    // console.log("maxId = " + maxId);
+    // let highestId = maxId
 
 
-// _ _ _
+    // _ _ _
 
     // Set the new data-id to be one higher than the highest existing data-id
     // let newId = highestId + 1;
-    let newId = plannedTodos.length-1;
+
+    // let newId = dynamicContainerDataId;
+
+    console.log("dynamicContainerDataId (1) = " + dynamicContainerDataId);
+
+
+    if (dynamicContainerToken === "addTaskToList") {
+        newId = plannedTodos.length-1;
+    } else if (dynamicContainerToken === "load_func") {
+        newId = dynamicContainerDataId;
+    }
+
+    console.log("newId (2) = " + dynamicContainerDataId);
+
+    // let newId = plannedTodos.length-1;
+
+    console.log("newId = " + newId)
 
     // Create a new div for the todo-container-element
     // var dynamicTodoContainer = document.createElement('div');
@@ -4393,6 +5221,12 @@ function addDynamicTodoContainer() {
         const dataId = dynamicTodoContainer.dataset.id;
         // getDataId(dataId);
         console.log('Clicked div data-id (i dynamicTodoContainer addeventlistener):', dataId);
+        console.log('taskDate (default) = ', dateCollection[dataId].value);
+        console.log('todoDate (default) = ', todoCollection[dataId].value);
+        defaultDate = dateCollection[dataId].value;
+        defaultTodoText = todoCollection[dataId].value;
+
+        console.log("defaultDate = " + defaultDate + ", " + "defaultTodoText = " + defaultTodoText);
     });
 
     // Add dateField event listeners to the new (all) dateFields
@@ -4402,6 +5236,127 @@ function addDynamicTodoContainer() {
     console.log("dateFields.length (after user created) = " + dateFields.length)
 
     // userCreatedDateField.forEach(function(field) {
+
+    // _ _ _
+    // _ _ _
+
+            // // Attach focus event listener to all todo-text textareas
+            // document.querySelectorAll(".todo-text").forEach(todoTextArea => {
+            //     todoTextArea.addEventListener("focus", () => {
+            //         // Get the current data-id of the focused textarea
+            //         const dataId = todoTextArea.getAttribute("data-id");
+
+            //         // Get the value of the todo-text textarea for this data-id
+            //         const todoValue = todoTextArea.value;
+
+            //         // Log the data-id and value
+            //         console.log(`Focused todo-text with data-id="${dataId}"`);
+            //         console.log(`Value: "${todoValue}"`);
+
+            //         // Optional: Update a status or display this information somewhere in the UI
+            //         const status = document.getElementById("status");
+            //         if (status) {
+            //             status.textContent = `Focused todo-text (data-id: ${dataId}): "${todoValue}"`;
+            //         }
+            //     });
+            // });
+
+    // _ _ _
+    // _ _ _
+
+    // Add focus event listener (to date fields)
+    userCreatedDateField.addEventListener('focus', () => {
+        console.log(" userCreatedDateField (focus) addEventListener ");
+
+        let dataId = `${userCreatedDateField.getAttribute('data-id')}`;
+        defaultDate = dateCollection[dataId]?.value || ""; // Use value from dateCollection if available
+
+        console.log(`Date textarea with data-id="${dataId}" is active.`);
+        status.textContent = `Date textarea with data-id="${dataId}" is active.`;
+
+        isDateFieldFocus = true;
+        changeDateFieldBackgroundColor(isDateFieldFocus, userCreatedDateField); // Optional: Highlight when active
+
+        // Handle Edit Date Button
+        const currentDateDiv = document.querySelector(`.todo-date[data-id="${dataId}"]`);
+        createEditDateButton(currentDateDiv, dataId);
+
+        if (editDateButton) {
+            console.log("editDateButton exists!");
+        }
+
+        editDate = dateCollection[dataId]?.value || ""; // Ensure editDate is set correctly
+        console.log("defaultDate = " + defaultDate);
+    });
+
+    // Add blur event listener
+    userCreatedDateField.addEventListener('blur', (event) => {
+        console.log(" userCreatedDateField (blur) addEventListener ");
+        let dataId = `${userCreatedDateField.getAttribute('data-id')}`;
+
+        // Prevent blur if the Edit Date button is clicked
+        if (event.relatedTarget && event.relatedTarget.id === `edit-button-${dataId}`) {
+            console.log("Blur prevented because Edit Date button was clicked.");
+            return;
+        }
+
+    // console.log("ADD dateInputString HERE!? = " + dateInputString);
+
+    if (dateInputString >= dateDisplay.textContent && dateInputString <= lastDate) {
+        handleDateInput(dateInputString, defaultDate);
+    } else if (dateInputString < dateDisplay.textContent) {
+        alert("Date must be today (or future) and in a valid format (YYYY-MM-DD)")
+        console.log("dateInputString (< dateDisplay.textContent) = " + dateInputString)
+        dateInputString = defaultDate;
+        console.log("dateInputString (< dateDisplay.textContent) = " + dateInputString)
+        handleDateInput(dateInputString, defaultDate);
+    // } else if (dateInputString < dateDisplay.textContent || dateInputString === undefined || dateInputString > lastDate) {
+    } else if (dateInputString === undefined || dateInputString > lastDate) {
+        alert("Date must be in a valid format (YYYY-MM-DD)")
+        console.log("dateInputString (undefined / too big) = " + dateInputString)
+        dateInputString = defaultDate;
+        console.log("defaultDate = " + defaultDate)
+        console.log("dateInputString (undefined / too big) = " + dateInputString)
+        console.log("handleDateInput(dateInputString, defaultDate) = " + handleDateInput(dateInputString, defaultDate));
+        handleDateInput(dateInputString, defaultDate);
+    }
+
+    // } else if (dateInputString < dateDisplay.textContent || dateInputString === undefined || dateInputString > lastDate) {
+    //     alert("Date must be in valid format (YYY-MM-DD, today or future)")
+    //     dateInputString = defaultDate;
+    //     console.log("dateInputString = " + dateInputString)
+    //     console.log("defaultDate = " + defaultDate)
+    //     handleDateInput(dateInputString, defaultDate);
+    // }
+
+    console.log("dataId (1) = " + dataId);
+    console.log("dateCollection[dataId].value (1) = " + dateCollection[dataId]?.value);
+    console.log(`Date textarea with data-id="${dataId}" is inactive.`);
+    status.textContent = 'No Date textarea is active.';
+
+    console.log("defaultDate (blur) = " + defaultDate);
+
+    // dateCollection[dataId].value = defaultDate;
+    // dateCollection[dataId].innerHTML = defaultDate;
+
+    plannedTodos[dataId].date = resultString;
+
+    dateCollection[dataId].value = resultString;
+    dateCollection[dataId].innerHTML = resultString;
+
+    sortPlannedTodos(plannedTodos);
+    removeEditDateButton(dataId);
+
+    updateCurrentWeekSchedule();
+
+    isDateFieldFocus = false;
+    changeDateFieldBackgroundColor(isDateFieldFocus, userCreatedDateField); // Reset background color
+    userCreatedDateField.style.backgroundColor = ''; // Optional: Reset background color }); });
+});
+// addDynamicTodoContainer (end)
+
+// _ _ _
+// _ _ _
 
 
     // Den här funktionen ska inte köras om matchCount === 10 (för blockedDate) && dateCollection[dataId].value === targetDate (= blockedDate)
@@ -4473,8 +5428,10 @@ function addDynamicTodoContainer() {
                 })
 
 
+                // (2025-01-23) x updateCurrentWeekSchedule();
                 // Update the week schedule (when a task has been edited)
-                updateCurrentWeekSchedule();
+                // updateCurrentWeekSchedule();
+
                 // domUpdateCurrentWeekSchedule();
 
 
@@ -4506,6 +5463,16 @@ function addDynamicTodoContainer() {
             console.log("todoCollection[dataId].value = " + todoCollection[dataId].value)
             console.log("currentMondayTodos.length = " + currentMondayTodos.length)
             console.log("currentWednesdayTodos.length = " + currentWednesdayTodos.length)
+
+            // Check if edited todo already exists (isEditDuplicate)
+
+            checkForTodoDateDuplicates(defaultDate, defaultTodoText, dateCollection, todoCollection, dataId);
+
+            console.log("isEditDuplicate = " + isEditDuplicate);
+
+            if (isEditDuplicate === true) {
+                alert("That task already exists!")
+            }
 
             // Edit plannedTodos (object) when todo (DOM-list) is changed
 
@@ -4654,6 +5621,7 @@ function addDynamicTodoContainer() {
                 checkIfDateAndTextAreEmpty();
             }
             // console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos));
+            isEditDuplicate = false;
         });
     });
 
@@ -5052,7 +6020,7 @@ function updatePlannedTodosWithDomData() {
         console.log("dateCollection[0].value (1) = " + dateCollection[0].value)
         console.log("dateCollection.length = " + dateCollection.length)
 
-        for (i = 0; i < dateCollection.length; i++) {
+        for (let i = 0; i < dateCollection.length; i++) {
             // dateCollection[i].value = dateCollection[i].innerHTML
             // todoCollection[i].value = todoCollection[i].innerHTML
 
@@ -5299,8 +6267,10 @@ function readFile(file) {
         // Split the result using the delimiter
         let [planned_data, past_data] = result.split(delimiter);
 
-        console.log("String 1:", planned_data);
-        console.log("String 2:", past_data);
+        console.log("String 1 (planned_data):", planned_data);
+        console.log("String 2 (past_data):", past_data);
+
+
 
         plannedTodos = planned_data;
 
@@ -5310,10 +6280,34 @@ function readFile(file) {
 
         ifPlannedTodosIsPastPutToPastPlans();
 
+        let plannedTodosOnLoad = [];
+        plannedTodos.forEach(todoRow => {
+            // if (todoRow.date < dateDisplay.textContent && todoRow.isRecurring !== true) {
+            if (todoRow.date >= dateDisplay.textContent) {
+                plannedTodosOnLoad.push(todoRow)
+            }
+        });
+
+        plannedTodos = plannedTodosOnLoad;
+        plannedTodosOnLoad = '';
+
         console.log("plannedTodos.length = " + plannedTodos.length)
+        console.log("JSON.stringify(plannedTodos) (on load) = " + JSON.stringify(plannedTodos))
+
+        // Uppdatera plannedTodos här(?) ((innan nya div:ar skapas))
 
         if (plannedTodos.length > 3) {
-            addDynamicTodoContainer();
+            // addDynamicTodoContainer();
+            for (let i = 3; i < plannedTodos.length; i++) {
+                console.log("i = " + i)
+                if (plannedTodos[i].date >= dateDisplay.textContent) {
+                    console.log("plannedTodos[i].date >= dateDisplay.textContent");
+                    console.log("plannedTodos[i].date = " + plannedTodos[i].date);
+                    dynamicContainerToken = "load_func";
+                    dynamicContainerDataId = i;
+                    addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
+                }
+            }
         }
 
         console.log("past_data (1) = " + past_data)
@@ -5374,7 +6368,7 @@ function readFile(file) {
         // ifPlannedTodosIsPastPutToPastPlans();
         updateCurrentWeekSchedule();
         updateRecurringPlannedTodos(plannedTodos);
-        updateTodoContainerBgColor();
+        // updateRecDivBgColor();
     };
     reader.readAsText(file);
 }

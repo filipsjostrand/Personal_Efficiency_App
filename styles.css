@@ -229,6 +229,21 @@ a {
   height: 30px;
 }
 
+.edit-date-button {
+  display: flex;
+  width: 35px;
+  height: 32px;
+  background-color: orange;
+  color: rgb(36, 36, 36);
+  border: none;
+  border-radius: 3px;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  margin-bottom: 2px;
+  cursor: pointer;
+}
+
 /* #color-palette-container {
   position: absolute;
   margin: auto;

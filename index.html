@@ -221,7 +221,7 @@
 
             <div>
               <input type="radio" id="day" name="select-period" value="day"/>
-              <label for="day">Days (per week)</label>
+              <label for="day">Day-s (per week)</label>
             </div>
 
             <div>
@@ -344,7 +344,7 @@
     <!-- </div> -->
           </form>
             <!-- <pre id="textarea" contenteditable></pre> -->
-
+            <br>
             <button id="add-todo-button" onclick="addTaskToList()"> Add </button><br><br>
 
             <button id="clear-all">Clear All</button><br><br>
@@ -361,15 +361,16 @@
                 <textarea id="todo-1-date" class="todo-date" type="text" data-id="1" data-key="date" name="date"></textarea>
                 <textarea id="todo-1-text" class="todo-text" type="text" data-id="1" data-key="todo" name="text"></textarea>
                 <div id="todo-1-color" class="todo-color" data-id="1" data-key="color" name="color"></div>
-                <div id="todo-0-rec" class="todo-rec" data-id="1" data-key="rec" name="rec"></div>
+                <div id="todo-1-rec" class="todo-rec" data-id="1" data-key="rec" name="rec"></div>
               </div>
               <div id="todo-container" class="todo-container-element" data-id="2">
                 <textarea id="todo-2-date" class="todo-date" type="text" data-id="2" data-key="date" name="date"></textarea>
                 <textarea id="todo-2-text" class="todo-text" type="text" data-id="2" data-key="todo" name="text"></textarea>
                 <div id="todo-2-color" class="todo-color" data-id="2" data-key="color" name="color"></div>
-                <div id="todo-0-rec" class="todo-rec" data-id="2" data-key="rec" name="rec"></div>
+                <div id="todo-2-rec" class="todo-rec" data-id="2" data-key="rec" name="rec"></div>
               </div>
             </div>
+            <p id="status">No textarea is active.</p>
 
           <!-- Hidden color switcher panel -->
           <div id="color-switcher-panel" class="hidden">
