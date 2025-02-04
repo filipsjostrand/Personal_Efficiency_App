@@ -33,6 +33,7 @@ a {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
+  z-index: 1000; /* Ensure navbar is above "recurring" checkbox */
 }
 
 #todo-div,
@@ -188,6 +189,11 @@ a {
   text-decoration-thickness: 3px;
 }
 
+.highlight {
+  /* background-color: lightyellow; */
+  background-color: rgb(240, 240, 231);
+}
+
 .todo-color {
   width: 30px;
   height: 34px;
@@ -230,7 +236,8 @@ a {
 }
 
 .edit-date-button {
-  display: flex;
+  display: none;
+  /* display: flex; */
   width: 35px;
   height: 32px;
   background-color: orange;
@@ -340,7 +347,10 @@ a {
 }
 
 #todo-recurring-input {
+  /* transform gör att checkbox hamnar över navbar!? */
+  position: relative; /* Keep it positioned */
   transform: scale(1.75);
+  z-index: 1; /* Keep below navbar */
 }
 
 #periodicity, #per-weekday, #per-week, #per-month, #per-year {
