@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Efficiency</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="top3todos.css">
+    <link rel="stylesheet" href="timerstyle.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,7 +17,7 @@
   <!-- <div id="top-div"></div> -->
     <div id="navbar">
       <div class="grid-container">
-          <a href="#todo-div"><div class="grid-item item1" id="top-todos">Todos</div></a>
+          <a href="#top"><div class="grid-item item1" id="top-todos">Todos</div></a>
           <a href="#weekly-div"><div class="grid-item item2" id="weekly-calendar">Week</div></a>
           <a href="#future-div"><div class="grid-item item3" id="important-dates">Future</div></a>
           <a href="#timer-div"><div class="grid-item item4" id="timer">Timer</div></a>
@@ -25,34 +27,98 @@
     </div>
 
       <main>
-        <div id="todo-div"></div>
-        <h3 id="todos-heading">Top3 Today</h3>
+        <div id="todo-div-wrapper"></div>
+        <h3 id="todos-heading">Top3 Todos</h3>
 
-        <div class="start-container">
+        <div class="start-container-wrapper">
+
+          <!-- _ _ _ Top 3 Todos (start)-->
+
+          <div class="todo-div">
+            <div class="start-container">
+                <div id="character-counter" class="character-counter"></div>
+                <div id="weekday-display"></div>
+                <div id="date-display"></div>
+                <div id="week-display"></div><br>
+                <button onclick="resetTodoSet()" class="reset-todo-button">Reset todos</button>
+            </div>
+
+            <br>
+            <input class="todo-input-v2" type="text" id="input-box-v2" placeholder="Add todo text...">
+            <label for="todo-select">Apply to:</label>
+                <select name="todos" id="todo-select">
+                <option value="" selected>Todo list</option>
+                <option value="todo-one">#1</option>
+                <option value="todo-two">#2</option>
+                <option value="todo-three">#3</option>
+                </select>
+            <button onclick="addTaskToSet()" class="add-button-v2">Add</button>
+            <br>
+
+        </div>
+
+        <div id="todo-1-container">
+                <input type="checkbox" class="checkbox" id="first" name="todo" value="first" />
+                <label for="first"></label>
+            <div id="todo-1">
+                <span class="todo-text-1">1. ...</span>
+            </div>
+        </div>
+
+        <div id="todo-2-container">
+                <input type="checkbox" class="checkbox" id="second" name="todo" value="second" />
+                <label for="second"></label>
+            <div id="todo-2">
+                <span class="todo-text-2">2. ...</span>
+            </div>
+        </div>
+
+        <div id="todo-3-container">
+                <input type="checkbox" class="checkbox" id="third" name="todo" value="third" />
+                <label for="third"></label>
+            <div id="todo-3">
+                <span class="todo-text-3">3. ...</span>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <h3>Application information</h3>
+             <div class="info">
+             <ol>
+                 <li><b>Reset:</b> Press "Reset todos" to reactivate the application.</li><br>
+                 <li><b>Add:</b> Write a todo text and press "Add" (ensure that "Todo list" is selected in the rolldown).</li><br>
+                 <li><b>Replace: </b> Replace a todo by writing a new todo text, select a todo number "#" to replace (in the rolldown), then press "Add".</li>
+             </ol>
+                 <br>
+                     <div class="comment">Current time zone: Central European Time (CET)</div>
+             </div>
+
+        <div>
+            <p>Website under construction</p>
+            <p>Webmaster: Filip Sjöstrand (filip_sjostrand@hotmail.com)</p>
+        </div>
+
+          <!-- _ _ _ Top 3 Todos (end) -->
+
           <!-- <button onclick="resetTodoSet()" class="reset-todo-button">Reset todos</button> -->
           <div id="character-counter" class="character-counter"></div>
-          <div id="weekday-display">aaaa</div>
+          <div id="weekday-display">_ _ _</div>
           <div id="date-display"></div>
           <div id="week-display"></div>
       </div><br>
 
-        hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
-        dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadd<br><br>
-
-        hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
-        dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadd
-        hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
-        dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadd<br><br>
-
-        hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
-        dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadd
-        hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
-        dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadd<br><br>
       </main>
 
       <section>
         <div id="weekly-div"></div>
-        <h3 id="weekly-heading">Week plan</h3><br>
+        <h3 id="weekly-heading">Week plan</h3>
+        <div id="week-plan-info">
+          <p>
+            Add (or edit) tasks to the week plan from the "Future Plans" section below. Scroll down or press "Future" (in the navbar)<br>
+
+          </p>
+        </div>
 
         <div class="grid-day-container">
           <div class="grid-item day1" id="mon-div">
@@ -163,51 +229,50 @@
             <div class="sunday-target-div" data-date="6"></div>
           </div>
         </div>
-
-        hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
-        dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadg
-        hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
-        dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsad<br><br>
-
-        hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
-        dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadg
-        hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
-        dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadg<br><br>
-
-        hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
-        dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadg
       </section>
 
       <section>
         <div id="future-div"></div>
         <h3 id="future-heading">Future Plans</h3>
-        hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
-        dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadg
-        hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
-        dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadg<br><br>
+        Handle <u>Future Plans</u> and watch <u>Past tasks</u>.
+        <ul>
+          <li>Load saved file (with "Load Saved" button).</li>
+          <li>Save current plan (with the Save button).</li>
+          <li>Edit current plan (in the table).</li>
+          <li>Copy/clear past tasks.</li>
+        </ul>
+        <br>
 
 
         <button onclick="loadPlan()"> Load Saved </button><br><br>
 
-        <span>Add Task (date, todo & color)</span><br>
+        <span>Add Task</span><br><br>
         <div id="add-todo-container">
-        <input type="date" id="date-input" name="date" autocomplete="off" required/>
+          <div id="date-wrapper">
+            <label for="date-input">Date</label>
+            <input type="date" id="date-input" name="date" autocomplete="off" required/>
+          </div>
 
-        <input id="add-todo-text" placeholder="Add todo text..." type="text" name="text"/><br><br>
+          <div id="text-wrapper">
+            <label for="add-todo-text">Task</label>
+            <input id="add-todo-text" placeholder="Add todo text..." type="text" name="text"/>
+          </div>
 
-        <!-- Select color (from dropdown) -->
-        <form id="color-drop-down">
-              <label for="colors"></label>
-              <select name="colors" id="colors">
-                <option id="gray-color" value="grayColor"></option>
-                <option id="yellow-color" value="yellowColor"></option>
-                <option id="green-color" value="greenColor"></option>
-                <option id="blue-color" value="blueColor"></option>
-                <option id="purple-color" value="purpleColor"></option>
-                <option id="red-color" value="redColor"></option>
-              </select>
-            <!-- </form> -->
-            </div><br>
+          <!-- Select color (from dropdown) -->
+          <div id="color-wrapper">
+            <label for="colors">Color</label>
+            <form id="color-drop-down">
+                  <label for="colors"></label>
+                  <select name="colors" id="colors">
+                    <option id="gray-color" value="grayColor" style="color:rgb(150,150,150)">-</option>
+                    <option id="yellow-color" value="yellowColor" style="color:rgb(255,204,0)">Yellow</option>
+                    <option id="green-color" value="greenColor" style="color:rgb(51,153,102)">Green</option>
+                    <option id="blue-color" value="blueColor" style="color:rgb(51,102,255)">Blue</option>
+                    <option id="purple-color" value="purpleColor" style="color:rgb(153,51,102)">Purple</option>
+                    <option id="red-color" value="redColor" style="color:rgb(255,64,64)">Red</option>
+                  </select>
+          </div><br>
+        </div><br>
                     <!-- <div> -->
           <label>
             <input id="todo-recurring-input" type="checkbox" />
@@ -377,38 +442,45 @@
             <div id="color-switcher-content">
                 <p>Change color:</p>
                 <div id="change-color-wrapper">
-                  <div class="color-option" style="background-color: rgb(150,150,150);" data-color="grayColor"></div>
-                  <div class="color-option" style="background-color: rgb(255,204,0);" data-color="yellowColor"></div>
-                  <div class="color-option" style="background-color: rgb(51,153,102);" data-color="greenColor"></div>
-                  <div class="color-option" style="background-color: rgb(51,102,255);" data-color="blueColor"></div>
-                  <div class="color-option" style="background-color: rgb(153,51,102);" data-color="purpleColor"></div>
-                  <div class="color-option" style="background-color: rgb(255,64,64);" data-color="redColor"></div>
+                  <div class="color-option" style="background-color: rgb(150,150,150);" data-color="grayColor" text="Gray"></div>
+                  <div class="color-option" style="background-color: rgb(255,204,0);" data-color="yellowColor" text="Yellow"></div>
+                  <div class="color-option" style="background-color: rgb(51,153,102);" data-color="greenColor" text="Green"></div>
+                  <div class="color-option" style="background-color: rgb(51,102,255);" data-color="blueColor" text="Blue"></div>
+                  <div class="color-option" style="background-color: rgb(153,51,102);" data-color="purpleColor" text="Purple"></div>
+                  <div class="color-option" style="background-color: rgb(255,64,64);" data-color="redColor" text="Red"></div>
                 </div>
                 <p>Clear row:</p>
                 <div class="color-option" id="trash-can"><i class="fa-solid fa-trash-can" id="trash-can-icon"></i></div>
-                <button id="close-panel">Close</button>
+                <button id="close-panel">Store Current</button>
             </div>
           </div>
 
           <br>
           <span>Load Plan</span><br>
-          <button onclick="loadPlan()"> Load (Chrome) </button><br><br>
-          <input id="load" type="file" value="load" onChange="load_func()"></input><br><br>
+          <!-- <button onclick="loadPlan()"> Load (Chrome) </button><br><br> -->
+          <input id="load" type="file" value="load" onChange="load_func()"><br><br>
 
           <span>Save Plan</span><br>
-          <button onclick="saveAs()"> Save As </button>
-          <button onclick="save()"> Save (Chrome) </button><br><br>
-          <button onclick="save_func()"> Save (any browser) </button><br><br>
+          <label id="file-name-label" for="file-name">File Name:</label>
+          <input type="text" id="file-name" name="file-name"><br>
 
-          hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
-          dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadd
-          hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
-          dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadd<br><br>
+          <p id="dl-1">Download (option <b>1</b>):</p>
+          <p id="browser-compatibility">✅ <i>PC/Android</i></p>
+          <p id="browser-compatibility">❌ <i>Firefox, iOS devices</i></p>
+          <button onclick="saveAs()"> Save As (anywhere) </button><br><br>
+          <!-- <button onclick="save()"> Save As (loaded name) </button><br><br> -->
 
-          hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
-          dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadd<br><br>
+          <p id="browser-compatibility">Download (option <b>2</b>):</p>
+          <p id="browser-compatibility">✅ <i>Any browser</i></p>
+          <button onclick="save_func()"> Save (to downloads) </button>
+          <br><br>
 
           <span id="past-plan-heading">Past Tasks</span>
+          <div id="past-tasks-text">
+            <p>
+              Handle past tasks - copy or clear (from file).
+            </p>
+          </div>
           <div id="past-plan-div">
             <!-- <textarea id="past-tasks-input-field" readonly></textarea> -->
             <textarea id="past-tasks-input-field"></textarea>
@@ -417,26 +489,134 @@
 
       </section>
 
-      <section>
+      <section class="timer-section">
         <div id="timer-div"></div>
         <h3 id="timer-heading">Timer</h3>
-        hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
-        dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadd
-        hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
-        dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadd<br><br>
+        Set a time limit to count up/down from.
+        <ul>
+          <li>hours,</li>
+          <li>minutes,</li>
+          <li>seconds,</li>
+          <li>tenths.</li>
+      </ul>
+         <br>
 
-        hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
-        dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadd
-        hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
-        dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadd<br><br>
+        <div>
+          <label for="hours">Hours:</label>
+          <input type="number" id="hours" placeholder="0" min="0"><br>
+          <label for="minutes">Minutes:</label>
+          <input type="number" id="minutes" placeholder="0" min="0" max="59"><br>
+          <label for="seconds">Seconds:</label>
+          <input type="number" id="seconds" placeholder="0" min="0" max="59"><br>
+          <label for="tenths">Tenths:</label>
+          <input type="number" id="tenths" placeholder="0" min="0" max="9">
+      </div>
 
-        hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
-        dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadd
+      <div>
+          <label for="countMode">Mode:</label>
+          <select id="countMode">
+              <option value="countdown">Countdown</option>
+              <option value="countup">Count Up</option>
+          </select>
+      </div>
+
+      <button id="startButton">Start</button>
+      <button id="pauseButton">Pause</button>
+      <button id="resetButton">Reset</button>
+
+      <div>
+          <h2 class="timerDisplay">Time:&nbsp;<span id="timerDisplay">00:00:00:0</span></h2>
+      </div><br>
+
+
+          <div id="iframe-container-b">
+              <iframe
+                  id="music-player-pop-b"
+                  width="560"
+                  height="315"
+                  src="https://www.youtube.com/embed/sWv8DWN-D20?si=1JYYN2uTEQX6qJDf"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen>
+              </iframe>
+          </div>
+
+          <div id="billboard-top50-div">
+              <a href="https://www.youtube.com/watch?v=kPa7bsKwL-c&list=PLx0sYbCqOb8TBPRdmBHs5Iftvv9TPboYG&pp=iAQB8AUB" target="_blank">Billboard Top 50 #1
+              <img id="billboard-top50-img" src="pexels-myatezhny39-2422404.jpg" alt="Billboard top 50 songs">
+              </a>
+          </div>
+
+          <div id="billboard-div">
+                  <a href="https://www.youtube.com/watch?v=cF1Na4AIecM&list=PLDIoUOhQQPlWc-Kd6TCjTRIl0Z6fSQV0X" target="_blank">Billboard Top 50 #2
+                  <img id="billboard-img" src="pexels-freestockpro-1031700.jpg" alt="Billboard top songs">
+                  </a>
+          </div>
+
+          <div id="iframe-container-c">
+              <iframe
+                  id="music-player-classic-a"
+                  width="560"
+                  height="315"
+                  src="https://www.youtube.com/embed/_F4rdFQv4c4?si=JYhjuLJjyIr1V_tK"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen>
+              </iframe>
+          </div>
+
+          <div id="iframe-container-d">
+              <iframe
+                  id="music-player-classic-b"
+                  width="560"
+                  height="315"
+                  src="https://www.youtube.com/embed/zSWCsT5j0-Q?si=cqFJ7ZYQsfocIrkK"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen>
+              </iframe>
+          </div>
+
+          <div id="iframe-container-e">
+              <iframe
+                  id="music-player-lofi-girl"
+                  width="560"
+                  height="315"
+                  src="https://www.youtube.com/embed/jfKfPfyJRdk?si=td3bTazQj1cdCoa-"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen>
+              </iframe>
+          </div>
+      </div>
+
+      <audio
+          id="alarmSound"
+          title='"Oversimplified", by Lesiakower'
+          src="oversimplified-alarm-clock-113180.mp3"
+          alt="Oversimplified [ALARM CLOCK], by Lesiakower, from: https://pixabay.com/sound-effects/oversimplified-alarm-clock-113180/"
+          preload="auto">
+      </audio>
+
+
       </section>
 
       <section>
         <div id="about-div"></div>
         <h3 id="about-heading">About me</h3>
+        hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
+        dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadd
+        hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
+        dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadd<br><br>
+
         hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
         dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadd
         hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
@@ -546,6 +726,8 @@
 
 
       <!-- <script async src="future-plans.js"></script> -->
+      <script async src="top-3-todos.js"></script>
       <script async src="future-plans.js"></script>
+      <script async src="timer-app.js"></script>
 </body>
 </html>

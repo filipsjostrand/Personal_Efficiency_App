@@ -174,7 +174,7 @@ a {
 #textarea {
   display: flex;
   width: 300px;
-  height: 22px;
+  /* height: 22px; */
   background-color: rgb(228, 228, 228);
   color: rgb(24, 24, 24);
   border: 2px solid;
@@ -206,7 +206,16 @@ a {
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 30px;
+  height: 50px;
+  /* height: 30px; */
+}
+
+#date-input {
+  height: 100%;
+}
+
+#add-todo-text {
+  height: 100%;
 }
 
 #todo-container {
@@ -217,10 +226,34 @@ a {
   margin-bottom: 3px;
 }
 
+#color-drop-down {
+  height: 100%;
+}
+
 #colors {
-  width: 30px;
-  height: 30px;
+  width: 100%;
+  height: 100%;
   cursor: pointer;
+}
+/* Add this CSS to make the color picker more rectangular */
+#color-drop-down select {
+  border-radius: 4px; /* Adjust this value to make it less round */
+}
+
+#add-todo-container label {
+  display: block;
+  /* margin-right: 10px; */
+}
+
+#date-wrapper,
+#text-wrapper,
+#color-wrapper {
+  display:flex;
+  flex-direction: column;;
+}
+
+#text-wrapper {
+  width: 80%;
 }
 
 .todo-rec {
@@ -450,6 +483,27 @@ _ _ _ */
   background-color: #ffcccc;
 } */
 
+#file-name-label {
+  font-size: 14px;
+}
+#file-name {
+  width: 70%;
+}
+
+#dl-opt-1 {
+  margin-top: 10px;
+}
+
+#browser-compatibility {
+  font-size: 14px;
+  margin: 0;
+}
+
+#dl-1 {
+  font-size: 14px;
+  margin-top: 15px;
+  margin-bottom: 0px;
+}
 
 /* _ _ _
 _ _ _ */
@@ -457,6 +511,10 @@ _ _ _ */
 
 /* Computer screens and larger (start) */
 @media screen and (min-width: 1024px) {
+
+  #text-wrapper {
+    width: 300px;
+  }
 
   .color-switcher-content {
     display: flex;
@@ -486,14 +544,16 @@ _ _ _ */
 
 /* Tablets and larger screens (start) */
 @media screen and (min-width: 768px) and (max-width: 1023px) {
+
+  #text-wrapper {
+    width: 300px;
+  }
+
 }
 /* Tablets and larger screens (end) */
 
 /* Mobile screens (start) */
 @media screen and (max-width: 767px) {
-  #add-todo-text {
-    width: 100%;
-  }
 
   #close-panel {
     width: 100%;

@@ -1,0 +1,65 @@
+#todo-1-container, #todo-2-container, #todo-3-container {
+    display: flex;
+    flex-direction: row;
+}
+
+#first, #second, #third {
+    margin-right: 10px;
+}
+
+.checkbox {
+    padding: 20px;
+}
+
+.start-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.reset-todo-button {
+    width: 90px;
+    height: 20px;
+    display: flex;
+}
+
+#weekday-display {
+    width: 50px;
+    height: 20px;
+    display: flex;
+    /* justify-content: flex-end; */
+    /* padding-left: 50px; */
+}
+
+#date-display {
+    width: 85px;
+    height: 20px;
+    display: flex;
+    /* padding-left: 5px; */
+}
+
+#week-display {
+    width: 70px;
+    height: 20px;
+    display: flex;
+    /* padding-left: 20px; */
+}
+
+.comment {
+    font-size: 12px;
+}
+
+/* Media query for mobile screens */
+@media (max-width: 600px) {
+
+    .add-button-v2 {
+        width: 40px;
+        height: 20px;
+        display:flex;
+        margin-top: 5px;
+        flex-direction: row;
+    }
+
+    .comment {
+        font-size: 12px;
+    }
+}

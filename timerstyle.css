@@ -1,0 +1,119 @@
+/* body { */
+/* .timer-section {
+    font-family: Arial, sans-serif;
+} */
+
+#startButton,
+#pauseButton,
+#resetButton {
+    margin: 10px;
+    padding: 10px 20px;
+}
+
+
+#minutes,
+#seconds,
+#tenths,
+#countMode {
+    margin: 10px;
+    padding: 5px;
+}
+
+#hours {
+    margin-left: 28px;
+}
+
+#minutes {
+    margin-left: 15px;
+}
+
+#tenths {
+    margin-left: 25px;
+}
+
+#countMode {
+    margin-left: 31px;
+}
+
+.timerDisplay {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-right: 5px;
+}
+
+#media-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#iframe-container-a,
+#iframe-container-b,
+#iframe-container-c,
+#iframe-container-d,
+#iframe-container-e {
+    display: flex;
+}
+
+#billboard-top50-div {
+    display: flex;
+    padding-top: 10px;
+    cursor: pointer;
+}
+
+
+
+#music-player-classic-a,
+#music-player-classic-b,
+#music-player-pop-b,
+#music-player-lofi-girl {
+    padding-top: 25px;
+}
+
+/* Computer screens and larger (start) */
+@media screen and (min-width: 1024px) {
+    #billboard-top50-img {
+        width: 560px;
+        height: 315px;
+        display: flex;
+        object-fit: cover;
+    }
+
+    #billboard-div {
+        display: flex;
+        padding-top: 10px;
+        cursor: pointer;
+    }
+
+    #billboard-img {
+        width: 560px;
+        height: 315px;
+        display: flex;
+        object-fit: cover;
+    }
+}
+
+/* Mobile screens (start) */
+@media screen and (max-width: 767px) {
+    #billboard-top50-img {
+        width: 280px;
+        height: 158px;
+        display: flex;
+        object-fit: cover;
+    }
+
+    #billboard-div {
+        display: flex;
+        padding-top: 10px;
+        cursor: pointer;
+    }
+
+    #billboard-img {
+        width: 280px;
+        height: 158px;
+        display: flex;
+        object-fit: cover;
+    }
+}
