@@ -154,12 +154,12 @@ let recUnderline = document.getElementById("rec-text-span");
 let isRecurringDayRadioButton = document.getElementById('day');
 
 let isRecurringWeekDayNameRadioButton = document.getElementById('day-name');
-let isRecurringDayMonCheckbox= document.getElementById('rec-mon');
-let isRecurringDayTueCheckbox= document.getElementById('rec-tue');
-let isRecurringDayWedCheckbox= document.getElementById('rec-wed');
-let isRecurringDayThuCheckbox= document.getElementById('rec-thu');
-let isRecurringDayFriCheckbox= document.getElementById('rec-fri');
-let isRecurringDaySatCheckbox= document.getElementById('rec-sat');
+let isRecurringDayMonCheckbox = document.getElementById('rec-mon');
+let isRecurringDayTueCheckbox = document.getElementById('rec-tue');
+let isRecurringDayWedCheckbox = document.getElementById('rec-wed');
+let isRecurringDayThuCheckbox = document.getElementById('rec-thu');
+let isRecurringDayFriCheckbox = document.getElementById('rec-fri');
+let isRecurringDaySatCheckbox = document.getElementById('rec-sat');
 let isRecurringDaySunCheckbox = document.getElementById('rec-sun');
 var recurringDayEveryWeekCheckBox = document.getElementById('every-week');
 
@@ -325,6 +325,7 @@ class ChoiceManager {
 
     // Enable or disable day checkboxes
     toggleDayCheckboxes(enabled) {
+        console.log("toggleDayCheckboxes() körs");
         if (!this.dayCheckboxes) return;
         this.dayCheckboxes.forEach(checkbox => {
             checkbox.disabled = !enabled;
@@ -1456,6 +1457,9 @@ isRecurringDayRadioButton.addEventListener("click", (e) => {
         PeriodicityWeekMenu.style.display = "none";
         PeriodicityMonthMenu.style.display = "none";
         PeriodicityYearMenu.style.display = "none";
+
+        dayInput.value = '1';
+
         isRecurringWeekNrOneRadioButton.checked = false;
         isRecurringWeekNrTwoRadioButton.checked = false;
         isRecurringWeekNrThreeRadioButton.checked = false;
@@ -1477,6 +1481,7 @@ isRecurringWeekRadioButton.addEventListener("click", (e) => {
         PeriodicityDayMenu.style.display = "none";
         PeriodicityMonthMenu.style.display = "none";
         PeriodicityYearMenu.style.display = "none";
+        weekInput.value = '1';
         isRecurringWeekDayNameRadioButton.checked = false;
         isRecurringDayMonCheckbox.checked = false;
         isRecurringDayTueCheckbox.checked = false;
@@ -1504,6 +1509,7 @@ isRecurringMonthRadioButton.addEventListener("click", (e) => {
         PeriodicityDayMenu.style.display = "none";
         PeriodicityWeekMenu.style.display = "none";
         PeriodicityYearMenu.style.display = "none";
+        monthInput.value = '1';
         isRecurringWeekDayNameRadioButton.checked = false;
         isRecurringDayMonCheckbox.checked = false;
         isRecurringDayTueCheckbox.checked = false;
@@ -1535,6 +1541,7 @@ isRecurringYearRadioButton.addEventListener("click", (e) => {
         PeriodicityDayMenu.style.display = "none";
         PeriodicityWeekMenu.style.display = "none";
         PeriodicityMonthMenu.style.display = "none";
+        yearInput.value = '1';
         isRecurringWeekDayNameRadioButton.checked = false;
         isRecurringDayMonCheckbox.checked = false;
         isRecurringDayTueCheckbox.checked = false;
@@ -1607,8 +1614,8 @@ function weekdayNameToWeekDayNumber(dateInputValue) {
 }
 
 function weekdayNameToWeekDayNumberMultiDuration(newConvertedDateString) {
-    console.log("weekdayNameToWeekDayNumberMultiDuration()");
-    console.log("newConvertedDateString = " + newConvertedDateString);
+    // console.log("weekdayNameToWeekDayNumberMultiDuration()");
+    // console.log("newConvertedDateString = " + newConvertedDateString);
 
     if (getDayOfWeek(newConvertedDateString) === "mon") {
         weekDayNumber = "0";
@@ -2104,6 +2111,124 @@ let plannedTodosObjectsArray = [];
             //     }
             // }
         // else
+
+        // _ _ _
+
+        var dataDateNr = '';
+        var added
+
+        // Get date for recurring daily tasks
+        // function checkIfDailyRecTaskInPast(dataDateNr) {
+
+        // Returns the coming date for a daily recurring task (based on selected day (dataDate))
+        // (startingDate >= dateDisplay.textContent)
+            function getComingDailyRecTaskDate(dataDateNr) {
+                console.log("getComingDailyRecTaskDate() körs");
+
+                let nextDate = '';
+                let comingSevenRecDays = [];
+
+                let startingDate = newTodo.date;    // First weekday date for the daily task (mon/tue/wed/..., dataDate 0/1/2/...)
+                console.log("startingDate: " + startingDate);
+
+                let startingDailyRecDate = new Date(startingDate);
+                let nextOneRecDate = new Date(startingDate);
+                let nextTwoRecDate = new Date(startingDate);
+                let nextThreeRecDate = new Date(startingDate);
+                let nextFourRecDate = new Date(startingDate);
+                let nextFiveRecDate = new Date(startingDate);
+                let nextSixRecDate = new Date(startingDate);
+
+                let startingDailyRecDateString = startingDailyRecDate.toISOString().split('T')[0]; // Convert the date to 'YYYY-MM-DD' format
+                console.log("startingDailyRecDateString = " + startingDailyRecDateString);
+                Number(weekdayNameToWeekDayNumberMultiDuration(startingDailyRecDateString));
+
+                // console.log("startingRecDataDate: " + startingDataDate);
+                // let nextOneRecMonDate = startingDailyRecDate.setDate(startingDailyRecDate.getDate() + 1);
+                nextOneRecDate.setDate(startingDailyRecDate.getDate() + 1);
+                // console.log("new Date(nextOneRecMonDate) = " + new Date(nextOneRecMonDate));
+                console.log("nextOneRecDate = " + nextOneRecDate);
+                nextTwoRecDate.setDate(startingDailyRecDate.getDate() + 2);
+                nextThreeRecDate.setDate(startingDailyRecDate.getDate() + 3);
+                nextFourRecDate.setDate(startingDailyRecDate.getDate() + 4);
+                nextFiveRecDate.setDate(startingDailyRecDate.getDate() + 5);
+                nextSixRecDate.setDate(startingDailyRecDate.getDate() + 6);
+
+                let nextOneRecDateString = nextOneRecDate.toISOString().split('T')[0]; // Convert the date to 'YYYY-MM-DD' format
+                console.log("nextOneRecDateString = " + nextOneRecDateString);
+                let nextTwoRecDateString = nextTwoRecDate.toISOString().split('T')[0]; // Convert the date to 'YYYY-MM-DD' format
+                console.log("nextTwoRecDateString = " + nextTwoRecDateString);
+                let nextThreeRecDateString = nextThreeRecDate.toISOString().split('T')[0]; // Convert the date to 'YYYY-MM-DD' format
+                let nextFourRecDateString = nextFourRecDate.toISOString().split('T')[0]; // Convert the date to 'YYYY-MM-DD' format
+                let nextFiveRecDateString = nextFiveRecDate.toISOString().split('T')[0]; // Convert the date to 'YYYY-MM-DD' format
+                let nextSixRecDateString = nextSixRecDate.toISOString().split('T')[0]; // Convert the date to 'YYYY-MM-DD' format
+
+
+                comingSevenRecDays.push(startingDailyRecDateString, nextOneRecDateString, nextTwoRecDateString, nextThreeRecDateString, nextFourRecDateString, nextFiveRecDateString, nextSixRecDateString);
+                    console.log("comingSevenRecDays = " + comingSevenRecDays);
+                comingSevenRecDays.forEach((comingWeekDate) => {
+                    console.log("JSON.stringify(comingWeekDate) = " + JSON.stringify(comingWeekDate));
+                    if (Number(weekdayNameToWeekDayNumberMultiDuration(comingWeekDate)) === dataDateNr) {
+                        console.log("comingWeekDate (to return) = " + comingWeekDate);
+                        nextDate = comingWeekDate;
+                        // if (plannedTodos.length > 3) {
+                        //     console.log("add dynamic container");
+                        //     dynamicContainerToken = "addTaskToList";
+                        //     // dynamicContainerDataId = plannedTodos.length-1;
+                        //     addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
+                        // }
+                        if (plannedTodos.length >= 3) {
+                            console.log("add dynamic container");
+                            dynamicContainerToken = "load_func";
+                            dynamicContainerDataId = plannedTodos.length;
+                            console.log("plannedTodos.length (add rec day everyday) = " + plannedTodos.length);
+                            addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
+                        }
+                    }
+                })
+                return nextDate;
+            }
+
+            // if (startingDataDate === 0) {
+            //     nextDate = startingDate;
+            // } else if (startingDataDate > 0) {
+
+            // for (let i = 0; i < 7; i++) {
+            //     nextRecMonDate
+            // }
+            // dataDateNr = 0/1/2/...
+
+        //     weekdayNameToWeekDayNumberMultiDuration(startingDate);
+        //     // Find next Monday (after startingDate)
+
+        //     let nextDailyRecDate = new Date(weekDates[dataDateNr]);
+        //     nextDailyRecDate.setDate(nextDailyRecDate.getDate() + 7);
+        //     let nextDailyRecDateString = nextDailyRecDate.toISOString().split('T')[0]; // Convert the date to 'YYYY-MM-DD' format
+        //     nextDate = nextDailyRecDateString;
+
+
+        //     // if (startingDate < weekDates[dataDateNr] && ) {
+        //     //     nextDate =
+        //     }
+        //     else if (startingDate === weekDates[dataDateNr]) {
+        //     // if (dateDisplay.textContent === weekDates[dataDateNr]) {
+        //         nextDate = weekDates[dataDateNr];
+        //     }
+        //     else if (startingDate > weekDates[dataDateNr]) {
+        //     // else if (dateDisplay.textContent > weekDates[dataDateNr]) {
+        //         // Get next monday (dateString)
+        //         let nextDailyRecDate = new Date(weekDates[dataDateNr]);
+        //         nextDailyRecDate.setDate(nextDailyRecDate.getDate() + 7);
+        //         let nextDailyRecDateString = nextDailyRecDate.toISOString().split('T')[0]; // Convert the date to 'YYYY-MM-DD' format
+        //         nextDate = nextDailyRecDateString;
+
+        //     }
+        //     return nextDate;
+        // }
+
+        // _ _ _
+
+
         if (plannedTodos.length > 0) {
             console.log("Here ooooa");
                 plannedTodos.forEach(todoRow => {
@@ -2176,7 +2301,7 @@ let plannedTodosObjectsArray = [];
                             isCopy = true;
                         }
                         if (isCopy === true) {
-                            alert("Todo duplicate exist in the interval.");
+                            alert("Todo duplicate exists in the interval.");
                             return 0;
                         }
                         console.log("isCopy ooa = " + isCopy);
@@ -2274,7 +2399,7 @@ let plannedTodosObjectsArray = [];
                         isCopy = true;
                     }
                     if (isCopy === true) {
-                        alert("Todo duplicate exist in the interval.");
+                        alert("Todo duplicate exists in the interval.");
                         return 0;
                     }
                     console.log("isCopy ooa = " + isCopy);
@@ -2380,7 +2505,7 @@ let plannedTodosObjectsArray = [];
                             isCopy = true;
                         }
                         if (isCopy === true) {
-                            alert("Todo duplicate exist in the interval.");
+                            alert("Todo duplicate exists in the interval.");
                             return 0;
                         }
                         console.log("isCopy ooa = " + isCopy);
@@ -2436,6 +2561,507 @@ let plannedTodosObjectsArray = [];
             // _ _ _
             // _ _ _
         }
+
+        // _ _ _
+        // _ _ _
+        // _ _ _
+        // _ _ _
+
+        // Add daily recurring todo (Every week)
+        else if (plannedTodos.length >= 0 &&
+            isCopy === false &&
+            newTodo.date >= dateDisplay.textContent &&
+            newTodo.isRecurring === true &&
+            newTodo.recurringType === 'd' &&
+            isRecurringWeekDayNameRadioButton.checked === true &&
+            recurringDayEveryWeekCheckBox.checked === true) {
+            // plannedTodos.push(newTodo);
+            // Handle duration >= 1
+
+            console.log("Here daily");
+
+            //stringToNumber
+            let dailyRecDurationStringToNumber = Number(newTodo.duration);
+            console.log("weeklyRecdurationStringToNumber = " + dailyRecDurationStringToNumber);
+
+            // duration === 1
+
+            // Add next coming Monday (after startingDate)
+            if (isRecurringDayMonCheckbox.checked) {
+                if (isCopy === false) {
+                    dataDateNr = 0;
+                    plannedTodos.push({
+                        date: getComingDailyRecTaskDate(dataDateNr),
+                        todo: textInputValue.value,
+                        color: colorPickerSelect.value,
+                        isRecurring: isRecurringCheckbox.checked,
+                        recurringType: getRecurringType(selectedPeriod, isRecurringCheckbox) || '',
+                        everyWeek: true,
+                        weekPeriod: '',
+                        duration: '1',
+                        dataDate: '0',
+                        isEmpty: false
+                    });
+                }
+            }
+            // if (plannedTodos.length > 3) {
+            //     console.log("add dynamic container");
+            //     dynamicContainerToken = "addTaskToList";
+            //     // dynamicContainerDataId = plannedTodos.length-1;
+            //     addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
+            // }
+                        // _ _ _
+            // if (plannedTodos.length >= 3) {
+            //     dynamicContainerToken = "load_func";
+            //     dynamicContainerDataId = plannedTodos.length;
+            //     // dynamicContainerDataId = plannedTodos.length+1;
+            //     console.log("dynamicContainerDataId = " + dynamicContainerDataId);
+            //     addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
+            // }
+            if (isRecurringDayTueCheckbox.checked) {
+                if (isCopy === false) {
+                    dataDateNr = 1;
+                    plannedTodos.push({
+                        date: getComingDailyRecTaskDate(dataDateNr),
+                        todo: textInputValue.value,
+                        color: colorPickerSelect.value,
+                        isRecurring: isRecurringCheckbox.checked,
+                        recurringType: getRecurringType(selectedPeriod, isRecurringCheckbox) || '',
+                        everyWeek: true,
+                        weekPeriod: '',
+                        duration: '1',
+                        dataDate: '1',
+                        isEmpty: false
+                    });
+                }
+            }
+            // if (plannedTodos.length > 3) {
+            //     console.log("add dynamic container");
+            //     dynamicContainerToken = "addTaskToList";
+            //     // dynamicContainerDataId = plannedTodos.length-1;
+            //     addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
+            // }
+                        // _ _ _
+            // if (plannedTodos.length >= 3) {
+            //     dynamicContainerToken = "load_func";
+            //     dynamicContainerDataId = plannedTodos.length;
+            //     // dynamicContainerDataId = plannedTodos.length+1;
+            //     console.log("dynamicContainerDataId = " + dynamicContainerDataId);
+            //     addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
+            // }
+            if (isRecurringDayWedCheckbox.checked) {
+                if (isCopy === false) {
+                    dataDateNr = 2;
+                    plannedTodos.push({
+                        date: getComingDailyRecTaskDate(dataDateNr),
+                        todo: textInputValue.value,
+                        color: colorPickerSelect.value,
+                        isRecurring: isRecurringCheckbox.checked,
+                        recurringType: getRecurringType(selectedPeriod, isRecurringCheckbox) || '',
+                        everyWeek: true,
+                        weekPeriod: '',
+                        duration: '1',
+                        dataDate: '2',
+                        isEmpty: false
+                    });
+                }
+            }
+            // if (plannedTodos.length > 3) {
+            //     console.log("add dynamic container");
+            //     dynamicContainerToken = "addTaskToList";
+            //     // dynamicContainerDataId = plannedTodos.length-1;
+            //     addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
+            // }
+            // _ _ _
+            // if (plannedTodos.length >= 3) {
+            //     dynamicContainerToken = "load_func";
+            //     dynamicContainerDataId = plannedTodos.length;
+            //     // dynamicContainerDataId = plannedTodos.length+1;
+            //     console.log("dynamicContainerDataId = " + dynamicContainerDataId);
+            //     addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
+            // }
+            if (isRecurringDayThuCheckbox.checked) {
+                if (isCopy === false) {
+                    dataDateNr = 3;
+                    plannedTodos.push({
+                        date: getComingDailyRecTaskDate(dataDateNr),
+                        todo: textInputValue.value,
+                        color: colorPickerSelect.value,
+                        isRecurring: isRecurringCheckbox.checked,
+                        recurringType: getRecurringType(selectedPeriod, isRecurringCheckbox) || '',
+                        everyWeek: true,
+                        weekPeriod: '',
+                        duration: '1',
+                        dataDate: '3',
+                        isEmpty: false
+                    });
+                }
+            }
+            // if (plannedTodos.length > 3) {
+            //     console.log("add dynamic container");
+            //     dynamicContainerToken = "addTaskToList";
+            //     // dynamicContainerDataId = plannedTodos.length-1;
+            //     addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
+            // }
+                        // _ _ _
+            // if (plannedTodos.length >= 3) {
+            //     dynamicContainerToken = "load_func";
+            //     dynamicContainerDataId = plannedTodos.length;
+            //     // dynamicContainerDataId = plannedTodos.length+1;
+            //     console.log("dynamicContainerDataId = " + dynamicContainerDataId);
+            //     addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
+            // }
+            if (isRecurringDayFriCheckbox.checked) {
+                if (isCopy === false) {
+                    dataDateNr = 4;
+                    plannedTodos.push({
+                        date: getComingDailyRecTaskDate(dataDateNr),
+                        todo: textInputValue.value,
+                        color: colorPickerSelect.value,
+                        isRecurring: isRecurringCheckbox.checked,
+                        recurringType: getRecurringType(selectedPeriod, isRecurringCheckbox) || '',
+                        everyWeek: true,
+                        weekPeriod: '',
+                        duration: '1',
+                        dataDate: '4',
+                        isEmpty: false
+                    });
+                }
+            }
+            // if (plannedTodos.length > 3) {
+            //     console.log("add dynamic container");
+            //     dynamicContainerToken = "addTaskToList";
+            //     // dynamicContainerDataId = plannedTodos.length-1;
+            //     addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
+            // }
+                        // _ _ _
+            // if (plannedTodos.length >= 3) {
+            //     dynamicContainerToken = "load_func";
+            //     dynamicContainerDataId = plannedTodos.length;
+            //     // dynamicContainerDataId = plannedTodos.length+1;
+            //     console.log("dynamicContainerDataId = " + dynamicContainerDataId);
+            //     addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
+            // }
+            if (isRecurringDaySatCheckbox.checked) {
+                if (isCopy === false) {
+                    dataDateNr = 5;
+                    plannedTodos.push({
+                        date: getComingDailyRecTaskDate(dataDateNr),
+                        todo: textInputValue.value,
+                        color: colorPickerSelect.value,
+                        isRecurring: isRecurringCheckbox.checked,
+                        recurringType: getRecurringType(selectedPeriod, isRecurringCheckbox) || '',
+                        everyWeek: true,
+                        weekPeriod: '',
+                        duration: '1',
+                        dataDate: '5',
+                        isEmpty: false
+                    });
+                }
+            }
+            // if (plannedTodos.length > 3) {
+            //     console.log("add dynamic container");
+            //     dynamicContainerToken = "addTaskToList";
+            //     // dynamicContainerDataId = plannedTodos.length-1;
+            //     addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
+            // }
+            // _ _ _
+            // if (plannedTodos.length >= 3) {
+            //     dynamicContainerToken = "load_func";
+            //     dynamicContainerDataId = plannedTodos.length;
+            //     // dynamicContainerDataId = plannedTodos.length+1;
+            //     console.log("dynamicContainerDataId = " + dynamicContainerDataId);
+            //     addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
+            // }
+            if (isRecurringDaySunCheckbox.checked) {
+                if (isCopy === false) {
+                    dataDateNr = 6;
+                    plannedTodos.push({
+                        date: getComingDailyRecTaskDate(dataDateNr),
+                        todo: textInputValue.value,
+                        color: colorPickerSelect.value,
+                        isRecurring: isRecurringCheckbox.checked,
+                        recurringType: getRecurringType(selectedPeriod, isRecurringCheckbox) || '',
+                        everyWeek: true,
+                        weekPeriod: '',
+                        duration: '1',
+                        dataDate: '6',
+                        isEmpty: false
+                    });
+                }
+            }
+            // if (plannedTodos.length >= 3) {
+            //     dynamicContainerToken = "load_func";
+            //     dynamicContainerDataId = plannedTodos.length;
+            //     // dynamicContainerDataId = plannedTodos.length+1;
+            //     console.log("dynamicContainerDataId = " + dynamicContainerDataId);
+            //     addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
+            // }
+
+            // _ _ _
+            // if (weeklyRecDurationStringToNumber === 1) {
+            //     if (plannedTodos.length >= 3) {
+            //         dynamicContainerToken = "load_func";
+            //         dynamicContainerDataId = plannedTodos.length;
+            //         // dynamicContainerDataId = plannedTodos.length+1;
+            //         console.log("dynamicContainerDataId = " + dynamicContainerDataId);
+            //         addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
+            //     }
+            //     plannedTodos.push(newTodo);
+            // }
+            // else if (weeklyRecDurationStringToNumber > 1) {
+
+            //     for (let i = 0; i < weeklyRecDurationStringToNumber; i++) {
+            //         console.log("i = " + i);
+
+            //         let newWeeklyRecDurationDate = new Date(newTodo.date);
+            //         newWeeklyRecDurationDate.setDate(newWeeklyRecDurationDate.getDate() + i); // Increment the date by 'i' days
+            //         let newConvertedWeeklyRecDateString = newWeeklyRecDurationDate.toISOString().split('T')[0]; // Convert the date to 'YYYY-MM-DD' format
+
+            //         // if duration > '1' -> multiple newConvertedDateString variables
+            //         console.log("newConvertedWeeklyRecDateString = " + newConvertedWeeklyRecDateString);
+            //         console.log("JSON.stringify(newTodo) = " + JSON.stringify(newTodo));
+
+            //         console.log("weekdayNameToWeekDayNumber(newConvertedWeeklyRecDateString) = " + weekdayNameToWeekDayNumber(newConvertedWeeklyRecDateString));
+
+                    // _ _ _
+                    // _ _ _
+
+                    // MAKE A DUPLICATE CHECKER !? (Don't add duplicates)
+
+                    // isCopy = false;
+
+                    // _ _ _
+
+                    // plannedTodos.forEach((todoRow) => {
+                    //     if (todoRow.date === newConvertedWeeklyRecDateString && todoRow.todo === textInputValue.value) {
+                    //         isCopy = true;
+                    //     }
+                    //     if (isCopy === true) {
+                    //         alert("Todo duplicate exists in the interval.");
+                    //         return 0;
+                    //     }
+                    //     console.log("isCopy ooa = " + isCopy);
+                    // })
+
+                    // if (isCopy === false) {
+                    //     plannedTodos.push({
+                    //         date: newConvertedWeeklyRecDateString,
+                    //         todo: textInputValue.value,
+                    //         color: colorPickerSelect.value,
+                    //         isRecurring: isRecurringCheckbox.checked,
+                    //         recurringType: getRecurringType(selectedPeriod, isRecurringCheckbox) || '',
+                    //         everyWeek: everyWeek,
+                    //         weekPeriod: weekPeriod,
+                    //         duration: getDuration(selectedPeriod),
+                    //         dataDate: weekdayNameToWeekDayNumberMultiDuration(newConvertedWeeklyRecDateString),
+                    //         isEmpty: false
+                    //     });
+                    // }
+
+                // _ _ _
+                // _ _ _
+                // _ _ _
+                // _ _ _
+
+                // Ändrat 2025-02-18:
+                // if (plannedTodos.length > 1) {
+                    if (plannedTodos.length > 1 && plannedTodos.length < 3) {
+
+
+                        // Sorteringsfunktion (sortera 1. Datum, 2. Tid (Senast sist))
+                        sortPlannedTodos(plannedTodos);
+
+
+                        console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos))
+                    }
+
+
+                    // removeLastDynamicTodoContainer();
+
+                    // Add container (if plannedTodoos > 3)
+                    // add div
+                        // if (plannedTodos.length > 3) {
+                        //     console.log("add dynamic container");
+                        //     dynamicContainerToken = "addTaskToList";
+                        //     // dynamicContainerDataId = plannedTodos.length-1;
+                        //     addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
+                        // }
+
+                        // _ _ _
+
+                //     }
+                //     console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos));
+                // }
+
+
+
+            // _ _ _
+            // _ _ _
+        }
+
+        // _ _ _
+        // Add daily recurring todo (!Every week)
+        else if (plannedTodos.length >= 0 &&
+            isCopy === false &&
+            newTodo.date >= dateDisplay.textContent &&
+            newTodo.isRecurring === true &&
+            newTodo.recurringType === 'd' &&
+            isRecurringWeekDayNameRadioButton.checked === true &&
+            recurringDayEveryWeekCheckBox.checked === false) {
+            // plannedTodos.push(newTodo);
+            // Handle duration >= 1
+
+            console.log("Here daily");
+
+            //stringToNumber
+            let dailyRecDurationStringToNumber = Number(newTodo.duration);
+            console.log("weeklyRecdurationStringToNumber = " + dailyRecDurationStringToNumber);
+
+            // duration === 1
+
+            // Add next coming Monday (after startingDate)
+            if (isRecurringDayMonCheckbox.checked) {
+                if (isCopy === false) {
+                    dataDateNr = 0;
+                    plannedTodos.push({
+                        date: getComingDailyRecTaskDate(dataDateNr),
+                        todo: textInputValue.value,
+                        color: colorPickerSelect.value,
+                        isRecurring: false,
+                        recurringType: getRecurringType(selectedPeriod, isRecurringCheckbox) || '',
+                        everyWeek: false,
+                        weekPeriod: '',
+                        duration: '1',
+                        dataDate: '0',
+                        isEmpty: false
+                    });
+                }
+            }
+            if (isRecurringDayTueCheckbox.checked) {
+                if (isCopy === false) {
+                    dataDateNr = 1;
+                    plannedTodos.push({
+                        date: getComingDailyRecTaskDate(dataDateNr),
+                        todo: textInputValue.value,
+                        color: colorPickerSelect.value,
+                        isRecurring: false,
+                        recurringType: getRecurringType(selectedPeriod, isRecurringCheckbox) || '',
+                        everyWeek: false,
+                        weekPeriod: '',
+                        duration: '1',
+                        dataDate: '1',
+                        isEmpty: false
+                    });
+                }
+            }
+            if (isRecurringDayWedCheckbox.checked) {
+                if (isCopy === false) {
+                    dataDateNr = 2;
+                    plannedTodos.push({
+                        date: getComingDailyRecTaskDate(dataDateNr),
+                        todo: textInputValue.value,
+                        color: colorPickerSelect.value,
+                        isRecurring: false,
+                        recurringType: getRecurringType(selectedPeriod, isRecurringCheckbox) || '',
+                        everyWeek: false,
+                        weekPeriod: '',
+                        duration: '1',
+                        dataDate: '2',
+                        isEmpty: false
+                    });
+                }
+            }
+            if (isRecurringDayThuCheckbox.checked) {
+                if (isCopy === false) {
+                    dataDateNr = 3;
+                    plannedTodos.push({
+                        date: getComingDailyRecTaskDate(dataDateNr),
+                        todo: textInputValue.value,
+                        color: colorPickerSelect.value,
+                        isRecurring: false,
+                        recurringType: getRecurringType(selectedPeriod, isRecurringCheckbox) || '',
+                        everyWeek: false,
+                        weekPeriod: '',
+                        duration: '1',
+                        dataDate: '3',
+                        isEmpty: false
+                    });
+                }
+            }
+            if (isRecurringDayFriCheckbox.checked) {
+                if (isCopy === false) {
+                    dataDateNr = 4;
+                    plannedTodos.push({
+                        date: getComingDailyRecTaskDate(dataDateNr),
+                        todo: textInputValue.value,
+                        color: colorPickerSelect.value,
+                        isRecurring: false,
+                        recurringType: getRecurringType(selectedPeriod, isRecurringCheckbox) || '',
+                        everyWeek: false,
+                        weekPeriod: '',
+                        duration: '1',
+                        dataDate: '4',
+                        isEmpty: false
+                    });
+                }
+            }
+            if (isRecurringDaySatCheckbox.checked) {
+                if (isCopy === false) {
+                    dataDateNr = 5;
+                    plannedTodos.push({
+                        date: getComingDailyRecTaskDate(dataDateNr),
+                        todo: textInputValue.value,
+                        color: colorPickerSelect.value,
+                        isRecurring: false,
+                        recurringType: getRecurringType(selectedPeriod, isRecurringCheckbox) || '',
+                        everyWeek: false,
+                        weekPeriod: '',
+                        duration: '1',
+                        dataDate: '5',
+                        isEmpty: false
+                    });
+                }
+            }
+            if (isRecurringDaySunCheckbox.checked) {
+                if (isCopy === false) {
+                    dataDateNr = 6;
+                    plannedTodos.push({
+                        date: getComingDailyRecTaskDate(dataDateNr),
+                        todo: textInputValue.value,
+                        color: colorPickerSelect.value,
+                        isRecurring: false,
+                        recurringType: getRecurringType(selectedPeriod, isRecurringCheckbox) || '',
+                        everyWeek: false,
+                        weekPeriod: '',
+                        duration: '1',
+                        dataDate: '6',
+                        isEmpty: false
+                    });
+                }
+            }
+
+                // _ _ _
+                // _ _ _
+
+                // Ändrat 2025-02-18:
+                // if (plannedTodos.length > 1) {
+                    if (plannedTodos.length > 1 && plannedTodos.length < 3) {
+
+
+                        // Sorteringsfunktion (sortera 1. Datum, 2. Tid (Senast sist))
+                        sortPlannedTodos(plannedTodos);
+
+
+                        console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos))
+                    }
+
+
+            // _ _ _
+            // _ _ _
+        }
+
+        // _ _ _
 
         // Add todo object to plannedTodos (!recurring)
         // else if (plannedTodos.length >= 0 && isCopy === false && newTodo.date >= dateDisplay.textContent && newTodo.isRecurring !== true) {
@@ -2547,6 +3173,17 @@ let plannedTodosObjectsArray = [];
 
     }
     // }
+
+    // Get an alert if recurring day-s radio button is selected (but 'Select days' or 'Duration (days) are unchecked)
+    if (isRecurringDayRadioButton.checked === true && isRecurringWeekDayNameRadioButton.checked === false && isRecurringWeekDayNumberRadioButton.checked === false) {
+        alert('Please make a selection (Select days or duration)');
+    }
+
+    // Get an alert if recurring day-s radio button is selected (but 'Select days' or 'Duration (days) are unchecked)
+    if (isRecurringWeekRadioButton.checked === true && isRecurringWeekNrOneRadioButton.checked === false && isRecurringWeekNrTwoRadioButton.checked === false && isRecurringWeekNrThreeRadioButton.checked === false && isRecurringWeekNrFourRadioButton.checked === false) {
+        alert('Please make a selection (Number of weeks)');
+    }
+
     recurringYearDayDurationInput.value = 1;
     recCheckBoxIsUnchecked();
     isRecurringCheckbox.checked = false;
@@ -9140,6 +9777,37 @@ function readFile(file) {
 
                 plannedTodosOnLoad.push(todoRow);
             }
+                        // If the recurring day is in the future: Update recurring todos (day)
+                        else if (todoDateLoad >= currentDate && todoRow.isRecurring === true && todoRow.recurringType === 'd') {
+                            console.log("todoDateLoad >= currentDate (D)")
+                            plannedTodosOnLoad.push(todoRow);
+                        }
+                        // If the recurring day is in the past: update the day to the coming week...
+                        else if (todoDateLoad < currentDate && todoRow.isRecurring === true && todoRow.everyWeek === true && todoRow.recurringType === 'd') {
+                            console.log("todoRowLoad.date < dateDisplay.textContent (D)");
+
+                            console.log("JSON.stringify(todoRow) = " + JSON.stringify(todoRow));
+
+
+
+                            let currentWeekDayDateFromDataDate = weekDates[todoRow.dataDate];
+                            console.log("currentWeekDayDateFromDataDate = " + currentWeekDayDateFromDataDate);
+
+                                console.log("Here (currentWeekDayDateFromDataDate < currentDate) ");
+
+                                let convertDateToFullDate = new Date(currentWeekDayDateFromDataDate);
+
+                                let convertedDateFromFullDate = new Date(currentWeekDayDateFromDataDate);
+                                convertedDateFromFullDate.setDate(convertDateToFullDate.getDate() + 7);
+                                let convertedDateFromFullDateString = convertedDateFromFullDate.toISOString().split('T')[0]; // Convert the date to 'YYYY-MM-DD' format
+
+                                console.log("convertedDateFromFullDateString = " + convertedDateFromFullDateString);
+
+                                // Add 7 days to currentWeekDayDateFromDataDate
+                                todoRow.date = convertedDateFromFullDateString
+
+                                plannedTodosOnLoad.push(todoRow);
+                        }
         });
 
         console.log("JSON.stringify(plannedTodos) i readFile() = " + JSON.stringify(plannedTodos));
@@ -9234,6 +9902,9 @@ function readFile(file) {
         // document.getElementById('textArea').value = dataString;
 
         // ifPlannedTodosIsPastPutToPastPlans();
+
+        sortPlannedTodos(plannedTodos);
+
         updateCurrentWeekSchedule();
         // updateRecurringPlannedTodos(plannedTodos);
         // updateRecDivBgColor();

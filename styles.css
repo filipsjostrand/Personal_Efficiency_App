@@ -73,7 +73,8 @@ a {
   text-align: center;
   /* padding: 3px 0; */
   font-size: 25px;
-  cursor: pointer;
+  /* cursor: pointer; */
+  cursor: default;
   border-radius: 5px;
 }
 
