@@ -1890,6 +1890,35 @@ let plannedTodosObjectsArray = [];
     //     checkKey();
 
     // _ _ _
+    // _ _ _
+
+    // function changeFontSizeOfString(elementId, searchString, fontSize) {
+    //     // Get the element by its ID
+    //     const element = document.getElementById(elementId);
+
+    //     // Check if the element exists
+    //     if (element) {
+    //         // Get the inner HTML of the element
+    //         let innerHTML = element.innerHTML;
+
+    //         // Create a regular expression to find the specific string (case-sensitive)
+    //         const regex = new RegExp(`(${searchString})`, 'g');
+
+    //         // Replace the specific string with a styled span containing the string
+    //         innerHTML = innerHTML.replace(regex, `<span style="font-size: ${fontSize};">$1</span>`);
+
+    //         // Set the modified inner HTML back to the element
+    //         element.innerHTML = innerHTML;
+    //     } else {
+    //         console.error(`Element with ID "${elementId}" does not exist.`);
+    //     }
+    // }
+
+    // // Example usage: Change font size of 'specific string' to '24px'
+    // changeFontSizeOfString('exampleText', 'specific string', '24px');
+
+    // _ _ _
+    // _ _ _
 
 // function addTaskToList() (start)
 // function addTaskToList(dateInputValue) {
@@ -2115,7 +2144,8 @@ let plannedTodosObjectsArray = [];
         // _ _ _
 
         var dataDateNr = '';
-        var added
+        // var durationDaysNumber = '';
+        // var added
 
         // Get date for recurring daily tasks
         // function checkIfDailyRecTaskInPast(dataDateNr) {
@@ -2188,6 +2218,21 @@ let plannedTodosObjectsArray = [];
                 })
                 return nextDate;
             }
+
+            // function addDateDaysRecDailyWithDuration(durationDaysNumber) {
+
+            //     for (let i = 1; i < durationDaysNumber; i++) {
+
+            //         let newDailyRecDurationDate = new Date(newTodo.date);
+            //         newDailyRecDurationDate.setDate(newDailyRecDurationDate.getDate() + i); // Increment the date by 'i' days
+            //         let newConvertedDailyRecDateString = newDailyRecDurationDate.toISOString().split('T')[0]; // Convert the date to 'YYYY-MM-DD' format
+            //         newTodo.date = newConvertedDailyRecDateString;
+
+            //         // let dailyDaysDurationDateToPush =
+            //         // plannedTodos.push(newTodo);
+            //         return newTodo.date;
+            //     }
+            // }
 
             // if (startingDataDate === 0) {
             //     nextDate = startingDate;
@@ -2274,6 +2319,14 @@ let plannedTodosObjectsArray = [];
 
                 // Test: 2025-02-23 (end)
 
+                // let newLine = "\n";
+                // let ifRecYearAddToTodoText = newLine + "🔁Y";
+                let ifRecYearAddToTodoText = "🔁Y ";
+                // console.log("ifRecYearAddToTodoText = " + ifRecYearAddToTodoText);
+                // newTodo.todo = textInputValue.value + ifRecYearAddToTodoText;
+
+                newTodo.todo = ifRecYearAddToTodoText + textInputValue.value;
+
                 plannedTodos.push(newTodo);
 
             } else if (durationStringToNumber > 1) {
@@ -2308,9 +2361,12 @@ let plannedTodosObjectsArray = [];
                     })
 
                     if (isCopy === false) {
+
+                        let ifRecYearAddToTodoText = "🔁Y ";
+
                         plannedTodos.push({
                             date: newConvertedDateString,
-                            todo: textInputValue.value,
+                            todo: ifRecYearAddToTodoText + textInputValue.value,
                             color: colorPickerSelect.value,
                             isRecurring: isRecurringCheckbox.checked,
                             recurringType: getRecurringType(selectedPeriod, isRecurringCheckbox) || '',
@@ -2373,6 +2429,10 @@ let plannedTodosObjectsArray = [];
                 console.log("dynamicContainerDataId = " + dynamicContainerDataId);
                 addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
             }
+                // let newLine = "\n";
+                // let ifRecMonthAddToTodoText = newLine + "🔁M";
+                let ifRecMonthAddToTodoText = "🔁M ";
+                newTodo.todo = ifRecMonthAddToTodoText + textInputValue.value;
                 plannedTodos.push(newTodo);
         } else if (monthlyRecDurationStringToNumber > 1) {
 
@@ -2406,9 +2466,10 @@ let plannedTodosObjectsArray = [];
                 })
 
                 if (isCopy === false) {
+                    let ifRecMonthAddToTodoText = "🔁M ";
                     plannedTodos.push({
                         date: newConvertedMontlyRecDateString,
-                        todo: textInputValue.value,
+                        todo: ifRecMonthAddToTodoText + textInputValue.value,
                         color: colorPickerSelect.value,
                         isRecurring: isRecurringCheckbox.checked,
                         recurringType: getRecurringType(selectedPeriod, isRecurringCheckbox) || '',
@@ -2480,6 +2541,11 @@ let plannedTodosObjectsArray = [];
                     console.log("dynamicContainerDataId = " + dynamicContainerDataId);
                     addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
                 }
+
+                let weekOption = newTodo.weekPeriod;
+                weekOption = weekOption.toUpperCase();
+                let ifRecWeekAddToTodoText = "🔁" + weekOption + " ";
+                newTodo.todo = ifRecWeekAddToTodoText + textInputValue.value;
                 plannedTodos.push(newTodo);
             } else if (weeklyRecDurationStringToNumber > 1) {
 
@@ -2512,9 +2578,12 @@ let plannedTodosObjectsArray = [];
                     })
 
                     if (isCopy === false) {
+                        let weekOption = newTodo.weekPeriod;
+                        weekOption = weekOption.toUpperCase();
+                        let ifRecWeekAddToTodoText = "🔁" + weekOption + " ";
                         plannedTodos.push({
                             date: newConvertedWeeklyRecDateString,
-                            todo: textInputValue.value,
+                            todo: ifRecWeekAddToTodoText + textInputValue.value,
                             color: colorPickerSelect.value,
                             isRecurring: isRecurringCheckbox.checked,
                             recurringType: getRecurringType(selectedPeriod, isRecurringCheckbox) || '',
@@ -2584,6 +2653,9 @@ let plannedTodosObjectsArray = [];
             let dailyRecDurationStringToNumber = Number(newTodo.duration);
             console.log("weeklyRecdurationStringToNumber = " + dailyRecDurationStringToNumber);
 
+            let ifRecDaySpecificDaysAddToTodoText = "🔁D ";
+            console.log("ifRecDaySpecificDaysAddToTodoText = " + ifRecDaySpecificDaysAddToTodoText);
+
             // duration === 1
 
             // Add next coming Monday (after startingDate)
@@ -2592,7 +2664,7 @@ let plannedTodosObjectsArray = [];
                     dataDateNr = 0;
                     plannedTodos.push({
                         date: getComingDailyRecTaskDate(dataDateNr),
-                        todo: textInputValue.value,
+                        todo: ifRecDaySpecificDaysAddToTodoText + textInputValue.value,
                         color: colorPickerSelect.value,
                         isRecurring: isRecurringCheckbox.checked,
                         recurringType: getRecurringType(selectedPeriod, isRecurringCheckbox) || '',
@@ -2604,26 +2676,12 @@ let plannedTodosObjectsArray = [];
                     });
                 }
             }
-            // if (plannedTodos.length > 3) {
-            //     console.log("add dynamic container");
-            //     dynamicContainerToken = "addTaskToList";
-            //     // dynamicContainerDataId = plannedTodos.length-1;
-            //     addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
-            // }
-                        // _ _ _
-            // if (plannedTodos.length >= 3) {
-            //     dynamicContainerToken = "load_func";
-            //     dynamicContainerDataId = plannedTodos.length;
-            //     // dynamicContainerDataId = plannedTodos.length+1;
-            //     console.log("dynamicContainerDataId = " + dynamicContainerDataId);
-            //     addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
-            // }
             if (isRecurringDayTueCheckbox.checked) {
                 if (isCopy === false) {
                     dataDateNr = 1;
                     plannedTodos.push({
                         date: getComingDailyRecTaskDate(dataDateNr),
-                        todo: textInputValue.value,
+                        todo: ifRecDaySpecificDaysAddToTodoText + textInputValue.value,
                         color: colorPickerSelect.value,
                         isRecurring: isRecurringCheckbox.checked,
                         recurringType: getRecurringType(selectedPeriod, isRecurringCheckbox) || '',
@@ -2635,26 +2693,12 @@ let plannedTodosObjectsArray = [];
                     });
                 }
             }
-            // if (plannedTodos.length > 3) {
-            //     console.log("add dynamic container");
-            //     dynamicContainerToken = "addTaskToList";
-            //     // dynamicContainerDataId = plannedTodos.length-1;
-            //     addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
-            // }
-                        // _ _ _
-            // if (plannedTodos.length >= 3) {
-            //     dynamicContainerToken = "load_func";
-            //     dynamicContainerDataId = plannedTodos.length;
-            //     // dynamicContainerDataId = plannedTodos.length+1;
-            //     console.log("dynamicContainerDataId = " + dynamicContainerDataId);
-            //     addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
-            // }
             if (isRecurringDayWedCheckbox.checked) {
                 if (isCopy === false) {
                     dataDateNr = 2;
                     plannedTodos.push({
                         date: getComingDailyRecTaskDate(dataDateNr),
-                        todo: textInputValue.value,
+                        todo: ifRecDaySpecificDaysAddToTodoText + textInputValue.value,
                         color: colorPickerSelect.value,
                         isRecurring: isRecurringCheckbox.checked,
                         recurringType: getRecurringType(selectedPeriod, isRecurringCheckbox) || '',
@@ -2666,26 +2710,12 @@ let plannedTodosObjectsArray = [];
                     });
                 }
             }
-            // if (plannedTodos.length > 3) {
-            //     console.log("add dynamic container");
-            //     dynamicContainerToken = "addTaskToList";
-            //     // dynamicContainerDataId = plannedTodos.length-1;
-            //     addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
-            // }
-            // _ _ _
-            // if (plannedTodos.length >= 3) {
-            //     dynamicContainerToken = "load_func";
-            //     dynamicContainerDataId = plannedTodos.length;
-            //     // dynamicContainerDataId = plannedTodos.length+1;
-            //     console.log("dynamicContainerDataId = " + dynamicContainerDataId);
-            //     addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
-            // }
             if (isRecurringDayThuCheckbox.checked) {
                 if (isCopy === false) {
                     dataDateNr = 3;
                     plannedTodos.push({
                         date: getComingDailyRecTaskDate(dataDateNr),
-                        todo: textInputValue.value,
+                        todo: ifRecDaySpecificDaysAddToTodoText + textInputValue.value,
                         color: colorPickerSelect.value,
                         isRecurring: isRecurringCheckbox.checked,
                         recurringType: getRecurringType(selectedPeriod, isRecurringCheckbox) || '',
@@ -2697,26 +2727,12 @@ let plannedTodosObjectsArray = [];
                     });
                 }
             }
-            // if (plannedTodos.length > 3) {
-            //     console.log("add dynamic container");
-            //     dynamicContainerToken = "addTaskToList";
-            //     // dynamicContainerDataId = plannedTodos.length-1;
-            //     addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
-            // }
-                        // _ _ _
-            // if (plannedTodos.length >= 3) {
-            //     dynamicContainerToken = "load_func";
-            //     dynamicContainerDataId = plannedTodos.length;
-            //     // dynamicContainerDataId = plannedTodos.length+1;
-            //     console.log("dynamicContainerDataId = " + dynamicContainerDataId);
-            //     addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
-            // }
             if (isRecurringDayFriCheckbox.checked) {
                 if (isCopy === false) {
                     dataDateNr = 4;
                     plannedTodos.push({
                         date: getComingDailyRecTaskDate(dataDateNr),
-                        todo: textInputValue.value,
+                        todo: ifRecDaySpecificDaysAddToTodoText + textInputValue.value,
                         color: colorPickerSelect.value,
                         isRecurring: isRecurringCheckbox.checked,
                         recurringType: getRecurringType(selectedPeriod, isRecurringCheckbox) || '',
@@ -2728,26 +2744,12 @@ let plannedTodosObjectsArray = [];
                     });
                 }
             }
-            // if (plannedTodos.length > 3) {
-            //     console.log("add dynamic container");
-            //     dynamicContainerToken = "addTaskToList";
-            //     // dynamicContainerDataId = plannedTodos.length-1;
-            //     addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
-            // }
-                        // _ _ _
-            // if (plannedTodos.length >= 3) {
-            //     dynamicContainerToken = "load_func";
-            //     dynamicContainerDataId = plannedTodos.length;
-            //     // dynamicContainerDataId = plannedTodos.length+1;
-            //     console.log("dynamicContainerDataId = " + dynamicContainerDataId);
-            //     addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
-            // }
             if (isRecurringDaySatCheckbox.checked) {
                 if (isCopy === false) {
                     dataDateNr = 5;
                     plannedTodos.push({
                         date: getComingDailyRecTaskDate(dataDateNr),
-                        todo: textInputValue.value,
+                        todo: ifRecDaySpecificDaysAddToTodoText + textInputValue.value,
                         color: colorPickerSelect.value,
                         isRecurring: isRecurringCheckbox.checked,
                         recurringType: getRecurringType(selectedPeriod, isRecurringCheckbox) || '',
@@ -2759,26 +2761,12 @@ let plannedTodosObjectsArray = [];
                     });
                 }
             }
-            // if (plannedTodos.length > 3) {
-            //     console.log("add dynamic container");
-            //     dynamicContainerToken = "addTaskToList";
-            //     // dynamicContainerDataId = plannedTodos.length-1;
-            //     addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
-            // }
-            // _ _ _
-            // if (plannedTodos.length >= 3) {
-            //     dynamicContainerToken = "load_func";
-            //     dynamicContainerDataId = plannedTodos.length;
-            //     // dynamicContainerDataId = plannedTodos.length+1;
-            //     console.log("dynamicContainerDataId = " + dynamicContainerDataId);
-            //     addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
-            // }
             if (isRecurringDaySunCheckbox.checked) {
                 if (isCopy === false) {
                     dataDateNr = 6;
                     plannedTodos.push({
                         date: getComingDailyRecTaskDate(dataDateNr),
-                        todo: textInputValue.value,
+                        todo: ifRecDaySpecificDaysAddToTodoText + textInputValue.value,
                         color: colorPickerSelect.value,
                         isRecurring: isRecurringCheckbox.checked,
                         recurringType: getRecurringType(selectedPeriod, isRecurringCheckbox) || '',
@@ -2790,74 +2778,6 @@ let plannedTodosObjectsArray = [];
                     });
                 }
             }
-            // if (plannedTodos.length >= 3) {
-            //     dynamicContainerToken = "load_func";
-            //     dynamicContainerDataId = plannedTodos.length;
-            //     // dynamicContainerDataId = plannedTodos.length+1;
-            //     console.log("dynamicContainerDataId = " + dynamicContainerDataId);
-            //     addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
-            // }
-
-            // _ _ _
-            // if (weeklyRecDurationStringToNumber === 1) {
-            //     if (plannedTodos.length >= 3) {
-            //         dynamicContainerToken = "load_func";
-            //         dynamicContainerDataId = plannedTodos.length;
-            //         // dynamicContainerDataId = plannedTodos.length+1;
-            //         console.log("dynamicContainerDataId = " + dynamicContainerDataId);
-            //         addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
-            //     }
-            //     plannedTodos.push(newTodo);
-            // }
-            // else if (weeklyRecDurationStringToNumber > 1) {
-
-            //     for (let i = 0; i < weeklyRecDurationStringToNumber; i++) {
-            //         console.log("i = " + i);
-
-            //         let newWeeklyRecDurationDate = new Date(newTodo.date);
-            //         newWeeklyRecDurationDate.setDate(newWeeklyRecDurationDate.getDate() + i); // Increment the date by 'i' days
-            //         let newConvertedWeeklyRecDateString = newWeeklyRecDurationDate.toISOString().split('T')[0]; // Convert the date to 'YYYY-MM-DD' format
-
-            //         // if duration > '1' -> multiple newConvertedDateString variables
-            //         console.log("newConvertedWeeklyRecDateString = " + newConvertedWeeklyRecDateString);
-            //         console.log("JSON.stringify(newTodo) = " + JSON.stringify(newTodo));
-
-            //         console.log("weekdayNameToWeekDayNumber(newConvertedWeeklyRecDateString) = " + weekdayNameToWeekDayNumber(newConvertedWeeklyRecDateString));
-
-                    // _ _ _
-                    // _ _ _
-
-                    // MAKE A DUPLICATE CHECKER !? (Don't add duplicates)
-
-                    // isCopy = false;
-
-                    // _ _ _
-
-                    // plannedTodos.forEach((todoRow) => {
-                    //     if (todoRow.date === newConvertedWeeklyRecDateString && todoRow.todo === textInputValue.value) {
-                    //         isCopy = true;
-                    //     }
-                    //     if (isCopy === true) {
-                    //         alert("Todo duplicate exists in the interval.");
-                    //         return 0;
-                    //     }
-                    //     console.log("isCopy ooa = " + isCopy);
-                    // })
-
-                    // if (isCopy === false) {
-                    //     plannedTodos.push({
-                    //         date: newConvertedWeeklyRecDateString,
-                    //         todo: textInputValue.value,
-                    //         color: colorPickerSelect.value,
-                    //         isRecurring: isRecurringCheckbox.checked,
-                    //         recurringType: getRecurringType(selectedPeriod, isRecurringCheckbox) || '',
-                    //         everyWeek: everyWeek,
-                    //         weekPeriod: weekPeriod,
-                    //         duration: getDuration(selectedPeriod),
-                    //         dataDate: weekdayNameToWeekDayNumberMultiDuration(newConvertedWeeklyRecDateString),
-                    //         isEmpty: false
-                    //     });
-                    // }
 
                 // _ _ _
                 // _ _ _
@@ -3063,6 +2983,161 @@ let plannedTodosObjectsArray = [];
 
         // _ _ _
 
+                        // duration
+
+            // Add daily recurring (duration) todo (Every week)
+            else if (plannedTodos.length >= 0 &&
+                isCopy === false &&
+                newTodo.date >= dateDisplay.textContent &&
+                newTodo.isRecurring === true &&
+                newTodo.recurringType === 'd' &&
+                isRecurringWeekDayNumberRadioButton.checked === true &&
+                recurringDayEveryWeekCheckBox.checked === true) {
+
+                        let durationDaysNumber = Number(dayInput.value);
+                        console.log("durationDaysNumber (1) = " + durationDaysNumber);
+
+                        if (durationDaysNumber > 7) {
+                            durationDaysNumber = 7;
+                        }
+
+                        console.log("durationDaysNumber (2) = " + durationDaysNumber);
+
+                        // addDateDaysRecDailyWithDuration(durationDaysNumber);
+
+                        // function addDateDaysRecDailyWithDuration(durationDaysNumber) {
+
+                        for (let i = 1; i <= durationDaysNumber; i++) {
+
+                            let newDailyRecDurationDate = new Date(newTodo.date);
+                            newDailyRecDurationDate.setDate(newDailyRecDurationDate.getDate() + i-1); // Increment the date by 'i' days
+                            let newConvertedDailyRecDateString = newDailyRecDurationDate.toISOString().split('T')[0]; // Convert the date to 'YYYY-MM-DD' format
+                            // newTodo.date = newConvertedDailyRecDateString;
+
+
+                            // console.log("newTodo.date = ") = newTodo.date;
+                            console.log("newConvertedDailyRecDateString = ");
+
+                            // let dailyDaysDurationDateToPush =
+                            // plannedTodos.push(newTodo);
+                            // return newTodo.date;
+
+                            let ifRecDayDurationDaysAddToTodoText = "🔁#D ";
+                            console.log("ifRecDayDurationDaysAddToTodoText = " + ifRecDayDurationDaysAddToTodoText);
+
+                            console.log("i.toString() = " + i.toString());
+
+                            if (plannedTodos.length >= 3) {
+                                dynamicContainerToken = "load_func";
+                                dynamicContainerDataId = plannedTodos.length;
+                                // dynamicContainerDataId = plannedTodos.length+1;
+                                console.log("dynamicContainerDataId = " + dynamicContainerDataId);
+                                addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
+                            }
+
+                            if (isCopy === false) {
+                                // dataDateNr = 0;
+                                plannedTodos.push({
+                                    date: newConvertedDailyRecDateString,
+                                    todo: ifRecDayDurationDaysAddToTodoText + textInputValue.value,
+                                    color: colorPickerSelect.value,
+                                    isRecurring: true,
+                                    recurringType: getRecurringType(selectedPeriod, isRecurringCheckbox) || '',
+                                    everyWeek: true,
+                                    weekPeriod: '',
+                                    // duration: '1',
+                                    duration: durationDaysNumber.toString(),
+                                    dataDate: weekdayNameToWeekDayNumberMultiDuration(newConvertedDailyRecDateString),
+                                    isEmpty: false
+                                });
+                            }
+                        }
+
+                    if (plannedTodos.length > 1 && plannedTodos.length <= 3) {
+                        // Sorteringsfunktion (sortera 1. Datum, 2. Tid (Senast sist))
+                        sortPlannedTodos(plannedTodos);
+                        console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos))
+                    }
+                console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos));
+                }
+
+                // Add daily recurring (duration) todo (!Every week)
+                else if (plannedTodos.length >= 0 &&
+                    isCopy === false &&
+                    newTodo.date >= dateDisplay.textContent &&
+                    newTodo.isRecurring === true &&
+                    newTodo.recurringType === 'd' &&
+                    isRecurringWeekDayNumberRadioButton.checked === true &&
+                    recurringDayEveryWeekCheckBox.checked === false) {
+
+                        let durationDaysNumber = Number(dayInput.value);
+                        console.log("durationDaysNumber (1) = " + durationDaysNumber);
+
+                        if (durationDaysNumber > 14) {
+                            alert("Duration set to 14 (Add multiple todos if duration > 14 days)")
+                            durationDaysNumber = 14;
+                        }
+
+
+                        console.log("durationDaysNumber (2) = " + durationDaysNumber);
+
+                        // addDateDaysRecDailyWithDuration(durationDaysNumber);
+
+                        // function addDateDaysRecDailyWithDuration(durationDaysNumber) {
+
+                        for (let i = 1; i <= durationDaysNumber; i++) {
+
+                            let newDailyRecDurationDate = new Date(newTodo.date);
+                            newDailyRecDurationDate.setDate(newDailyRecDurationDate.getDate() + i-1); // Increment the date by 'i' days
+                            let newConvertedDailyRecDateString = newDailyRecDurationDate.toISOString().split('T')[0]; // Convert the date to 'YYYY-MM-DD' format
+                            // newTodo.date = newConvertedDailyRecDateString;
+
+
+                            // console.log("newTodo.date = ") = newTodo.date;
+                            console.log("newConvertedDailyRecDateString = ");
+
+                            // let dailyDaysDurationDateToPush =
+                            // plannedTodos.push(newTodo);
+                            // return newTodo.date;
+
+                            console.log("i.toString() = " + i.toString());
+
+                            if (plannedTodos.length >= 3) {
+                                dynamicContainerToken = "load_func";
+                                dynamicContainerDataId = plannedTodos.length;
+                                // dynamicContainerDataId = plannedTodos.length+1;
+                                console.log("dynamicContainerDataId = " + dynamicContainerDataId);
+                                addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
+                            }
+
+                            if (isCopy === false) {
+                                // dataDateNr = 0;
+                                plannedTodos.push({
+                                    date: newConvertedDailyRecDateString,
+                                    todo: textInputValue.value,
+                                    color: colorPickerSelect.value,
+                                    isRecurring: false,
+                                    recurringType: getRecurringType(selectedPeriod, isRecurringCheckbox) || '',
+                                    everyWeek: false,
+                                    weekPeriod: '',
+                                    // duration: '1',
+                                    duration: durationDaysNumber,
+                                    dataDate: weekdayNameToWeekDayNumberMultiDuration(newConvertedDailyRecDateString),
+                                    isEmpty: false
+                                });
+                            }
+                        }
+
+                        if (plannedTodos.length > 1 && plannedTodos.length <= 3) {
+                            // Sorteringsfunktion (sortera 1. Datum, 2. Tid (Senast sist))
+                            sortPlannedTodos(plannedTodos);
+                            console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos))
+                        }
+                    console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos));
+                    }
+
+        // _ _ _
+
         // Add todo object to plannedTodos (!recurring)
         // else if (plannedTodos.length >= 0 && isCopy === false && newTodo.date >= dateDisplay.textContent && newTodo.isRecurring !== true) {
             else if (plannedTodos.length >= 0 && isCopy === false && newTodo.date >= dateDisplay.textContent && newTodo.isRecurring === false) {
@@ -3150,6 +3225,8 @@ let plannedTodosObjectsArray = [];
     // updateTodoSchedule();
 
     // currentMondayTodos = currentMondayTodosStart;
+
+    console.log("JSON.stringify(plannedTodos) (i addTaskToList, före updateCurrentWeekSchedule = " + JSON.stringify(plannedTodos));
 
     // Update the week schedule (when a new task is added)
     updateCurrentWeekSchedule();
@@ -6853,7 +6930,8 @@ let specificTodoContainer = wrapperContainer.getElementsByClassName('todo-contai
         todoColorCollection[i].style.backgroundColor = 'rgb(228, 228, 228)';
     }
 
-    dateInputValue.value = '';
+    dateInputValue.value = dateDisplay.textContent;
+    // dateInputValue.value = '';
     // plannedTodos.length = 0;
     // plannedTodos = plannedTodosStart;
     plannedTodos = [];
@@ -9640,6 +9718,35 @@ function hasLessThanNineTodos(plannedTodos, targetDate) {
 
 // _ _ _
 
+function checkTodoText(todoText) {
+    // Regex to match 🔁#D
+    const patternFalse = /🔁#D/;
+    // Regex to match 🔁D
+    const patternTrue = /🔁D/;
+
+    // Check if the todo text matches the false pattern
+    if (patternFalse.test(todoText)) {
+        return false;
+    }
+
+    // Check if the todo text matches the true pattern
+    if (patternTrue.test(todoText)) {
+        return true;
+    }
+
+    // Default return value if neither pattern matches
+    return null;
+}
+
+// Example usage:
+const todo1 = "This is a todo with 🔁D";
+const todo2 = "This is a todo with 🔁#D";
+const todo3 = "This is a todo with no special text";
+
+console.log(checkTodoText(todo1)); // true
+console.log(checkTodoText(todo2)); // false
+console.log(checkTodoText(todo3)); // null
+
 
 // Function to read the Blob (file) content and separate the strings
 
@@ -9685,7 +9792,6 @@ function readFile(file) {
             }
             // If the recurring year is in the future: Update recurring todos (year)
             else if (todoDateLoad >= currentDate && todoRow.isRecurring === true && todoRow.recurringType === 'y') {
-                console.log("todoDateLoad >= currentDate (Y)")
                 plannedTodosOnLoad.push(todoRow);
             }
             // If the recurring year is in the past: update the year (and dataDate) to the coming year (and weekday number)
@@ -9777,37 +9883,104 @@ function readFile(file) {
 
                 plannedTodosOnLoad.push(todoRow);
             }
-                        // If the recurring day is in the future: Update recurring todos (day)
-                        else if (todoDateLoad >= currentDate && todoRow.isRecurring === true && todoRow.recurringType === 'd') {
-                            console.log("todoDateLoad >= currentDate (D)")
-                            plannedTodosOnLoad.push(todoRow);
-                        }
-                        // If the recurring day is in the past: update the day to the coming week...
-                        else if (todoDateLoad < currentDate && todoRow.isRecurring === true && todoRow.everyWeek === true && todoRow.recurringType === 'd') {
+                // If the recurring day is in the future: Update recurring todos (day)
+                else if (todoDateLoad >= currentDate && todoRow.isRecurring === true && todoRow.recurringType === 'd') {
+                    console.log("todoDateLoad >= currentDate (D)")
+                    plannedTodosOnLoad.push(todoRow);
+                }
+                // If the recurring day is in the past: update the day to the coming week... (specific day-s)
+                else if (todoDateLoad < currentDate && todoRow.isRecurring === true && todoRow.everyWeek === true && todoRow.recurringType === 'd' && checkTodoText(todoRow.todo) === true) {
+                    console.log("todoRowLoad.date < dateDisplay.textContent (D)");
+
+                    console.log("JSON.stringify(todoRow) = " + JSON.stringify(todoRow));
+
+
+
+                    let currentWeekDayDateFromDataDate = weekDates[todoRow.dataDate];
+                    console.log("currentWeekDayDateFromDataDate = " + currentWeekDayDateFromDataDate);
+
+                        console.log("Here (currentWeekDayDateFromDataDate < currentDate) ");
+
+                        let convertDateToFullDate = new Date(currentWeekDayDateFromDataDate);
+
+                        let convertedDateFromFullDate = new Date(currentWeekDayDateFromDataDate);
+                        convertedDateFromFullDate.setDate(convertDateToFullDate.getDate() + 7);
+                        let convertedDateFromFullDateString = convertedDateFromFullDate.toISOString().split('T')[0]; // Convert the date to 'YYYY-MM-DD' format
+
+                        console.log("convertedDateFromFullDateString = " + convertedDateFromFullDateString);
+
+                        // Add 7 days to currentWeekDayDateFromDataDate
+                        todoRow.date = convertedDateFromFullDateString
+
+                        plannedTodosOnLoad.push(todoRow);
+                }
+                        // If the recurring day is in the past: update the day to the coming week... (duration)
+                        else if (todoDateLoad < currentDate && todoRow.isRecurring === true && todoRow.everyWeek === true && todoRow.recurringType === 'd' && checkTodoText(todoRow.todo) === false) {
                             console.log("todoRowLoad.date < dateDisplay.textContent (D)");
 
                             console.log("JSON.stringify(todoRow) = " + JSON.stringify(todoRow));
 
-
+                            let convertedDateFromFullDateString;
 
                             let currentWeekDayDateFromDataDate = weekDates[todoRow.dataDate];
                             console.log("currentWeekDayDateFromDataDate = " + currentWeekDayDateFromDataDate);
+                            console.log("currentDate = " + currentDate);
 
-                                console.log("Here (currentWeekDayDateFromDataDate < currentDate) ");
+                                if (currentWeekDayDateFromDataDate >= dateDisplay.textContent) {
 
-                                let convertDateToFullDate = new Date(currentWeekDayDateFromDataDate);
+                                    console.log("Here (currentWeekDayDateFromDataDate < currentDate) ");
 
-                                let convertedDateFromFullDate = new Date(currentWeekDayDateFromDataDate);
-                                convertedDateFromFullDate.setDate(convertDateToFullDate.getDate() + 7);
-                                let convertedDateFromFullDateString = convertedDateFromFullDate.toISOString().split('T')[0]; // Convert the date to 'YYYY-MM-DD' format
+                                    let convertDateToFullDate = new Date(currentWeekDayDateFromDataDate);
 
-                                console.log("convertedDateFromFullDateString = " + convertedDateFromFullDateString);
+                                    let convertedDateFromFullDate = new Date(currentWeekDayDateFromDataDate);
+                                    convertedDateFromFullDate.setDate(convertDateToFullDate.getDate());
+                                    convertedDateFromFullDateString = convertedDateFromFullDate.toISOString().split('T')[0]; // Convert the date to 'YYYY-MM-DD' format
 
-                                // Add 7 days to currentWeekDayDateFromDataDate
+                                    console.log("convertedDateFromFullDateString = " + convertedDateFromFullDateString);
+                                }
+                                else if (currentWeekDayDateFromDataDate < dateDisplay.textContent) {
+                                    let convertDateToFullDate = new Date(currentWeekDayDateFromDataDate);
+
+                                    let convertedDateFromFullDate = new Date(currentWeekDayDateFromDataDate);
+                                    convertedDateFromFullDate.setDate(convertDateToFullDate.getDate() + 7);
+                                    convertedDateFromFullDateString = convertedDateFromFullDate.toISOString().split('T')[0]; // Convert the date to 'YYYY-MM-DD' format
+
+                                    console.log("convertedDateFromFullDateString = " + convertedDateFromFullDateString);
+
+                                    // Add 7 days to currentWeekDayDateFromDataDate
+                                }
+
+                                // Add 0 days to currentWeekDayDateFromDataDate
                                 todoRow.date = convertedDateFromFullDateString
 
                                 plannedTodosOnLoad.push(todoRow);
                         }
+                                    // If the recurring day is in the past: update the day to the coming week... (duration)
+                                    else if (todoDateLoad < currentDate && todoRow.isRecurring === true && todoRow.everyWeek === true && todoRow.recurringType === 'd' && checkTodoText(todoRow.todo) === false) {
+                                        console.log("todoRowLoad.date < dateDisplay.textContent (D)");
+
+                                        console.log("JSON.stringify(todoRow) = " + JSON.stringify(todoRow));
+
+
+
+                                        let currentWeekDayDateFromDataDate = weekDates[todoRow.dataDate];
+                                        console.log("currentWeekDayDateFromDataDate = " + currentWeekDayDateFromDataDate);
+
+                                            console.log("Here (currentWeekDayDateFromDataDate < currentDate) ");
+
+                                            let convertDateToFullDate = new Date(currentWeekDayDateFromDataDate);
+
+                                            let convertedDateFromFullDate = new Date(currentWeekDayDateFromDataDate);
+                                            convertedDateFromFullDate.setDate(convertDateToFullDate.getDate());
+                                            let convertedDateFromFullDateString = convertedDateFromFullDate.toISOString().split('T')[0]; // Convert the date to 'YYYY-MM-DD' format
+
+                                            console.log("convertedDateFromFullDateString = " + convertedDateFromFullDateString);
+
+                                            // Add 0 days to currentWeekDayDateFromDataDate
+                                            todoRow.date = convertedDateFromFullDateString
+
+                                            plannedTodosOnLoad.push(todoRow);
+                                    }
         });
 
         console.log("JSON.stringify(plannedTodos) i readFile() = " + JSON.stringify(plannedTodos));
