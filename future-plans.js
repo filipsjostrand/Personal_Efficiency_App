@@ -1954,63 +1954,64 @@ let plannedTodosObjectsArray = [];
             // alert("Select a valid date (YYYY-MM-DD), date is set to default (today)");
             // dateInputValue.value = dateDisplay.textContent;
         }
-        else if (dateInputValue.value === weekDates[0] && currentMondayTodos.length === 9) {
-            // blockedDates.push(weekDates[0]);
-            blockedDates.add(weekDates[0]);
-            alert(weekDates[0] + " is full")
-        }
-        else if (dateInputValue.value === weekDates[1] && currentTuesdayTodos.length === 9) {
-            blockedDates.add(weekDates[1]);
-            alert(weekDates[1] + " is full")
-        }
-        else if (dateInputValue.value === weekDates[2] && currentWednesdayTodos.length === 9) {
-            blockedDates.add(weekDates[2]);
-            alert(weekDates[2] + " is full")
-        }
-        else if (dateInputValue.value === weekDates[3] && currentThursdayTodos.length === 9) {
-            blockedDates.add(weekDates[3]);
-            alert(weekDates[3] + " is full")
-        }
-        else if (dateInputValue.value === weekDates[4] && currentFridayTodos.length === 9) {
-            blockedDates.add(weekDates[4]);
-            alert(weekDates[4] + " is full")
-        }
-        else if (dateInputValue.value === weekDates[5] && currentSaturdayTodos.length === 9) {
-            blockedDates.add(weekDates[5]);
-            alert(weekDates[5] + " is full")
-        }
-        else if (dateInputValue.value === weekDates[6] && currentSundayTodos.length === 9) {
-            blockedDates.add(weekDates[6]);
-            alert(weekDates[6] + " is full")
-        }
-        else if (dateInputValue.value === weekDates[0] && currentMondayTodos.length >= 9) {
-            alert("Current Monday tasks (9) has exceeded")
-            return 0;
-        }
-        else if (dateInputValue.value === weekDates[1] && currentTuesdayTodos.length >= 9) {
-            alert("Current Tuesday tasks (9) has exceeded")
-            return 0;
-        }
-        else if (dateInputValue.value === weekDates[2] && currentWednesdayTodos.length >= 9) {
-            alert("Current Wednesday tasks (9) has exceeded")
-            return 0;
-        }
-        else if (dateInputValue.value === weekDates[3] && currentThursdayTodos.length >= 9) {
-            alert("Current Thursday tasks (9) has exceeded")
-            return 0;
-        }
-        else if (dateInputValue.value === weekDates[4] &&currentFridayTodos.length >= 9) {
-            alert("Current Friday tasks (9) has exceeded")
-            return 0;
-        }
-        else if (dateInputValue.value === weekDates[5] && currentSaturdayTodos.length >= 9) {
-            alert("Current Saturday tasks (9) has exceeded")
-            return 0;
-        }
-        else if (dateInputValue.value === weekDates[6] && currentSundayTodos.length >= 9) {
-            alert("Current Sunday tasks (9) has exceeded")
-            return 0;
-        }
+        // 2025-03-03: Ta bort 9-gräns
+        // else if (dateInputValue.value === weekDates[0] && currentMondayTodos.length === 9) {
+        //     // blockedDates.push(weekDates[0]);
+        //     blockedDates.add(weekDates[0]);
+        //     alert(weekDates[0] + " is full")
+        // }
+        // else if (dateInputValue.value === weekDates[1] && currentTuesdayTodos.length === 9) {
+        //     blockedDates.add(weekDates[1]);
+        //     alert(weekDates[1] + " is full")
+        // }
+        // else if (dateInputValue.value === weekDates[2] && currentWednesdayTodos.length === 9) {
+        //     blockedDates.add(weekDates[2]);
+        //     alert(weekDates[2] + " is full")
+        // }
+        // else if (dateInputValue.value === weekDates[3] && currentThursdayTodos.length === 9) {
+        //     blockedDates.add(weekDates[3]);
+        //     alert(weekDates[3] + " is full")
+        // }
+        // else if (dateInputValue.value === weekDates[4] && currentFridayTodos.length === 9) {
+        //     blockedDates.add(weekDates[4]);
+        //     alert(weekDates[4] + " is full")
+        // }
+        // else if (dateInputValue.value === weekDates[5] && currentSaturdayTodos.length === 9) {
+        //     blockedDates.add(weekDates[5]);
+        //     alert(weekDates[5] + " is full")
+        // }
+        // else if (dateInputValue.value === weekDates[6] && currentSundayTodos.length === 9) {
+        //     blockedDates.add(weekDates[6]);
+        //     alert(weekDates[6] + " is full")
+        // }
+        // else if (dateInputValue.value === weekDates[0] && currentMondayTodos.length >= 9) {
+        //     alert("Current Monday tasks (9) has exceeded")
+        //     return 0;
+        // }
+        // else if (dateInputValue.value === weekDates[1] && currentTuesdayTodos.length >= 9) {
+        //     alert("Current Tuesday tasks (9) has exceeded")
+        //     return 0;
+        // }
+        // else if (dateInputValue.value === weekDates[2] && currentWednesdayTodos.length >= 9) {
+        //     alert("Current Wednesday tasks (9) has exceeded")
+        //     return 0;
+        // }
+        // else if (dateInputValue.value === weekDates[3] && currentThursdayTodos.length >= 9) {
+        //     alert("Current Thursday tasks (9) has exceeded")
+        //     return 0;
+        // }
+        // else if (dateInputValue.value === weekDates[4] &&currentFridayTodos.length >= 9) {
+        //     alert("Current Friday tasks (9) has exceeded")
+        //     return 0;
+        // }
+        // else if (dateInputValue.value === weekDates[5] && currentSaturdayTodos.length >= 9) {
+        //     alert("Current Saturday tasks (9) has exceeded")
+        //     return 0;
+        // }
+        // else if (dateInputValue.value === weekDates[6] && currentSundayTodos.length >= 9) {
+        //     alert("Current Sunday tasks (9) has exceeded")
+        //     return 0;
+        // }
         else if(dateInputValue.value !== "") {
             // else if(dateInputValue.value !== undefined && dateInputValue.value !== null) {
             let newTodo = {
@@ -2030,34 +2031,36 @@ let plannedTodosObjectsArray = [];
                 // dataDate: '',
 
         // _ _ _
-        if (dateInputValue.value === weekDates[0] && currentMondayTodos.length < 9) {
-            blockedDates.delete(weekDates[0]);
-            console.log("wd0")
-        }
-        else if (dateInputValue.value === weekDates[1] && currentTuesdayTodos.length < 9) {
-            blockedDates.delete(weekDates[1]);
-            console.log("wd1")
-        }
-        else if (dateInputValue.value === weekDates[2] && currentWednesdayTodos.length < 9) {
-            blockedDates.delete(weekDates[2]);
-            console.log("wd2")
-        }
-        else if (dateInputValue.value === weekDates[3] && currentThursdayTodos.length < 9) {
-            blockedDates.delete(weekDates[3]);
-            console.log("wd3")
-        }
-        else if (dateInputValue.value === weekDates[4] && currentFridayTodos.length < 9) {
-            blockedDates.delete(weekDates[4]);
-            console.log("wd4")
-        }
-        else if (dateInputValue.value === weekDates[5] && currentSaturdayTodos.length < 9) {
-            blockedDates.delete(weekDates[5]);
-            console.log("wd5")
-        }
-        else if (dateInputValue.value === weekDates[6] && currentSundayTodos.length < 9) {
-            blockedDates.delete(weekDates[6]);
-            console.log("wd6")
-        }
+
+        // 2025-03-03: Ta bort 9-gräns
+        // if (dateInputValue.value === weekDates[0] && currentMondayTodos.length < 9) {
+        //     blockedDates.delete(weekDates[0]);
+        //     console.log("wd0")
+        // }
+        // else if (dateInputValue.value === weekDates[1] && currentTuesdayTodos.length < 9) {
+        //     blockedDates.delete(weekDates[1]);
+        //     console.log("wd1")
+        // }
+        // else if (dateInputValue.value === weekDates[2] && currentWednesdayTodos.length < 9) {
+        //     blockedDates.delete(weekDates[2]);
+        //     console.log("wd2")
+        // }
+        // else if (dateInputValue.value === weekDates[3] && currentThursdayTodos.length < 9) {
+        //     blockedDates.delete(weekDates[3]);
+        //     console.log("wd3")
+        // }
+        // else if (dateInputValue.value === weekDates[4] && currentFridayTodos.length < 9) {
+        //     blockedDates.delete(weekDates[4]);
+        //     console.log("wd4")
+        // }
+        // else if (dateInputValue.value === weekDates[5] && currentSaturdayTodos.length < 9) {
+        //     blockedDates.delete(weekDates[5]);
+        //     console.log("wd5")
+        // }
+        // else if (dateInputValue.value === weekDates[6] && currentSundayTodos.length < 9) {
+        //     blockedDates.delete(weekDates[6]);
+        //     console.log("wd6")
+        // }
         // _ _ _
 
             console.log("aa");
@@ -4191,14 +4194,16 @@ function getDataId(dataId) {
         console.log("dataId = " + dataId);
         dateInputString = dateCollection[dataId].value;
 
-        blockedDates.forEach((blockedDate) => {
-            if (dateInputString === blockedDate) {
-                console.log("defaultDate = " + defaultDate);
-                dateInputString = defaultDate;
-                plannedTodos[dataId].date = defaultDate;
-                plannedTodos[dataId].dataDate = weekdayNameToWeekDayNumberMultiDuration(defaultDate);
-            }
-        })
+        // 2025-03-03: Ta bort 9-gräns
+        // blockedDates.forEach((blockedDate) => {
+        //     if (dateInputString === blockedDate) {
+        //         console.log("defaultDate = " + defaultDate);
+        //         dateInputString = defaultDate;
+        //         plannedTodos[dataId].date = defaultDate;
+        //         plannedTodos[dataId].dataDate = weekdayNameToWeekDayNumberMultiDuration(defaultDate);
+        //     }
+        // })
+        // _ _ _
 
     //     blockedDates.forEach(blockedDate => {
     //         for (let i = 0; i < plannedTodos.length; i++) {
@@ -4271,7 +4276,7 @@ function checkIfDateAndTextAreEmpty() {
         // When input is changed for any date field (in Current Plan)... (start)
         dateFields.forEach(function(field) {
 
-            console.log("blockedDates = " + blockedDates)
+            // console.log("blockedDates = " + blockedDates)
 
             field.addEventListener('input', function(event) {
 
@@ -4314,7 +4319,32 @@ function checkIfDateAndTextAreEmpty() {
 
                 //if (dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[0] && currentMondayTodos.length < 9 || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[1] && currentTuesdayTodos.length < 9 || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[2] && currentWednesdayTodos.length < 9 || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[3] && currentThursdayTodos.length < 9 || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[4] && currentFridayTodos.length < 9 || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[5] && currentSaturdayTodos.length < 9 || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[6] && currentSundayTodos.length < 9) {
 
-                if (dateCollection[dataId].value !== '' && currentMondayTodos.length < 9 || dateCollection[dataId].value !== '' && currentTuesdayTodos.length < 9 || dateCollection[dataId].value !== '' && currentWednesdayTodos.length < 9 || dateCollection[dataId].value !== '' && currentThursdayTodos.length < 9 || dateCollection[dataId].value !== '' && currentFridayTodos.length < 9 || dateCollection[dataId].value !== '' && currentSaturdayTodos.length < 9 || dateCollection[dataId].value !== '' && currentSundayTodos.length < 9) {
+                // 2025-03-03: Ta bort 9-gräns
+                if (dateCollection[dataId].value !== ''
+                    // &&
+                    // currentMondayTodos.length < 9
+                    || dateCollection[dataId].value !== ''
+                    // &&
+                    // currentTuesdayTodos.length < 9
+                    || dateCollection[dataId].value !== ''
+                    // &&
+                    // currentWednesdayTodos.length < 9
+                    || dateCollection[dataId].value !== ''
+                    // &&
+                    // currentThursdayTodos.length < 9
+                    || dateCollection[dataId].value !== ''
+                    // &&
+                    // currentFridayTodos.length < 9
+                    || dateCollection[dataId].value !== ''
+                    // &&
+                    // currentSaturdayTodos.length < 9
+                    || dateCollection[dataId].value !== ''
+                    // &&
+                    // currentSundayTodos.length < 9
+                    )
+                    {
+
+                    // _ _ _
 
                 // UPPDATERA TODO-TASK-List-DATUM (och dataDate), Lägg till på nytt (objekt och DOM-element) och ta bort gammalt (objekt och DOM-element)
 
@@ -4384,7 +4414,22 @@ function checkIfDateAndTextAreEmpty() {
                     console.log("dateCollection (dataId) is invalid")
                     checkIfDateAndTextAreEmpty();
                 }
-                else if (dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[0] && currentMondayTodos.length === 9 || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[1] && currentTuesdayTodos.length === 9 || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[2] && currentWednesdayTodos.length === 9 || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[3] && currentThursdayTodos.length === 9 || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[4] && currentFridayTodos.length === 9 || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[5] && currentSaturdayTodos.length === 9 || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[6] && currentSundayTodos.length === 9) {
+                // 2025-03-03: Ta bort 9-gräns
+                else if (dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[0]
+                    // && currentMondayTodos.length === 9
+                    || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[1]
+                    // && currentTuesdayTodos.length === 9
+                    || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[2]
+                    // && currentWednesdayTodos.length === 9
+                    || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[3]
+                    // && currentThursdayTodos.length === 9
+                    || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[4]
+                    // && currentFridayTodos.length === 9
+                    || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[5]
+                    // && currentSaturdayTodos.length === 9
+                    || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[6]
+                    // && currentSundayTodos.length === 9
+                ) {
                     dateCollection[dataId].value = '';
                     alert('Unavailable selection: The task limit has been reached for that day.')
                 }
@@ -4652,7 +4697,8 @@ function checkIfDateAndTextAreEmpty() {
 
             console.log("which day ooa");
 
-            for (let i = 0; i < 8; i++) {
+            // 2025-03-03: Ta bort 9-gräns
+            // for (let i = 0; i < 8; i++) {
             if (currentMondayTodos.length > 0 &&
                 // Om currentMondayTodos-objekt och plannedTodos-objekt är lika ==> hämta färg för currentMondayTodos-objekt från plannedTodos-DOM-färg-listan (todoColorCollection)
                 currentMondayTodos[i]?.date === plannedTodos[dataId]?.date &&
@@ -4698,7 +4744,7 @@ function checkIfDateAndTextAreEmpty() {
                         currentSundayTodos[i].color = returnDefinedColorText(todoColorCollection[dataId].value);
                         currentSundayTodoItems[i].style.backgroundColor = returnRgbColor(e.target.getAttribute('data-color'));
                     }
-            }
+            // }
 
             // _ _ _
 
@@ -4828,6 +4874,77 @@ let specificTodoContainer = wrapperContainer.getElementsByClassName('todo-contai
                 getDataId(dataId);
                 console.log("getDataId(dataId) körs i clear specifictodo (= #" + getDataId(dataId) + " )");
 
+                // _ _ _
+
+                // Delete specific week schedule day div (if div number > 10)
+
+                // if (currentMondayTodoItems.length > 10 && currentMondayTodos.length < currentMondayTodoItems.length) {
+
+                if (currentMondayTodoItems.length > 10 ||
+                    currentTuesdayTodoItems.length > 10 ||
+                    currentWednesdayTodoItems.length > 10 ||
+                    currentThursdayTodoItems.length > 10 ||
+                    currentFridayTodoItems.length > 10 ||
+                    currentSaturdayTodoItems.length > 10 ||
+                    currentSundayTodoItems.length > 10
+                ) {
+
+                    // Get current day
+                    // if (plannedTodos[dataId].date === )
+                    console.log("plannedTodos[dataId].dataDate = " + plannedTodos[dataId].dataDate)
+                    let dataDateOfplannedTodosToRemove = plannedTodos[dataId].dataDate
+
+                    console.log("plannedTodos[dataId].date === weekDates[dataDateOfplannedTodosToRemove = " + plannedTodos[dataId].date === weekDates[dataDateOfplannedTodosToRemove]);
+
+                    // Om date to be removed ingår i veckoschemat
+                    if (plannedTodos[dataId].date === weekDates[dataDateOfplannedTodosToRemove]) {
+                        // getDayOfWeek(plannedTodos[dataId].date)
+
+
+
+                        if (plannedTodos[dataId].dataDate === "0") {
+                            // deleteMondayTodo();
+                            // removeLastMondayTodoDiv();
+                            removeLastMondayTodoDiv();
+
+                            // _ _ _
+                            // let currentMondayTodosLengthStart = currentMondayTodos.length;
+                            // let currentMondayTodosLengthEnd = currentMondayTodoItems.length - 1;
+
+                            // // let dateCollectionLengthEnd = plannedTodos.length;
+
+                            // let currentMondayTodosDiff = currentMondayTodosLengthStart - currentMondayTodosLengthEnd
+                            // // let dateCollectionLengthDiff = dateCollectionLengthStart - dateCollectionLengthEnd;
+
+                            // for (let i = 0; i < currentMondayTodosDiff; i++) {
+                            //     // deleteMondayTodo();
+                            //     removeLastMondayTodoDiv();
+                            // }
+                            // _ _ _
+
+
+                        }
+                        else if (plannedTodos[dataId].dataDate === "1") {
+                            removeLastTuesdayTodoDiv();
+                        }
+                        else if (plannedTodos[dataId].dataDate === "2") {
+                            removeLastWednesdayTodoDiv();
+                        }
+                        else if (plannedTodos[dataId].dataDate === "3") {
+                            removeLastThursdayTodoDiv();
+                        }
+                        else if (plannedTodos[dataId].dataDate === "4") {
+                            removeLastFridayTodoDiv();
+                        }
+                        else if (plannedTodos[dataId].dataDate === "5") {
+                            removeLastSaturdayTodoDiv();
+                        }
+                        else if (plannedTodos[dataId].dataDate === "6") {
+                            removeLastSundayTodoDiv();
+                        }
+
+                    }
+                }
 
                 // remove all recurring todos with duration >1 (not necessarily the same name and date)
                 if (plannedTodos[dataId].isRecurring === true && plannedTodos[dataId].duration > '1') {
@@ -4844,29 +4961,67 @@ let specificTodoContainer = wrapperContainer.getElementsByClassName('todo-contai
                             let dateCollectionLengthStart = dateCollection.length;
 
                             // Töm DOM:en
-                            for (let i = 0; i < currentSaturdayTodoItems.length; i++) {
-                                currentMondayTodoItems[i].innerHTML = '';
-                                currentMondayTodoItems[i].value = '';
-                                currentMondayTodoItems[i].style.backgroundColor = '';
-                                currentTuesdayTodoItems[i].innerHTML = '';
-                                currentTuesdayTodoItems[i].value = '';
-                                currentTuesdayTodoItems[i].style.backgroundColor = '';
-                                currentWednesdayTodoItems[i].innerHTML = '';
-                                currentWednesdayTodoItems[i].value = '';
-                                currentWednesdayTodoItems[i].style.backgroundColor = '';
-                                currentThursdayTodoItems[i].innerHTML = '';
-                                currentThursdayTodoItems[i].value = '';
-                                currentThursdayTodoItems[i].style.backgroundColor = '';
-                                currentFridayTodoItems[i].innerHTML = '';
-                                currentFridayTodoItems[i].value = '';
-                                currentFridayTodoItems[i].style.backgroundColor = '';
-                                currentSaturdayTodoItems[i].innerHTML = '';
-                                currentSaturdayTodoItems[i].value = '';
-                                currentSaturdayTodoItems[i].style.backgroundColor = '';
-                                currentSundayTodoItems[i].innerHTML = '';
-                                currentSundayTodoItems[i].value = '';
-                                currentSundayTodoItems[i].style.backgroundColor = '';
-                            }
+
+                            currentMondayTodoItems.forEach((dayRow) => {
+                                dayRow.innerHTML = '';
+                                dayRow.value = '';
+                                dayRow.style.backgroundColor = '';
+                            })
+                            currentTuesdayTodoItems.forEach((dayRow) => {
+                                dayRow.innerHTML = '';
+                                dayRow.value = '';
+                                dayRow.style.backgroundColor = '';
+                            })
+                            currentWednesdayTodoItems.forEach((dayRow) => {
+                                dayRow.innerHTML = '';
+                                dayRow.value = '';
+                                dayRow.style.backgroundColor = '';
+                            })
+                            currentThursdayTodoItems.forEach((dayRow) => {
+                                dayRow.innerHTML = '';
+                                dayRow.value = '';
+                                dayRow.style.backgroundColor = '';
+                            })
+                            currentFridayTodoItems.forEach((dayRow) => {
+                                dayRow.innerHTML = '';
+                                dayRow.value = '';
+                                dayRow.style.backgroundColor = '';
+                            })
+                            currentSaturdayTodoItems.forEach((dayRow) => {
+                                dayRow.innerHTML = '';
+                                dayRow.value = '';
+                                dayRow.style.backgroundColor = '';
+                            })
+                            currentSundayTodoItems.forEach((dayRow) => {
+                                dayRow.innerHTML = '';
+                                dayRow.value = '';
+                                dayRow.style.backgroundColor = '';
+                            })
+
+
+                            // for (let i = 0; i < currentSaturdayTodoItems.length; i++) {
+                            //     currentMondayTodoItems[i].innerHTML = '';
+                            //     currentMondayTodoItems[i].value = '';
+                            //     currentMondayTodoItems[i].style.backgroundColor = '';
+                            //     currentTuesdayTodoItems[i].innerHTML = '';
+                            //     currentTuesdayTodoItems[i].value = '';
+                            //     currentTuesdayTodoItems[i].style.backgroundColor = '';
+                            //     currentWednesdayTodoItems[i].innerHTML = '';
+                            //     currentWednesdayTodoItems[i].value = '';
+                            //     currentWednesdayTodoItems[i].style.backgroundColor = '';
+                            //     currentThursdayTodoItems[i].innerHTML = '';
+                            //     currentThursdayTodoItems[i].value = '';
+                            //     currentThursdayTodoItems[i].style.backgroundColor = '';
+                            //     currentFridayTodoItems[i].innerHTML = '';
+                            //     currentFridayTodoItems[i].value = '';
+                            //     currentFridayTodoItems[i].style.backgroundColor = '';
+                            //     currentSaturdayTodoItems[i].innerHTML = '';
+                            //     currentSaturdayTodoItems[i].value = '';
+                            //     currentSaturdayTodoItems[i].style.backgroundColor = '';
+                            //     currentSundayTodoItems[i].innerHTML = '';
+                            //     currentSundayTodoItems[i].value = '';
+                            //     currentSundayTodoItems[i].style.backgroundColor = '';
+                            // }
 
                             for (let i = 0; i < dateCollection.length; i++) {
                                 dateCollection[i].value = '';
@@ -4930,10 +5085,17 @@ let specificTodoContainer = wrapperContainer.getElementsByClassName('todo-contai
                                 if (todoRow.date <= weekDates[3]) {
                                 console.log("todoRow.date <= weekDates[3] = " + todoRow.date <= weekDates[3]);
                             }
-                                if (currentThursdayTodos.length < 9) {
-                                console.log("currentThursdayTodos.length < 9 = " + currentThursdayTodos.length < 9);
-                                }
-                                if (getDayOfWeek(todoRow.date) === "thu" && todoRow.isRecurring === false && todoRow.dataDate === "3" && todoRow.date <= weekDates[3] && currentThursdayTodos.length < 9) {
+                            // 2025-03-03: Ta bort 9-gräns
+                                // if (currentThursdayTodos.length < 9) {
+                                // console.log("currentThursdayTodos.length < 9 = " + currentThursdayTodos.length < 9);
+                                // }
+                                if (getDayOfWeek(todoRow.date) === "thu" &&
+                                todoRow.isRecurring === false &&
+                                todoRow.dataDate === "3" &&
+                                todoRow.date <= weekDates[3]
+                                // && currentThursdayTodos.length < 9
+                                )
+                                {
                                     console.log("getDayOfWeek(todoRow.date) === 'thu' && todoRow.isRecurring === false && todoRow.dataDate === '3' ... MATCH")
                                 }
                             })
@@ -4986,29 +5148,65 @@ let specificTodoContainer = wrapperContainer.getElementsByClassName('todo-contai
 
 
                             // Töm DOM:en
-                            for (let i = 0; i < currentSaturdayTodoItems.length; i++) {
-                                currentMondayTodoItems[i].innerHTML = '';
-                                currentMondayTodoItems[i].value = '';
-                                currentMondayTodoItems[i].style.backgroundColor = '';
-                                currentTuesdayTodoItems[i].innerHTML = '';
-                                currentTuesdayTodoItems[i].value = '';
-                                currentTuesdayTodoItems[i].style.backgroundColor = '';
-                                currentWednesdayTodoItems[i].innerHTML = '';
-                                currentWednesdayTodoItems[i].value = '';
-                                currentWednesdayTodoItems[i].style.backgroundColor = '';
-                                currentThursdayTodoItems[i].innerHTML = '';
-                                currentThursdayTodoItems[i].value = '';
-                                currentThursdayTodoItems[i].style.backgroundColor = '';
-                                currentFridayTodoItems[i].innerHTML = '';
-                                currentFridayTodoItems[i].value = '';
-                                currentFridayTodoItems[i].style.backgroundColor = '';
-                                currentSaturdayTodoItems[i].innerHTML = '';
-                                currentSaturdayTodoItems[i].value = '';
-                                currentSaturdayTodoItems[i].style.backgroundColor = '';
-                                currentSundayTodoItems[i].innerHTML = '';
-                                currentSundayTodoItems[i].value = '';
-                                currentSundayTodoItems[i].style.backgroundColor = '';
-                            }
+                            // for (let i = 0; i < currentSaturdayTodoItems.length; i++) {
+                            //     currentMondayTodoItems[i].innerHTML = '';
+                            //     currentMondayTodoItems[i].value = '';
+                            //     currentMondayTodoItems[i].style.backgroundColor = '';
+                            //     currentTuesdayTodoItems[i].innerHTML = '';
+                            //     currentTuesdayTodoItems[i].value = '';
+                            //     currentTuesdayTodoItems[i].style.backgroundColor = '';
+                            //     currentWednesdayTodoItems[i].innerHTML = '';
+                            //     currentWednesdayTodoItems[i].value = '';
+                            //     currentWednesdayTodoItems[i].style.backgroundColor = '';
+                            //     currentThursdayTodoItems[i].innerHTML = '';
+                            //     currentThursdayTodoItems[i].value = '';
+                            //     currentThursdayTodoItems[i].style.backgroundColor = '';
+                            //     currentFridayTodoItems[i].innerHTML = '';
+                            //     currentFridayTodoItems[i].value = '';
+                            //     currentFridayTodoItems[i].style.backgroundColor = '';
+                            //     currentSaturdayTodoItems[i].innerHTML = '';
+                            //     currentSaturdayTodoItems[i].value = '';
+                            //     currentSaturdayTodoItems[i].style.backgroundColor = '';
+                            //     currentSundayTodoItems[i].innerHTML = '';
+                            //     currentSundayTodoItems[i].value = '';
+                            //     currentSundayTodoItems[i].style.backgroundColor = '';
+                            // }
+
+                            currentMondayTodoItems.forEach((dayRow) => {
+                                dayRow.innerHTML = '';
+                                dayRow.value = '';
+                                dayRow.style.backgroundColor = '';
+                            })
+                            currentTuesdayTodoItems.forEach((dayRow) => {
+                                dayRow.innerHTML = '';
+                                dayRow.value = '';
+                                dayRow.style.backgroundColor = '';
+                            })
+                            currentWednesdayTodoItems.forEach((dayRow) => {
+                                dayRow.innerHTML = '';
+                                dayRow.value = '';
+                                dayRow.style.backgroundColor = '';
+                            })
+                            currentThursdayTodoItems.forEach((dayRow) => {
+                                dayRow.innerHTML = '';
+                                dayRow.value = '';
+                                dayRow.style.backgroundColor = '';
+                            })
+                            currentFridayTodoItems.forEach((dayRow) => {
+                                dayRow.innerHTML = '';
+                                dayRow.value = '';
+                                dayRow.style.backgroundColor = '';
+                            })
+                            currentSaturdayTodoItems.forEach((dayRow) => {
+                                dayRow.innerHTML = '';
+                                dayRow.value = '';
+                                dayRow.style.backgroundColor = '';
+                            })
+                            currentSundayTodoItems.forEach((dayRow) => {
+                                dayRow.innerHTML = '';
+                                dayRow.value = '';
+                                dayRow.style.backgroundColor = '';
+                            })
 
                             for (let i = 0; i < dateCollection.length; i++) {
                                 dateCollection[i].value = '';
@@ -6052,29 +6250,65 @@ let specificTodoContainer = wrapperContainer.getElementsByClassName('todo-contai
 
 
                             // Töm DOM:en
-                            for (let i = 0; i < currentSaturdayTodoItems.length; i++) {
-                                currentMondayTodoItems[i].innerHTML = '';
-                                currentMondayTodoItems[i].value = '';
-                                currentMondayTodoItems[i].style.backgroundColor = '';
-                                currentTuesdayTodoItems[i].innerHTML = '';
-                                currentTuesdayTodoItems[i].value = '';
-                                currentTuesdayTodoItems[i].style.backgroundColor = '';
-                                currentWednesdayTodoItems[i].innerHTML = '';
-                                currentWednesdayTodoItems[i].value = '';
-                                currentWednesdayTodoItems[i].style.backgroundColor = '';
-                                currentThursdayTodoItems[i].innerHTML = '';
-                                currentThursdayTodoItems[i].value = '';
-                                currentThursdayTodoItems[i].style.backgroundColor = '';
-                                currentFridayTodoItems[i].innerHTML = '';
-                                currentFridayTodoItems[i].value = '';
-                                currentFridayTodoItems[i].style.backgroundColor = '';
-                                currentSaturdayTodoItems[i].innerHTML = '';
-                                currentSaturdayTodoItems[i].value = '';
-                                currentSaturdayTodoItems[i].style.backgroundColor = '';
-                                currentSundayTodoItems[i].innerHTML = '';
-                                currentSundayTodoItems[i].value = '';
-                                currentSundayTodoItems[i].style.backgroundColor = '';
-                            }
+                            // for (let i = 0; i < currentSaturdayTodoItems.length; i++) {
+                            //     currentMondayTodoItems[i].innerHTML = '';
+                            //     currentMondayTodoItems[i].value = '';
+                            //     currentMondayTodoItems[i].style.backgroundColor = '';
+                            //     currentTuesdayTodoItems[i].innerHTML = '';
+                            //     currentTuesdayTodoItems[i].value = '';
+                            //     currentTuesdayTodoItems[i].style.backgroundColor = '';
+                            //     currentWednesdayTodoItems[i].innerHTML = '';
+                            //     currentWednesdayTodoItems[i].value = '';
+                            //     currentWednesdayTodoItems[i].style.backgroundColor = '';
+                            //     currentThursdayTodoItems[i].innerHTML = '';
+                            //     currentThursdayTodoItems[i].value = '';
+                            //     currentThursdayTodoItems[i].style.backgroundColor = '';
+                            //     currentFridayTodoItems[i].innerHTML = '';
+                            //     currentFridayTodoItems[i].value = '';
+                            //     currentFridayTodoItems[i].style.backgroundColor = '';
+                            //     currentSaturdayTodoItems[i].innerHTML = '';
+                            //     currentSaturdayTodoItems[i].value = '';
+                            //     currentSaturdayTodoItems[i].style.backgroundColor = '';
+                            //     currentSundayTodoItems[i].innerHTML = '';
+                            //     currentSundayTodoItems[i].value = '';
+                            //     currentSundayTodoItems[i].style.backgroundColor = '';
+                            // }
+
+                            currentMondayTodoItems.forEach((dayRow) => {
+                                dayRow.innerHTML = '';
+                                dayRow.value = '';
+                                dayRow.style.backgroundColor = '';
+                            })
+                            currentTuesdayTodoItems.forEach((dayRow) => {
+                                dayRow.innerHTML = '';
+                                dayRow.value = '';
+                                dayRow.style.backgroundColor = '';
+                            })
+                            currentWednesdayTodoItems.forEach((dayRow) => {
+                                dayRow.innerHTML = '';
+                                dayRow.value = '';
+                                dayRow.style.backgroundColor = '';
+                            })
+                            currentThursdayTodoItems.forEach((dayRow) => {
+                                dayRow.innerHTML = '';
+                                dayRow.value = '';
+                                dayRow.style.backgroundColor = '';
+                            })
+                            currentFridayTodoItems.forEach((dayRow) => {
+                                dayRow.innerHTML = '';
+                                dayRow.value = '';
+                                dayRow.style.backgroundColor = '';
+                            })
+                            currentSaturdayTodoItems.forEach((dayRow) => {
+                                dayRow.innerHTML = '';
+                                dayRow.value = '';
+                                dayRow.style.backgroundColor = '';
+                            })
+                            currentSundayTodoItems.forEach((dayRow) => {
+                                dayRow.innerHTML = '';
+                                dayRow.value = '';
+                                dayRow.style.backgroundColor = '';
+                            })
 
                             for (let i = 0; i < dateCollection.length; i++) {
                                 dateCollection[i].value = '';
@@ -6936,6 +7170,28 @@ let specificTodoContainer = wrapperContainer.getElementsByClassName('todo-contai
     // plannedTodos = plannedTodosStart;
     plannedTodos = [];
 
+    for (let i = currentMondayTodoItems.length; currentMondayTodoItems.length > 10; i--) {
+        removeLastMondayTodoDiv();
+    }
+    for (let i = currentTuesdayTodoItems.length; currentTuesdayTodoItems.length > 10; i--) {
+        removeLastTuesdayTodoDiv();
+    }
+    for (let i = currentWednesdayTodoItems.length; currentWednesdayTodoItems.length > 10; i--) {
+        removeLastWednesdayTodoDiv();
+    }
+    for (let i = currentThursdayTodoItems.length; currentThursdayTodoItems.length > 10; i--) {
+        removeLastThursdayTodoDiv();
+    }
+    for (let i = currentFridayTodoItems.length; currentFridayTodoItems.length > 10; i--) {
+        removeLastFridayTodoDiv();
+    }
+    for (let i = currentSaturdayTodoItems.length; currentSaturdayTodoItems.length > 10; i--) {
+        removeLastSaturdayTodoDiv();
+    }
+    for (let i = currentSundayTodoItems.length; currentSundayTodoItems.length > 10; i--) {
+        removeLastSundayTodoDiv();
+    }
+
     currentMondayTodoItems.forEach(Element => {
         Element.innerHTML = "";
         Element.style.backgroundColor = "";
@@ -7101,13 +7357,13 @@ clearAllButton.addEventListener('click', clearAll);
 // Show plan (in week schedule)
 
 // Monday Schedule Div
-let monScheduleWrapper = document.getElementById("mon-todo");
-let tueScheduleWrapper = document.getElementById("tue-todo");
-let wedScheduleWrapper = document.getElementById("wed-todo");
-let thuScheduleWrapper = document.getElementById("thu-todo");
-let friScheduleWrapper = document.getElementById("fri-todo");
-let satScheduleWrapper = document.getElementById("sat-todo");
-let sunScheduleWrapper = document.getElementById("sun-todo");
+var monScheduleWrapper = document.getElementById("mon-todo");
+var tueScheduleWrapper = document.getElementById("tue-todo");
+var wedScheduleWrapper = document.getElementById("wed-todo");
+var thuScheduleWrapper = document.getElementById("thu-todo");
+var friScheduleWrapper = document.getElementById("fri-todo");
+var satScheduleWrapper = document.getElementById("sat-todo");
+var sunScheduleWrapper = document.getElementById("sun-todo");
 
 
 function addCurrentWeekdayDivStyle(currentWeekdayDiv) {
@@ -7129,58 +7385,62 @@ let newFriWeekDiv = document.createElement("fri-schedule-div");
 let newSatWeekDiv = document.createElement("sat-schedule-div");
 let newSunWeekDiv = document.createElement("sun-schedule-div");
 
-function addTodoDivs() {
+// function addTodoDivs() {
 
-    for (let i = 0; i < 8; i++) {
+//     // 2025-03-03: Ta bort 9-gräns
+//     // for (let i = 0; i < 8; i++) {
 
-        // Create 9 Monday divs
-        newMonWeekDiv.classList.add("mon-todo-week-item");
-        newMonWeekDiv.id = "mon-week-schedule";
-        addCurrentWeekdayDivStyle(newMonWeekDiv)
+//         // Create 9 Monday divs
+//         newMonWeekDiv.classList.add("mon-todo-week-item");
+//         newMonWeekDiv.id = "mon-week-schedule";
+//         addCurrentWeekdayDivStyle(newMonWeekDiv)
 
-        // Create 9 Tuesday divs
-        newTueWeekDiv.classList.add("tue-todo-week-item");
-        newTueWeekDiv.id = "tue-week-schedule";
-        addCurrentWeekdayDivStyle(newTueWeekDiv)
+//         // Create 9 Tuesday divs
+//         newTueWeekDiv.classList.add("tue-todo-week-item");
+//         newTueWeekDiv.id = "tue-week-schedule";
+//         addCurrentWeekdayDivStyle(newTueWeekDiv)
 
-        // Create 9 Wednesday divs
-        newWedWeekDiv.classList.add("wed-todo-week-item");
-        newWedWeekDiv.id = "wed-week-schedule";
-        addCurrentWeekdayDivStyle(newWedWeekDiv)
+//         // Create 9 Wednesday divs
+//         newWedWeekDiv.classList.add("wed-todo-week-item");
+//         newWedWeekDiv.id = "wed-week-schedule";
+//         addCurrentWeekdayDivStyle(newWedWeekDiv)
 
-        // Create 9 Thursday divs
-        newThuWeekDiv.classList.add("thu-todo-week-item");
-        newThuWeekDiv.id = "thu-week-schedule";
-        addCurrentWeekdayDivStyle(newThuWeekDiv)
+//         // Create 9 Thursday divs
+//         newThuWeekDiv.classList.add("thu-todo-week-item");
+//         newThuWeekDiv.id = "thu-week-schedule";
+//         addCurrentWeekdayDivStyle(newThuWeekDiv)
 
-        // Create 9 Friday divs
-        newFriWeekDiv.classList.add("fri-todo-week-item");
-        newFriWeekDiv.id = "fri-week-schedule";
-        addCurrentWeekdayDivStyle(newFriWeekDiv)
+//         // Create 9 Friday divs
+//         newFriWeekDiv.classList.add("fri-todo-week-item");
+//         newFriWeekDiv.id = "fri-week-schedule";
+//         addCurrentWeekdayDivStyle(newFriWeekDiv)
 
-        // Create 9 Saturday divs
-        newSatWeekDiv.classList.add("sat-todo-week-item");
-        newSatWeekDiv.id = "sat-week-schedule";
-        addCurrentWeekdayDivStyle(newSatWeekDiv)
+//         // Create 9 Saturday divs
+//         newSatWeekDiv.classList.add("sat-todo-week-item");
+//         newSatWeekDiv.id = "sat-week-schedule";
+//         addCurrentWeekdayDivStyle(newSatWeekDiv)
 
-        // Create 9 Sunday divs
-        newSunWeekDiv.classList.add("sun-todo-week-item");
-        newSunWeekDiv.id = "sun-week-schedule";
-        addCurrentWeekdayDivStyle(newSunWeekDiv)
+//         // Create 9 Sunday divs
+//         newSunWeekDiv.classList.add("sun-todo-week-item");
+//         newSunWeekDiv.id = "sun-week-schedule";
+//         addCurrentWeekdayDivStyle(newSunWeekDiv)
 
-        // Create new divs (e.g. id = "mon-week-schedule") in the Monday -> Sunday schedule fields
-        monScheduleWrapper.appendChild(newMonWeekDiv)
-        tueScheduleWrapper.appendChild(newTueWeekDiv)
-        wedScheduleWrapper.appendChild(newWedWeekDiv)
-        thuScheduleWrapper.appendChild(newThuWeekDiv)
-        friScheduleWrapper.appendChild(newFriWeekDiv)
-        satScheduleWrapper.appendChild(newSatWeekDiv)
-        sunScheduleWrapper.appendChild(newSunWeekDiv)
-    }
-}
+//         // Create new divs (e.g. id = "mon-week-schedule") in the Monday -> Sunday schedule fields
+//         monScheduleWrapper.appendChild(newMonWeekDiv)
+//         tueScheduleWrapper.appendChild(newTueWeekDiv)
+//         wedScheduleWrapper.appendChild(newWedWeekDiv)
+//         thuScheduleWrapper.appendChild(newThuWeekDiv)
+//         friScheduleWrapper.appendChild(newFriWeekDiv)
+//         satScheduleWrapper.appendChild(newSatWeekDiv)
+//         sunScheduleWrapper.appendChild(newSunWeekDiv)
+//     // }
+// }
 
-// Add divs to week schedule
-addTodoDivs();
+// _ _ _
+// Edit 2025-03-03:
+// // Add divs to week schedule
+// addTodoDivs();
+// _ _ _
 
 // for (let i = 0; i < plannedTodos.length; i++) {
 
@@ -7193,13 +7453,22 @@ addTodoDivs();
 // const currentMondayTodoItems = document.querySelectorAll("[class^='mon-todo-week-item-']");
 
 // let currentMondayTodoItems = document.querySelectorAll(".mon-todo-week-item");
-let currentMondayTodoItems = document.querySelectorAll(".monday-target-div");
-let currentTuesdayTodoItems = document.querySelectorAll(".tuesday-target-div");
-let currentWednesdayTodoItems = document.querySelectorAll(".wednesday-target-div");
-let currentThursdayTodoItems = document.querySelectorAll(".thursday-target-div");
-let currentFridayTodoItems = document.querySelectorAll(".friday-target-div");
-let currentSaturdayTodoItems = document.querySelectorAll(".saturday-target-div");
-let currentSundayTodoItems = document.querySelectorAll(".sunday-target-div");
+
+// let currentMondayTodoItems = document.querySelectorAll(".monday-target-div");
+// let currentTuesdayTodoItems = document.querySelectorAll(".tuesday-target-div");
+// let currentWednesdayTodoItems = document.querySelectorAll(".wednesday-target-div");
+// let currentThursdayTodoItems = document.querySelectorAll(".thursday-target-div");
+// let currentFridayTodoItems = document.querySelectorAll(".friday-target-div");
+// let currentSaturdayTodoItems = document.querySelectorAll(".saturday-target-div");
+// let currentSundayTodoItems = document.querySelectorAll(".sunday-target-div");
+
+var currentMondayTodoItems = document.querySelectorAll(".monday-target-div");
+var currentTuesdayTodoItems = document.querySelectorAll(".tuesday-target-div");
+var currentWednesdayTodoItems = document.querySelectorAll(".wednesday-target-div");
+var currentThursdayTodoItems = document.querySelectorAll(".thursday-target-div");
+var currentFridayTodoItems = document.querySelectorAll(".friday-target-div");
+var currentSaturdayTodoItems = document.querySelectorAll(".saturday-target-div");
+var currentSundayTodoItems = document.querySelectorAll(".sunday-target-div");
 
 let mondayTodoItem = document.querySelector(".mon-todo-week-item");
 let tuesdayTodoItem = document.querySelector(".tue-todo-week-item");
@@ -7252,12 +7521,333 @@ let sundayTodoCollection = document.querySelectorAll(".grid-item day7");
 // }
 
 
+    // Function to add a new divs
+
+    // Add Monday weekschedule divs (> 10)
+    function addNewMondayTodoDiv() {
+        console.log("addNewMondayTodoDiv() körs");
+        if (currentMondayTodos.length > 10) {
+            console.log("currentMondayTodos.length > 10");
+            console.log("ooa");
+
+            // If more todos exist than the current divs, add more divs
+            if (currentMondayTodos.length > currentMondayTodoItems.length) {
+                let newDiv = document.createElement("div");
+                newDiv.classList.add("monday-target-div");
+                newDiv.setAttribute("data-date", "0");
+                monScheduleWrapper.appendChild(newDiv);
+                // currentMondayTodoItems.appendChild(newDiv);
+
+                    // Update the NodeList by re-selecting the elements
+                currentMondayTodoItems = document.querySelectorAll(".monday-target-div");
+                console.log("currentMondayTodoItems.length = " + currentMondayTodoItems);
+            }
+        }
+    }
+
+    // Add Tuesday weekschedule divs (> 10)
+    function addNewTuesdayTodoDiv() {
+        console.log("addNewTuesdayTodoDiv() körs");
+        if (currentTuesdayTodos.length > 10) {
+            console.log("currentTuesdayTodos.length > 10");
+
+            // If more todos exist than the current divs, add more divs
+            if (currentTuesdayTodos.length > currentTuesdayTodoItems.length) {
+                let newDiv = document.createElement("div");
+                newDiv.classList.add("tuesday-target-div");
+                newDiv.setAttribute("data-date", "1");
+                tueScheduleWrapper.appendChild(newDiv);
+
+                // Update the NodeList by re-selecting the elements
+                currentTuesdayTodoItems = document.querySelectorAll(".tuesday-target-div");
+                console.log("currentTuesdayTodoItems.length = " + currentTuesdayTodoItems);
+            }
+        }
+    }
+
+    // Add Wednesday weekschedule divs (> 10)
+    function addNewWednesdayTodoDiv() {
+        console.log("addNewWednesdayTodoDiv() körs");
+        if (currentWednesdayTodos.length > 10) {
+            console.log("currentWednesdayTodos.length > 10");
+
+            // If more todos exist than the current divs, add more divs
+            if (currentWednesdayTodos.length > currentWednesdayTodoItems.length) {
+                let newDiv = document.createElement("div");
+                newDiv.classList.add("wednesday-target-div");
+                newDiv.setAttribute("data-date", "2");
+                wedScheduleWrapper.appendChild(newDiv);
+
+                // Update the NodeList by re-selecting the elements
+                currentWednesdayTodoItems = document.querySelectorAll(".wednesday-target-div");
+                console.log("currentWednesdayTodoItems.length = " + currentWednesdayTodoItems);
+            }
+        }
+    }
+
+        // Add Thursday weekschedule divs (> 10)
+        function addNewThursdayTodoDiv() {
+            console.log("addNewThursdayTodoDiv() körs");
+            if (currentThursdayTodos.length > 10) {
+                console.log("currentThursdayTodos.length > 10");
+
+                // If more todos exist than the current divs, add more divs
+                if (currentThursdayTodos.length > currentThursdayTodoItems.length) {
+                    let newDiv = document.createElement("div");
+                    newDiv.classList.add("thursday-target-div");
+                    newDiv.setAttribute("data-date", "3");
+                    thuScheduleWrapper.appendChild(newDiv);
+
+                    // Update the NodeList by re-selecting the elements
+                    currentThursdayTodoItems = document.querySelectorAll(".thursday-target-div");
+                    console.log("currentThursdayTodoItems.length = " + currentThursdayTodoItems);
+                }
+            }
+        }
+
+         // Add Friday weekschedule divs (> 10)
+    function addNewFridayTodoDiv() {
+        console.log("addNewFridayTodoDiv() körs");
+        if (currentFridayTodos.length > 10) {
+            console.log("currentFridayTodos.length > 10");
+
+            // If more todos exist than the current divs, add more divs
+            if (currentFridayTodos.length > currentFridayTodoItems.length) {
+                let newDiv = document.createElement("div");
+                newDiv.classList.add("friday-target-div");
+                newDiv.setAttribute("data-date", "4");
+                friScheduleWrapper.appendChild(newDiv);
+
+                // Update the NodeList by re-selecting the elements
+                currentFridayTodoItems = document.querySelectorAll(".friday-target-div");
+                console.log("currentFridayTodoItems.length = " + currentFridayTodoItems);
+            }
+        }
+    }
+
+        // Add Saturday weekschedule divs (> 10)
+        function addNewSaturdayTodoDiv() {
+            console.log("addNewSaturdayTodoDiv() körs");
+            if (currentSaturdayTodos.length > 10) {
+                console.log("currentSaturdayTodos.length > 10");
+
+                // If more todos exist than the current divs, add more divs
+                if (currentSaturdayTodos.length > currentSaturdayTodoItems.length) {
+                    let newDiv = document.createElement("div");
+                    newDiv.classList.add("saturday-target-div");
+                    newDiv.setAttribute("data-date", "5");
+                    satScheduleWrapper.appendChild(newDiv);
+
+                    // Update the NodeList by re-selecting the elements
+                    currentSaturdayTodoItems = document.querySelectorAll(".saturday-target-div");
+                    console.log("currentSaturdayTodoItems.length = " + currentSaturdayTodoItems);
+                }
+            }
+        }
+
+            // Add Sunday weekschedule divs (> 10)
+    function addNewSundayTodoDiv() {
+        console.log("addNewSundayTodoDiv() körs");
+        if (currentSundayTodos.length > 10) {
+            console.log("currentSundayTodos.length > 10");
+
+            // If more todos exist than the current divs, add more divs
+            if (currentSundayTodos.length > currentSundayTodoItems.length) {
+                let newDiv = document.createElement("div");
+                newDiv.classList.add("sunday-target-div");
+                newDiv.setAttribute("data-date", "6");
+                sunScheduleWrapper.appendChild(newDiv);
+
+                // Update the NodeList by re-selecting the elements
+                currentSundayTodoItems = document.querySelectorAll(".sunday-target-div");
+                console.log("currentSundayTodoItems.length = " + currentSundayTodoItems);
+            }
+        }
+    }
+
+    // _ _ _
+
+
+    // function deleteMondayTodo() {
+    //     console.log("deleteMondayTodo() körs");
+    //     // if (currentMondayTodos.length > 10) {
+
+
+    //     // if (currentMondayTodoItems.length > 10 && currentMondayTodos.length < currentMondayTodoItems.length) {
+
+
+    //             // let currentMondayTodoItems = document.querySelectorAll(".monday-target-div");
+
+    //         // // Ensure there is at least one div left to remove
+    //         // if (currentMondayTodoItems.length > 10) {
+
+
+    //             // let wrapperContainer = document.getElementById('todo-wrapper');
+    //             // let specificTodoContainer = wrapperContainer.getElementsByClassName('todo-container-element');
+
+    //             // let lastContainerNumber = specificTodoContainer.length - 1
+
+    //             // console.log("specificTodoContainer (i removeLastDynamicTodoContainer) = " + specificTodoContainer);
+
+    //             // if (specificTodoContainer.length > 3) {
+    //             //     let lastContainer = specificTodoContainer[lastContainerNumber];
+    //             //     wrapperContainer.removeChild(lastContainer);
+    //             // } else if (specificTodoContainer.length <= 3) {
+    //             //     console.log("No more todo containers to remove.");
+    //             // }
+
+    //             // wrapperContainer ~ monScheduleWrapper
+
+    //         if (currentMondayTodoItems.length > 10) {
+
+    //             var specificMonDiv = document.getElementsByClassName('monday-target-div');
+
+    //             let lastMonDivIndex = currentMondayTodoItems.length - 1;
+
+    //             console.log("[...specificMonDiv] = " + [...specificMonDiv])
+    //             console.log("[...specificMonDiv[0] = " + [...specificMonDiv][0])
+
+    //             // removelast
+
+    //                 let lastMonDiv = specificMonDiv[lastMonDivIndex];
+    //                 monScheduleWrapper.removeChild(lastMonDiv);
+
+    //         }
+
+    //             // let lastDiv = currentMondayTodoItems[currentMondayTodoItems.length - 1];
+    //         //     // lastDiv.remove();
+    //         // }
+    //     // }
+
+    //     // for (let i = currentMondayTodoItems.length; i > currentMondayTodos.length; i--) {
+    //     //         console.log("index number to remove (from currentMondayTodoItems): = " + i);
+    //     //     // Remove the item from the array
+    //     //     // if ()
+    //     //     currentMondayTodos.splice(i, 1);
+    //     // }
+    // }
+
+    // _ _ _
+
+    function removeLastMondayTodoDiv() {
+        // let monTodoContainer = document.getElementById("mon-todo");
+        // let currentMondayTodoItems = document.querySelectorAll(".monday-target-div");
+
+        // // Ensure there's at least one div left before removing
+        // if (currentMondayTodoItems.length > 10) {
+        //     monTodoContainer.removeChild(currentMondayTodoItems[currentMondayTodoItems.length - 1]);
+        //     currentMondayTodoItems = document.querySelectorAll(".monday-target-div");
+
+            // _ _ _
+
+            // let currentMondayTodoItems = document.querySelectorAll(".monday-target-div");
+            // currentMondayTodoItems = document.querySelectorAll(".monday-target-div");
+
+            if (currentMondayTodoItems.length > 10) {
+                currentMondayTodoItems[currentMondayTodoItems.length - 1].remove();
+
+                // Update the NodeList by re-selecting the elements
+            currentMondayTodoItems = document.querySelectorAll(".monday-target-div");
+
+            console.log("Updated currentMondayTodoItems.length = " + currentMondayTodoItems.length);
+            }
+
+    }
+
+    function removeLastTuesdayTodoDiv() {
+
+            if (currentTuesdayTodoItems.length > 10) {
+                currentTuesdayTodoItems[currentTuesdayTodoItems.length - 1].remove();
+
+                // Update the NodeList by re-selecting the elements
+            currentTuesdayTodoItems = document.querySelectorAll(".tuesday-target-div");
+            console.log("Updated currentTuesdayTodoItems.length = " + currentTuesdayTodoItems.length);
+            }
+    }
+    function removeLastWednesdayTodoDiv() {
+
+        if (currentWednesdayTodoItems.length > 10) {
+            currentWednesdayTodoItems[currentWednesdayTodoItems.length - 1].remove();
+
+            // Update the NodeList by re-selecting the elements
+        currentWednesdayTodoItems = document.querySelectorAll(".wednesday-target-div");
+        console.log("Updated currentWednesdayTodoItems.length = " + currentWednesdayTodoItems.length);
+        }
+    }
+    function removeLastThursdayTodoDiv() {
+
+        if (currentThursdayTodoItems.length > 10) {
+            currentThursdayTodoItems[currentThursdayTodoItems.length - 1].remove();
+
+            // Update the NodeList by re-selecting the elements
+        currentThursdayTodoItems = document.querySelectorAll(".thursday-target-div");
+        console.log("Updated currentThursdayTodoItems.length = " + currentThursdayTodoItems.length);
+        }
+    }
+    function removeLastFridayTodoDiv() {
+
+        if (currentFridayTodoItems.length > 10) {
+            currentFridayTodoItems[currentFridayTodoItems.length - 1].remove();
+
+            // Update the NodeList by re-selecting the elements
+        currentFridayTodoItems = document.querySelectorAll(".friday-target-div");
+        console.log("Updated currentFridayTodoItems.length = " + currentFridayTodoItems.length);
+        }
+    }
+    function removeLastSaturdayTodoDiv() {
+
+        if (currentSaturdayTodoItems.length > 10) {
+            currentSaturdayTodoItems[currentSaturdayTodoItems.length - 1].remove();
+
+            // Update the NodeList by re-selecting the elements
+        currentSaturdayTodoItems = document.querySelectorAll(".saturday-target-div");
+        console.log("Updated currentSaturdayTodoItems.length = " + currentSaturdayTodoItems.length);
+        }
+    }
+    function removeLastSundayTodoDiv() {
+
+        if (currentSundayTodoItems.length > 10) {
+            currentSundayTodoItems[currentSundayTodoItems.length - 1].remove();
+
+            // Update the NodeList by re-selecting the elements
+        currentSundayTodoItems = document.querySelectorAll(".sunday-target-div");
+        console.log("Updated currentSundayTodoItems.length = " + currentSundayTodoItems.length);
+        }
+    }
+
+
+    // _ _ _
+
+    // // If more todos exist than the current divs, add more divs
+    // if (currentMondayTodos.length > currentMondayTodoItems.length) {
+    //     let newDiv = document.createElement("div");
+    //     newDiv.classList.add("monday-target-div");
+    //     newDiv.setAttribute("data-date", "0");
+    //     monScheduleWrapper.appendChild(newDiv);
+    // }
+
+    // _ _ _
+
 // updateCurrentWeekSchedule() (start)
 // update data (to divs in the week schedule)
 function updateCurrentWeekSchedule() {
     console.log("updateCurrentWeekSchedule() körs");
     // currentMondayTodos = plannedTodos.filter(todo => todo.date === weekDates[0]);
     // console.log("currentMondayTodos.object, JSON.stringify(currentMondayTodos) (i updateCurrentWeekSchedule)  = " + JSON.stringify(currentMondayTodos))
+
+    // _ _ _
+    // // Function to add a new div
+    // function addNewMondayTodoDiv() {
+    //     console.log("addNewMondayTodoDiv() körs");
+    //     if (currentMondayTodos.length > 10) {
+    //         const newDiv = document.createElement('div');
+    //         newDiv.className = 'monday-target-div';
+    //         newDiv.setAttribute('data-date', '0');
+    //         document.getElementById('mon-todo').appendChild(newDiv);
+    //     }
+    // }
+    // _ _ _
+
 
     console.log("plannedTodos.length = " + plannedTodos.length)
     console.log("JSON.stringify(plannedTodos) (i updateCurrentWeekSchedule) = " + JSON.stringify(plannedTodos))
@@ -7317,96 +7907,97 @@ function updateCurrentWeekSchedule() {
         // _ _ _
         // _ _ _
 
-    let matchCount = 0;
-    let blockedDatesBoolean = false;
+        // 2025-03-03: Ta bort 9-gräns
+        // let matchCount = 0;
+        // let blockedDatesBoolean = false;
 
-    //Ge felmeddelande om blockedDates matchar plannedTodos-date
-    blockedDates.forEach(blockedDate => {
-        for (let i = 0; i < plannedTodos.length; i++) {
+        // //Ge felmeddelande om blockedDates matchar plannedTodos-date
+        // blockedDates.forEach(blockedDate => {
+        //     for (let i = 0; i < plannedTodos.length; i++) {
 
-            if (plannedTodos[i].date === blockedDate) {
-            // if (plannedTodos[i].date === blockedDate && matchCount <= 9) {
-                matchCount++;
-                // console.log(plannedTodos[i].date + " should not be added to plannedTodos, nor currentDayTodos.")
-                // alert(plannedTodos[i].date + " should not be added to plannedTodos, nor currentDayTodos.")
-                // break;
-                console.log("matchCount (i loop)" + matchCount)
-                // blockedDatesBoolean = false;
-            }
-            // if (matchCount <= 9) {
-            //     console.log("keep going");
-            // }
-            // else if (matchCount > 9) {
-            //     alert(plannedTodos[i].date + " should not be added to plannedTodos, nor currentDayTodos.")
-            //     console.log(`Too many tasks scheduled for ${blockedDate}.`);
-            //     blockedDatesBoolean = true;
-            //     break;
-            // }
-            else if (matchCount > 9) {
-                // console.log(`Too many tasks scheduled for ${targetDate}.`);
+        //         if (plannedTodos[i].date === blockedDate) {
+        //         // if (plannedTodos[i].date === blockedDate && matchCount <= 9) {
+        //             matchCount++;
+        //             // console.log(plannedTodos[i].date + " should not be added to plannedTodos, nor currentDayTodos.")
+        //             // alert(plannedTodos[i].date + " should not be added to plannedTodos, nor currentDayTodos.")
+        //             // break;
+        //             console.log("matchCount (i loop)" + matchCount)
+        //             // blockedDatesBoolean = false;
+        //         }
+        //         // if (matchCount <= 9) {
+        //         //     console.log("keep going");
+        //         // }
+        //         // else if (matchCount > 9) {
+        //         //     alert(plannedTodos[i].date + " should not be added to plannedTodos, nor currentDayTodos.")
+        //         //     console.log(`Too many tasks scheduled for ${blockedDate}.`);
+        //         //     blockedDatesBoolean = true;
+        //         //     break;
+        //         // }
+        //         else if (matchCount > 9) {
+        //             // console.log(`Too many tasks scheduled for ${targetDate}.`);
 
-                // defaultDate = dateCollection[dataId].value;
-                console.log("defaultDate (mc>9) = " + defaultDate);
-                // dateCollection[dataId].value = defaultDate;
-                // plannedTodos[dataId].date = defaultDate;
+        //             // defaultDate = dateCollection[dataId].value;
+        //             console.log("defaultDate (mc>9) = " + defaultDate);
+        //             // dateCollection[dataId].value = defaultDate;
+        //             // plannedTodos[dataId].date = defaultDate;
 
-                // blockedDates.delete(defaultDate);
-                // dateCollection[dataId].value = defaultDate;
-                // //     dateCollection[dataId].innerHTML = defaultDate;
-                // plannedTodos[dataId].date = defaultDate;
-                if (dateCollection[dataId].value === blockedDate && isValidDateFormat(defaultDate)) {
-                dateCollection[dataId].value = defaultDate;
-                //     dateCollection[dataId].innerHTML = defaultDate;
-                plannedTodos[dataId].date = defaultDate;
+        //             // blockedDates.delete(defaultDate);
+        //             // dateCollection[dataId].value = defaultDate;
+        //             // //     dateCollection[dataId].innerHTML = defaultDate;
+        //             // plannedTodos[dataId].date = defaultDate;
+        //             if (dateCollection[dataId].value === blockedDate && isValidDateFormat(defaultDate)) {
+        //             dateCollection[dataId].value = defaultDate;
+        //             //     dateCollection[dataId].innerHTML = defaultDate;
+        //             plannedTodos[dataId].date = defaultDate;
 
-                // blockedDates.add(defaultDate);
+        //             // blockedDates.add(defaultDate);
 
-                console.log(`Too many tasks scheduled for ${blockedDate}.`);
-                }
-                // alert("Task number (9) for current day has exceeded, please replace a todo or select another date :)")
+        //             console.log(`Too many tasks scheduled for ${blockedDate}.`);
+        //             }
+        //             // alert("Task number (9) for current day has exceeded, please replace a todo or select another date :)")
 
-                else if (dateCollection[dataId].value !== blockedDate) {
+        //             else if (dateCollection[dataId].value !== blockedDate) {
 
-                }
+        //             }
 
-                // dateCollection[dataId].innerHTML = '';
-                //_ _ _
-                // dateCollection[dataId].value = '';
-                // plannedTodos[dataId].date = '';
-                //_ _ _
-                // let defaultdate = dateCollection[dataId].value;
-                // dateCollection[dataId].value = defaultdate;
-                // plannedTodos[dataId].date = defaultdate;
+        //             // dateCollection[dataId].innerHTML = '';
+        //             //_ _ _
+        //             // dateCollection[dataId].value = '';
+        //             // plannedTodos[dataId].date = '';
+        //             //_ _ _
+        //             // let defaultdate = dateCollection[dataId].value;
+        //             // dateCollection[dataId].value = defaultdate;
+        //             // plannedTodos[dataId].date = defaultdate;
 
-                // dateCollection[dataId].value = defaultDate;
-                // dateCollection[dataId].innerHTML = defaultDate;
-                // plannedTodos[dataId].date = defaultDate;
+        //             // dateCollection[dataId].value = defaultDate;
+        //             // dateCollection[dataId].innerHTML = defaultDate;
+        //             // plannedTodos[dataId].date = defaultDate;
 
-                // blockedDates.delete(defaultDate);
-                // dateCollection[dataId].value = defaultDate;
-                // //     dateCollection[dataId].innerHTML = defaultDate;
-                // plannedTodos[dataId].date = defaultDate;
-                // blockedDates.add(defaultDate);
+        //             // blockedDates.delete(defaultDate);
+        //             // dateCollection[dataId].value = defaultDate;
+        //             // //     dateCollection[dataId].innerHTML = defaultDate;
+        //             // plannedTodos[dataId].date = defaultDate;
+        //             // blockedDates.add(defaultDate);
 
-                // _ _ _
+        //             // _ _ _
 
-                // if ()
+        //             // if ()
 
-                // _ _ _
-                blockedDatesBoolean = true;
-                break;
-            }
-            // if (dataId !== undefined && plannedTodos[dataId].date === blockedDate) {
-            //     console.log("dataId = " + dataId);
-            //     console.log("defaultDate = " + defaultDate);
-            //     console.log("dateCollection[dataId].value = " + dateCollection[dataId].value);
-            //     blockedDatesBoolean = false;
-            //     dateCollection[dataId].value = defaultDate;
-            //     dateCollection[dataId].innerHTML = defaultDate;
-            //     plannedTodos[dataId].date = defaultDate;
-            // }
-        }
-    });
+        //             // _ _ _
+        //             blockedDatesBoolean = true;
+        //             break;
+        //         }
+        //         // if (dataId !== undefined && plannedTodos[dataId].date === blockedDate) {
+        //         //     console.log("dataId = " + dataId);
+        //         //     console.log("defaultDate = " + defaultDate);
+        //         //     console.log("dateCollection[dataId].value = " + dateCollection[dataId].value);
+        //         //     blockedDatesBoolean = false;
+        //         //     dateCollection[dataId].value = defaultDate;
+        //         //     dateCollection[dataId].innerHTML = defaultDate;
+        //         //     plannedTodos[dataId].date = defaultDate;
+        //         // }
+        //     }
+        // });
 
 
     // const targetDate = "2024-11-24";
@@ -7429,7 +8020,8 @@ function updateCurrentWeekSchedule() {
 
         // _ _ _
 
-        if (blockedDatesBoolean === false) {
+        // 2025-03-03: Ta bort 9-gräns
+        // if (blockedDatesBoolean === false) {
 
         currentMondayTodos = [];
         currentTuesdayTodos = [];
@@ -7488,32 +8080,44 @@ function updateCurrentWeekSchedule() {
         console.log("todoRow.isRecurring === false = " + todoRow.isRecurring === false)
         console.log("todoRow.dataDate === '0' = " + todoRow.dataDate === '0')
         console.log("todoRow.date <= weekDates[0] = " + todoRow.date === weekDates[0])
-        console.log("currentMondayTodos.length < 9 = " + currentMondayTodos.length < 9)
 
-    // plannedTodos (isRecurring === true, todoRow <= weekDates[x])
-    // if (getDayOfWeek(todoRow.date) === "mon" && todoRow.isRecurring === true && todoRow.dataDate === "0" && todoRow.date <= weekDates[0]) {
-    if (getDayOfWeek(todoRow.date) === "mon" && todoRow.isRecurring === true && todoRow.dataDate === "0" && todoRow.date <= weekDates[0] && currentMondayTodos.length < 9) {
-            console.log("Den här todo:n är återkommande för måndagar" + todoRow.date + ", " + dataId);
-            currentMondayTodos.push({
-                date: `${todoRow.date}`,
-                todo: `${todoRow.todo}`,
-                color: `${todoRow.color}`,
-                isRecurring: true,
-                recurringType: `${todoRow.recurringType}`,
-                everyWeek: `${todoRow.everyWeek}`,
-                weekPeriod: `${todoRow.weekPeriod}`,
-                duration: `${todoRow.duration}`,
-                dataDate: `${todoRow.dataDate}`,
-                isEmpty: false
-                // date: `${todoRow.date}`,
-                // todo: `${todoRow.todo}`,
-                // color: `${todoRow.color}`,
-                // isRecurring: true,
-                // dataDate: `${todoRow.dataDate}`,
-                // isEmpty: false
-            })
-    }
-    else if (getDayOfWeek(todoRow.date) === "tue" && todoRow.isRecurring === true && todoRow.dataDate === "1" && todoRow.date <= weekDates[1] && currentTuesdayTodos.length < 9) {
+        // 2025-03-03: Ta bort 9-gräns
+        // console.log("currentMondayTodos.length < 9 = " + currentMondayTodos.length < 9)
+
+            // plannedTodos (isRecurring === true, todoRow <= weekDates[x])
+            // if (getDayOfWeek(todoRow.date) === "mon" && todoRow.isRecurring === true && todoRow.dataDate === "0" && todoRow.date <= weekDates[0]) {
+            if (getDayOfWeek(todoRow.date) === "mon" &&
+            todoRow.isRecurring === true &&
+            todoRow.dataDate === "0" &&
+            todoRow.date <= weekDates[0]
+            // && currentMondayTodos.length < 9
+        ) {
+                    console.log("Den här todo:n är återkommande för måndagar" + todoRow.date + ", " + dataId);
+                    currentMondayTodos.push({
+                        date: `${todoRow.date}`,
+                        todo: `${todoRow.todo}`,
+                        color: `${todoRow.color}`,
+                        isRecurring: true,
+                        recurringType: `${todoRow.recurringType}`,
+                        everyWeek: `${todoRow.everyWeek}`,
+                        weekPeriod: `${todoRow.weekPeriod}`,
+                        duration: `${todoRow.duration}`,
+                        dataDate: `${todoRow.dataDate}`,
+                        isEmpty: false
+                        // date: `${todoRow.date}`,
+                        // todo: `${todoRow.todo}`,
+                        // color: `${todoRow.color}`,
+                        // isRecurring: true,
+                        // dataDate: `${todoRow.dataDate}`,
+                        // isEmpty: false
+                    })
+            }
+            else if (getDayOfWeek(todoRow.date) === "tue" &&
+            todoRow.isRecurring === true &&
+            todoRow.dataDate === "1" &&
+            todoRow.date <= weekDates[1]
+            // && currentTuesdayTodos.length < 9
+        ) {
             console.log("Den här todo:n är återkommande för tisdagar" + todoRow.date + ", " + dataId);
             currentTuesdayTodos.push({
                 date: `${todoRow.date}`,
@@ -7528,7 +8132,9 @@ function updateCurrentWeekSchedule() {
                 isEmpty: false
             })
     }
-    else if (getDayOfWeek(todoRow.date) === "wed" && todoRow.isRecurring === true && todoRow.dataDate === "2" && todoRow.date <= weekDates[2] && currentWednesdayTodos.length < 9) {
+    else if (getDayOfWeek(todoRow.date) === "wed" && todoRow.isRecurring === true && todoRow.dataDate === "2" && todoRow.date <= weekDates[2]
+    // && currentWednesdayTodos.length < 9
+    ) {
             console.log("Den här todo:n är återkommande för onsdagar" + todoRow.date + ", " + dataId);
             currentWednesdayTodos.push({
                 date: `${todoRow.date}`,
@@ -7543,7 +8149,9 @@ function updateCurrentWeekSchedule() {
                 isEmpty: false
             })
     }
-    else if (getDayOfWeek(todoRow.date) === "thu" && todoRow.isRecurring === true && todoRow.dataDate === "3" && todoRow.date <= weekDates[3] && currentThursdayTodos.length < 9) {
+    else if (getDayOfWeek(todoRow.date) === "thu" && todoRow.isRecurring === true && todoRow.dataDate === "3" && todoRow.date <= weekDates[3]
+    // && currentThursdayTodos.length < 9
+    ) {
             console.log("Den här todo:n är återkommande för torsdagar" + todoRow.date + ", " + dataId);
             currentThursdayTodos.push({
                 date: `${todoRow.date}`,
@@ -7558,7 +8166,9 @@ function updateCurrentWeekSchedule() {
                 isEmpty: false
             })
     }
-    else if (getDayOfWeek(todoRow.date) === "fri" && todoRow.isRecurring === true && todoRow.dataDate === "4" && todoRow.date <= weekDates[4] && currentFridayTodos.length < 9) {
+    else if (getDayOfWeek(todoRow.date) === "fri" && todoRow.isRecurring === true && todoRow.dataDate === "4" && todoRow.date <= weekDates[4]
+    // && currentFridayTodos.length < 9
+    ) {
         console.log("Den här todo:n är återkommande för fredagar" + todoRow.date + ", " + dataId);
         currentFridayTodos.push({
             date: `${todoRow.date}`,
@@ -7573,7 +8183,9 @@ function updateCurrentWeekSchedule() {
             isEmpty: false
         })
     }
-    else if (getDayOfWeek(todoRow.date) === "sat" && todoRow.isRecurring === true && todoRow.dataDate === "5" && todoRow.date <= weekDates[5] && currentSaturdayTodos.length < 9) {
+    else if (getDayOfWeek(todoRow.date) === "sat" && todoRow.isRecurring === true && todoRow.dataDate === "5" && todoRow.date <= weekDates[5]
+    // && currentSaturdayTodos.length < 9
+    ) {
         console.log("Den här todo:n är återkommande för lördagar" + todoRow.date + ", " + dataId);
         currentSaturdayTodos.push({
             date: `${todoRow.date}`,
@@ -7588,7 +8200,9 @@ function updateCurrentWeekSchedule() {
             isEmpty: false
         })
     }
-    else if (getDayOfWeek(todoRow.date) === "sun" && todoRow.isRecurring === true && todoRow.dataDate === "6" && todoRow.date <= weekDates[6] && currentSundayTodos.length < 9) {
+    else if (getDayOfWeek(todoRow.date) === "sun" && todoRow.isRecurring === true && todoRow.dataDate === "6" && todoRow.date <= weekDates[6]
+    // && currentSundayTodos.length < 9
+    ) {
         console.log("Den här todo:n är återkommande för söndagar" + todoRow.date + ", " + dataId);
         currentSundayTodos.push({
             date: `${todoRow.date}`,
@@ -7604,7 +8218,9 @@ function updateCurrentWeekSchedule() {
         })
     }
     // plannedTodos (isRecurring === false, todoRow === weekDates[x])
-    else if (getDayOfWeek(todoRow.date) === "mon" && todoRow.isRecurring === false && todoRow.dataDate === "0" && todoRow.date === weekDates[0] && currentMondayTodos.length < 9) {
+    else if (getDayOfWeek(todoRow.date) === "mon" && todoRow.isRecurring === false && todoRow.dataDate === "0" && todoRow.date === weekDates[0]
+    // && currentMondayTodos.length < 9
+    ) {
             console.log("Den här todo:n är för måndag" + todoRow.date + ", " + dataId);
             currentMondayTodos.push({
                 date: `${todoRow.date}`,
@@ -7625,7 +8241,9 @@ function updateCurrentWeekSchedule() {
                 // isEmpty: false
             })
     }
-    else if (getDayOfWeek(todoRow.date) === "tue" && todoRow.isRecurring === false && todoRow.dataDate === "1" && todoRow.date === weekDates[1] && currentTuesdayTodos.length < 9) {
+    else if (getDayOfWeek(todoRow.date) === "tue" && todoRow.isRecurring === false && todoRow.dataDate === "1" && todoRow.date === weekDates[1]
+    // && currentTuesdayTodos.length < 9
+    ) {
         console.log("Den här todo:n är för tisdag" + todoRow.date + ", " + dataId);
         currentTuesdayTodos.push({
             date: `${todoRow.date}`,
@@ -7640,7 +8258,9 @@ function updateCurrentWeekSchedule() {
             isEmpty: false
         })
     }
-    else if (getDayOfWeek(todoRow.date) === "wed" && todoRow.isRecurring === false && todoRow.dataDate === "2" && todoRow.date === weekDates[2] && currentWednesdayTodos.length < 9) {
+    else if (getDayOfWeek(todoRow.date) === "wed" && todoRow.isRecurring === false && todoRow.dataDate === "2" && todoRow.date === weekDates[2]
+    // && currentWednesdayTodos.length < 9
+    ) {
         console.log("Den här todo:n är för onsdag" + todoRow.date + ", " + dataId);
         currentWednesdayTodos.push({
             date: `${todoRow.date}`,
@@ -7655,7 +8275,9 @@ function updateCurrentWeekSchedule() {
             isEmpty: false
         })
     }
-    else if (getDayOfWeek(todoRow.date) === "thu" && todoRow.isRecurring === false && todoRow.dataDate === "3" && todoRow.date === weekDates[3] && currentThursdayTodos.length < 9) {
+    else if (getDayOfWeek(todoRow.date) === "thu" && todoRow.isRecurring === false && todoRow.dataDate === "3" && todoRow.date === weekDates[3]
+    // && currentThursdayTodos.length < 9
+    ) {
         console.log("Den här todo:n är för torsdag" + todoRow.date + ", " + dataId);
         currentThursdayTodos.push({
             date: `${todoRow.date}`,
@@ -7670,7 +8292,9 @@ function updateCurrentWeekSchedule() {
             isEmpty: false
         })
     }
-    else if (getDayOfWeek(todoRow.date) === "fri" && todoRow.isRecurring === false && todoRow.dataDate === "4" && todoRow.date === weekDates[4] && currentFridayTodos.length < 9) {
+    else if (getDayOfWeek(todoRow.date) === "fri" && todoRow.isRecurring === false && todoRow.dataDate === "4" && todoRow.date === weekDates[4]
+    // && currentFridayTodos.length < 9
+    ) {
         console.log("Den här todo:n är för fredag" + todoRow.date + ", " + dataId);
         currentFridayTodos.push({
             date: `${todoRow.date}`,
@@ -7685,7 +8309,9 @@ function updateCurrentWeekSchedule() {
             isEmpty: false
         })
     }
-    else if (getDayOfWeek(todoRow.date) === "sat" && todoRow.isRecurring === false && todoRow.dataDate === "5" && todoRow.date === weekDates[5] && currentSaturdayTodos.length < 9) {
+    else if (getDayOfWeek(todoRow.date) === "sat" && todoRow.isRecurring === false && todoRow.dataDate === "5" && todoRow.date === weekDates[5]
+    // && currentSaturdayTodos.length < 9
+    ) {
         console.log("Den här todo:n är för lördag" + todoRow.date + ", " + dataId);
         currentSaturdayTodos.push({
             date: `${todoRow.date}`,
@@ -7700,7 +8326,9 @@ function updateCurrentWeekSchedule() {
             isEmpty: false
         })
     }
-    else if (getDayOfWeek(todoRow.date) === "sun" && todoRow.isRecurring === false && todoRow.dataDate === "6" && todoRow.date === weekDates[6] && currentSundayTodos.length < 9) {
+    else if (getDayOfWeek(todoRow.date) === "sun" && todoRow.isRecurring === false && todoRow.dataDate === "6" && todoRow.date === weekDates[6]
+    // && currentSundayTodos.length < 9
+    ) {
         console.log("Den här todo:n är för söndag" + todoRow.date + ", " + dataId);
         currentSundayTodos.push({
             date: `${todoRow.date}`,
@@ -7736,9 +8364,9 @@ function updateCurrentWeekSchedule() {
 })
 // updateCurrentWeekSchedule() (end)
 
-} else if (blockedDatesBoolean === true) {
+// } else if (blockedDatesBoolean === true) {
 
-}
+// }
 
 domUpdateCurrentWeekSchedule();
 
@@ -7794,6 +8422,61 @@ function domUpdateCurrentWeekSchedule() {
 
     console.log("plannedTodos.length = " + plannedTodos.length);
     console.log("JSON.stringify(plannedTodos) (i updateDOM) = " + JSON.stringify(plannedTodos));
+
+    // _ _ _
+
+// console.log("currentMondayTodos.length = " + currentMondayTodos.length)
+// console.log("currentMondayTodoItems.length = " + currentMondayTodoItems.length)
+// console.log("currentTuesdayTodos.length = " + currentTuesdayTodos.length)
+// console.log("currentTuesdayTodoItems.length = " + currentTuesdayTodoItems.length)
+
+    // addNewMondayTodoDiv();
+    // addNewTuesdayTodoDiv();
+
+    if (currentMondayTodos.length > 10 && currentMondayTodos.length > currentMondayTodoItems.length) {
+        console.log("add more mon divs");
+        addNewMondayTodoDiv();
+    }
+
+    if (currentTuesdayTodos.length > 10 && currentTuesdayTodos.length > currentTuesdayTodoItems.length) {
+        console.log("add more tue divs");
+        addNewTuesdayTodoDiv();
+    }
+
+    if (currentWednesdayTodos.length > 10 && currentWednesdayTodos.length > currentWednesdayTodoItems.length) {
+        console.log("add more wed divs");
+        addNewWednesdayTodoDiv();
+    }
+
+    if (currentThursdayTodos.length > 10 && currentThursdayTodos.length > currentThursdayTodoItems.length) {
+        console.log("add more thu divs");
+        addNewThursdayTodoDiv();
+    }
+
+    if (currentFridayTodos.length > 10 && currentFridayTodos.length > currentFridayTodoItems.length) {
+        console.log("add more fri divs");
+        addNewFridayTodoDiv();
+    }
+
+    if (currentSaturdayTodos.length > 10 && currentSaturdayTodos.length > currentSaturdayTodoItems.length) {
+        console.log("add more sat divs");
+        addNewSaturdayTodoDiv();
+    }
+
+    if (currentSundayTodos.length > 10 && currentSundayTodos.length > currentSundayTodoItems.length) {
+        console.log("add more sun divs");
+        addNewSundayTodoDiv();
+    }
+
+    // // delete div from weekday (in week schedule)
+    // if (currentMondayTodoItems.length > currentMondayTodos.length) {
+    //     console.log("delete mon div");
+    //     deleteMondayTodo()
+    // }
+
+
+    // Ta bort div!? (delete specific) också! currentMondayTodos.length > 10 && currentMondayTodoItems.length > currentMondayTodos.length <
+    // _ _ _
 
     // Loop through the current...dayTodos and fill in the corresponding divs
     for (let i = 0; i < currentMondayTodos.length; i++) {
@@ -8317,15 +9000,23 @@ function addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId) 
 
                     //if (dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[0] && currentMondayTodos.length < 9 || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[1] && currentTuesdayTodos.length < 9 || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[2] && currentWednesdayTodos.length < 9 || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[3] && currentThursdayTodos.length < 9 || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[4] && currentFridayTodos.length < 9 || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[5] && currentSaturdayTodos.length < 9 || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[6] && currentSundayTodos.length < 9) {
 
+                    // 2025-03-03: Ta bort 9-gräns
                     if (
-                        dateCollection[dataId].value !== '' &&
-                        currentMondayTodos.length < 9 || dateCollection[dataId].value !== '' &&
-                        currentTuesdayTodos.length < 9 || dateCollection[dataId].value !== '' &&
-                        currentWednesdayTodos.length < 9 || dateCollection[dataId].value !== '' &&
-                        currentThursdayTodos.length < 9 || dateCollection[dataId].value !== '' &&
-                        currentFridayTodos.length < 9 || dateCollection[dataId].value !== '' &&
-                        currentSaturdayTodos.length < 9 || dateCollection[dataId].value !== '' &&
-                        currentSundayTodos.length < 9)
+                        dateCollection[dataId].value !== ''
+                        // && currentMondayTodos.length < 9
+                        || dateCollection[dataId].value !== ''
+                        // && currentTuesdayTodos.length < 9
+                        || dateCollection[dataId].value !== ''
+                        // && currentWednesdayTodos.length < 9
+                        || dateCollection[dataId].value !== ''
+                        // && currentThursdayTodos.length < 9
+                        || dateCollection[dataId].value !== ''
+                        // && currentFridayTodos.length < 9
+                        || dateCollection[dataId].value !== ''
+                        // && currentSaturdayTodos.length < 9
+                        || dateCollection[dataId].value !== ''
+                        // && currentSundayTodos.length < 9
+                    )
                         {
 
                 // UPPDATERA TODO-TASK-List-DATUM (och dataDate), Lägg till på nytt (objekt och DOM-element) och ta bort gammalt (objekt och DOM-element)
@@ -8413,7 +9104,21 @@ function addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId) 
             } else if (dateCollection[dataId].value === undefined || dateCollection[dataId].value === null || dateCollection[dataId].value === '') {
                 checkIfDateAndTextAreEmpty();
             }
-            else if (dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[0] && currentMondayTodos.length === 9 || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[1] && currentTuesdayTodos.length === 9 || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[2] && currentWednesdayTodos.length === 9 || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[3] && currentThursdayTodos.length === 9 || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[4] && currentFridayTodos.length === 9 || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[5] && currentSaturdayTodos.length === 9 || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[6] && currentSundayTodos.length === 9) {
+            else if (dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[0]
+                // && currentMondayTodos.length === 9
+                || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[1]
+                // && currentTuesdayTodos.length === 9
+                || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[2]
+                // && currentWednesdayTodos.length === 9
+                || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[3]
+                // && currentThursdayTodos.length === 9
+                || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[4]
+                // && currentFridayTodos.length === 9
+                || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[5]
+                // && currentSaturdayTodos.length === 9
+                || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[6]
+                // && currentSundayTodos.length === 9
+            ) {
                 dateCollection[dataId].value = '';
                 alert('Unavailable selection: The task limit has been reached for that day.')
             }
@@ -9695,25 +10400,26 @@ console.log(`Adjusted date for ${todoDateLoad}: ${ensureRecurringMonthDate(todoD
 
 // _ _ _
 
-function hasLessThanNineTodos(plannedTodos, targetDate) {
-    console.log("hasLessThanNineTodos() körs");
+// 2025-03-03: Ta bort 9-gräns
+// function hasLessThanNineTodos(plannedTodos, targetDate) {
+//     console.log("hasLessThanNineTodos() körs");
 
-    // console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos));
-    console.log("targetDate = " + targetDate);
+//     // console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos));
+//     console.log("targetDate = " + targetDate);
 
-    // Filter todos (in the objects array, that has the target date) by the target date
-    let todosForDate = plannedTodos.filter(todo => todo.date === targetDate);
-    // const todosForDate = plannedTodos.filter(todo => todo && todo.date === targetDate);
+//     // Filter todos (in the objects array, that has the target date) by the target date
+//     let todosForDate = plannedTodos.filter(todo => todo.date === targetDate);
+//     // const todosForDate = plannedTodos.filter(todo => todo && todo.date === targetDate);
 
-    console.log("todosForDate = " + todosForDate);
-    console.log("JSON.stringify(todosForDate) = " + JSON.stringify(todosForDate));
-    console.log("todosForDate.length = " + todosForDate.length);
-    // console.log("todosForDate.length < 9 = " + todosForDate.length < 9);
+//     console.log("todosForDate = " + todosForDate);
+//     console.log("JSON.stringify(todosForDate) = " + JSON.stringify(todosForDate));
+//     console.log("todosForDate.length = " + todosForDate.length);
+//     // console.log("todosForDate.length < 9 = " + todosForDate.length < 9);
 
-    // // Check if the number of todos for the target date is less than 9
-    // return todosForDate.length < 9;
-    return todosForDate.length;
-}
+//     // // Check if the number of todos for the target date is less than 9
+//     // return todosForDate.length < 9;
+//     return todosForDate.length;
+// }
 
 
 // _ _ _
@@ -9738,14 +10444,14 @@ function checkTodoText(todoText) {
     return null;
 }
 
-// Example usage:
-const todo1 = "This is a todo with 🔁D";
-const todo2 = "This is a todo with 🔁#D";
-const todo3 = "This is a todo with no special text";
+// // Example usage:
+// const todo1 = "This is a todo with 🔁D";
+// const todo2 = "This is a todo with 🔁#D";
+// const todo3 = "This is a todo with no special text";
 
-console.log(checkTodoText(todo1)); // true
-console.log(checkTodoText(todo2)); // false
-console.log(checkTodoText(todo3)); // null
+// console.log(checkTodoText(todo1)); // true
+// console.log(checkTodoText(todo2)); // false
+// console.log(checkTodoText(todo3)); // null
 
 
 // Function to read the Blob (file) content and separate the strings
@@ -9894,7 +10600,7 @@ function readFile(file) {
 
                     console.log("JSON.stringify(todoRow) = " + JSON.stringify(todoRow));
 
-
+                    console.log("checkTodoText(todoRow.todo) (= true!?) = " + checkTodoText(todoRow.todo));
 
                     let currentWeekDayDateFromDataDate = weekDates[todoRow.dataDate];
                     console.log("currentWeekDayDateFromDataDate = " + currentWeekDayDateFromDataDate);
@@ -9919,6 +10625,7 @@ function readFile(file) {
                             console.log("todoRowLoad.date < dateDisplay.textContent (D)");
 
                             console.log("JSON.stringify(todoRow) = " + JSON.stringify(todoRow));
+                            console.log("checkTodoText(todoRow.todo) (= false!?) = " + checkTodoText(todoRow.todo));
 
                             let convertedDateFromFullDateString;
 

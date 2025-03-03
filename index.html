@@ -171,6 +171,7 @@
             <div class="tuesday-target-div" data-date="1"></div>
             <div class="tuesday-target-div" data-date="1"></div>
             <div class="tuesday-target-div" data-date="1"></div>
+            <div class="tuesday-target-div" data-date="1"></div>
           </div>
           <div class="grid-item day3" id="wed-todo">
             <div class="wednesday-target-div" data-date="2"></div>
@@ -182,8 +183,10 @@
             <div class="wednesday-target-div" data-date="2"></div>
             <div class="wednesday-target-div" data-date="2"></div>
             <div class="wednesday-target-div" data-date="2"></div>
+            <div class="wednesday-target-div" data-date="2"></div>
           </div>
           <div class="grid-item day4" id="thu-todo">
+            <div class="thursday-target-div" data-date="3"></div>
             <div class="thursday-target-div" data-date="3"></div>
             <div class="thursday-target-div" data-date="3"></div>
             <div class="thursday-target-div" data-date="3"></div>
@@ -216,8 +219,10 @@
             <div class="saturday-target-div" data-date="5"></div>
             <div class="saturday-target-div" data-date="5"></div>
             <div class="saturday-target-div" data-date="5"></div>
+            <div class="saturday-target-div" data-date="5"></div>
           </div>
           <div class="grid-item day7" id="sun-todo">
+            <div class="sunday-target-div" data-date="6"></div>
             <div class="sunday-target-div" data-date="6"></div>
             <div class="sunday-target-div" data-date="6"></div>
             <div class="sunday-target-div" data-date="6"></div>
@@ -311,11 +316,11 @@
                   <div class="weekday-selection-wrapper-one">
                     <div>
                       <input type="radio" id="day-name" name="days-periodicity" value="select"/>
-                      <label for="select">Select days</label>
+                      <label for="select">Select days &nbsp [D]</label>
                     </div>
                     <div>
                       <input type="radio" id="day-count" name="days-periodicity" value="duration"/>
-                      <label for="duration">Duration (days)</label>
+                      <label for="duration">Duration (days) &nbsp [#D]</label>
                     </div>
                   </div>
                   <div class="weekday-selection-wrapper-two">
@@ -365,22 +370,22 @@
             <span>Every:</span>
           <div>
             <input type="radio" id="rec-1-week" name="select-week-periodicity" value="1"/>
-            <label for="1">1</label>
+            <label for="1">1 &nbsp [W1]</label>
           </div>
 
           <div>
             <input type="radio" id="rec-2-week" name="select-week-periodicity" value="2"/>
-            <label for="2">2</label>
+            <label for="2">2 &nbsp [W2]</label>
           </div>
 
           <div>
             <input type="radio" id="rec-3-week" name="select-week-periodicity" value="3"/>
-            <label for="3">3</label>
+            <label for="3">3 &nbsp [W3]</label>
           </div>
 
           <div>
             <input type="radio" id="rec-4-week" name="select-week-periodicity" value="4"/>
-            <label for="4">4</label>
+            <label for="4">4 &nbsp [W4]</label>
           </div>
           <span>weeks</span><br><br>
             <div>
@@ -393,7 +398,7 @@
           <fieldset id="per-month">
             <legend>Monthly:</legend>
             <div>
-              <label for="rec-month-days">Event duration (days):</label>
+              <label for="rec-month-days">[M] &nbsp Event duration (days):</label>
               <input type="number" id="rec-month-days" name="rec-month-days" min=1 max=31 value="1"/>
             </div>
           </fieldset>
@@ -401,7 +406,7 @@
           <fieldset id="per-year">
             <legend>Yearly:</legend>
           <div>
-            <label for="rec-year-days">Event duration (days):</label>
+            <label for="rec-year-days">[Y] &nbsp Event duration (days):</label>
             <input type="number" id="rec-year-days" name="rec-year-days" min=1 max=365 value="1"/>
           </div>
         </fieldset>
