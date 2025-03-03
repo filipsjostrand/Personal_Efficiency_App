@@ -10197,6 +10197,10 @@ function calculateDaysBetweenDates(smallDateString1, largeDateString2) {
     return diffDays;
 }
 
+// function getRemainderDividingWithSeven(number) {
+//     return number % 7
+// }
+
 function getRemainderDividingWithFourteen(number) {
     return number % 14
 }
@@ -10259,6 +10263,63 @@ function ensureRecurringWeekDate(todoDateLoad, currentDate, weekPeriod) {
         console.log("loadedDate < current");
         console.log("weekPeriod = " + weekPeriod);
 
+        // if (weekPeriod === 'w1') {
+        //     console.log("w1 ooa");
+
+        //     console.log("currentDataDate = " + currentDataDate);
+        //     console.log("loadedDataDate = " + loadedDataDate);
+
+            // _ _ _
+
+            // let recW1DateForThisWeek = weekDates[loadedDataDate]
+            // console.log("recW1DateForThisWeek = " + recW1DateForThisWeek);
+
+            // if (recW1DateForThisWeek < dateDisplay.textContent) {
+
+
+            //     // let convertedDateFromFullDate = new Date(currentWeekDayDateFromDataDate);
+            //     let convertedW1DateFromFullDate = new Date(recW1DateForThisWeek);
+            //     convertedW1DateFromFullDate.setDate(convertedW1DateFromFullDate.getDate() + 6);
+            //     let convertedW1DateFromFullDateString = convertedW1DateFromFullDate.toISOString().split('T')[0]; // Convert the date to 'YYYY-MM-DD' format
+
+            //     newDate = convertedW1DateFromFullDateString;
+            // }
+
+            // _ _ _
+
+            // else if (recW1DateForThisWeek >= dateDisplay.textContent)
+            // calculateDaysBetweenDates(loadedDate, current);
+
+            // _ _ _
+
+        //     console.log("diffDays = " + diffDays);
+
+        //     let getRemainder = '';
+
+        //     if (diffDays < 7) {
+        //         getRemainder = 7-diffDays;
+        //         // getRemainder = getRemainder - 1;
+        //         console.log("W1 getRemainder (< 7) = " + getRemainder);
+        //     }
+
+        //     else if (diffDays >= 7) {
+        //         getRemainder = 7-getRemainderDividingWithSeven(diffDays);
+        //         // getRemainder = getRemainder - 1;
+        //         console.log("W1 getRemainder (>= 7) = " + getRemainder);
+        //         if (diffDays % getRemainder === 0) {
+        //             getRemainder = 0;
+        //         }
+        //     }
+
+        //     console.log("getRemainder = " + getRemainder);
+
+        //     addDaysW1 = getRemainder;
+
+        //     newDate = new Date(current.getFullYear(), current.getMonth(), current.getDate() + addDaysW1);
+        // }
+
+        // _ _ _
+
         if (weekPeriod === 'w1') {
             console.log("w1 ooa");
 
@@ -10266,17 +10327,22 @@ function ensureRecurringWeekDate(todoDateLoad, currentDate, weekPeriod) {
             console.log("loadedDataDate = " + loadedDataDate);
 
             if (loadedDataDate < currentDataDate) {
-                addDaysW1 = 7-(currentDataDate-loadedDataDate);
+                let dayDifference = currentDataDate-loadedDataDate
+                addDaysW1 = 7-Math.abs(dayDifference); // 2025-03-03 Notering: Kan bli större än 7 (om ej absolut-belopp)
+                console.log()
             } else if (loadedDataDate === currentDataDate) {
                 addDaysW1 = 0;
             } else if (loadedDataDate > currentDataDate) {
-                addDaysW1 = currentDataDate-loadedDataDate;
+                addDaysW1 = Math.abs(currentDataDate-loadedDataDate); // 2025-03-03 Notering: Kan bli negativt 7 - - x (om ej absolut-belopp)
             }
 
             console.log("addDaysW1 = " + addDaysW1);
 
             newDate = new Date(current.getFullYear(), current.getMonth(), current.getDate() + addDaysW1);
         }
+
+        // _ _ _
+
         else if (weekPeriod === 'w2') {
             console.log("w2 ooa");
 
@@ -10581,7 +10647,7 @@ function readFile(file) {
                 // Format back to YYYY-MM-DD
                 let updatedDate = ensureRecurringWeekDate(todoDateLoad, currentDate, weekPeriod);
 
-                console.log("Updated Date (m1) = " + updatedDate);
+                console.log("Updated Date (w ooa) = " + updatedDate);
 
                 todoRow.date = updatedDate;
                 todoRow.dataDate = weekdayNameToWeekDayNumberMultiDuration(updatedDate);
@@ -10594,7 +10660,7 @@ function readFile(file) {
                     console.log("todoDateLoad >= currentDate (D)")
                     plannedTodosOnLoad.push(todoRow);
                 }
-                // If the recurring day is in the past: update the day to the coming week... (specific day-s)
+                // If the recurring day is in the past: update the day to the coming week... (specific day-s) ("D")
                 else if (todoDateLoad < currentDate && todoRow.isRecurring === true && todoRow.everyWeek === true && todoRow.recurringType === 'd' && checkTodoText(todoRow.todo) === true) {
                     console.log("todoRowLoad.date < dateDisplay.textContent (D)");
 
@@ -10602,66 +10668,90 @@ function readFile(file) {
 
                     console.log("checkTodoText(todoRow.todo) (= true!?) = " + checkTodoText(todoRow.todo));
 
+                    // let currentDateFormatted = formatDate(currentDate);
+                    // console.log(currentDateFormatted)
+
                     let currentWeekDayDateFromDataDate = weekDates[todoRow.dataDate];
                     console.log("currentWeekDayDateFromDataDate = " + currentWeekDayDateFromDataDate);
 
-                        console.log("Here (currentWeekDayDateFromDataDate < currentDate) ");
+                        // if (currentWeekDayDateFromDataDate >= currentDate) {
+                        if (currentWeekDayDateFromDataDate >= dateDisplay.textContent) {
+                            let convertDateToFullDate = new Date(currentWeekDayDateFromDataDate);
 
-                        let convertDateToFullDate = new Date(currentWeekDayDateFromDataDate);
+                            let convertedDateFromFullDate = new Date(currentWeekDayDateFromDataDate);
+                            convertedDateFromFullDate.setDate(convertDateToFullDate.getDate());
+                            let convertedDateFromFullDateString = convertedDateFromFullDate.toISOString().split('T')[0]; // Convert the date to 'YYYY-MM-DD' format
 
-                        let convertedDateFromFullDate = new Date(currentWeekDayDateFromDataDate);
-                        convertedDateFromFullDate.setDate(convertDateToFullDate.getDate() + 7);
-                        let convertedDateFromFullDateString = convertedDateFromFullDate.toISOString().split('T')[0]; // Convert the date to 'YYYY-MM-DD' format
+                            todoRow.date = convertedDateFromFullDateString
 
-                        console.log("convertedDateFromFullDateString = " + convertedDateFromFullDateString);
-
-                        // Add 7 days to currentWeekDayDateFromDataDate
-                        todoRow.date = convertedDateFromFullDateString
-
-                        plannedTodosOnLoad.push(todoRow);
-                }
-                        // If the recurring day is in the past: update the day to the coming week... (duration)
-                        else if (todoDateLoad < currentDate && todoRow.isRecurring === true && todoRow.everyWeek === true && todoRow.recurringType === 'd' && checkTodoText(todoRow.todo) === false) {
-                            console.log("todoRowLoad.date < dateDisplay.textContent (D)");
-
-                            console.log("JSON.stringify(todoRow) = " + JSON.stringify(todoRow));
-                            console.log("checkTodoText(todoRow.todo) (= false!?) = " + checkTodoText(todoRow.todo));
-
-                            let convertedDateFromFullDateString;
-
-                            let currentWeekDayDateFromDataDate = weekDates[todoRow.dataDate];
-                            console.log("currentWeekDayDateFromDataDate = " + currentWeekDayDateFromDataDate);
-                            console.log("currentDate = " + currentDate);
-
-                                if (currentWeekDayDateFromDataDate >= dateDisplay.textContent) {
-
-                                    console.log("Here (currentWeekDayDateFromDataDate < currentDate) ");
-
-                                    let convertDateToFullDate = new Date(currentWeekDayDateFromDataDate);
-
-                                    let convertedDateFromFullDate = new Date(currentWeekDayDateFromDataDate);
-                                    convertedDateFromFullDate.setDate(convertDateToFullDate.getDate());
-                                    convertedDateFromFullDateString = convertedDateFromFullDate.toISOString().split('T')[0]; // Convert the date to 'YYYY-MM-DD' format
-
-                                    console.log("convertedDateFromFullDateString = " + convertedDateFromFullDateString);
-                                }
-                                else if (currentWeekDayDateFromDataDate < dateDisplay.textContent) {
-                                    let convertDateToFullDate = new Date(currentWeekDayDateFromDataDate);
-
-                                    let convertedDateFromFullDate = new Date(currentWeekDayDateFromDataDate);
-                                    convertedDateFromFullDate.setDate(convertDateToFullDate.getDate() + 7);
-                                    convertedDateFromFullDateString = convertedDateFromFullDate.toISOString().split('T')[0]; // Convert the date to 'YYYY-MM-DD' format
-
-                                    console.log("convertedDateFromFullDateString = " + convertedDateFromFullDateString);
-
-                                    // Add 7 days to currentWeekDayDateFromDataDate
-                                }
-
-                                // Add 0 days to currentWeekDayDateFromDataDate
-                                todoRow.date = convertedDateFromFullDateString
-
-                                plannedTodosOnLoad.push(todoRow);
+                            plannedTodosOnLoad.push(todoRow);
                         }
+
+                        // console.log("Here (currentWeekDayDateFromDataDate < currentDate) ");
+
+                        // else if (currentWeekDayDateFromDataDate < currentDate) {
+
+                            else if (currentWeekDayDateFromDataDate < dateDisplay.textContent) {
+
+                            let convertDateToFullDate = new Date(currentWeekDayDateFromDataDate);
+
+                            let convertedDateFromFullDate = new Date(currentWeekDayDateFromDataDate);
+                            convertedDateFromFullDate.setDate(convertDateToFullDate.getDate() + 7);
+                            let convertedDateFromFullDateString = convertedDateFromFullDate.toISOString().split('T')[0]; // Convert the date to 'YYYY-MM-DD' format
+
+                            console.log("convertedDateFromFullDateString = " + convertedDateFromFullDateString);
+
+                            // Add 7 days to currentWeekDayDateFromDataDate
+                            todoRow.date = convertedDateFromFullDateString
+
+                            plannedTodosOnLoad.push(todoRow);
+                        }
+                        // todoRow.date = convertedDateFromFullDateString
+
+                        // plannedTodosOnLoad.push(todoRow);
+                }
+                        // If the recurring day is in the past: update the day to the coming week... (duration) ("#D")
+                    else if (todoDateLoad < currentDate && todoRow.isRecurring === true && todoRow.everyWeek === true && todoRow.recurringType === 'd' && checkTodoText(todoRow.todo) === false) {
+                        console.log("todoRowLoad.date < dateDisplay.textContent (D)");
+
+                        console.log("JSON.stringify(todoRow) = " + JSON.stringify(todoRow));
+                        console.log("checkTodoText(todoRow.todo) (= false!?) = " + checkTodoText(todoRow.todo));
+
+                        let convertedDateFromFullDateString;
+
+                        let currentWeekDayDateFromDataDate = weekDates[todoRow.dataDate];
+                        console.log("currentWeekDayDateFromDataDate = " + currentWeekDayDateFromDataDate);
+                        console.log("currentDate = " + currentDate);
+
+                            if (currentWeekDayDateFromDataDate >= dateDisplay.textContent) {
+
+                                console.log("Here (currentWeekDayDateFromDataDate < currentDate) ");
+
+                                let convertDateToFullDate = new Date(currentWeekDayDateFromDataDate);
+
+                                let convertedDateFromFullDate = new Date(currentWeekDayDateFromDataDate);
+                                convertedDateFromFullDate.setDate(convertDateToFullDate.getDate());
+                                convertedDateFromFullDateString = convertedDateFromFullDate.toISOString().split('T')[0]; // Convert the date to 'YYYY-MM-DD' format
+
+                                console.log("convertedDateFromFullDateString = " + convertedDateFromFullDateString);
+                            }
+                            else if (currentWeekDayDateFromDataDate < dateDisplay.textContent) {
+                                let convertDateToFullDate = new Date(currentWeekDayDateFromDataDate);
+
+                                let convertedDateFromFullDate = new Date(currentWeekDayDateFromDataDate);
+                                convertedDateFromFullDate.setDate(convertDateToFullDate.getDate() + 7);
+                                convertedDateFromFullDateString = convertedDateFromFullDate.toISOString().split('T')[0]; // Convert the date to 'YYYY-MM-DD' format
+
+                                console.log("convertedDateFromFullDateString = " + convertedDateFromFullDateString);
+
+                                // Add 7 days to currentWeekDayDateFromDataDate
+                            }
+
+                            // Add 0 days to currentWeekDayDateFromDataDate
+                            todoRow.date = convertedDateFromFullDateString
+
+                            plannedTodosOnLoad.push(todoRow);
+                    }
                                     // If the recurring day is in the past: update the day to the coming week... (duration)
                                     else if (todoDateLoad < currentDate && todoRow.isRecurring === true && todoRow.everyWeek === true && todoRow.recurringType === 'd' && checkTodoText(todoRow.todo) === false) {
                                         console.log("todoRowLoad.date < dateDisplay.textContent (D)");
