@@ -8,31 +8,56 @@
 #resetButton {
     margin: 10px;
     padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
+#startButton {
+    background-color: rgb(108, 158, 108);
+}
 
+#pauseButton {
+    background-color: rgb(218, 151, 89);
+}
+
+#resetButton {
+    background-color: rgb(136, 136, 136);
+}
+
+#hours,
 #minutes,
 #seconds,
 #tenths,
 #countMode {
     margin: 10px;
     padding: 5px;
+    border-radius: 5px;
+    opacity: 0.85;
 }
 
 #hours {
-    margin-left: 28px;
+    width: 41px;
+    margin-left: 27px;
 }
 
 #minutes {
-    margin-left: 15px;
+    width: 40px;
+    margin-left: 14px;
+}
+
+#seconds {
+    width: 41px;
+    margin-left: 10px;
 }
 
 #tenths {
-    margin-left: 25px;
+    width: 42px;
+    margin-left: 24px;
 }
 
 #countMode {
     margin-left: 31px;
+    cursor: pointer;
 }
 
 .timerDisplay {

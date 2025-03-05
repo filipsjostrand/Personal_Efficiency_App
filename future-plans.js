@@ -1008,7 +1008,7 @@ const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
                               - 3 + (week1.getDay() + 6) % 7) / 7);
     };
 
-    // Example usage:
+    // Veckonummer för dagens datum
     var weekNumber = todayDate.getWeekNumber();
 
     // _ _ _
@@ -1930,88 +1930,10 @@ let plannedTodosObjectsArray = [];
         console.log("resultString = " + resultString);
 
         // _ _ _
-        // _ _ _
-
-        // // Use the appropriate ChoiceManager instance
-        // const choiceManager = weekChoiceManager; // Replace with logic to select the correct one
-
-        // const modeToRecurringType = {
-        //     day: "d",
-        //     week: "w",
-        //     month: "m",
-        //     year: "y"
-        // };
-
-        // _ _ _
-        // _ _ _
-
-        // _ _ _
-
-        // _ _ _
-
 
         if (resultString === "" || dateInputValue.value === "") {
-            // alert("Select a valid date (YYYY-MM-DD), date is set to default (today)");
-            // dateInputValue.value = dateDisplay.textContent;
         }
-        // 2025-03-03: Ta bort 9-gräns
-        // else if (dateInputValue.value === weekDates[0] && currentMondayTodos.length === 9) {
-        //     // blockedDates.push(weekDates[0]);
-        //     blockedDates.add(weekDates[0]);
-        //     alert(weekDates[0] + " is full")
-        // }
-        // else if (dateInputValue.value === weekDates[1] && currentTuesdayTodos.length === 9) {
-        //     blockedDates.add(weekDates[1]);
-        //     alert(weekDates[1] + " is full")
-        // }
-        // else if (dateInputValue.value === weekDates[2] && currentWednesdayTodos.length === 9) {
-        //     blockedDates.add(weekDates[2]);
-        //     alert(weekDates[2] + " is full")
-        // }
-        // else if (dateInputValue.value === weekDates[3] && currentThursdayTodos.length === 9) {
-        //     blockedDates.add(weekDates[3]);
-        //     alert(weekDates[3] + " is full")
-        // }
-        // else if (dateInputValue.value === weekDates[4] && currentFridayTodos.length === 9) {
-        //     blockedDates.add(weekDates[4]);
-        //     alert(weekDates[4] + " is full")
-        // }
-        // else if (dateInputValue.value === weekDates[5] && currentSaturdayTodos.length === 9) {
-        //     blockedDates.add(weekDates[5]);
-        //     alert(weekDates[5] + " is full")
-        // }
-        // else if (dateInputValue.value === weekDates[6] && currentSundayTodos.length === 9) {
-        //     blockedDates.add(weekDates[6]);
-        //     alert(weekDates[6] + " is full")
-        // }
-        // else if (dateInputValue.value === weekDates[0] && currentMondayTodos.length >= 9) {
-        //     alert("Current Monday tasks (9) has exceeded")
-        //     return 0;
-        // }
-        // else if (dateInputValue.value === weekDates[1] && currentTuesdayTodos.length >= 9) {
-        //     alert("Current Tuesday tasks (9) has exceeded")
-        //     return 0;
-        // }
-        // else if (dateInputValue.value === weekDates[2] && currentWednesdayTodos.length >= 9) {
-        //     alert("Current Wednesday tasks (9) has exceeded")
-        //     return 0;
-        // }
-        // else if (dateInputValue.value === weekDates[3] && currentThursdayTodos.length >= 9) {
-        //     alert("Current Thursday tasks (9) has exceeded")
-        //     return 0;
-        // }
-        // else if (dateInputValue.value === weekDates[4] &&currentFridayTodos.length >= 9) {
-        //     alert("Current Friday tasks (9) has exceeded")
-        //     return 0;
-        // }
-        // else if (dateInputValue.value === weekDates[5] && currentSaturdayTodos.length >= 9) {
-        //     alert("Current Saturday tasks (9) has exceeded")
-        //     return 0;
-        // }
-        // else if (dateInputValue.value === weekDates[6] && currentSundayTodos.length >= 9) {
-        //     alert("Current Sunday tasks (9) has exceeded")
-        //     return 0;
-        // }
+
         else if(dateInputValue.value !== "") {
             // else if(dateInputValue.value !== undefined && dateInputValue.value !== null) {
             let newTodo = {
@@ -2027,40 +1949,6 @@ let plannedTodosObjectsArray = [];
                 isEmpty: false
             }
 
-                // recurringType: modeToRecurringType[choiceManager.mode] || '', // Correct recurringType
-                // dataDate: '',
-
-        // _ _ _
-
-        // 2025-03-03: Ta bort 9-gräns
-        // if (dateInputValue.value === weekDates[0] && currentMondayTodos.length < 9) {
-        //     blockedDates.delete(weekDates[0]);
-        //     console.log("wd0")
-        // }
-        // else if (dateInputValue.value === weekDates[1] && currentTuesdayTodos.length < 9) {
-        //     blockedDates.delete(weekDates[1]);
-        //     console.log("wd1")
-        // }
-        // else if (dateInputValue.value === weekDates[2] && currentWednesdayTodos.length < 9) {
-        //     blockedDates.delete(weekDates[2]);
-        //     console.log("wd2")
-        // }
-        // else if (dateInputValue.value === weekDates[3] && currentThursdayTodos.length < 9) {
-        //     blockedDates.delete(weekDates[3]);
-        //     console.log("wd3")
-        // }
-        // else if (dateInputValue.value === weekDates[4] && currentFridayTodos.length < 9) {
-        //     blockedDates.delete(weekDates[4]);
-        //     console.log("wd4")
-        // }
-        // else if (dateInputValue.value === weekDates[5] && currentSaturdayTodos.length < 9) {
-        //     blockedDates.delete(weekDates[5]);
-        //     console.log("wd5")
-        // }
-        // else if (dateInputValue.value === weekDates[6] && currentSundayTodos.length < 9) {
-        //     blockedDates.delete(weekDates[6]);
-        //     console.log("wd6")
-        // }
         // _ _ _
 
             console.log("aa");
@@ -2070,85 +1958,9 @@ let plannedTodosObjectsArray = [];
             console.log("newTodo.duration (i addTask) = " +  newTodo.duration);
             console.log("typeof newTodo.duration (i addTask) = " +  typeof(newTodo.duration));
 
-            // _ _ _
-            // _ _ _
-
-            // 2025-01-16 Skapas plannedTodos via PlannedTodosClass!? (Nej?)
-        // // Create plannedTodos-object with PlannedTodosClass (#2)
-        // // PlannedTodosClass.createObjectsArray()
-
-        //     // Create plannedTodos-object with PlannedTodosClass (#A)
-        //     // let plannedTodosObject = new PlannedTodosClass(dateInputValue.value, textInputValue.value, colorPickerSelect.value, isRecurringCheckbox.checked, '', false)
-        //     let plannedTodosObject = new PlannedTodosClass(dateInputValue.value, textInputValue.value, colorPickerSelect.value, isRecurringCheckbox.checked, '', '', '','', false)
-
-        //     // // let newTodoAlpha = plannedTodosObject
-        //     // // let plannedTodosObjectArray = [];
-        //     plannedTodosObjectsArray.push(plannedTodosObject)
-        //     console.log("JSON.stringify(plannedTodosObjectsArray) = " + JSON.stringify(plannedTodosObjectsArray))
-
-            // _ _ _
-            // _ _ _
-
-            // plannedTodosObject.addDivToList();
-            // plannedTodosObject.addPlannedTodoToDiv();
-
-        // _ _ _
-
-        // ChatGPT-förslag:
-        // _ _ _
-
-
-        // _ _ _
-
-        // if (newTodo.isRecurring === true) {
-        //     newTodo.recurringType = currentRecurringType;
-        // }
-
-
-
-        // if (isRecurringWeekRadioButton.value === "week" && isRecurringWeekNrOneRadioButton.checked === true) {
-        //     newTodo.weekPeriod = "w1";
-        // else if ()
-
-        // _ _ _
-
-        // if (isRecurringWeekRadioButton.value === "week") {
-        //     // newTodo.weekPeriod = currentweekPeriod;
-        //     console.log("newTodo.weekPeriod = " + newTodo.weekPeriod)
-        // } else if (isRecurringWeekRadioButton.value !== "week") {
-        //     newTodo.weekPeriod = "" }
-
-        // _ _ _
-
-        // newTodo.recurringType
-        // newTodo.weekPeriod
-        // newTodo.duration
-        // newTodo.dataDate = weekdayNameToWeekDayNumber(dateInputValue);
-
-        // Check: No existing task copies exist
-
-            // if (plannedTodos.length === 0) {
-            //     plannedTodos.push(newTodo);
-            // }
-            // else if (plannedTodos.length > 0) {
-            //     for (let i = 0; i < plannedTodos.length; i++) {
-            //         if (plannedTodos[i].date === newTodo.date && plannedTodos[i].todo) {
-            //             alert("Current todo already exists.");
-            //             isCopy = true;
-            //             break;
-            //         }
-            //         else if (plannedTodos[i].date === newTodo.date && plannedTodos[i].todo !== newTodo.todo) {
-            //             isCopy = false;
-            //         }
-            //     }
-            // }
-        // else
-
         // _ _ _
 
         var dataDateNr = '';
-        // var durationDaysNumber = '';
-        // var added
 
         // Get date for recurring daily tasks
         // function checkIfDailyRecTaskInPast(dataDateNr) {
@@ -2222,60 +2034,7 @@ let plannedTodosObjectsArray = [];
                 return nextDate;
             }
 
-            // function addDateDaysRecDailyWithDuration(durationDaysNumber) {
-
-            //     for (let i = 1; i < durationDaysNumber; i++) {
-
-            //         let newDailyRecDurationDate = new Date(newTodo.date);
-            //         newDailyRecDurationDate.setDate(newDailyRecDurationDate.getDate() + i); // Increment the date by 'i' days
-            //         let newConvertedDailyRecDateString = newDailyRecDurationDate.toISOString().split('T')[0]; // Convert the date to 'YYYY-MM-DD' format
-            //         newTodo.date = newConvertedDailyRecDateString;
-
-            //         // let dailyDaysDurationDateToPush =
-            //         // plannedTodos.push(newTodo);
-            //         return newTodo.date;
-            //     }
-            // }
-
-            // if (startingDataDate === 0) {
-            //     nextDate = startingDate;
-            // } else if (startingDataDate > 0) {
-
-            // for (let i = 0; i < 7; i++) {
-            //     nextRecMonDate
-            // }
-            // dataDateNr = 0/1/2/...
-
-        //     weekdayNameToWeekDayNumberMultiDuration(startingDate);
-        //     // Find next Monday (after startingDate)
-
-        //     let nextDailyRecDate = new Date(weekDates[dataDateNr]);
-        //     nextDailyRecDate.setDate(nextDailyRecDate.getDate() + 7);
-        //     let nextDailyRecDateString = nextDailyRecDate.toISOString().split('T')[0]; // Convert the date to 'YYYY-MM-DD' format
-        //     nextDate = nextDailyRecDateString;
-
-
-        //     // if (startingDate < weekDates[dataDateNr] && ) {
-        //     //     nextDate =
-        //     }
-        //     else if (startingDate === weekDates[dataDateNr]) {
-        //     // if (dateDisplay.textContent === weekDates[dataDateNr]) {
-        //         nextDate = weekDates[dataDateNr];
-        //     }
-        //     else if (startingDate > weekDates[dataDateNr]) {
-        //     // else if (dateDisplay.textContent > weekDates[dataDateNr]) {
-        //         // Get next monday (dateString)
-        //         let nextDailyRecDate = new Date(weekDates[dataDateNr]);
-        //         nextDailyRecDate.setDate(nextDailyRecDate.getDate() + 7);
-        //         let nextDailyRecDateString = nextDailyRecDate.toISOString().split('T')[0]; // Convert the date to 'YYYY-MM-DD' format
-        //         nextDate = nextDailyRecDateString;
-
-        //     }
-        //     return nextDate;
-        // }
-
         // _ _ _
-
 
         if (plannedTodos.length > 0) {
             console.log("Here ooooa");
@@ -2283,8 +2042,6 @@ let plannedTodosObjectsArray = [];
                 if (todoRow.date === newTodo.date && todoRow.todo === newTodo.todo) {
                     isCopy = true
                 }
-                // else if (todoRow.date === newTodo.date && todoRow.date !== newTodo) {
-                // }
             })
         }
 
@@ -2320,13 +2077,7 @@ let plannedTodosObjectsArray = [];
                     addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
                 }
 
-                // Test: 2025-02-23 (end)
-
-                // let newLine = "\n";
-                // let ifRecYearAddToTodoText = newLine + "🔁Y";
                 let ifRecYearAddToTodoText = "🔁Y ";
-                // console.log("ifRecYearAddToTodoText = " + ifRecYearAddToTodoText);
-                // newTodo.todo = textInputValue.value + ifRecYearAddToTodoText;
 
                 newTodo.todo = ifRecYearAddToTodoText + textInputValue.value;
 
@@ -2343,7 +2094,7 @@ let plannedTodosObjectsArray = [];
 
                     // if duration > '1' -> multiple newConvertedDateString variables
                     console.log("newConvertedDateString = " + newConvertedDateString);
-                    // newTodo.date = newConvertedDateString;
+
                     console.log("JSON.stringify(newTodo) = " + JSON.stringify(newTodo));
 
                     console.log("weekdayNameToWeekDayNumber(newConvertedDateString) = " + weekdayNameToWeekDayNumber(newConvertedDateString));
@@ -2383,8 +2134,6 @@ let plannedTodosObjectsArray = [];
 
                 // _ _ _
 
-                // Ändrat 2025-02-18:
-                // if (plannedTodos.length > 1) {
                     if (plannedTodos.length > 1 && plannedTodos.length < 3) {
 
 
@@ -2437,7 +2186,8 @@ let plannedTodosObjectsArray = [];
                 let ifRecMonthAddToTodoText = "🔁M ";
                 newTodo.todo = ifRecMonthAddToTodoText + textInputValue.value;
                 plannedTodos.push(newTodo);
-        } else if (monthlyRecDurationStringToNumber > 1) {
+        }
+        else if (monthlyRecDurationStringToNumber > 1) {
 
             for (let i = 0; i < monthlyRecDurationStringToNumber; i++) {
                 console.log("i = " + i);
@@ -2514,13 +2264,11 @@ let plannedTodosObjectsArray = [];
             }
 
 
-
-        // _ _ _
         // _ _ _
         }
         // Don´t add monthly recurring todos if date > 28
         else if (newTodo.date >= dateDisplay.textContent && newTodo.isRecurring === true && newTodo.recurringType === 'm' && isDayLessThan29(newTodo.date) === false) {
-            console.log("todoDateLoad >= currentDate (M), day > 28")
+            //todoDateLoad >= currentDate (M), day > 28"
             alert('Can´t add recurring month dates > 28');
         }
 
@@ -4697,9 +4445,35 @@ function checkIfDateAndTextAreEmpty() {
 
             console.log("which day ooa");
 
+            let currentDayTodoItems;
+
+            if (plannedTodos[dataId].dataDate === "0") {
+                currentDayTodoItems = currentMondayTodos.length
+            }
+            else if (plannedTodos[dataId].dataDate === "1") {
+                currentDayTodoItems = currentTuesdayTodos.length
+            }
+            else if (plannedTodos[dataId].dataDate === "2") {
+                currentDayTodoItems = currentWednesdayTodos.length
+            }
+            else if (plannedTodos[dataId].dataDate === "3") {
+                currentDayTodoItems = currentThursdayTodos.length
+            }
+            else if (plannedTodos[dataId].dataDate === "4") {
+                currentDayTodoItems = currentFridayTodos.length
+            }
+            else if (plannedTodos[dataId].dataDate === "5") {
+                currentDayTodoItems = currentSaturdayTodos.length
+            }
+            else if (plannedTodos[dataId].dataDate === "6") {
+                currentDayTodoItems = currentSundayTodos.length
+            }
+            // Fill up the week schedule divs with edited data
             // 2025-03-03: Ta bort 9-gräns
             // for (let i = 0; i < 8; i++) {
-            if (currentMondayTodos.length > 0 &&
+            for (let i = 0; i < currentDayTodoItems; i++) {
+            if (plannedTodos[dataId].dataDate === "0" &&
+                currentMondayTodos.length > 0 &&
                 // Om currentMondayTodos-objekt och plannedTodos-objekt är lika ==> hämta färg för currentMondayTodos-objekt från plannedTodos-DOM-färg-listan (todoColorCollection)
                 currentMondayTodos[i]?.date === plannedTodos[dataId]?.date &&
                 currentMondayTodos[i]?.todo === plannedTodos[dataId]?.todo) {
@@ -4708,43 +4482,49 @@ function checkIfDateAndTextAreEmpty() {
                         console.log("here, Monday, returnRgbColor(e.target.getAttribute('data-color')) = " + returnRgbColor(e.target.getAttribute('data-color')))
                         currentMondayTodoItems[i].style.backgroundColor = returnRgbColor(e.target.getAttribute('data-color'));
                     }
-            else if (currentTuesdayTodos.length > 0 &&
+            else if (plannedTodos[dataId].dataDate === "1" &&
+                currentTuesdayTodos.length > 0 &&
                 currentTuesdayTodos[i]?.date === plannedTodos[dataId]?.date &&
                 currentTuesdayTodos[i]?.todo === plannedTodos[dataId]?.todo) {
                         currentTuesdayTodos[i].color = returnDefinedColorText(todoColorCollection[dataId].value);
                         currentTuesdayTodoItems[i].style.backgroundColor = returnRgbColor(e.target.getAttribute('data-color'));
                     }
-            else if (currentWednesdayTodos.length > 0 &&
+            else if (plannedTodos[dataId].dataDate === "2" &&
+                currentWednesdayTodos.length > 0 &&
                 currentWednesdayTodos[i]?.date === plannedTodos[dataId]?.date &&
                 currentWednesdayTodos[i]?.todo === plannedTodos[dataId]?.todo) {
                         currentWednesdayTodos[i].color = returnDefinedColorText(todoColorCollection[dataId].value);
                         currentWednesdayTodoItems[i].style.backgroundColor = returnRgbColor(e.target.getAttribute('data-color'));
                     }
-            else if (currentThursdayTodos.length > 0 &&
+            else if (plannedTodos[dataId].dataDate === "3" &&
+                currentThursdayTodos.length > 0 &&
                 currentThursdayTodos[i]?.date === plannedTodos[dataId]?.date &&
                 currentThursdayTodos[i]?.todo === plannedTodos[dataId]?.todo) {
                         currentThursdayTodos[i].color = returnDefinedColorText(todoColorCollection[dataId].value);
                         currentThursdayTodoItems[i].style.backgroundColor = returnRgbColor(e.target.getAttribute('data-color'));
                     }
-            else if (currentFridayTodos.length > 0 &&
+            else if (plannedTodos[dataId].dataDate === "4" &&
+                currentFridayTodos.length > 0 &&
                 currentFridayTodos[i]?.date === plannedTodos[dataId]?.date &&
                 currentFridayTodos[i]?.todo === plannedTodos[dataId]?.todo) {
                         currentFridayTodos[i].color = returnDefinedColorText(todoColorCollection[dataId].value);
                         currentFridayTodoItems[i].style.backgroundColor = returnRgbColor(e.target.getAttribute('data-color'));
                     }
-            else if (currentSaturdayTodos.length > 0 &&
+            else if (
+                plannedTodos[dataId].dataDate === "5" &&currentSaturdayTodos.length > 0 &&
                 currentSaturdayTodos[i]?.date === plannedTodos[dataId]?.date &&
                 currentSaturdayTodos[i]?.todo === plannedTodos[dataId]?.todo) {
                         currentSaturdayTodos[i].color = returnDefinedColorText(todoColorCollection[dataId].value);
                         currentSaturdayTodoItems[i].style.backgroundColor = returnRgbColor(e.target.getAttribute('data-color'));
                     }
-            else if (currentSundayTodos.length > 0 &&
+            else if (plannedTodos[dataId].dataDate === "6" &&
+                currentSundayTodos.length > 0 &&
                 currentSundayTodos[i]?.date === plannedTodos[dataId]?.date &&
                 currentSundayTodos[i]?.todo === plannedTodos[dataId]?.todo) {
                         currentSundayTodos[i].color = returnDefinedColorText(todoColorCollection[dataId].value);
                         currentSundayTodoItems[i].style.backgroundColor = returnRgbColor(e.target.getAttribute('data-color'));
                     }
-            // }
+            }
 
             // _ _ _
 
@@ -9697,6 +9477,12 @@ clearPastButton.addEventListener('click', () => {
     // updateCurrentWeekSchedule();
     console.log("plannedTodos after DOM update" + JSON.stringify(plannedTodos))
     console.log("object updated with DOM data?");
+
+    // Loading delay (load file)
+    // let loadButton = document.getElementById("load");
+    // loadButton.disabled = false;
+    // document.body.style.cursor = 'default';
+
 //   });
         }
 
@@ -10053,64 +9839,39 @@ async function saveAs() {
 // _ _ _
 // _ _ _
 
-// Load plan
-async function loadPlan() {
-    let [fileHandle] = await window.showOpenFilePicker({
-        types: [
-            {
-                // description: 'Images',
-                description: 'JS-object (date, todo-text, color and isEmpty)',
-                accept: {
-                    // 'image/*': ['.png', '.gif', '.jpeg', '.jpg'],
-                    'text/*': ['.txt', '.json'],
-                }
-            },
-        ],
-        excludeAcceptAlloption: true,
-        multiple: false
-    });
-    // console.log(fileHandle.kind);
-    let fileData = await fileHandle.getFile();
-    let text = await fileData.text();
-    console.log(text);
-    console.log("typeof text = " + typeof text);
+// // Load plan
+// async function loadPlan() {
+//     let [fileHandle] = await window.showOpenFilePicker({
+//         types: [
+//             {
+//                 // description: 'Images',
+//                 description: 'JS-object (date, todo-text, color and isEmpty)',
+//                 accept: {
+//                     // 'image/*': ['.png', '.gif', '.jpeg', '.jpg'],
+//                     'text/*': ['.txt', '.json'],
+//                 }
+//             },
+//         ],
+//         excludeAcceptAlloption: true,
+//         multiple: false
+//     });
+//     let fileData = await fileHandle.getFile();
+//     let text = await fileData.text();
+//     console.log(text);
+//     console.log("typeof text = " + typeof text);
 
-    // Convert the loaded JSON.stringify(plannedTodos) (= "text" (string)) into an object (-> "plannedTodos" (object))
-    plannedTodos = JSON.parse(text)
-    console.log("JSON.stringify(plannedTodos) (loaded) = " + JSON.stringify(plannedTodos));
-    // _ _ _
+//     // Convert the loaded JSON.stringify(plannedTodos) (= "text" (string)) into an object (-> "plannedTodos" (object))
+//     plannedTodos = JSON.parse(text)
+//     console.log("JSON.stringify(plannedTodos) (loaded) = " + JSON.stringify(plannedTodos));
+//     // _ _ _
 
-    // Idé (2025-01-14): kör addTaskToList-funktionalitet (om plannedTodos[i].date >= today...) ((for-loop))
+//     // Idé (2025-01-14): kör addTaskToList-funktionalitet (om plannedTodos[i].date >= today...) ((for-loop))
 
-    ifPlannedTodosIsPastPutToPastPlans();
-    updateCurrentWeekSchedule();
-    updateRecurringPlannedTodos(plannedTodos);
+//     ifPlannedTodosIsPastPutToPastPlans();
+//     updateCurrentWeekSchedule();
+//     updateRecurringPlannedTodos(plannedTodos);
 
-    // _ _ _
-
-    // // FIXA! (Lägg till nya todo-rader! (samt system för plannedTodos (antal), max 3650 todos i plannedTodos? (max length, plannedTodos.length))
-    // for (let i = 0; i < plannedTodos.length; i++) {
-    //     console.log("for-loop (load) körs")
-
-    //     console.log("plannedTodos[i].date = " + plannedTodos[i].date)
-    //         dateCollection[i].value = plannedTodos[i].date;
-    //         dateCollection[i].innerHTML = plannedTodos[i].date;
-    //         todoCollection[i].value = plannedTodos[i].todo;
-    //         todoCollection[i].innerHTML = plannedTodos[i].todo;
-    //         todoColorCollection[i].style.backgroundColor = returnRgbColor(plannedTodos[i].color);
-    // }
-
-    // for (let i = 0; i < plannedTodos.length; i++) {
-    //     if (plannedTodos[i].date == weekDates[0]) {
-    //         console.log("mondayDate Matches (on load)")
-    //         monScheduleWrapper.children[i].textContent = plannedTodos[i].todo
-    //         monScheduleWrapper.children[i].style.backgroundColor = returnRgbColor(plannedTodos[i].color)
-    //     }
-    // }
-
-    // _ _ _
-
-}
+// }
 
 
 function getExactYearDifference(todoDate, currentDate) {
@@ -10372,6 +10133,8 @@ function ensureRecurringWeekDate(todoDateLoad, currentDate, weekPeriod) {
 
             newDate = new Date(current.getFullYear(), current.getMonth(), current.getDate() + addDaysW2);
         }
+
+        // 2025-03-04: OBS! Se över!?
         else if (weekPeriod === 'w3') {
             console.log("w3 ooa");
 
@@ -10385,14 +10148,72 @@ function ensureRecurringWeekDate(todoDateLoad, currentDate, weekPeriod) {
             let getRemainder = '';
 
             if (diffDays < 21) {
+                console.log("diffDays < 21");
                 getRemainder = 21-diffDays;
+                addDaysW3 = getRemainder;
+                console.log("addDaysW3 = " + addDaysW3);
             }
 
+            // else if (diffDays >= 21) {
             else if (diffDays >= 21) {
+                console.log("diffDays >= 21");
                 getRemainder = 21-getRemainderDividingWithTwentyone(diffDays);
-                if (diffDays % getRemainder === 0) {
-                    getRemainder = 0;
-                }
+
+                console.log("getRemainderDividingWithTwentyone(diffDays) = " + getRemainderDividingWithTwentyone(diffDays));
+
+                console.log("diffDays % getRemainder = " + diffDays % getRemainder);
+
+                // let daysToAddW3 = Number(diffDays) % Number(getRemainder);
+                // console.log("daysToAddW3 (1) = " + daysToAddW3);
+
+                // console.log("Number(diffDays) % Number(getRemainder) == 0 = " + Number(diffDays) % Number(getRemainder) == 0);
+
+                // console.log("Number(diffDays) % Number(getRemainder) === 0 = " + Number(diffDays) % Number(getRemainder) === 0);
+
+
+
+
+                // _ _ _
+
+                // if (daysToAddW3 === 0) {
+                //     daysToAddW3 = daysToAddW3 - 21;
+                //     getRemainder = daysToAddW3.toString();
+                //     console.log("daysToAddW3 (2) = " + daysToAddW3);
+                // }
+
+                // _ _ _
+
+                // if (diffDays % getRemainder === 0) {
+                //     getRemainder = 0;
+                // }
+
+                // _ _ _
+
+                // let dateForLoadedDataDateCurrentWeek = weekDates[loadedDataDate];
+                // let currentDayDate = new Date(current.getFullYear(), current.getMonth(), current.getDate());
+
+                // _ _ _
+
+                // if (diffDays % getRemainder === 0 && dateForLoadedDataDateCurrentWeek === currentDayDate) {
+                console.log("getRemainder === diffDays = " + getRemainder === diffDays);
+                    if (diffDays % getRemainder === 0 && getRemainder === diffDays) {
+                        console.log("Here === 0 (1)")
+                    getRemainder = '';
+                    } else if (diffDays % getRemainder === 0 && getRemainder !== diffDays) {
+                        console.log("Here === 0 (2)")
+                        getRemainder = 21-getRemainderDividingWithTwentyone(diffDays);
+                    }
+
+                // _ _ _
+                // För att undvika att
+                // if (diffDays % getRemainder === 0) {
+
+                //     // getRemainder = 0;
+                //     let dateForLoadedDataDateCurrentWeek = weekDates[loadedDataDate]
+                // }
+
+
+                // _ _ _
             }
 
             console.log("getRemainder = " + getRemainder);
@@ -10415,13 +10236,23 @@ function ensureRecurringWeekDate(todoDateLoad, currentDate, weekPeriod) {
 
             if (diffDays < 28) {
                 getRemainder = 28-diffDays;
+                addDaysW4 = getRemainder;
             }
 
             else if (diffDays >= 28) {
                 getRemainder = 28-getRemainderDividingWithTwentyeight(diffDays);
-                if (diffDays % getRemainder === 0) {
-                    getRemainder = 0;
+                // if (diffDays % getRemainder === '0') {
+                //     getRemainder = '';
+                // }
+
+                if (diffDays % getRemainder === 0 && getRemainder === diffDays) {
+                    console.log("Here === 0 (1)")
+                getRemainder = '';
+                } else if (diffDays % getRemainder === 0 && getRemainder !== diffDays) {
+                    console.log("Here === 0 (2)")
+                    getRemainder = 28-getRemainderDividingWithTwentyone(diffDays);
                 }
+
             }
 
             console.log("getRemainder = " + getRemainder);
@@ -10439,14 +10270,6 @@ function ensureRecurringWeekDate(todoDateLoad, currentDate, weekPeriod) {
 
 }
 
-
-// _ _ _
-
-// Example usage:
-const todoDateLoad = '2025-01-15';
-const currentDate = '2025-02-21';
-
-console.log(`Adjusted date for ${todoDateLoad}: ${ensureRecurringMonthDate(todoDateLoad, currentDate)}`);
 
 // _ _ _
 
@@ -10509,16 +10332,6 @@ function checkTodoText(todoText) {
     // Default return value if neither pattern matches
     return null;
 }
-
-// // Example usage:
-// const todo1 = "This is a todo with 🔁D";
-// const todo2 = "This is a todo with 🔁#D";
-// const todo3 = "This is a todo with no special text";
-
-// console.log(checkTodoText(todo1)); // true
-// console.log(checkTodoText(todo2)); // false
-// console.log(checkTodoText(todo3)); // null
-
 
 // Function to read the Blob (file) content and separate the strings
 

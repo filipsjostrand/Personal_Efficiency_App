@@ -15,6 +15,8 @@ body {
   background-color: rgb(24, 24, 24);
   color: rgb(211, 211, 211);
 }
+/* Loading delay, body (load file) */
+/* cursor: wait; */
 
 
 a {
@@ -50,15 +52,20 @@ a {
 
 /* Weekly schedule (start) */
 
+#week-plan-info {
+  margin-bottom: 20px;
+}
+
 .grid-day-container {
   display: grid;
-  grid-template-columns: auto auto auto auto auto auto auto;
   grid-template-rows: auto 400px;
   gap: 3px;
-  background-color: rgb(137 188 212);
+  background-color: rgb(137, 188, 212);
   padding: 3px;
   border-radius: 5px;
 }
+  /* background-color: rgba(137, 188, 212, 0.9); */
+  /* background-color: rgba(137, 188, 212, 0.7); */
 
 .grid-day-container > div,
 #mon-div,
@@ -69,14 +76,15 @@ a {
 #sat-div,
 #sun-div {
   background-color: rgba(58, 58, 58, 0.8);
-  color: rgb(248, 248, 248);
+  color: rgba(255, 255, 255, 0.9);
   text-align: center;
-  /* padding: 3px 0; */
   font-size: 25px;
-  /* cursor: pointer; */
   cursor: default;
   border-radius: 5px;
 }
+  /* color: rgb(248, 248, 248); */
+  /* padding: 3px 0; */
+  /* cursor: pointer; */
 
 .day
 {
@@ -147,10 +155,11 @@ a {
     display: grid;
     grid-template-columns: auto auto auto auto auto auto;
     gap: 3px;
-    background-color: #68a089;
+    background-color: rgb(92, 117, 107);
     padding: 3px;
     border-radius: 5px;
   }
+      /* background-color: rgb(104, 160, 137); */
 
   .grid-container > div,
   #top-todos,
@@ -204,6 +213,7 @@ a {
   text-decoration-line: underline;
   text-decoration-color: rgba(0,117,255,0.5);
   text-decoration-thickness: 3px;
+  margin-left: 7px;
 }
 
 .highlight {
@@ -212,11 +222,12 @@ a {
 }
 
 .todo-color {
-  width: 30px;
   height: 34px;
   background-color: rgb(221, 221, 221);
   border: solid 1px rgb(196, 196, 196);
   cursor: pointer;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
 }
 
 #add-todo-container {
@@ -224,15 +235,24 @@ a {
   flex-direction: row;
   width: 100%;
   height: 50px;
-  /* height: 30px; */
+  margin-top: 12px;
 }
+  /* height: 30px; */
 
 #date-input {
   height: 100%;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  border-width: 1px;
+  padding-left: 5px;
+  opacity: 0.9;
+  /* background-color: rgb(245, 244, 240); */
 }
 
 #add-todo-text {
   height: 100%;
+  opacity: 0.9;
+  /* background-color: rgb(240, 239, 230); */
 }
 
 #todo-container {
@@ -254,12 +274,166 @@ a {
 }
 /* Add this CSS to make the color picker more rectangular */
 #color-drop-down select {
-  border-radius: 4px; /* Adjust this value to make it less round */
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
 }
+/* border-radius: 4px; */
+/* Adjust this value to make it less round */
 
 #add-todo-container label {
   display: block;
   /* margin-right: 10px; */
+}
+
+#rec-task {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#add-todo-button {
+  width: 100px;
+  height: 30px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border: 1px solid rgb(82, 82, 82);
+  background-color: rgba(79, 129, 115, 0.815);
+  color: rgb(207 207 207);
+  font-weight: bold;
+  font-size: 15px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+/* margin-top: 15px; */
+/* padding: 10px; */
+
+#clear-all {
+  width: 80px;
+  height: 30px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  border: 2px solid rgb(82, 82, 82);
+  background-color: rgb(136, 136, 136);
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+  /* color: rgb(0, 0, 0); */
+  /* font-weight: bold; */
+
+/* load button CSS */
+/* Hide the default file input */
+.custom-file-button {
+  display: none;
+}
+
+/* Style the custom file button */
+.custom-file-label {
+  display: inline-block;
+  /* display: none; */
+  width: 90px;
+  /* padding: 10px; */
+  margin-top: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  background-color: rgb(61, 117, 129);
+  color: rgb(241, 241, 241);
+  /* border: none; */
+  /* border-color: rgb(73, 79, 82); */
+  border-radius: 5px;
+  border: 1px solid rgb(73, 79, 82);;
+  cursor: pointer;
+  font-size: 15px;
+  text-align: center;
+}
+
+/* Loading delay, .custom-file-label (load file) */
+
+  /* animation-name: load-button;
+  animation-duration: 1.5s;
+  animation-direction: reverse;
+  transition-timing-function: linear; */
+
+  /* The animation code */
+  /* @keyframes load-button {
+    from { opacity: 0.3;}
+    to {
+        opacity: 0.5;
+    }
+  } */
+
+.custom-file-label:hover {
+  background-color: rgb(69, 142, 160);
+}
+
+.custom-file-label:active {
+  background-color: rgb(81, 115, 124);
+}
+
+#save-as-anywhere {
+  width: 160px;
+  height: 35px;
+  display:flex;
+  flex-direction: row;
+  margin-top: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 15px;
+  border-radius: 5px;
+  /* border-color: rgb(91, 126, 102); */
+  background-color: rgb(28, 109, 45);
+  border: 1px solid rgb(91, 126, 102);
+  color:rgb(255, 255, 255);
+}
+  /* font-weight: bold; */
+
+#save-to-downloads {
+  width: 160px;
+  height: 40px;
+  display:flex;
+  flex-direction: row;
+  margin-top: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 15px;
+  border-radius: 7px;
+  /* border-color: rgb(8, 17, 10); */
+  background-color: rgb(32, 43, 34);
+  border: 1px solid rgb(4, 17, 7);
+  color:rgb(255, 255, 255);
+}
+
+#clear-past-tasks {
+  width: 90px;
+  height: 30px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  border: 2px solid rgb(82, 82, 82);
+  background-color: rgb(136, 136, 136);
+  margin-top: 5px;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
 #date-wrapper,
@@ -273,10 +447,10 @@ a {
   width: 80%;
 }
 
-.todo-rec {
+/* .todo-rec {
   width: 7px;
   height: 30px;
-}
+} */
 
 /* #todo-container-one {
   display: flex;
@@ -330,8 +504,25 @@ a {
     } */
 
     #todo-wrapper {
+      /* width: 100%; */
       display: flex;
       flex-direction: column;
+      margin-top: 4px;
+    }
+
+    .todo-date {
+      width: 110px;
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+    }
+    /* width: 100px; */
+
+    /* .todo-text {
+      width: 70%;
+    } */
+
+    #status {
+      opacity: 0;
     }
 
 .todo-date,
@@ -401,10 +592,13 @@ a {
   position: relative; /* Keep it positioned */
   transform: scale(1.75);
   z-index: 1; /* Keep below navbar */
+  opacity: 0.9;
+  cursor: pointer;
 }
 
 #periodicity, #per-weekday, #per-week, #per-month, #per-year {
   display: none;
+  opacity: 0.9;
 }
 
 .day-selection-container {
@@ -429,7 +623,7 @@ a {
 }
 
 #rec-day-days, #rec-week-days, #rec-month-days, #rec-year-days {
-  width: 23px;
+  width: 40px;
 }
 
 #past-plan-heading {
@@ -437,10 +631,10 @@ a {
   /* justify-content: center; */
 }
 
-#past-plan-div {
+/* #past-plan-div {
   display: flex;
   justify-content: center;
-}
+} */
 
 #past-tasks-input-field {
   width: 70vh;
@@ -501,10 +695,14 @@ _ _ _ */
 } */
 
 #file-name-label {
+  margin-top: 5px;
   font-size: 14px;
 }
 #file-name {
-  width: 70%;
+  height: 19px;
+  border-radius: 5px;
+  margin-top: 9px;
+  opacity: 0.8;
 }
 
 #dl-opt-1 {
@@ -518,12 +716,25 @@ _ _ _ */
 
 #dl-1 {
   font-size: 14px;
-  margin-top: 15px;
+  margin-top: 30px;
   margin-bottom: 0px;
 }
+/* margin-top: 15px; */
 
 /* _ _ _
 _ _ _ */
+
+.timer-button-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+/* .iframe-box-container {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+} */
 
 
 /* Computer screens and larger (start) */
@@ -531,6 +742,10 @@ _ _ _ */
 
   #text-wrapper {
     width: 300px;
+  }
+
+  .grid-day-container {
+    grid-template-columns: calc(99%/7) calc(99%/7) calc(99%/7) calc(99%/7) calc(99%/7) calc(99%/7) calc(99%/7);
   }
 
   .color-switcher-content {
@@ -556,14 +771,101 @@ _ _ _ */
     margin-top: 15px;
     margin-bottom: 10px;
   }
+
+  #rec-task {
+    width: 480px;
+  }
+
+  #periodicity, #per-weekday, #per-week, #per-month, #per-year {
+    width: 450px;
+  }
+
+  .todo-text {
+    width: 300px;
+  }
+  /* width: 20%; */
+
+  .todo-color {
+    width: 30px;
+  }
+
+  #file-name {
+    margin-top: 5px;
+    width: 350px;
+  }
+
+  #past-plan-div {
+    display: flex;
+    justify-content: center;
+  }
+
+  #past-plan-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  #past-plan-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 70vh;
+  }
+
+  .timer-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .timer-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+
+  .iframe-box-container {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
 }
 /* Computer screens and larger (end) */
 
 /* Tablets and larger screens (start) */
 @media screen and (min-width: 768px) and (max-width: 1023px) {
 
+  .grid-day-container {
+    grid-template-columns: calc(99%/7) calc(99%/7) calc(99%/7) calc(99%/7) calc(99%/7) calc(99%/7) calc(99%/7);
+  }
+
   #text-wrapper {
     width: 300px;
+  }
+
+  #rec-task {
+    width: 480px;
+  }
+
+  #periodicity, #per-weekday, #per-week, #per-month, #per-year {
+    width: 450px;
+  }
+
+  .todo-text {
+    width: 300px;
+  }
+
+  .todo-color {
+    width: 34px;
+  }
+
+  #file-name {
+    margin-top: 5px;
+    width: 350px;
+  }
+
+  .iframe-box-container {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
   }
 
 }
@@ -572,11 +874,44 @@ _ _ _ */
 /* Mobile screens (start) */
 @media screen and (max-width: 767px) {
 
+  .todo-color {
+    width: 34px;
+  }
+
+  .grid-day-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto;
+  }
+
+.todo-text {
+  width: 70%;
+}
+
+/* #todo-wrapper {
+  width: 100%;
+} */
+
   #close-panel {
     width: 100%;
     height: 26px;
     margin-top: 15px;
   }
+
+  #rec-task {
+    width: 100%;
+  }
+
+  #file-name {
+    margin-top: 9px;
+    width: 70%;
+  }
+  /* margin-top: 5px; */
+
+  #past-plan-div {
+    display: flex;
+    justify-content: center;
+  }
+
 }
 /* Mobile screens (end) */
 

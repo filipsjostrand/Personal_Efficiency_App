@@ -1,10 +1,16 @@
 #todo-1-container, #todo-2-container, #todo-3-container {
     display: flex;
     flex-direction: row;
+    padding-bottom: 15px;
 }
 
-#first, #second, #third {
+#first,
+#second,
+#third {
     margin-right: 10px;
+    margin-left: 7px;
+    opacity: 0.9;
+    cursor: pointer;
 }
 
 .checkbox {
@@ -17,10 +23,39 @@
 }
 
 .reset-todo-button {
-    width: 90px;
-    height: 20px;
+    width: 65px;
+    height: 65px;
     display: flex;
+    border-width: 1px;
+    border-radius: 50%;
+    border-color: rgb(255, 126, 64);
+    background-image: radial-gradient(rgb(243, 198, 75), rgb(194, 109, 75));
+    background-color: orange;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 20px 0px rgba(182, 95, 95, 0.3);
+    font-weight: bold;
+    font-size: 15px;
+    color: rgba(20, 20, 20, 0.9);
+    cursor: pointer;
 }
+/* width: 90px;
+height: 90px; */
+/* height: 20px; */
+
+.reset-todo-button:active {
+    background-image: radial-gradient(rgb(243, 198, 75), rgb(197, 172, 101));
+}
+
+/* Add padding-bottom to the paragraph */
+#top3-todo-buton-text {
+    padding-bottom: 1px;
+    white-space: pre; /* Ensure that newline characters are preserved */
+}
+
+/* p#top3-todo-button-text {
+    padding-bottom: 1px;
+} */
 
 #weekday-display {
     width: 50px;
@@ -44,6 +79,43 @@
     /* padding-left: 20px; */
 }
 
+.todo-input-v2 {
+    border-radius: 5px;
+    padding: 5px;
+    background-color: rgb(243, 239, 239);
+}
+
+#todo-select {
+    border-radius: 5px;
+    padding: 4px;
+    background-color: rgb(243, 239, 239);
+    cursor: pointer;
+}
+
+.add-button-v2 {
+    width: 100px;
+    height: 30px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 7px;
+    margin-left: 2px;
+    flex-direction: row;
+    border: 2px solid rgb(82, 82, 82);
+    background-color: rgba(79, 129, 115, 0.815);
+    color: rgb(207 207 207);
+    font-weight: bold;
+    font-size: 15px;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.checkbox {
+    transform: scale(1.75);
+}
+
 .comment {
     font-size: 12px;
 }
@@ -51,13 +123,28 @@
 /* Media query for mobile screens */
 @media (max-width: 600px) {
 
-    .add-button-v2 {
-        width: 40px;
-        height: 20px;
+    /* .add-button-v2 {
+        width: 60px;
+        height: 30px;
         display:flex;
-        margin-top: 5px;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px;
+        margin-bottom: 7px;
+        margin-left: 2px;
         flex-direction: row;
-    }
+        border: 2px solid rgb(82, 82, 82);
+        background-color: rgba(79, 129, 115, 0.815);
+        color: rgb(207 207 207);
+        padding: 10px;
+        border-radius: 6px;
+    } */
+
+    /* background-color: rgb(34 148 104); */
+    /* background-color: rgb(92 117 107); */
+    /* background-color:rgb(104, 160, 137); */
+    /* color: rgb(218, 218, 218); */
+    /* margin-top: 5px; */
 
     .comment {
         font-size: 12px;

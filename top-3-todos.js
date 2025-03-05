@@ -94,6 +94,12 @@ function resetTodoSet() {
   todoThree.value = "3. ...";
   saveTaskThree();
   todoInput.value = "";
+  first.checked = false
+  second.checked = false
+  third.checked = false
+  todoOne.style.textDecoration = 'none';
+  todoTwo.style.textDecoration = 'none';
+  todoThree.style.textDecoration = 'none';
 //   window.location.reload();
 }
 
@@ -115,7 +121,7 @@ function editTodoSet() {
   todoInput.value = "";
 }
 
-// Add todos (to todo list)
+// Add todos (to Top3 list)
 function addTaskToSet() {
     // console.log("addTaskToSet() körs")
     updateDropDownText();
@@ -126,7 +132,7 @@ function addTaskToSet() {
   }
 
 // Om todo-maxgräns (3x) uppnådd: alert-box skrivs ut
-  if (limitedTodoSet.size === maxElements && dropDownText === "Todo list") {
+  if (limitedTodoSet.size === maxElements && dropDownText === "Top3 list") {
     alert("Current Todo limit (3) is reached.");
   }
   // Ändra specifika todos (edit)
@@ -136,7 +142,7 @@ function addTaskToSet() {
   // p4. Lägg in en text-sträng om en specifik todo ändras och någon annan är tom (saknar värde)
 
   // "p1."
-  if (todoOne.innerHTML != "1. ..." && dropDownText !== "Todo list" && dropDownText === "#1" && todoInput.value !== "") {
+  if (todoOne.innerHTML != "1. ..." && dropDownText !== "Top3 list" && dropDownText === "#1" && todoInput.value !== "") {
     editTodoOne = "1. " + todoInput.value
      // "p2."
     if (limitedTodoSet.has([...limitedTodoSet][1])) {
@@ -156,7 +162,7 @@ function addTaskToSet() {
     showTask();
   }
 
-  if (todoTwo.innerHTML != "2. ..." && dropDownText !== "Todo list" && dropDownText === "#2" && todoInput.value !== "") {
+  if (todoTwo.innerHTML != "2. ..." && dropDownText !== "Top3 list" && dropDownText === "#2" && todoInput.value !== "") {
     if (limitedTodoSet.has([...limitedTodoSet][0])) {
       editTodoOne = [...limitedTodoSet][0]}
       else {
@@ -172,7 +178,7 @@ function addTaskToSet() {
     saveTaskTwo();
     showTask()
   }
-  if (todoThree.innerHTML != "3. ..." && dropDownText !== "Todo list" && dropDownText === "#3" && todoInput.value !== "") {
+  if (todoThree.innerHTML != "3. ..." && dropDownText !== "Top3 list" && dropDownText === "#3" && todoInput.value !== "") {
     if (limitedTodoSet.has([...limitedTodoSet][0])) {
       editTodoOne = [...limitedTodoSet][0]}
       else {
@@ -191,21 +197,21 @@ function addTaskToSet() {
 
   // Lägg till todos (en i taget)
   if (limitedTodoSet.size < maxElements && todoInput.value !== "") {
-    if (todoOne.innerHTML === "1. ..." && dropDownText === "Todo list") {
+    if (todoOne.innerHTML === "1. ..." && dropDownText === "Top3 list") {
       newTodo = "1. " + todoInput.value
       limitedTodoSet.add(newTodo);
       todoOne.innerHTML = [...limitedTodoSet][0];
       saveTaskOne();
       todoInput.value = "";
 
-    } else if (todoOne.innerHTML != "1. ..." && todoTwo.innerHTML === "2. ..." && dropDownText === "Todo list") {
+    } else if (todoOne.innerHTML != "1. ..." && todoTwo.innerHTML === "2. ..." && dropDownText === "Top3 list") {
       newTodo = "2. " + todoInput.value
       limitedTodoSet.add(newTodo);
       todoTwo.innerHTML = [...limitedTodoSet][1];
       saveTaskTwo();
       todoInput.value = "";
 
-    } else if (todoOne.innerHTML != "1. ..." && todoTwo.innerHTML != "2. ..." && dropDownText === "Todo list" && todoThree.innerHTML === "3. ...") {
+    } else if (todoOne.innerHTML != "1. ..." && todoTwo.innerHTML != "2. ..." && dropDownText === "Top3 list" && todoThree.innerHTML === "3. ...") {
       newTodo = "3. " + todoInput.value
       limitedTodoSet.add(newTodo);
       todoThree.innerHTML = [...limitedTodoSet][2];

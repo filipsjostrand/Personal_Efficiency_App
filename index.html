@@ -40,19 +40,21 @@
                 <div id="weekday-display"></div>
                 <div id="date-display"></div>
                 <div id="week-display"></div><br>
-                <button onclick="resetTodoSet()" class="reset-todo-button">Reset todos</button>
+                <button onclick="resetTodoSet()" class="reset-todo-button">
+                  <p id="top3-todo-buton-text">Start&#10;<sub>Reset</sub></p>
+                </button>
             </div>
 
             <br>
             <input class="todo-input-v2" type="text" id="input-box-v2" placeholder="Add todo text...">
             <label for="todo-select">Apply to:</label>
                 <select name="todos" id="todo-select">
-                <option value="" selected>Todo list</option>
+                <option value="" selected>Top3 list</option>
                 <option value="todo-one">#1</option>
                 <option value="todo-two">#2</option>
                 <option value="todo-three">#3</option>
                 </select>
-            <button onclick="addTaskToSet()" class="add-button-v2">Add</button>
+            <button onclick="addTaskToSet()" class="add-button-v2">Add Todo</button>
             <br>
 
         </div>
@@ -81,32 +83,18 @@
             </div>
         </div>
         <br>
-        <br>
-        <br>
         <h3>Application information</h3>
              <div class="info">
              <ol>
-                 <li><b>Reset:</b> Press "Reset todos" to reactivate the application.</li><br>
-                 <li><b>Add:</b> Write a todo text and press "Add" (ensure that "Todo list" is selected in the rolldown).</li><br>
-                 <li><b>Replace: </b> Replace a todo by writing a new todo text, select a todo number "#" to replace (in the rolldown), then press "Add".</li>
+                 <li><b>Reset:</b> &nbsp Press "Start Reset" (application reactivates).</li><br>
+                 <li><b>Add:</b> &nbsp Write a todo text &nbsp &nbsp → &nbsp &nbsp press "Add Todo" (ensure "Top3 list" is selected in rolldown).</li><br>
+                 <li><b>Replace: </b> &nbsp Write a new todo text &nbsp &nbsp → &nbsp &nbsp select "#" (to replace) in rolldown &nbsp &nbsp → &nbsp &nbsp press "Add Todo".</li>
              </ol>
                  <br>
-                     <div class="comment">Current time zone: Central European Time (CET)</div>
+
              </div>
 
-        <div>
-            <p>Website under construction</p>
-            <p>Webmaster: Filip Sjöstrand (filip_sjostrand@hotmail.com)</p>
-        </div>
-
           <!-- _ _ _ Top 3 Todos (end) -->
-
-          <!-- <button onclick="resetTodoSet()" class="reset-todo-button">Reset todos</button> -->
-          <div id="character-counter" class="character-counter"></div>
-          <div id="weekday-display">_ _ _</div>
-          <div id="date-display"></div>
-          <div id="week-display"></div>
-      </div><br>
 
       </main>
 
@@ -115,8 +103,13 @@
         <h3 id="weekly-heading">Week plan</h3>
         <div id="week-plan-info">
           <p>
-            Add (or edit) tasks to the week plan from the "Future Plans" section below. Scroll down or press "Future" (in the navbar)<br>
-
+            Check current week schedule
+            <ul>
+              <li>Go to "Future Plans" (to add tasks)</li>
+              <ul>
+                <li>Scroll down or click "Future" (navbar)</li>
+              </ul>
+            </ul>
           </p>
         </div>
 
@@ -239,19 +232,19 @@
       <section>
         <div id="future-div"></div>
         <h3 id="future-heading">Future Plans</h3>
-        Handle <u>Future Plans</u> and watch <u>Past tasks</u>.
+        Handle <u>Current Plan</u> and watch <u>Past tasks</u>.
         <ul>
-          <li>Load saved file (with "Load Saved" button).</li>
-          <li>Save current plan (with the Save button).</li>
-          <li>Edit current plan (in the table).</li>
-          <li>Copy/clear past tasks.</li>
+          <li>Add Task / Load File (Schedule).</li>
+          <li>Save (Schedule).</li>
+          <li>Edit (in table).</li>
+          <li>Copy/clear (past tasks).</li>
         </ul>
         <br>
 
 
-        <button onclick="loadPlan()"> Load Saved </button><br><br>
+        <!-- <button onclick="loadPlan()"> Load Saved </button><br><br> -->
 
-        <span>Add Task</span><br><br>
+        <span>➕ <u>Add Task</u></span><br>
         <div id="add-todo-container">
           <div id="date-wrapper">
             <label for="date-input">Date</label>
@@ -279,11 +272,11 @@
           </div><br>
         </div><br>
                     <!-- <div> -->
-          <label>
+          <label id="rec-task">
             <input id="todo-recurring-input" type="checkbox" />
             <span id="rec-text-span">Recurring Task 🔁</span>
         </label>
-        <br><br>
+        <br>
 
         <!-- default: display: "none" (-> block) -->
           <fieldset id="periodicity">
@@ -411,15 +404,14 @@
           </div>
         </fieldset>
 
-    <!-- </div> -->
+      <!-- </div> -->
           </form>
             <!-- <pre id="textarea" contenteditable></pre> -->
-            <br>
-            <button id="add-todo-button" onclick="addTaskToList()"> Add </button><br><br>
+            <button id="add-todo-button" onclick="addTaskToList()"> Add Task </button><br>
 
-            <button id="clear-all">Clear All</button><br><br>
+            <!-- <button id="clear-all">Clear All</button><br><br> -->
 
-            <span>Current Plan</span><br>
+            <span id="current-plan-header">📝<u>Current Plan</u></span><br>
             <div id="todo-wrapper">
               <div id="todo-container" class="todo-container-element" data-id="0">
                 <textarea id="todo-0-date" class="todo-date" type="text" placeholder="Next date..." data-id="0" data-key="date" name="date"></textarea>
@@ -440,6 +432,7 @@
                 <div id="todo-2-rec" class="todo-rec" data-id="2" data-key="rec" name="rec"></div>
               </div>
             </div>
+            <button id="clear-all">Clear All</button>
             <p id="status">No textarea is active.</p>
 
           <!-- Hidden color switcher panel -->
@@ -460,147 +453,167 @@
             </div>
           </div>
 
-          <br>
-          <span>Load Plan</span><br>
+          <span>📁<u>Load Plan</u> </span><br>
           <!-- <button onclick="loadPlan()"> Load (Chrome) </button><br><br> -->
-          <input id="load" type="file" value="load" onChange="load_func()"><br><br>
 
-          <span>Save Plan</span><br>
+          <input id="load" class="custom-file-button" type="file" value="load" onChange="load_func()">
+
+          <!-- Loading delay, .custom-file-button (load file) -->
+          <!-- <input id="load" class="custom-file-button" type="file" value="load" onChange="load_func()" style="opacity: 0.3" disabled> -->
+          <label for="load" class="custom-file-label">Load File</label><br><br><br>
+
+          <span>💾<u>Save Plan</u></span><br>
           <label id="file-name-label" for="file-name">File Name:</label>
           <input type="text" id="file-name" name="file-name"><br>
 
           <p id="dl-1">Download (option <b>1</b>):</p>
           <p id="browser-compatibility">✅ <i>PC/Android</i></p>
           <p id="browser-compatibility">❌ <i>Firefox, iOS devices</i></p>
-          <button onclick="saveAs()"> Save As (anywhere) </button><br><br>
+          <button id="save-as-anywhere" onclick="saveAs()"> Save As (anywhere) </button><br><br>
           <!-- <button onclick="save()"> Save As (loaded name) </button><br><br> -->
 
           <p id="browser-compatibility">Download (option <b>2</b>):</p>
           <p id="browser-compatibility">✅ <i>Any browser</i></p>
-          <button onclick="save_func()"> Save (to downloads) </button>
+          <button id="save-to-downloads" onclick="save_func()"> Save (to downloads) </button>
           <br><br>
 
-          <span id="past-plan-heading">Past Tasks</span>
+          <!-- <span id="past-plan-heading">Past Tasks</span>
           <div id="past-tasks-text">
             <p>
               Handle past tasks - copy or clear (from file).
             </p>
+          </div> -->
+          <div id="past-plan-container">
+              <div id="past-plan-wrapper">
+                <span id="past-plan-heading">📄<u>Past Tasks</u></span>
+                <div id="past-tasks-text">
+                  <p>
+                    Copy or clear (past tasks).
+                  </p>
+                </div>
+                <div id="past-plan-div">
+                  <!-- <textarea id="past-tasks-input-field" readonly></textarea> -->
+                  <textarea id="past-tasks-input-field"></textarea>
+                </div>
+                  <button id="clear-past-tasks">Clear Past</button>
+              </div>
           </div>
-          <div id="past-plan-div">
-            <!-- <textarea id="past-tasks-input-field" readonly></textarea> -->
-            <textarea id="past-tasks-input-field"></textarea>
-          </div>
-          <button id="clear-past-tasks">Clear Past</button>
-
       </section>
 
       <section class="timer-section">
-        <div id="timer-div"></div>
-        <h3 id="timer-heading">Timer</h3>
-        Set a time limit to count up/down from.
-        <ul>
-          <li>hours,</li>
-          <li>minutes,</li>
-          <li>seconds,</li>
-          <li>tenths.</li>
-      </ul>
-         <br>
+        <div class="timer-container">
+          <div class="timer-wrapper">
+            <div id="timer-div"></div>
+            <h3 id="timer-heading">Timer</h3>
+            Set a time limit:
+            <ul>
+              <li>hours,</li>
+              <li>minutes,</li>
+              <li>seconds,</li>
+              <li>tenths.</li>
+            </ul>
+            <br>
 
-        <div>
-          <label for="hours">Hours:</label>
-          <input type="number" id="hours" placeholder="0" min="0"><br>
-          <label for="minutes">Minutes:</label>
-          <input type="number" id="minutes" placeholder="0" min="0" max="59"><br>
-          <label for="seconds">Seconds:</label>
-          <input type="number" id="seconds" placeholder="0" min="0" max="59"><br>
-          <label for="tenths">Tenths:</label>
-          <input type="number" id="tenths" placeholder="0" min="0" max="9">
-      </div>
+            <div>
+              <label for="hours">Hours:</label>
+              <input type="number" id="hours" placeholder="0" min="0"><br>
+              <label for="minutes">Minutes:</label>
+              <input type="number" id="minutes" placeholder="0" min="0" max="59"><br>
+              <label for="seconds">Seconds:</label>
+              <input type="number" id="seconds" placeholder="0" min="0" max="59"><br>
+              <label for="tenths">Tenths:</label>
+              <input type="number" id="tenths" placeholder="0" min="0" max="9">
+            </div>
 
-      <div>
-          <label for="countMode">Mode:</label>
-          <select id="countMode">
-              <option value="countdown">Countdown</option>
-              <option value="countup">Count Up</option>
-          </select>
-      </div>
+            <div>
+                <label for="countMode">Mode:</label>
+                <select id="countMode">
+                    <option value="countdown">Countdown</option>
+                    <option value="countup">Count Up</option>
+                </select>
+            </div>
+          </div>
+        </div>
 
-      <button id="startButton">Start</button>
-      <button id="pauseButton">Pause</button>
-      <button id="resetButton">Reset</button>
+        <div class="timer-button-wrapper">
+          <button id="startButton">Start</button>
+          <button id="pauseButton">Pause</button>
+          <button id="resetButton">Reset</button>
+        </div>
+
 
       <div>
           <h2 class="timerDisplay">Time:&nbsp;<span id="timerDisplay">00:00:00:0</span></h2>
       </div><br>
 
+      <div class="iframe-box-container">
+        <div id="iframe-container-b">
+            <iframe
+                id="music-player-pop-b"
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/sWv8DWN-D20?si=1JYYN2uTEQX6qJDf"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen>
+            </iframe>
+        </div>
 
-          <div id="iframe-container-b">
-              <iframe
-                  id="music-player-pop-b"
-                  width="560"
-                  height="315"
-                  src="https://www.youtube.com/embed/sWv8DWN-D20?si=1JYYN2uTEQX6qJDf"
-                  title="YouTube video player"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  allowfullscreen>
-              </iframe>
-          </div>
+        <div id="billboard-top50-div">
+            <a href="https://www.youtube.com/watch?v=kPa7bsKwL-c&list=PLx0sYbCqOb8TBPRdmBHs5Iftvv9TPboYG&pp=iAQB8AUB" target="_blank">Billboard Top 50 #1
+            <img id="billboard-top50-img" src="pexels-myatezhny39-2422404.jpg" alt="Billboard top 50 songs">
+            </a>
+        </div>
 
-          <div id="billboard-top50-div">
-              <a href="https://www.youtube.com/watch?v=kPa7bsKwL-c&list=PLx0sYbCqOb8TBPRdmBHs5Iftvv9TPboYG&pp=iAQB8AUB" target="_blank">Billboard Top 50 #1
-              <img id="billboard-top50-img" src="pexels-myatezhny39-2422404.jpg" alt="Billboard top 50 songs">
-              </a>
-          </div>
+        <div id="billboard-div">
+                <a href="https://www.youtube.com/watch?v=cF1Na4AIecM&list=PLDIoUOhQQPlWc-Kd6TCjTRIl0Z6fSQV0X" target="_blank">Billboard Top 50 #2
+                <img id="billboard-img" src="pexels-freestockpro-1031700.jpg" alt="Billboard top songs">
+                </a>
+        </div>
 
-          <div id="billboard-div">
-                  <a href="https://www.youtube.com/watch?v=cF1Na4AIecM&list=PLDIoUOhQQPlWc-Kd6TCjTRIl0Z6fSQV0X" target="_blank">Billboard Top 50 #2
-                  <img id="billboard-img" src="pexels-freestockpro-1031700.jpg" alt="Billboard top songs">
-                  </a>
-          </div>
+        <div id="iframe-container-c">
+            <iframe
+                id="music-player-classic-a"
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/_F4rdFQv4c4?si=JYhjuLJjyIr1V_tK"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen>
+            </iframe>
+        </div>
 
-          <div id="iframe-container-c">
-              <iframe
-                  id="music-player-classic-a"
-                  width="560"
-                  height="315"
-                  src="https://www.youtube.com/embed/_F4rdFQv4c4?si=JYhjuLJjyIr1V_tK"
-                  title="YouTube video player"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  allowfullscreen>
-              </iframe>
-          </div>
+        <div id="iframe-container-d">
+            <iframe
+                id="music-player-classic-b"
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/zSWCsT5j0-Q?si=cqFJ7ZYQsfocIrkK"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen>
+            </iframe>
+        </div>
 
-          <div id="iframe-container-d">
-              <iframe
-                  id="music-player-classic-b"
-                  width="560"
-                  height="315"
-                  src="https://www.youtube.com/embed/zSWCsT5j0-Q?si=cqFJ7ZYQsfocIrkK"
-                  title="YouTube video player"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  allowfullscreen>
-              </iframe>
-          </div>
-
-          <div id="iframe-container-e">
-              <iframe
-                  id="music-player-lofi-girl"
-                  width="560"
-                  height="315"
-                  src="https://www.youtube.com/embed/jfKfPfyJRdk?si=td3bTazQj1cdCoa-"
-                  title="YouTube video player"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  allowfullscreen>
-              </iframe>
-          </div>
+        <div id="iframe-container-e">
+            <iframe
+                id="music-player-lofi-girl"
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/jfKfPfyJRdk?si=td3bTazQj1cdCoa-"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen>
+            </iframe>
+        </div>
       </div>
 
       <audio
@@ -617,6 +630,15 @@
       <section>
         <div id="about-div"></div>
         <h3 id="about-heading">About me</h3>
+
+        <div>
+          <p>Website under construction</p>
+          <p>Webmaster: Filip Sjöstrand (filip_sjostrand@hotmail.com)</p>
+      </div>
+
+
+        <div class="comment">Current time zone: Central European Time (CET)</div>
+
         hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
         dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadd
         hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
