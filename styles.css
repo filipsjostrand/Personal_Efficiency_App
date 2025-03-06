@@ -23,6 +23,17 @@ a {
   text-decoration: none;
 }
 
+/* Headings */
+
+h3 {
+  font-family: 'Indie Flower';
+  color: rgb(187, 187, 187);
+  font-weight: bold;
+  font-size: 30px;
+  margin-top: 7px;
+  margin-bottom: 10px;
+  text-decoration: underline 3px;
+}
 
 /* Navbar (start) */
 
@@ -49,6 +60,134 @@ a {
 }
 
 /* Navbar (end) */
+
+#todo-header-container {
+  display:flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  margin-top: 15px;
+}
+
+#todo-header-wrapper {
+  display:flex;
+  justify-content: flex-start;
+  width: 50%;
+  height: 100%;
+}
+
+#language-selector-wrapper {
+  display:flex;
+  justify-content: flex-end;
+  width: 50%;
+  height: 100%;
+}
+
+/* Language - flags (start) */
+#language-selector-container {
+  display: flex;
+  align-items: center;
+  z-index: 1;
+}
+
+#language-wrapper {
+  display: flex;
+}
+
+#language-icon {
+  display: flex;
+  align-items: center;
+  padding-right: 5px;
+  font-size: 20px;
+  color: rgb(29, 29, 29);
+  outline: none;
+}
+
+  /* The animation code */
+  @keyframes language {
+    from { opacity: 0.5;}
+    to {
+        opacity: 0;
+    }
+  }
+
+  /* Flag animation code */
+  @keyframes flag {
+    from { opacity: 0.95;}
+    to {
+        opacity: 0.6;
+    }
+  }
+
+    /* Flag-hide animation code */
+    @keyframes flag-hide {
+      0%   {opacity: 0;}
+      25%  {opacity: 0.0;}
+      50%  {opacity: 0;}
+      100% {opacity: 1;}
+    }
+
+.language-selector {
+  width: 105px;
+  height: 40px;
+  font-size: 18px;
+  padding-left: 5px;
+  color:rgb(212, 212, 212);
+  font-weight: bold;
+  background-color: rgba(58, 58, 58, 0.8);
+  display: flex;
+  justify-content: flex-end;
+  border-top: 3px solid;
+  border-bottom: 3px solid;
+  border-left: 3px solid;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-right: none;
+  border-color: rgb(58, 73, 67);
+  cursor: pointer;
+  animation-name: language;
+  animation-duration: 0.5s;
+  animation-direction: reverse;
+  transition-timing-function: linear;
+}
+  /* height: 48px; */
+  /* padding-left: 10px; */
+  /* color:rgb(63, 63, 63); */
+  /* background-color:rgba(169, 209, 187, 0.699); */
+  /* border-color: rgb(142, 182, 151); */
+
+.flag-div {
+  display: flex;
+  align-items: center;
+  background-color: rgba(58, 58, 58, 0.8);
+  padding-left: 5px;
+  border-top: 3px solid;
+  border-bottom: 3px solid;
+  border-right: 3px solid;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-color: rgb(58, 73, 67);
+  animation-name: language;
+  animation-duration: 0.5s;
+  animation-direction: reverse;
+  transition-timing-function: ease-out;
+}
+
+.flag-div:hover {
+  animation-name: flag-hide;
+  animation-duration: 2s;
+  animation-timing-function: ease-in;
+}
+
+.flag-img {
+  height: 34px;
+  animation-name: flag;
+  animation-duration: 1s;
+  animation-direction: reverse;
+  animation-timing-function: ease-out;
+}
+  /* height: 40px; */
+/* Language - flags (end) */
 
 /* Weekly schedule (start) */
 
@@ -155,10 +294,11 @@ a {
     display: grid;
     grid-template-columns: auto auto auto auto auto auto;
     gap: 3px;
-    background-color: rgb(92, 117, 107);
+    background-color: rgb(104, 160, 137);
     padding: 3px;
     border-radius: 5px;
   }
+      /* background-color: rgb(92, 117, 107); */
       /* background-color: rgb(104, 160, 137); */
 
   .grid-container > div,
@@ -737,6 +877,16 @@ _ _ _ */
 } */
 
 
+#efficiency-image-container {
+  width: 100%;
+  height: auto;
+}
+
+/* #efficiency-image {
+  width: 250px;
+  height: 250px;
+} */
+
 /* Computer screens and larger (start) */
 @media screen and (min-width: 1024px) {
 
@@ -827,6 +977,19 @@ _ _ _ */
     align-items: center;
   }
 
+  #efficiency-image-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(0, 0, 0);
+  }
+
+  #efficiency-image {
+    width: 500px;
+    height: 500px;
+  }
+
 }
 /* Computer screens and larger (end) */
 
@@ -868,6 +1031,18 @@ _ _ _ */
     align-items: center;
   }
 
+  #efficiency-image-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(0, 0, 0);
+  }
+
+  #efficiency-image {
+    width: 500px;
+    height: 5000px;
+  }
 }
 /* Tablets and larger screens (end) */
 
@@ -910,6 +1085,11 @@ _ _ _ */
   #past-plan-div {
     display: flex;
     justify-content: center;
+  }
+
+  #efficiency-image {
+    width: 100%;
+    height: auto;
   }
 
 }

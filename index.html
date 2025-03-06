@@ -4,13 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Efficiency</title>
+    <link rel="canonical" href="https://www.filipsjostrand.github.io" />
+    <link rel="icon" href="sun_fun.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="top3todos.css">
     <link rel="stylesheet" href="timerstyle.css">
+    <link rel="stylesheet" href="footer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Indie Flower' rel='stylesheet'>
     <!-- <script src="website-loaded.js"></script> -->
 </head>
 <body>
@@ -27,22 +31,43 @@
     </div>
 
       <main>
-        <div id="todo-div-wrapper"></div>
-        <h3 id="todos-heading">Top3 Todos</h3>
 
         <div class="start-container-wrapper">
 
           <!-- _ _ _ Top 3 Todos (start)-->
 
           <div class="todo-div">
-            <div class="start-container">
-                <div id="character-counter" class="character-counter"></div>
-                <div id="weekday-display"></div>
-                <div id="date-display"></div>
-                <div id="week-display"></div><br>
-                <button onclick="resetTodoSet()" class="reset-todo-button">
-                  <p id="top3-todo-buton-text">Start&#10;<sub>Reset</sub></p>
-                </button>
+
+            <div id="todo-header-container">
+
+              <div id="todo-header-wrapper">
+                <div class="start-container">
+                    <div id="character-counter" class="character-counter"></div>
+                    <div id="weekday-display"></div>
+                    <div id="date-display"></div>
+                    <div id="week-display"></div><br>
+
+                    <h3 id="todos-heading">Top 3 Todos</h3>
+
+                    <button onclick="resetTodoSet()" class="reset-todo-button">
+                      <p id="top3-todo-buton-text">Start&#10;<sub>Reset</sub></p>
+                    </button>
+                </div>
+              </div>
+
+              <div id="language-selector-wrapper">
+                <div id="language-selector-container">
+                  <div id="language-wrapper">
+                      <i id="language-icon" class="fa-solid fa-globe"></i>
+                      <select class="language-selector">
+                        <option value="sv">Svenska</option>
+                          <option value="en">English</option>
+                      </select>
+                          <div class="flag-div">
+                          </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <br>
@@ -83,7 +108,7 @@
             </div>
         </div>
         <br>
-        <h3>Application information</h3>
+        <h4>Application information</h4>
              <div class="info">
              <ol>
                  <li><b>Reset:</b> &nbsp Press "Start Reset" (application reactivates).</li><br>
@@ -100,7 +125,7 @@
 
       <section>
         <div id="weekly-div"></div>
-        <h3 id="weekly-heading">Week plan</h3>
+        <h3 id="weekly-heading">Week Schedule</h3>
         <div id="week-plan-info">
           <p>
             Check current week schedule
@@ -111,6 +136,7 @@
               </ul>
             </ul>
           </p>
+          <div id="week-display-2"></div>
         </div>
 
         <div class="grid-day-container">
@@ -629,7 +655,7 @@
 
       <section>
         <div id="about-div"></div>
-        <h3 id="about-heading">About me</h3>
+        <h3 id="about-heading">About</h3>
 
         <div>
           <p>Website under construction</p>
@@ -659,6 +685,61 @@
         hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
         dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadd
       </section>
+
+<div id="efficiency-image-container">
+  <img src="sun_big_fun.jpg" id="efficiency-image" alt="sun">
+</div>
+
+<!-- Footer (start) -->
+<div id="main-footer-container">
+
+  <div class="footer-contact">
+      <h3>Contact</h3>
+      <a href="mailto: filip_sjostrand@99sleepideas.com" title="filip_sjostrand@99sleepideas.com">Send e-mail <i class="fa-solid fa-envelope"></i></a>
+
+      <!-- Contact Form -->
+      <a class="get-contact-form" id="form-button" title="Contact Form">Contact Form <i class="fa-solid fa-pencil"></i></a>
+       <form>
+          <div id="myForm" class="form">
+
+              <!-- Form content -->
+              <div class="form-content">
+                  <div class="form-top-container">
+                      <h3 class="contact-form-title">Contact Form</h3>
+                      <span class="close-form" id="form-closer" onclick="closeForm()">&times;</span>
+                  </div>
+
+                  <div class="form-content-container">
+                      <div class="name-container">
+                          <label id="name-label" for="user-name">Name</label>
+                          <input type="text" id="user-name" name="user-name" placeholder="Please write name..." minlength="2" maxlength="50">
+                      </div>
+                      <div class="email-container">
+                          <label id="email-label" for="user-email">Email</label>
+                          <input type="text" id="user-email" name="email-address" placeholder="my.email@domain.com" minlength="8" maxlength="255" disabled>
+                      </div>
+                      <div class="message-container">
+                          <label id="message-label" for="user-message">Message</label>
+                          <div class="subject-container">
+                              <textarea id="subject" name="subject" placeholder="Subject..." style="height:40px;" minlength="1" maxlength="80" disabled></textarea>
+                          </div>
+                          <textarea id="user-message" name="user-message" placeholder="(Please write something anything :)..." style="height:200px;" minlength="1" maxlength="1000" disabled></textarea>
+                          <div id="char-counter" class="char-counter-text">Characters (current/max): 0/1000</div>
+                      </div>
+                      <button class="send-form-button" id="send-button" disabled>Send</button>
+                      <!-- Bear alert-text emoji from: https://textemoji.net/bear/ -->
+                  </div>
+              </div>
+
+          </div>
+      </form>
+  </div>
+
+  <div class="copyright">
+      <p class="all-rights-reserved"></p>
+  </div>
+</div>
+<!-- Footer (end) -->
 
       <!-- Från chatGPT: -->
       <!-- 2. User Input for Todos and Color Selection (Todo Form Structure): -->
@@ -753,8 +834,11 @@
 
 
       <!-- <script async src="future-plans.js"></script> -->
+      <script async src="language.js"></script>
       <script async src="top-3-todos.js"></script>
       <script async src="future-plans.js"></script>
       <script async src="timer-app.js"></script>
+      <script async src="footer.js"></script>
+      <script async src="contact-form.js"></script>
 </body>
 </html>

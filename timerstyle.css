@@ -97,6 +97,20 @@
     padding-top: 25px;
 }
 
+a:hover {
+    color: rgb(211, 211, 211);
+    cursor: pointer;
+}
+
+a:link, a:visited {
+    color: rgb(211, 211, 211);
+    text-decoration: underline;
+}
+
+a:link:active, a:visited:active {
+    color: rgb(85, 75, 107);
+  }
+
 /* Computer screens and larger (start) */
 @media screen and (min-width: 1024px) {
     #billboard-top50-img {
@@ -122,22 +136,31 @@
 
 /* Mobile screens (start) */
 @media screen and (max-width: 767px) {
+
+    #billboard-top50-div {
+        width: 100%;
+        height: auto;
+
+    }
+
     #billboard-top50-img {
-        width: 280px;
-        height: 158px;
+        width: 100%;
+        height: auto;
         display: flex;
         object-fit: cover;
     }
 
     #billboard-div {
+        width: 100%;
+        height: auto;
         display: flex;
         padding-top: 10px;
         cursor: pointer;
     }
 
     #billboard-img {
-        width: 280px;
-        height: 158px;
+        width: 100%;
+        height: auto;
         display: flex;
         object-fit: cover;
     }

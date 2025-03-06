@@ -1,0 +1,355 @@
+/* Footer */
+
+.fa-solid.fa-envelope,
+.fa-solid.fa-pencil {
+    font-size: 17px;
+}
+
+#main-footer-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    color: white;
+    background-color: rgb(34, 34, 34);
+}
+
+.footer-contact {
+    color: rgb(187, 187, 187);
+}
+
+.footer-contact a {
+    color: white;
+}
+
+.copyright {
+    padding-top: 1em;
+    font-size: small;
+}
+
+/* The Form (background) */
+.form {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    /* padding-top: 100px; */
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+
+  /* Form Content */
+  .get-contact-form {
+    background-color: rgb(34, 34, 34);
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-right: 2px;
+    cursor: pointer;
+  }
+
+  .form-content {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(206, 173, 120);
+    margin: auto;
+    color: black;
+    border-radius: 5px;
+  }
+
+  #p-book-interest-text {
+    color: rgb(0,0,0);
+  }
+
+  .form-top-container {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .contact-form-title {
+    display: flex;
+    padding-top: 15px;
+    color:rgb(58 136 129);
+  }
+
+  .form-content-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .name-container, .email-container {
+    padding-bottom: 10px;
+  }
+
+    /* input[type=text] { */
+    #user-email,
+    #user-name {
+    display: flex;
+    flex-direction: column;
+    margin-top: 3px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    background-color: rgb(248 248 248);
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    font-size: 15px;
+  }
+
+  #user-name::placeholder,
+  #user-email::placeholder,
+  #subject::placeholder,
+  #user-message::placeholder {
+    color: rgb(36, 36, 36, 0.9);
+  }
+
+  .message-container {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 5px;
+  }
+
+  .subject-container {
+    padding-bottom: 5px;
+  }
+
+  #name-label,
+  #email-label,
+  #message-label {
+    padding-bottom: 5px;
+  }
+
+  #subject {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding-top: 10px;
+    padding-left: 5px;
+    border: 1px solid #919191;
+    background-color: rgb(248, 248, 248);
+    border-radius: 5px;
+    font-size: 15px;
+  }
+
+  #user-message {
+    border: 1px solid #919191;
+    border-radius: 5px;
+    background-color: rgb(248, 248, 248);
+    padding: 5px;
+    font-size: 15px;
+  }
+
+  .send-form-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 35px;
+    background-color: rgb(94, 143, 128);
+    background-color: rgb(248, 248, 248);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .send-form-button:hover {
+    background-color: #708a71;
+  }
+
+  #user-name:disabled,
+  #user-email:disabled,
+  #subject:disabled,
+  #user-message:disabled {
+    /* background-color: rgba(180, 180, 180, 0.795); */
+    /* background-color: rgba(216, 216, 216, 0.8); */
+    background-color: rgb(216, 216, 216);
+    box-shadow: 0 0 20px rgb(152, 131, 131, 0.5);
+  }
+
+  .send-form-button:disabled {
+    display: flex;
+    border: 1px solid #999999;
+    background-color: rgba(138, 31, 31, 0.8);
+    color: rgb(187, 187, 187);
+  }
+
+  .send-form-button:disabled:hover {
+  cursor: default;
+  }
+
+  .char-counter-text {
+    font-size: 15px;
+  }
+    /* The Close Button */
+    .close-form {
+        display: flex;
+        margin-left: auto;
+        color: rgb(105, 105, 105);
+        justify-content: flex-end;
+        font-size: 28px;
+        font-weight: bold;
+        padding: 10px;
+      }
+
+      .close-form:hover,
+      .close-form:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+/* Footer Default (end) */
+
+/* Computer screens and larger */
+@media screen and (min-width: 1024px) {
+
+    .form-content {
+        width: 40%;
+        padding-top: 20px;
+        padding-bottom: 30px;
+        padding-left: 60px;
+        padding-right: 60px;
+      }
+}
+
+/* Computer (end) */
+
+/* Tablets and larger screens */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+
+    .form-content {
+        width: 60%;
+        padding: 30px;
+      }
+}
+/* Tablets and larger screens (end) */
+
+/* Mobile screens */
+@media screen and (max-width: 767px) {
+    .form-content {
+        width: 80%;
+        padding: 20px;
+      }
+
+      #user-name,
+      #user-email {
+        width: 195px;
+      }
+}
+/* Mobile screens (end) */
+
+#main-footer-container {
+    display: flex;
+    margin: 0;
+    bottom: 0;
+    align-items: center;
+    width: 100%;
+    min-height: 7rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+@media screen and (max-width: 1424px) {
+    #main-footer-container {
+        flex-wrap: wrap;
+    }
+
+    .footer-links h3
+    {
+        font-size: 1em;
+    }
+
+    .footer-contact h3 {
+        margin-bottom: 0px;
+        font-size: 22x;
+        /* text-decoration: none; */
+    }
+
+    .all-rights-reserved {
+        margin-top: 5px;
+    }
+
+    .footer-contact a,
+    .footer-links a,
+    .footer-links i,
+    .footer-contact button{
+    font-size: 1em;
+
+}
+
+    .footer-contact,
+    .footer-links
+    {
+        border-bottom: 1px solid rgb(43, 43, 43, 0.5);
+    }
+
+    /* Form */
+    #user-message {
+        width: 100%;
+        padding-right: 0px;
+    }
+}
+
+.footer-contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.footer-contact a,
+.footer-contact i,
+.footer-contact button {
+    padding-bottom: 2px;
+    padding-top: 2px;
+}
+
+.footer-contact i{
+    flex-direction: row;
+    padding-right: 5px;
+    font-size: 1.5em;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-justify: center;
+    height: 13vh;
+    width: 25vh;
+}
+
+.footer-links a{
+    padding-bottom: 2px;
+    padding-top: 2px;
+}
+
+.footer-contact a,
+.footer-contact button
+{
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.footer-contact a:hover
+{
+    text-decoration: underline;
+}
+
+/* css till direct message knappen*/
+.footer-contact{
+    border: None;
+    background-color: transparent;
+    font-size: 1em;
+    padding-top: 6px;
+}
+
+.footer-contact button:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+

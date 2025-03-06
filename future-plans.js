@@ -1042,6 +1042,9 @@ const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
       const weekDisplay = document.getElementById('week-display');
       weekDisplay.textContent = "Week: " + weekNumber;
 
+      const weekDisplay2 = document.getElementById('week-display-2');
+      weekDisplay2.textContent = "Week# " + weekNumber;
+
 // _ _ _
 
     dateInput.min = dateDisplay.textContent
