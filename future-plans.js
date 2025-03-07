@@ -1112,6 +1112,14 @@ function getDayOfWeek(dateString) {
 
 // _ _ _
 
+let mondayDiv = document.getElementById('mon-div');
+let tuesdayDiv = document.getElementById('tue-div');
+let wednesdayDiv = document.getElementById('wed-div');
+let thursdayDiv = document.getElementById('thu-div');
+let fridayDiv = document.getElementById('fri-div')
+let saturdayDiv = document.getElementById('sat-div')
+let sundayDiv = document.getElementById('sun-div')
+
 let mondayDateDiv = document.getElementById('mon-date');
 let tuesdayDateDiv = document.getElementById('tue-date');
 let wednesdayDateDiv = document.getElementById('wed-date');
@@ -1323,6 +1331,35 @@ function isValidDateFormat(dateString) {
     console.log("dateRegex.test(dateString) in isValidDateFormat(dateString): " + dateRegex.test(dateString))
     return dateRegex.test(dateString);
 }
+
+
+// Add opacity to current date (in week schedule)
+
+if (dateDisplay.textContent === mondayDateDiv.innerHTML) {
+    mondayDiv.style.backgroundColor = 'rgb(26, 107, 67)';
+}
+else if (dateDisplay.textContent === tuesdayDateDiv.innerHTML) {
+    tuesdayDiv.style.backgroundColor = 'rgb(26, 107, 67)';
+}
+else if (dateDisplay.textContent === wednesdayDateDiv.innerHTML) {
+    wednesdayDiv.style.backgroundColor = 'rgb(26, 107, 67)';
+}
+else if (dateDisplay.textContent === thursdayDateDiv.innerHTML) {
+    thursdayDiv.style.backgroundColor = 'rgb(26, 107, 67)';
+}
+else if (dateDisplay.textContent === fridayDateDiv.innerHTML) {
+    fridayDiv.style.backgroundColor = 'rgb(26, 107, 67)';
+}
+else if (dateDisplay.textContent === saturdayDateDiv.innerHTML) {
+    saturdayDiv.style.backgroundColor = 'rgb(26, 107, 67)';
+}
+else if (dateDisplay.textContent === sundayDateDiv.innerHTML) {
+    sundayDiv.style.backgroundColor = 'rgb(26, 107, 67)';
+}
+
+
+// _ _ _
+
 
 // Function to handle date input
 

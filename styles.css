@@ -441,13 +441,14 @@ h3 {
   margin-top: 5px;
   margin-bottom: 10px;
   border: 1px solid rgb(82, 82, 82);
-  background-color: rgba(79, 129, 115, 0.815);
+  background-color: rgb(2 105 76 / 82%);
   color: rgb(207 207 207);
   font-weight: bold;
   font-size: 15px;
   border-radius: 6px;
   cursor: pointer;
 }
+/* background-color: rgba(79, 129, 115, 0.815); */
 /* margin-top: 15px; */
 /* padding: 10px; */
 
