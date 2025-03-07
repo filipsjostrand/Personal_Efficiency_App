@@ -59,6 +59,51 @@ h3 {
   height: 60px;
 }
 
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
+    gap: 3px;
+    background-color: rgb(104, 160, 137);
+    padding: 3px;
+    border-radius: 5px;
+  }
+      /* background-color: rgb(92, 117, 107); */
+      /* background-color: rgb(104, 160, 137); */
+
+  .grid-container > div,
+  #top-todos,
+  #weekly-calendar,
+  #important-dates,
+  #timer,
+  #about-me {
+    background-color: rgba(58, 58, 58, 0.8);
+    color: rgb(248, 248, 248);
+    text-align: center;
+    padding: 10px 0;
+    font-size: 25px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  .item1:hover,
+  .item2:hover,
+  .item3:hover,
+  .item4:hover,
+  .item5:hover,
+  .item6:hover {
+    opacity: 0.7;
+  }
+
+  .item1
+  {
+    grid-row: 1 / span 1;
+  }
+
+  #empty-grid-column {
+    background-color: rgb(24, 24, 24);
+    border: none;
+  }
+
 /* Navbar (end) */
 
 #todo-header-container {
@@ -290,50 +335,6 @@ h3 {
 
 /* Future plans (start) */
 
-.grid-container {
-    display: grid;
-    grid-template-columns: auto auto auto auto auto auto;
-    gap: 3px;
-    background-color: rgb(104, 160, 137);
-    padding: 3px;
-    border-radius: 5px;
-  }
-      /* background-color: rgb(92, 117, 107); */
-      /* background-color: rgb(104, 160, 137); */
-
-  .grid-container > div,
-  #top-todos,
-  #weekly-calendar,
-  #important-dates,
-  #timer,
-  #about-me {
-    background-color: rgba(58, 58, 58, 0.8);
-    color: rgb(248, 248, 248);
-    text-align: center;
-    padding: 10px 0;
-    font-size: 25px;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-
-  .item1:hover,
-  .item2:hover,
-  .item3:hover,
-  .item4:hover,
-  .item5:hover,
-  .item6:hover {
-    opacity: 0.7;
-  }
-
-  .item1
-  {
-    grid-row: 1 / span 1;
-  }
-
-  #empty-grid-column {
-    background-color: rgb(24, 24, 24);
-    border: none;
-  }
 
 /* Remove field - save to file (start) */
 
@@ -880,6 +881,7 @@ _ _ _ */
 #efficiency-image-container {
   width: 100%;
   height: auto;
+  background-color: rgb(0, 0, 0);
 }
 
 /* #efficiency-image {
@@ -982,7 +984,7 @@ _ _ _ */
     height: auto;
     display: flex;
     justify-content: center;
-    background-color: rgb(0, 0, 0);
+    /* background-color: rgb(0, 0, 0); */
   }
 
   #efficiency-image {
@@ -1036,7 +1038,7 @@ _ _ _ */
     height: auto;
     display: flex;
     justify-content: center;
-    background-color: rgb(0, 0, 0);
+    /* background-color: rgb(0, 0, 0); */
   }
 
   #efficiency-image {

@@ -103,7 +103,7 @@ height: 90px; */
     margin-bottom: 7px;
     margin-left: 2px;
     flex-direction: row;
-    border: 2px solid rgb(82, 82, 82);
+    border: 1px solid rgb(82, 82, 82);
     background-color: rgba(79, 129, 115, 0.815);
     color: rgb(207 207 207);
     font-weight: bold;

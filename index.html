@@ -72,7 +72,7 @@
 
             <br>
             <input class="todo-input-v2" type="text" id="input-box-v2" placeholder="Add todo text...">
-            <label for="todo-select">Apply to:</label>
+            <label for="todo-select" id="top3-label">Apply to:</label>
                 <select name="todos" id="todo-select">
                 <option value="" selected>Top3 list</option>
                 <option value="todo-one">#1</option>
@@ -108,7 +108,7 @@
             </div>
         </div>
         <br>
-        <h4>Application information</h4>
+        <h4 id="app-info">Application information</h4>
              <div class="info">
              <ol>
                  <li><b>Reset:</b> &nbsp Press "Start Reset" (application reactivates).</li><br>
@@ -125,7 +125,7 @@
 
       <section>
         <div id="weekly-div"></div>
-        <h3 id="weekly-heading">Week Schedule</h3>
+        <h3 id="weekly-heading" class="app-heading">Week Schedule</h3>
         <div id="week-plan-info">
           <p>
             Check current week schedule
@@ -257,7 +257,7 @@
 
       <section>
         <div id="future-div"></div>
-        <h3 id="future-heading">Future Plans</h3>
+        <h3 id="future-heading" class="app-heading">Future Plans</h3>
         Handle <u>Current Plan</u> and watch <u>Past tasks</u>.
         <ul>
           <li>Add Task / Load File (Schedule).</li>
@@ -530,7 +530,7 @@
         <div class="timer-container">
           <div class="timer-wrapper">
             <div id="timer-div"></div>
-            <h3 id="timer-heading">Timer</h3>
+            <h3 id="timer-heading" class="app-heading">Timer</h3>
             Set a time limit:
             <ul>
               <li>hours,</li>
@@ -588,13 +588,13 @@
         </div>
 
         <div id="billboard-top50-div">
-            <a href="https://www.youtube.com/watch?v=kPa7bsKwL-c&list=PLx0sYbCqOb8TBPRdmBHs5Iftvv9TPboYG&pp=iAQB8AUB" target="_blank">Billboard Top 50 #1
+            <a href="https://www.youtube.com/watch?v=kPa7bsKwL-c&list=PLx0sYbCqOb8TBPRdmBHs5Iftvv9TPboYG&pp=iAQB8AUB" target="_blank" id="billboard-link-1">Billboard Top 50 #1
             <img id="billboard-top50-img" src="pexels-myatezhny39-2422404.jpg" alt="Billboard top 50 songs">
             </a>
         </div>
 
         <div id="billboard-div">
-                <a href="https://www.youtube.com/watch?v=cF1Na4AIecM&list=PLDIoUOhQQPlWc-Kd6TCjTRIl0Z6fSQV0X" target="_blank">Billboard Top 50 #2
+                <a href="https://www.youtube.com/watch?v=cF1Na4AIecM&list=PLDIoUOhQQPlWc-Kd6TCjTRIl0Z6fSQV0X" target="_blank" id="billboard-link-2">Billboard Top 50 #2
                 <img id="billboard-img" src="pexels-freestockpro-1031700.jpg" alt="Billboard top songs">
                 </a>
         </div>
@@ -655,7 +655,7 @@
 
       <section>
         <div id="about-div"></div>
-        <h3 id="about-heading">About</h3>
+        <h3 id="about-heading" class="app-heading">About</h3>
 
         <div>
           <p>Website under construction</p>
@@ -688,6 +688,7 @@
 
 <div id="efficiency-image-container">
   <img src="sun_big_fun.jpg" id="efficiency-image" alt="sun">
+  <a class="bg-photograph-link" href="https://www.pexels.com/photo/painting-of-red-planet-87611/" target="_blank" alt="Pixabay (pexels.com)">Photo: Pixabay (pexels.com)</a>
 </div>
 
 <!-- Footer (start) -->

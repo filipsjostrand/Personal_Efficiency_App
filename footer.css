@@ -202,10 +202,26 @@
         cursor: pointer;
       }
 
+      .bg-photograph-link {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: end;
+        font-size: 14px;
+        color: rgb(190, 190, 190);
+        text-decoration: none;
+      }
+
 /* Footer Default (end) */
 
 /* Computer screens and larger */
 @media screen and (min-width: 1024px) {
+
+    .bg-photograph-link {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: end;
+  }
 
     .form-content {
         width: 40%;
@@ -220,6 +236,13 @@
 
 /* Tablets and larger screens */
 @media screen and (min-width: 768px) and (max-width: 1023px) {
+
+  .bg-photograph-link {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: end;
+}
 
     .form-content {
         width: 60%;

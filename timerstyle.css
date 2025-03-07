@@ -88,8 +88,6 @@
     cursor: pointer;
 }
 
-
-
 #music-player-classic-a,
 #music-player-classic-b,
 #music-player-pop-b,
@@ -104,6 +102,10 @@ a:hover {
 
 a:link, a:visited {
     color: rgb(211, 211, 211);
+}
+
+#billboard-link-1,
+#billboard-link-2 {
     text-decoration: underline;
 }
 

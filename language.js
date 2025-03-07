@@ -67,8 +67,31 @@ if (window.sessionStorage) {
     en: "Todos",
   }
 
+  const navbarWeek = {
+    sv: "Vecka",
+    en: "Week",
+  }
+
+  const navbarPlan = {
+    sv: "Plan",
+    en: "Plan",
+  }
+
+  const navbarTimer = {
+    sv: "Timer",
+    en: "Timer",
+  }
+
+  const navbarAbout = {
+    sv: "Om",
+    en: "About",
+  }
 
   document.getElementById('top-todos').innerHTML = navbarTodo[selectedLanguage];
+  document.getElementById('weekly-calendar').innerHTML = navbarWeek[selectedLanguage];
+  document.getElementById('important-dates').innerHTML = navbarPlan[selectedLanguage];
+  document.getElementById('timer').innerHTML = navbarTimer[selectedLanguage];
+  document.getElementById('about-me').innerHTML = navbarAbout[selectedLanguage];
 
 
     // _ _ _
@@ -81,7 +104,7 @@ const languageFlagImage = {
   }
 
   const dynamicLanguageImage = document.querySelector(".flag-div");
-const fetchLanguageImage = document.querySelector(".flag-div").innerHTML;
+  const fetchLanguageImage = document.querySelector(".flag-div").innerHTML;
 
 function changeFlagImage() {
   dynamicLanguageImage.innerHTML =
@@ -89,6 +112,68 @@ function changeFlagImage() {
   `<img class="flag-img" src="./${languageFlagImage[selectedLanguage]}" alt="language flag image | https://uxwing.com/tag/country-flag-icons/">`
 };
 changeFlagImage();
+
+// _ _ _
+
+// Översättning Tid-info (längst upp)
+// Fixa vecka i future-plans?
+
+// var weekInfo = {
+//   sv: `Top3 Fix`,
+//   en: `Top3 Todos`,
+// }
+
+// document.getElementById('todos-heading').innerHTML = top3Todos[selectedLanguage];
+
+// _ _ _
+
+// Översättning Top3 Todos
+
+const top3Todos = {
+  sv: `Fixa Top3`,
+  en: `Top3 Todos`,
+}
+
+const placeholderTop3Text = {
+  sv: `Lägg till text`,
+  en: `Add todo text`,
+}
+
+const top3Label = {
+  sv: `i:`,
+  en: `Apply to:`,
+}
+
+const addButton2 = {
+  sv: `Lägg till`,
+  en: `Add Todo`,
+}
+
+const appInfo = {
+  sv: `App-information`,
+  en: `Application information`,
+}
+
+const infoBullets = {
+  sv: `<ol>
+      <li><b>Återställ:</b> &nbsp Tryck "Start Reset" (applikationen startas om).</li><br>
+      <li><b>Lägg till:</b> &nbsp Skriv text &nbsp &nbsp → &nbsp &nbsp tryck "Lägg till" ("Top3 list" ska stå i rullisten).</li><br>
+      <li><b>Ersätt: </b> &nbsp Skriv text &nbsp &nbsp → &nbsp &nbsp Välj "#" (att ersätta) i rullisten &nbsp &nbsp → &nbsp &nbsp tryck "Lägg till".</li>
+      </ol>`,
+  en: `<ol>
+      <li><b>Reset:</b> &nbsp Press "Start Reset" (application reactivates).</li><br>
+      <li><b>Add:</b> &nbsp Write a todo text &nbsp &nbsp → &nbsp &nbsp press "Add Todo" (ensure "Top3 list" is selected in rolldown).</li><br>
+      <li><b>Replace: </b> &nbsp Write a new todo text &nbsp &nbsp → &nbsp &nbsp select "#" (to replace) in rolldown &nbsp &nbsp → &nbsp &nbsp press "Add Todo".</li>
+      </ol>`,
+  }
+
+
+document.querySelector('.info').innerHTML = infoBullets[selectedLanguage];
+document.querySelector('.add-button-v2').innerHTML = addButton2[selectedLanguage];
+document.getElementById('top3-label').innerHTML = top3Label[selectedLanguage];
+document.getElementById('input-box-v2').placeholder = placeholderTop3Text[selectedLanguage];
+document.getElementById('app-info').innerHTML = appInfo[selectedLanguage];
+document.getElementById('todos-heading').innerHTML = top3Todos[selectedLanguage];
 
   // Översättning (Footer)
 
