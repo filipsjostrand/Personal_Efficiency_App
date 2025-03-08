@@ -144,9 +144,10 @@ h3 {
   align-items: center;
   padding-right: 5px;
   font-size: 20px;
-  color: rgb(29, 29, 29);
+  color: rgb(127, 127, 127);
   outline: none;
 }
+/* color: rgb(29, 29, 29); */
 
   /* The animation code */
   @keyframes language {

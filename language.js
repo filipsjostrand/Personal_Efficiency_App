@@ -30,11 +30,13 @@ if (window.sessionStorage) {
 
   if (selectedLanguage === "sv") {
     languageSelector.value = "sv";
+    languageSelector.selectedIndex = 0;
   }
 
 
   if (selectedLanguage === "en") {
     languageSelector.value = "en";
+    languageSelector.selectedIndex = 1;
   }
 
   // _ _ _
@@ -43,18 +45,31 @@ if (window.sessionStorage) {
     languageSelector.addEventListener("change", () => {
 
         // changing languageSelector value to English:
-      if (languageSelector.value  === "sv") {
+      if (languageSelector.value === "sv") {
       selectedLanguage = 'sv';
+      languageSelector.selectedIndex = 0;
+      dynamicLanguageImage.innerHTML = fetchLanguageImage + `<img class="flag-img" src="./sweden-flag-icon-small.png" alt="language flag image | https://uxwing.com/tag/country-flag-icons/">`
       sessionStorage.setItem("selectedLanguage", selectedLanguage);
 
         // changing languageSelector value to Swedish:
-    } else if (languageSelector.value  === "en") {
+    } else if (languageSelector.value === "en") {
       selectedLanguage = 'en';
-      languageSelector.value = "en";
+      // languageSelector.value = "en";
+      languageSelector.selectedIndex = 1;
+      dynamicLanguageImage.innerHTML = fetchLanguageImage + `<img class="flag-img" src="./us-uk-flag-small.png" alt="language flag image | https://uxwing.com/tag/country-flag-icons/">`
       sessionStorage.setItem("selectedLanguage", selectedLanguage);
     }
 
     location.reload();
+
+    if (selectedLanguage === 'sv') {
+      languageSelector.selectedIndex = 0;
+      dynamicLanguageImage.innerHTML = fetchLanguageImage + `<img class="flag-img" src="./sweden-flag-icon-small.png" alt="language flag image | https://uxwing.com/tag/country-flag-icons/">`
+    } else if (selectedLanguage === 'en') {
+      languageSelector.selectedIndex = 1;
+      dynamicLanguageImage.innerHTML = fetchLanguageImage + `<img class="flag-img" src="./us-uk-flag-small.png" alt="language flag image | https://uxwing.com/tag/country-flag-icons/">`
+    }
+
   });
 
 
@@ -98,20 +113,29 @@ if (window.sessionStorage) {
 
   // Översättning (language)
 
-const languageFlagImage = {
-    en: "us-uk-flag-small.png",
-    sv: "sweden-flag-icon-small.png",
-  }
+// const languageFlagImage = {
+//     en: "us-uk-flag-small.png",
+//     sv: "sweden-flag-icon-small.png",
+//   }
 
-  const dynamicLanguageImage = document.querySelector(".flag-div");
-  const fetchLanguageImage = document.querySelector(".flag-div").innerHTML;
+  let dynamicLanguageImage = document.querySelector(".flag-div");
+  let fetchLanguageImage = document.querySelector(".flag-div").innerHTML;
 
-function changeFlagImage() {
-  dynamicLanguageImage.innerHTML =
-  fetchLanguageImage +
-  `<img class="flag-img" src="./${languageFlagImage[selectedLanguage]}" alt="language flag image | https://uxwing.com/tag/country-flag-icons/">`
-};
-changeFlagImage();
+if (selectedLanguage === 'sv') {
+  dynamicLanguageImage.innerHTML = fetchLanguageImage + `<img class="flag-img" src="./sweden-flag-icon-small.png" alt="language flag image | https://uxwing.com/tag/country-flag-icons/">`
+} else if (selectedLanguage === 'en') {
+  dynamicLanguageImage.innerHTML = fetchLanguageImage + `<img class="flag-img" src="./us-uk-flag-small.png" alt="language flag image | https://uxwing.com/tag/country-flag-icons/">`
+}
+
+//   let dynamicLanguageImage = document.querySelector(".flag-div");
+//   let fetchLanguageImage = document.querySelector(".flag-div").innerHTML;
+
+// function changeFlagImage() {
+//   dynamicLanguageImage.innerHTML =
+//   fetchLanguageImage +
+//   `<img class="flag-img" src="./${languageFlagImage[selectedLanguage]}" alt="language flag image | https://uxwing.com/tag/country-flag-icons/">`
+// };
+// changeFlagImage();
 
 // _ _ _
 

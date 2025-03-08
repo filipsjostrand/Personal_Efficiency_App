@@ -1039,12 +1039,7 @@ const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
       dateDisplay.textContent = `${formatDate(today)}`;
 
 
-    //   if (selectedLanguage === "sv") {
-    //     languageSelector.value = "sv";
-    //   }
-    //   else if (selectedLanguage === "en") {
-    //     languageSelector.value = "en";
-    //   }
+
 
     const weekInfo = {
         sv: `Vecka: `,
@@ -1055,6 +1050,21 @@ const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
         sv: `v.`,
         en: `Week #`,
       }
+
+
+    // // sessionStorage, språk-variabel (selectedLanguage
+    // selectedLanguage = sessionStorage.getItem("selectedLanguage");
+
+    //   if (selectedLanguage === "sv") {
+    //     // languageSelector.value = "sv";
+    //     // languageSelector.textContent = "Svenska";
+    //   }
+    //   else if (selectedLanguage === "en") {
+    //     languageSelector.value = "en";
+    //     // languageSelector.textContent = "English";
+    //   }
+
+// _ _ _
 
     //   document.getElementById('todos-heading').innerHTML = top3Todos[selectedLanguage];
 
@@ -7562,10 +7572,11 @@ function addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId) 
     // } else if (dateInputString < dateDisplay.textContent || dateInputString === undefined || dateInputString > lastDateOfMonth) {
     } else if (dateInputString === undefined || dateInputString > lastDateOfMonth) {
         console.log("dateInputString = " + dateInputString);
-        alert("Date must be in a valid format (YYYY-MM-DD) (5355)");
+        // alert("Date must be in a valid format (YYYY-MM-DD) (5355)");
+        console.log("defaultDate = " + defaultDate);
         console.log("dateInputString (undefined / too big) = " + dateInputString);
         dateInputString = defaultDate;
-        console.log("defaultDate = " + defaultDate);
+        alert("Only current month dates can be changed (else: wait or recreate)");
         console.log("dateInputString (undefined / too big) = " + dateInputString)
         console.log("handleDateInput(dateInputString, defaultDate) = " + handleDateInput(dateInputString, defaultDate));
         handleDateInput(dateInputString, defaultDate);
