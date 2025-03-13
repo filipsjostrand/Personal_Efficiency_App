@@ -58,6 +58,13 @@ const userMessagePlaceholder = {
 
 let navBarContainer = document.querySelector('.grid-container');
 
+if (!selectedLanguage) {
+    // sessionStorage.removeItem("selectedLanguage");
+    sessionStorage.setItem("languageVariable", 'sv');
+    selectedLanguage = sessionStorage.getItem("languageVariable");
+    console.log("selectedLanguage (om !selectedLanguage (i form)) = " + selectedLanguage)
+  }
+
 // Formulär-rubriker (text) [Översättning]
 document.getElementById('form-button').innerHTML = footerFormTitle[selectedLanguage]
 document.querySelector('.contact-form-title').innerHTML = formTitle[selectedLanguage];
