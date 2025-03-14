@@ -127,12 +127,12 @@
         <div id="weekly-div"></div>
         <h3 id="weekly-heading" class="app-heading">Week Schedule</h3>
         <div id="week-plan-info">
-          <p>
+          <p id="weekly-desc">
             Check current week schedule
             <ul>
-              <li>Go to "Future Plans" (to add tasks)</li>
+              <li id="go-future-plans">Go to "Future Plans" (to add tasks)</li>
               <ul>
-                <li>Scroll down or click "Future" (navbar)</li>
+                <li id="go-future-navbar">Scroll down or click "Future" (navbar)</li>
               </ul>
             </ul>
           </p>
@@ -258,13 +258,24 @@
       <section>
         <div id="future-div"></div>
         <h3 id="future-heading" class="app-heading">Future Plans</h3>
-        Handle <u>Current Plan</u> and watch <u>Past tasks</u>.
-        <ul>
-          <li>Add Task / Load File (Schedule).</li>
-          <li>Save (Schedule).</li>
-          <li>Edit (in table).</li>
-          <li>Copy/clear (past tasks).</li>
-        </ul>
+
+        <p id="future-desc"><u id="current-plan-words"></u><u id="past-tasks-words"></u>.
+          <ul>
+            <!-- <li id="add-list"></li>
+            <li id="save-list"></li>
+            <li id="edit-list"></li>
+            <li id="copy-clear-list"></li> -->
+          </ul>
+        </p>
+
+        <!-- <p id="future-desc">Handle <u id="current-plan-words">Current Plan</u> and watch <u id="past-tasks-words">Past tasks</u>.
+          <ul>
+            <li id="add-list">Add Task / Load File (Schedule).</li>
+            <li id="save-list">Save (Schedule).</li>
+            <li id="edit-list">Edit (in table).</li>
+            <li id="copy-clear-list">Copy/clear (past tasks).</li>
+          </ul>
+        </p> -->
         <br>
 
 
@@ -640,6 +651,19 @@
                 allowfullscreen>
             </iframe>
         </div>
+
+        <div id="iframe-container-f">
+          <iframe
+              id="music-player-lofi-girl"
+              width="560"
+              height="315"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen>
+          </iframe>
+      </div>
       </div>
 
       <audio

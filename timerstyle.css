@@ -78,7 +78,8 @@
 #iframe-container-b,
 #iframe-container-c,
 #iframe-container-d,
-#iframe-container-e {
+#iframe-container-e,
+#iframe-container-f {
     display: flex;
 }
 

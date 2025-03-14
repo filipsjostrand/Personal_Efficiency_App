@@ -194,6 +194,132 @@ document.getElementById('input-box-v2').placeholder = placeholderTop3Text[select
 document.getElementById('app-info').innerHTML = appInfo[selectedLanguage];
 document.getElementById('todos-heading').innerHTML = top3Todos[selectedLanguage];
 
+// Översättning (veckoschema)
+// week schedule
+
+// function capitalizeFirstLetter(str) {
+//   if (!str) return ''; // Handle empty strings
+//   return str.charAt(0).toUpperCase() + str.slice(1);
+// }
+
+// const veckoSchemaSV = capitalizeFirstLetter("Veckoschema");
+// const weekScheduleEN = capitalizeFirstLetter("Week Schedule");
+
+const weekHeading = {
+  sv: `Veckoschema`,
+  en: `Week schedule`,
+  // sv: veckoSchemaSV,
+  // en: weekScheduleEN,
+}
+
+const weekPDesc = {
+  sv: `Nedan följer aktuellt veckoschema,`,
+  en: `Check current week schedule,`,
+}
+
+const goFuturePlans = {
+  sv: `Gå till "Framtidsplaner" (tryck och lägg till)`,
+  en: `Go to "Future Plans" (to add tasks)`,
+}
+
+const goFutureNavbar = {
+  sv: `Scrolla ner eller klicka "Plan" (i navbar)`,
+  en: `Scroll down or click "Future" (navbar)`,
+}
+
+const weekDisplayTwo = {
+  sv: `v.11`,
+  en: `wk. 11`,
+}
+
+const monWeekSchedule = {
+  sv: `Mån`,
+  en: `Mon`,
+}
+const tueWeekSchedule = {
+  sv: `Tis`,
+  en: `Tue`,
+}
+const wedWeekSchedule = {
+  sv: `Ons`,
+  en: `Wed`,
+}
+const thuWeekSchedule = {
+  sv: `Tor`,
+  en: `Thu`,
+}
+const friWeekSchedule = {
+  sv: `Fre`,
+  en: `Fri`,
+}
+const satWeekSchedule = {
+  sv: `Lör`,
+  en: `Sat`,
+}
+const sunWeekSchedule = {
+  sv: `Sön`,
+  en: `Sun`,
+}
+
+
+// Översättning (Future plans)
+
+
+const futureHeading = {
+  sv: `Framtidsplaner`,
+  en: `Future Plans`,
+}
+
+//  Current Plan and watch Past tasks.
+// Add Task / Load File (Schedule).
+// Save (Schedule).
+// Edit (in table).
+// Copy/clear (past tasks).
+
+const currentPlanWords = {
+  sv: `Framtidsplaner`,
+  en: `Future Plans`,
+}
+
+const pastTasksWords = {
+  sv: `Framtidsplaner`,
+  en: `Future Plans`,
+}
+
+// const futureDesc = {
+//   sv: `Handle current Plan Words and watch pastTasksWords tasks`,
+//   en: `Hantera currentPlanWords and watch pastTasksWords tasks`,
+//   // sv: `Handle ${currentPlanWords[selectedLanguage]} and watch ${pastTasksWords[selectedLanguage]} tasks`,
+//   // en: `Handle ${currentPlanWords[selectedLanguage]} and watch ${pastTasksWords[selectedLanguage]} tasks`,
+// }
+
+const futureDesc = {
+  sv: `Hantera <u id="current-plan-words">Framtidsplaner</u> och visa <u id="past-tasks-words">Tidigare uppgifter</u>.
+    <ul>
+      <li id="add-list">Lägg till uppgift / Ladda fil (Schema).</li>
+      <li id="save-list">Spara (Schema).</li>
+      <li id="edit-list">Redigera (i tabell).</li>
+      <li id="copy-clear-list">Kopiera/rensa (tidigare uppgifter).</li>
+    </ul>
+  `,
+  en: `Handle <u id="current-plan-words">"Future Plans"</u> and watch <u id="past-tasks-words">Past tasks</u>.
+    <ul>
+      <li id="add-list">Add Task / Load File (Schedule)..</li>
+      <li id="save-list">Save (Schedule).</li>
+      <li id="edit-list">Edit (in table).</li>
+      <li id="copy-clear-list">Copy/clear (past tasks).</li>
+    </ul>
+  `,
+}
+//
+//
+//
+// Edit current plan (in the table).
+// Copy/clear past tasks.
+
+
+
+
   // Översättning (Footer)
 
 const footerContact = {
@@ -206,8 +332,8 @@ const footerContact = {
     sv: `Skicka e-post <i class="fa-solid fa-envelope"></i>`,
   }
 
-  document.querySelector('.footer-contact h3').innerHTML = footerContact[selectedLanguage];
-  document.querySelector('.footer-contact a').innerHTML = footerContactEmail[selectedLanguage];
+  // document.querySelector('.footer-contact h3').innerHTML = footerContact[selectedLanguage];
+  // document.querySelector('.footer-contact a').innerHTML = footerContactEmail[selectedLanguage];
 
   // _ _ _
    // _ _ _
@@ -660,7 +786,7 @@ const footerContact = {
                 runTranslation(selectedLanguage);
             }
             // sessionStorage.setItem("languageVariable", selectedValue);
-            
+
             // sessionStorage.setItem("selectedLanguage", selectedLanguage);
             // console.log("selectedLanguage (sessionStorage i langugage.js (change)) = " + selectedLanguage);
           });
@@ -673,17 +799,44 @@ const footerContact = {
           console.log("runTranslation(selectedLanguage) körs");
           console.log("selectedLanguage (i runTranslation(selectedLanguage)) = "+ selectedLanguage);
 
+          // Navbar
           document.getElementById('top-todos').innerHTML = navbarTodo[selectedLanguage];
           document.getElementById('weekly-calendar').innerHTML = navbarWeek[selectedLanguage];
           document.getElementById('important-dates').innerHTML = navbarPlan[selectedLanguage];
           document.getElementById('timer').innerHTML = navbarTimer[selectedLanguage];
           document.getElementById('about-me').innerHTML = navbarAbout[selectedLanguage];
           document.querySelector('.info').innerHTML = infoBullets[selectedLanguage];
+
+
+
           document.querySelector('.add-button-v2').innerHTML = addButton2[selectedLanguage];
           document.getElementById('top3-label').innerHTML = top3Label[selectedLanguage];
           document.getElementById('input-box-v2').placeholder = placeholderTop3Text[selectedLanguage];
           document.getElementById('app-info').innerHTML = appInfo[selectedLanguage];
           document.getElementById('todos-heading').innerHTML = top3Todos[selectedLanguage];
+
+          // Veckoschema
+          document.getElementById('weekly-heading').innerHTML = weekHeading[selectedLanguage];
+          document.getElementById('weekly-desc').innerHTML = weekPDesc[selectedLanguage];
+          document.getElementById('week-display-2').innerHTML = weekDisplayTwo[selectedLanguage];
+
+          document.getElementById('go-future-plans').innerHTML = goFuturePlans[selectedLanguage];
+          document.getElementById('go-future-navbar').innerHTML = goFutureNavbar[selectedLanguage];
+          document.getElementById('mon-day').innerHTML = monWeekSchedule[selectedLanguage];
+          document.getElementById('tue-day').innerHTML = tueWeekSchedule[selectedLanguage];
+          document.getElementById('wed-day').innerHTML = wedWeekSchedule[selectedLanguage];
+          document.getElementById('thu-day').innerHTML = thuWeekSchedule[selectedLanguage];
+          document.getElementById('fri-day').innerHTML = friWeekSchedule[selectedLanguage];
+          document.getElementById('sat-day').innerHTML = satWeekSchedule[selectedLanguage];
+          document.getElementById('sun-day').innerHTML = sunWeekSchedule[selectedLanguage];
+
+
+
+          // Framtidsplaner
+          document.getElementById('future-heading').innerHTML = futureHeading[selectedLanguage];
+          document.getElementById('future-desc').innerHTML = futureDesc[selectedLanguage];
+
+          // Footer
           document.querySelector('.footer-contact h3').innerHTML = footerContact[selectedLanguage];
           document.querySelector('.footer-contact a').innerHTML = footerContactEmail[selectedLanguage];
 
