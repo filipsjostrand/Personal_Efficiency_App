@@ -480,6 +480,7 @@ class ChoiceManager {
     }
 
 function handleEnableDisableDefaultRows() {
+    console.log("handleEnableDisableDefaultRows() körs");
     if (plannedTodos.length === 0) {
         console.log("No plannedTodos added.");
         disableDefaultTaskRows();
@@ -1094,6 +1095,50 @@ const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
         return weekdays[date.getDay()];
     }
 
+// var getCurrentWeekDay;
+
+    // currentWeekDayToBeHandled = "mon" / "tue" / "wed" / ... / "sun"
+    function getCurrentWeekDayForSelectedLanguage(currentWeekDayToBeHandled) {
+
+        let getCurrentWeekDay;
+
+        if (selectedLanguage === 'sv') {
+            if (currentWeekDayToBeHandled === "mon") {
+                getCurrentWeekDay = "mån";
+            } else if (currentWeekDayToBeHandled === "tue") {
+                getCurrentWeekDay = "tis";
+            } else if (currentWeekDayToBeHandled === "wed") {
+                getCurrentWeekDay = "ons";
+            } else if (currentWeekDayToBeHandled === "thu") {
+                getCurrentWeekDay = "tor";
+            } else if (currentWeekDayToBeHandled === "fri") {
+                getCurrentWeekDay = "fre";
+            } else if (currentWeekDayToBeHandled === "sat") {
+                getCurrentWeekDay = "lör";
+            } else if (currentWeekDayToBeHandled === "sun") {
+                getCurrentWeekDay = "sön";
+            }
+        } else if (selectedLanguage === 'en') {
+            if (currentWeekDayToBeHandled === "mon") {
+                getCurrentWeekDay = "mon";
+            } else if (currentWeekDayToBeHandled === "tue") {
+                getCurrentWeekDay = "tue";
+            } else if (currentWeekDayToBeHandled === "wed") {
+                getCurrentWeekDay = "wed";
+            } else if (currentWeekDayToBeHandled === "thu") {
+                getCurrentWeekDay = "thu";
+            } else if (currentWeekDayToBeHandled === "fri") {
+                getCurrentWeekDay = "fri";
+            } else if (currentWeekDayToBeHandled === "sat") {
+                getCurrentWeekDay = "sat";
+            } else if (currentWeekDayToBeHandled === "sun") {
+                getCurrentWeekDay = "sun";
+            }
+        }
+        return getCurrentWeekDay;
+    }
+
+
     // Function to format date as YYYY-MM-DD
     function formatDate(date) {
         console.log("formatDate() körs");
@@ -1138,12 +1183,27 @@ const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     }
 
 
+    function capitalizeFirstLetter(str) {
+        if (!str) return ''; // Handle empty strings
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
       // Get today's date in CET
       const today = getCETDate();
 
       // Display current weekday
       const weekdayDisplay = document.getElementById('weekday-display');
-      weekdayDisplay.textContent = `${getWeekday(today)}`;
+
+        console.log("getWeekday(today) = " + getWeekday(today));
+
+      let currentWeekdayAbbreviatedForWeekdayDisplay = getCurrentWeekDayForSelectedLanguage((getWeekday(today)).toLowerCase());
+
+        console.log("currentWeekdayAbbreviatedForWeekdayDisplay = " + currentWeekdayAbbreviatedForWeekdayDisplay);
+
+        currentWeekdayAbbreviatedForWeekdayDisplay = capitalizeFirstLetter(currentWeekdayAbbreviatedForWeekdayDisplay);
+
+        //   weekdayDisplay.textContent = `${getWeekday(today)}`;
+        weekdayDisplay.textContent = `${currentWeekdayAbbreviatedForWeekdayDisplay}`;
 
       // Display today's date
       const dateDisplay = document.getElementById('date-display');
@@ -1834,7 +1894,7 @@ var resultString;
         // dateCollection[dataId].innerHTML = defaultDate;
     }
     console.log("resultString (end of handleDateInput = " + resultString)
-    updateCurrentWeekSchedule();
+    updateCurrentWeekSchedule(false);
     return resultString;
 }
 
@@ -2080,26 +2140,47 @@ function weekdayNameToWeekDayNumber(dateInputValue) {
 
     console.log("dateInputValue =" + dateInputValue);
     console.log("dateInputValue.value =" + dateInputValue.value);
+    console.log("defaultDate (i weekdayNameToWeekDayNumber) =" + defaultDate);
 
-    if (getDayOfWeek(dateInputValue.value) === "mon") {
-        weekDayNumber = "0";
+    // let currentDa = getDayOfWeek(dateInputValue.value);
+
+    let currentWeekdayAbbreviated;
+
+    //getCurrentWeekDayForSelectedLanguage(currentWeekDayToBeHandled)
+    if (dateInputValue.value !== undefined) {
+        currentWeekdayAbbreviated = getCurrentWeekDayForSelectedLanguage(getDayOfWeek(dateInputValue.value));
+    } else if (dateInputValue.value === undefined) {
+        if (dateInputValue !== undefined) {
+            currentWeekdayAbbreviated = getCurrentWeekDayForSelectedLanguage(getDayOfWeek(dateInputValue));
+        } else if (dateInputValue === undefined) {
+            currentWeekdayAbbreviated = getCurrentWeekDayForSelectedLanguage(getDayOfWeek(defaultDate));
+        }
     }
-    else if (getDayOfWeek(dateInputValue.value) === "tue") {
+
+    console.log("currentWeekdayAbbreviated (sv/en) = " + currentWeekdayAbbreviated)
+
+    // if (getDayOfWeek(dateInputValue.value) === "mon") {
+    //     weekDayNumber = "0";
+    // }
+    if (currentWeekdayAbbreviated === "mån" || currentWeekdayAbbreviated === "mon") {
+    weekDayNumber = "0";
+    }
+    else if (currentWeekdayAbbreviated === "tis" || currentWeekdayAbbreviated === "tue") {
         weekDayNumber = "1";
     }
-    else if (getDayOfWeek(dateInputValue.value) === "wed") {
+    else if (currentWeekdayAbbreviated === "ons" || currentWeekdayAbbreviated === "wed") {
         weekDayNumber = "2";
     }
-    else if (getDayOfWeek(dateInputValue.value) === "thu") {
+    else if (currentWeekdayAbbreviated === "tor" || currentWeekdayAbbreviated === "thu") {
         weekDayNumber = "3";
     }
-    else if (getDayOfWeek(dateInputValue.value) === "fri") {
+    else if (currentWeekdayAbbreviated === "fre" || currentWeekdayAbbreviated === "fri") {
         weekDayNumber = "4";
     }
-    else if (getDayOfWeek(dateInputValue.value) === "sat") {
+    else if (currentWeekdayAbbreviated === "lör" || currentWeekdayAbbreviated === "sat") {
         weekDayNumber = "5";
     }
-    else if (getDayOfWeek(dateInputValue.value) === "sun") {
+    else if (currentWeekdayAbbreviated === "sun" || currentWeekdayAbbreviated === "sön") {
         weekDayNumber = "6";
     }
     console.log("weekDayNumber = " + weekDayNumber);
@@ -2110,25 +2191,51 @@ function weekdayNameToWeekDayNumberMultiDuration(newConvertedDateString) {
     console.log("weekdayNameToWeekDayNumberMultiDuration() körs");
 
 
-    if (getDayOfWeek(newConvertedDateString) === "mon") {
-        weekDayNumber = "0";
+    // if (getDayOfWeek(newConvertedDateString) === "mon") {
+    //     weekDayNumber = "0";
+    // }
+    // else if (getDayOfWeek(newConvertedDateString) === "tue") {
+    //     weekDayNumber = "1";
+    // }
+    // else if (getDayOfWeek(newConvertedDateString) === "wed") {
+    //     weekDayNumber = "2";
+    // }
+    // else if (getDayOfWeek(newConvertedDateString) === "thu") {
+    //     weekDayNumber = "3";
+    // }
+    // else if (getDayOfWeek(newConvertedDateString) === "fri") {
+    //     weekDayNumber = "4";
+    // }
+    // else if (getDayOfWeek(newConvertedDateString) === "sat") {
+    //     weekDayNumber = "5";
+    // }
+    // else if (getDayOfWeek(newConvertedDateString) === "sun") {
+    //     weekDayNumber = "6";
+    // }
+
+    let currentWeekdayAbbreviated = getCurrentWeekDayForSelectedLanguage(getDayOfWeek(newConvertedDateString));
+
+    console.log("currentWeekdayAbbreviated (sv/en) = " + currentWeekdayAbbreviated)
+
+    if (currentWeekdayAbbreviated === "mån" || currentWeekdayAbbreviated === "mon") {
+    weekDayNumber = "0";
     }
-    else if (getDayOfWeek(newConvertedDateString) === "tue") {
+    else if (currentWeekdayAbbreviated === "tis" || currentWeekdayAbbreviated === "tue") {
         weekDayNumber = "1";
     }
-    else if (getDayOfWeek(newConvertedDateString) === "wed") {
+    else if (currentWeekdayAbbreviated === "ons" || currentWeekdayAbbreviated === "wed") {
         weekDayNumber = "2";
     }
-    else if (getDayOfWeek(newConvertedDateString) === "thu") {
+    else if (currentWeekdayAbbreviated === "tor" || currentWeekdayAbbreviated === "thu") {
         weekDayNumber = "3";
     }
-    else if (getDayOfWeek(newConvertedDateString) === "fri") {
+    else if (currentWeekdayAbbreviated === "fre" || currentWeekdayAbbreviated === "fri") {
         weekDayNumber = "4";
     }
-    else if (getDayOfWeek(newConvertedDateString) === "sat") {
+    else if (currentWeekdayAbbreviated === "lör" || currentWeekdayAbbreviated === "sat") {
         weekDayNumber = "5";
     }
-    else if (getDayOfWeek(newConvertedDateString) === "sun") {
+    else if (currentWeekdayAbbreviated === "sun" || currentWeekdayAbbreviated === "sön") {
         weekDayNumber = "6";
     }
     console.log("weekDayNumber = " + weekDayNumber);
@@ -3477,7 +3584,7 @@ let plannedTodosObjectsArray = [];
     console.log("JSON.stringify(plannedTodos) (i addTaskToList, före updateCurrentWeekSchedule = " + JSON.stringify(plannedTodos));
 
     // Update the week schedule (when a new task is added)
-    updateCurrentWeekSchedule();
+    updateCurrentWeekSchedule(false);
     ifPlannedTodosIsPastPutToPastPlans();
     // removePeriodicityDurationEventListeners();
     recurringType = '';
@@ -3655,12 +3762,12 @@ function updateRecurringPlannedTodos(plannedTodos) {
         console.error('dateDisplay.textContent is empty');
     }
 
-    updateCurrentWeekSchedule();
+    updateCurrentWeekSchedule(false);
 
 }
 
 
-updateRecurringPlannedTodos(plannedTodos);
+// updateRecurringPlannedTodos(plannedTodos);
 
 
     // _ _ _
@@ -3806,7 +3913,17 @@ updateRecurringPlannedTodos(plannedTodos);
                 console.log("dateCollection[dataId].value = " + dateCollection[dataId].value);
                 console.log("todoRow.todo = " + todoRow.todo);
                 console.log("todoCollection[dataId].value = " + todoCollection[dataId].value);
-                if (todoRow.date === dateCollection[dataId].value && todoRow.todo === todoCollection[dataId].value && plannedTodos.length > 3) {
+                if (isValidDateExceptFebruary(todoRow.date) === true &&
+                    todoRow.date === dateCollection[dataId].value &&
+                    todoRow.todo === todoCollection[dataId].value &&
+                    plannedTodos.length > 3) {
+
+                        console.log("THERE IS A DUPLICATE!?");
+                        console.log("todoRow.date = " + todoRow.date);
+                        console.log("todoRow.todo = " + todoRow.todo);
+                        console.log("todoCollection[dataId].value = " + todoCollection[dataId].value);
+                        console.log("DATECOLLECTION[DATAID].VALUE = " + dateCollection[dataId].value);
+                        console.log("DEFAULTDATE = " + defaultDate);
                     dateCollection[dataId].value = defaultDate;
                     dateCollection[dataId].innerHTML = defaultDate;
                     todoCollection[dataId].value = defaultTodoText;
@@ -3944,7 +4061,7 @@ updateRecurringPlannedTodos(plannedTodos);
                 console.log("Date hasn't been edited");
             } else if (dateCollection[dataId].value !== defaultDate) {
                 console.log("Date has been edited");
-            updateCurrentWeekSchedule();
+            updateCurrentWeekSchedule(false);
             }
         }
 
@@ -4058,37 +4175,37 @@ updateRecurringPlannedTodos(plannedTodos);
         // _ _ _
         // _ _ _
 
-        function getlastDateOfCurrentMonth() {
-            console.log("getlastDateOfCurrentMonth() körs")
-            // Get the current date
-            const today = new Date();
+        // function getlastDateOfCurrentMonth() {
+        //     console.log("getlastDateOfCurrentMonth() körs")
+        //     // Get the current date
+        //     const today = new Date();
 
-            // Get the current year and month
-            const year = today.getFullYear();
-            const month = today.getMonth();
+        //     // Get the current year and month
+        //     const year = today.getFullYear();
+        //     const month = today.getMonth();
 
-            // Create a new date object for the first day of the next month
-            const firstDayNextMonth = new Date(year, month + 1, 1);
+        //     // Create a new date object for the first day of the next month
+        //     const firstDayNextMonth = new Date(year, month + 1, 1);
 
-            // Subtract one day to get the last day of the current month
-            const lastDay = new Date(firstDayNextMonth - 1);
+        //     // Subtract one day to get the last day of the current month
+        //     const lastDay = new Date(firstDayNextMonth - 1);
 
-            // Format the date as YYYY-MM-DD
-            const formattedDate = lastDay.toISOString().split('T')[0];
+        //     // Format the date as YYYY-MM-DD
+        //     const formattedDate = lastDay.toISOString().split('T')[0];
 
-            console.log(`The last date of the current month is: ${formattedDate}`);
+        //     console.log(`The last date of the current month is: ${formattedDate}`);
 
-            return formattedDate;
-        }
+        //     return formattedDate;
+        // }
 
         // _ _ _
         // _ _ _
 
         // Example usage:
-        var lastDateOfMonth = getlastDateOfCurrentMonth();
+        // var lastDateOfMonth = getlastDateOfCurrentMonth();
 
 
-        console.log(`The last date of the current month is: ${lastDateOfMonth}`);
+        // console.log(`The last date of the current month is: ${lastDateOfMonth}`);
 
             // _ _ _
 
@@ -4679,7 +4796,7 @@ updateRecurringPlannedTodos(plannedTodos);
                         dateInputString = defaultDate;
                         console.log("dateInputString (< dateDisplay.textContent) = " + dateInputString)
                         handleDateInput(dateInputString, defaultDate);
-                        updateCurrentWeekSchedule()
+                        updateCurrentWeekSchedule(true)
                     }
                         // _ _ _
 
@@ -4794,7 +4911,7 @@ updateRecurringPlannedTodos(plannedTodos);
 
                         console.log("JSON.stringify(plannedTodos) (on blur) (2) = " + JSON.stringify(plannedTodos));
 
-                    updateCurrentWeekSchedule();
+                    updateCurrentWeekSchedule(true);
 
                     removeEditDateButton(dataId);
                     isDateFieldFocus = false;
@@ -4860,18 +4977,43 @@ function getDataId(dataId) {
     // dateInputString (sträng som skickas in i handleDateInput()-funktionen)
     var dateInputString;
 
+    // getDateInputString() hämtar task dateString från DOM:en
     function getDateInputString() {
         console.log("getDateInputString() körs");
         // getDataId(dataId);
         dataId = event.target.getAttribute('data-id');
         console.log("dataId = " + dataId);
 
+        console.log("dateCollection[dataId].value (i getDateInputString = " + dateCollection[dataId].value);
+
+        console.log("defaultDate (i getDateInputString) = " + defaultDate);
+
         // exceptfeb
         if (isValidDateExceptFebruary(dateCollection[dataId].value) === true || isValidFebruaryDate(dateCollection[dataId].value) === true) {
             dateInputString = dateCollection[dataId].value;
-        } else if (isValidDateExceptFebruary(dateCollection[dataId].value) === false || isValidFebruaryDate(dateCollection[dataId].value) === false) {
-            dateInputString = dateDisplay.textContent;
         }
+
+        // _ _ _
+
+        // else if (isValidDateExceptFebruary(dateCollection[dataId].value) === false || isValidFebruaryDate(dateCollection[dataId].value) === false) {
+        //     dateInputString = dateDisplay.textContent;
+        // }
+
+        // _ _ _
+        // _ _ _
+
+        else if (isValidDateExceptFebruary(dateCollection[dataId].value) === false &&
+                dateCollection[dataId].value < dateDisplay.textContent) {
+
+            if (isValidFebruaryDate(dateCollection[dataId].value) === false &&
+            dateCollection[dataId].value < dateDisplay.textContent) {
+                // dateInputString = dateDisplay.textContent;
+                dateInputString = defaultDate;
+            }
+            dateInputString = defaultDate;
+        }
+
+        // _ _ _
 
         // dateInputString = dateCollection[dataId].value;
 
@@ -4892,7 +5034,28 @@ function getDataId(dataId) {
     //             if (plannedTodos[i].date === blockedDate) {
 
     // }
-    console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos));
+
+    // _ _ _
+    // console.log("JSON.stringify(plannedTodos) (1) = " + JSON.stringify(plannedTodos));
+
+    // // 2025-03-14 Labbar med (edit) recurring todos
+
+    // console.log("weekdayNameToWeekDayNumber(plannedTodos[dataId].date) = " + weekdayNameToWeekDayNumber(plannedTodos[dataId].date));
+
+    // plannedTodos[dataId].todoDate = weekdayNameToWeekDayNumber(plannedTodos[dataId].date);
+    // console.log("JSON.stringify(plannedTodos) (2) = " + JSON.stringify(plannedTodos));
+
+    // _ _ _
+
+    console.log("JSON.stringify(plannedTodos) (1) = " + JSON.stringify(plannedTodos));
+
+    // 2025-03-18 Labbar med (edit) recurring todos
+
+
+
+    console.log("weekdayNameToWeekDayNumber(plannedTodos[dataId].date) = " + weekdayNameToWeekDayNumber(plannedTodos[dataId].date));
+
+    // _ _ _
 
         // updateCurrentWeekSchedule();
 
@@ -4914,7 +5077,7 @@ function getTodoFields(todoFields) {
         console.warn("todoFields are not provided.");
     }
     let currentTodoFields = todoFields;
-    console.log("currentTodoFields = " + currentTodoFields);
+    // console.log("currentTodoFields = " + currentTodoFields);
     return currentTodoFields;
 }
 
@@ -4951,181 +5114,193 @@ function checkIfDateAndTextAreEmpty() {
         dateFields = getDateFields(dateFields);
         console.log("dateFields.length (first three) = " + dateFields.length)
 
-        // _ _ _
+        if (dateCollection[0].value !== undefined && plannedTodos.length > 0 && plannedTodos !== undefined) {
 
-        // // dateInputString (sträng som skickas in i handleDateInput()-funktionen)
-        // var dateInputString;
+                console.log("dateCollection[0].value !== undefined && plannedTodos.length > 0 && plannedTodos !== undefined");
+            // _ _ _
 
-        // When input is changed for any date field (in Current Plan)... (start)
-        dateFields.forEach(function(field) {
+            // // dateInputString (sträng som skickas in i handleDateInput()-funktionen)
+            // var dateInputString;
 
 
-            console.log("JSON.stringify(dateFields) (i dateFields.forEach(function(field) ) = " + JSON.stringify(dateFields));
+            // When input is changed for any date field (in Current Plan)... (start)
+            dateFields.forEach(function(field) {
 
-            // console.log("blockedDates = " + blockedDates)
+                console.log("dateFields.forEach(function(field) { körs");
+                // console.log("JSON.stringify(dateFields) (i dateFields.forEach(function(field) ) = " + JSON.stringify(dateFields));
 
-            field.addEventListener('input', function(event) {
+                // console.log("blockedDates = " + blockedDates)
 
-                console.log("JSON.stringify(field) (i dateFields.forEach(function(field) ) = " + JSON.stringify(field));
+                field.addEventListener('input', function(event) {
 
-                console.log("plannedTodos.length (i dateFields-addeventlistener-funk) = " + plannedTodos.length)
+                    console.log("field.addEventListener('input', function(event) körs");
+                    // console.log("JSON.stringify(field) (i dateFields.forEach(function(field) ) = " + JSON.stringify(field));
 
-                dataId = event.target.getAttribute('data-id');  // Get the todo index
-                const key = event.target.getAttribute('data-key');  // Get the key (todo, color, etc.)
-                console.log("key = " + key)
+                    console.log("plannedTodos.length (i dateFields-addeventlistener-funk) = " + plannedTodos.length)
 
-                getDataId(dataId);
+                    dataId = event.target.getAttribute('data-id');  // Get the todo index
+                    const key = event.target.getAttribute('data-key');  // Get the key (todo, color, etc.)
+                    console.log("key = " + key)
 
-                // handleDateInput(event);
+                    getDataId(dataId);
 
-                // dateInputString = dateCollection[dataId].value;
-                dateInputString = getDateInputString();
-                console.log("dateInputString changed to: " + dateInputString);
+                    // handleDateInput(event);
 
-                // handleDateInput(dateInputString);
+                    // dateInputString = dateCollection[dataId].value;
+                    dateInputString = getDateInputString();
+                    console.log("dateInputString changed to: " + dateInputString);
 
-                // gggggggg
-                // // Check if the value contains a blocked date
-                // if (isBlockedDate(dateCollection[dataId].value)) {
-                //     alert("This date is not allowed.");
-                //     textarea.value = ""; // Clear the invalid input
-                // }
-                // gggggggg
+                    // handleDateInput(dateInputString);
 
-                // _ _ _
-                // _ _ _
-                // Ta bort (2024-12-03) ((Ersätts av handleDateInput()!?!?))
-                // if (dateCollection[dataId].value === undefined || dateCollection[dataId].value === null || dateCollection[dataId].value === '') {
-                //         checkIfDateAndTextAreEmpty();
-                //         // console.log("plannedTodos[dataId][key] (2) = " + plannedTodos[dataId][key])
-                //         plannedTodos[dataId][key] = dateCollection[dataId].value;
-                //         plannedTodos[dataId].isEmpty = false;
-                //     }
-                // _ _ _
-                // _ _ _
+                    // gggggggg
+                    // // Check if the value contains a blocked date
+                    // if (isBlockedDate(dateCollection[dataId].value)) {
+                    //     alert("This date is not allowed.");
+                    //     textarea.value = ""; // Clear the invalid input
+                    // }
+                    // gggggggg
 
-                //if (dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[0] && currentMondayTodos.length < 9 || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[1] && currentTuesdayTodos.length < 9 || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[2] && currentWednesdayTodos.length < 9 || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[3] && currentThursdayTodos.length < 9 || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[4] && currentFridayTodos.length < 9 || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[5] && currentSaturdayTodos.length < 9 || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[6] && currentSundayTodos.length < 9) {
+                    // _ _ _
+                    // _ _ _
+                    // Ta bort (2024-12-03) ((Ersätts av handleDateInput()!?!?))
+                    // if (dateCollection[dataId].value === undefined || dateCollection[dataId].value === null || dateCollection[dataId].value === '') {
+                    //         checkIfDateAndTextAreEmpty();
+                    //         // console.log("plannedTodos[dataId][key] (2) = " + plannedTodos[dataId][key])
+                    //         plannedTodos[dataId][key] = dateCollection[dataId].value;
+                    //         plannedTodos[dataId].isEmpty = false;
+                    //     }
+                    // _ _ _
+                    // _ _ _
 
-                // 2025-03-03: Ta bort 9-gräns
-                if (dateCollection[dataId].value !== ''
-                    // // &&
-                    // // currentMondayTodos.length < 9
-                    // || dateCollection[dataId].value !== ''
-                    // // &&
-                    // // currentTuesdayTodos.length < 9
-                    // || dateCollection[dataId].value !== ''
-                    // // &&
-                    // // currentWednesdayTodos.length < 9
-                    // || dateCollection[dataId].value !== ''
-                    // // &&
-                    // // currentThursdayTodos.length < 9
-                    // || dateCollection[dataId].value !== ''
-                    // // &&
-                    // // currentFridayTodos.length < 9
-                    // || dateCollection[dataId].value !== ''
-                    // // &&
-                    // // currentSaturdayTodos.length < 9
-                    // || dateCollection[dataId].value !== ''
-                    // // &&
-                    // // currentSundayTodos.length < 9
-                    )
-                    {
+                    //if (dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[0] && currentMondayTodos.length < 9 || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[1] && currentTuesdayTodos.length < 9 || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[2] && currentWednesdayTodos.length < 9 || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[3] && currentThursdayTodos.length < 9 || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[4] && currentFridayTodos.length < 9 || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[5] && currentSaturdayTodos.length < 9 || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[6] && currentSundayTodos.length < 9) {
+
+                    // 2025-03-03: Ta bort 9-gräns
+                    if (dateCollection[dataId].value !== ''
+                        // // &&
+                        // // currentMondayTodos.length < 9
+                        // || dateCollection[dataId].value !== ''
+                        // // &&
+                        // // currentTuesdayTodos.length < 9
+                        // || dateCollection[dataId].value !== ''
+                        // // &&
+                        // // currentWednesdayTodos.length < 9
+                        // || dateCollection[dataId].value !== ''
+                        // // &&
+                        // // currentThursdayTodos.length < 9
+                        // || dateCollection[dataId].value !== ''
+                        // // &&
+                        // // currentFridayTodos.length < 9
+                        // || dateCollection[dataId].value !== ''
+                        // // &&
+                        // // currentSaturdayTodos.length < 9
+                        // || dateCollection[dataId].value !== ''
+                        // // &&
+                        // // currentSundayTodos.length < 9
+                        )
+                        {
+
+                        // _ _ _
+
+                    // UPPDATERA TODO-TASK-List-DATUM (och dataDate), Lägg till på nytt (objekt och DOM-element) och ta bort gammalt (objekt och DOM-element)
+
+                    // 1. Om DOM-datumet (dateCollection[dataId].value) ändras && nytt datum finns i veckovy. (loopa igenom och undersök om dateCollection[dataId].value === weekDates[i]) => Ta bort old todo-vecko-div från vecko-vy (se removeSpecificTodo)
+                    // 2. Lägg till ny todo-vecko-div i vecko-vy (för nytt datum) ((där style.backgroundColor === ''(?)))
+
+
+                    // _ _ _
+                    // console.log("vid date input change, plannedTodos[dataId].date = " + plannedTodos[dataId].date);
+                    // console.log("vid date input change, plannedTodos[dataId].dataDate = " + plannedTodos[dataId].dataDate);
+                    // _ _ _
+
+                    // plannedTodos[dataId].dataDate = weekdayNameToWeekDayNumber(dateCollection[dataId])
+                    // console.log("plannedTodos[dataId].dataDate = " +  weekdayNameToWeekDayNumber(dateCollection[dataId]))
+                    plannedTodos[dataId].dataDate = weekdayNameToWeekDayNumber(dateCollection[dataId].value)
+                    console.log("plannedTodos[dataId].dataDate = " +  weekdayNameToWeekDayNumber(dateCollection[dataId].value))
 
                     // _ _ _
 
-                // UPPDATERA TODO-TASK-List-DATUM (och dataDate), Lägg till på nytt (objekt och DOM-element) och ta bort gammalt (objekt och DOM-element)
+                    // _ _ _
 
-                // 1. Om DOM-datumet (dateCollection[dataId].value) ändras && nytt datum finns i veckovy. (loopa igenom och undersök om dateCollection[dataId].value === weekDates[i]) => Ta bort old todo-vecko-div från vecko-vy (se removeSpecificTodo)
-                // 2. Lägg till ny todo-vecko-div i vecko-vy (för nytt datum) ((där style.backgroundColor === ''(?)))
+                    // (change 2025-01-23)
+                    // console.log("JSON.stringify(plannedTodos) (on input change) (1) = " + JSON.stringify(plannedTodos));
 
+                    //     plannedTodos[dataId][key] = dateCollection[dataId].value;
 
-                // _ _ _
-                // console.log("vid date input change, plannedTodos[dataId].date = " + plannedTodos[dataId].date);
-                // console.log("vid date input change, plannedTodos[dataId].dataDate = " + plannedTodos[dataId].dataDate);
-                // _ _ _
+                    // console.log("JSON.stringify(plannedTodos) (on input change) (2) = " + JSON.stringify(plannedTodos));
 
-                plannedTodos[dataId].dataDate = weekdayNameToWeekDayNumber(dateCollection[dataId])
-                console.log("plannedTodos[dataId].dataDate = " +  weekdayNameToWeekDayNumber(dateCollection[dataId]))
+                        currentMondayTodoItems.forEach(Element => {
+                            Element.innerHTML = "";
+                            Element.style.backgroundColor = "";
+                        })
+                        currentTuesdayTodoItems.forEach(Element => {
+                            Element.innerHTML = "";
+                            Element.style.backgroundColor = "";
+                        })
+                        currentWednesdayTodoItems.forEach(Element => {
+                            Element.innerHTML = "";
+                            Element.style.backgroundColor = "";
+                        })
+                        currentThursdayTodoItems.forEach(Element => {
+                            Element.innerHTML = "";
+                            Element.style.backgroundColor = "";
+                        })
+                        currentFridayTodoItems.forEach(Element => {
+                            Element.innerHTML = "";
+                            Element.style.backgroundColor = "";
+                        })
+                        currentSaturdayTodoItems.forEach(Element => {
+                            Element.innerHTML = "";
+                            Element.style.backgroundColor = "";
+                        })
+                        currentSundayTodoItems.forEach(Element => {
+                            Element.innerHTML = "";
+                            Element.style.backgroundColor = "";
+                        })
 
-                // _ _ _
+                        // recurringTodosArrayEdit.push({
+                        // })
 
-                // _ _ _
+                        // Update the week schedule (when a task has been edited)
 
-                // (change 2025-01-23)
-                // console.log("JSON.stringify(plannedTodos) (on input change) (1) = " + JSON.stringify(plannedTodos));
+                        // (2025-01-23) x updateCurrentWeekSchedule();
+                        // updateCurrentWeekSchedule();
 
-                //     plannedTodos[dataId][key] = dateCollection[dataId].value;
-
-                // console.log("JSON.stringify(plannedTodos) (on input change) (2) = " + JSON.stringify(plannedTodos));
-
-                    currentMondayTodoItems.forEach(Element => {
-                        Element.innerHTML = "";
-                        Element.style.backgroundColor = "";
-                    })
-                    currentTuesdayTodoItems.forEach(Element => {
-                        Element.innerHTML = "";
-                        Element.style.backgroundColor = "";
-                    })
-                    currentWednesdayTodoItems.forEach(Element => {
-                        Element.innerHTML = "";
-                        Element.style.backgroundColor = "";
-                    })
-                    currentThursdayTodoItems.forEach(Element => {
-                        Element.innerHTML = "";
-                        Element.style.backgroundColor = "";
-                    })
-                    currentFridayTodoItems.forEach(Element => {
-                        Element.innerHTML = "";
-                        Element.style.backgroundColor = "";
-                    })
-                    currentSaturdayTodoItems.forEach(Element => {
-                        Element.innerHTML = "";
-                        Element.style.backgroundColor = "";
-                    })
-                    currentSundayTodoItems.forEach(Element => {
-                        Element.innerHTML = "";
-                        Element.style.backgroundColor = "";
-                    })
-
-                    // recurringTodosArrayEdit.push({
-                    // })
-
-                    // Update the week schedule (when a task has been edited)
-
-                    // (2025-01-23) x updateCurrentWeekSchedule();
-                    // updateCurrentWeekSchedule();
-
-                    // domUpdateCurrentWeekSchedule();
+                        // domUpdateCurrentWeekSchedule();
 
 
 
-                } else if (dateCollection[dataId].value === undefined || dateCollection[dataId].value === null || dateCollection[dataId].value === '') {
-                    console.log("dateCollection (dataId) is invalid")
-                    checkIfDateAndTextAreEmpty();
-                }
-                // 2025-03-03: Ta bort 9-gräns
-                else if (dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[0]
-                    // && currentMondayTodos.length === 9
-                    || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[1]
-                    // && currentTuesdayTodos.length === 9
-                    || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[2]
-                    // && currentWednesdayTodos.length === 9
-                    || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[3]
-                    // && currentThursdayTodos.length === 9
-                    || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[4]
-                    // && currentFridayTodos.length === 9
-                    || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[5]
-                    // && currentSaturdayTodos.length === 9
-                    || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[6]
-                    // && currentSundayTodos.length === 9
-                ) {
-                    dateCollection[dataId].value = '';
-                    alert('Unavailable selection: The task limit has been reached for that day.')
-                }
+                    } else if (dateCollection[dataId].value === undefined || dateCollection[dataId].value === null || dateCollection[dataId].value === '') {
+                        console.log("dateCollection (dataId) is invalid")
+                        checkIfDateAndTextAreEmpty();
+                    }
+                    // 2025-03-03: Ta bort 9-gräns
+                    else if (dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[0]
+                        // && currentMondayTodos.length === 9
+                        || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[1]
+                        // && currentTuesdayTodos.length === 9
+                        || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[2]
+                        // && currentWednesdayTodos.length === 9
+                        || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[3]
+                        // && currentThursdayTodos.length === 9
+                        || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[4]
+                        // && currentFridayTodos.length === 9
+                        || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[5]
+                        // && currentSaturdayTodos.length === 9
+                        || dateCollection[dataId].value !== '' && dateCollection[dataId].value === weekDates[6]
+                        // && currentSundayTodos.length === 9
+                    ) {
+                        dateCollection[dataId].value = '';
+                        alert('Unavailable selection: The task limit has been reached for that day.')
+                    }
 
-                // console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos));
+                    // console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos));
+                });
             });
-        });
+
+        } else {
+            console.log("dateCollection[0].value === undefined || plannedTodos.length === 0 || plannedTodos === undefined");
+        }
+
         // When input is changed for any date field (in Current Plan)... (end)
 
         // _ _ _
@@ -5321,7 +5496,7 @@ function checkIfDateAndTextAreEmpty() {
 
         // _ _ _
 
-        // Add event listener to the parent element
+        // Add event listener to the parent element (3x default divs)
         parentDiv.addEventListener('click', function(event) {
 
         // addGlobalListener('click', 'parentDiv', e => {
@@ -5330,26 +5505,69 @@ function checkIfDateAndTextAreEmpty() {
 
             console.log("parentDiv.addEventListener('click' ... körs")
             // Check if the clicked element is a div with the name "color"
+
+            dataId = event.target.getAttribute('data-id');
+
             if (event.target && event.target.getAttribute('name') === 'color') {
-                dataId = event.target.getAttribute('data-id');
+                // dataId = event.target.getAttribute('data-id');
+
+                console.log("dataId (i if-sats) = " + dataId);
+
+                colorSwitcherPanel.style.display = 'flex';
+
             }
+
+            console.log("dataId (i default 3 eventListener click) = " + dataId);
+            defaultDate = plannedTodos[dataId].date;
+            console.log("defaultDate (i default 3 eventListener click) = " + defaultDate);
         });
 
+            // _ _ _
+
+        // Add event listener to the parent element
+        parentDiv.addEventListener('blur', function(event) {
+
+            // addGlobalListener('click', 'parentDiv', e => {
+            // if (e.target && e.target.getAttribute('name') === 'color') {
+            // dataId = e.target.getAttribute('data-id');
+
+                console.log("parentDiv.addEventListener('blur' ... körs")
+                // Check if the clicked element is a div with the name "color"
+
+                dataId = event.target.getAttribute('data-id');
+
+                if (isValidDateExceptFebruary(plannedTodos[dataId].date) === true) {
+                    console.log("valid date when blur default 3 divs");
+                }
+
+                if (isValidDateExceptFebruary(plannedTodos[dataId].date) === false) {
+
+                    console.log("dataId (i default 3 eventListener blur) = " + dataId);
+                    console.log("defaultDate (i default 3 eventListener blur) = " + defaultDate);
+                    plannedTodos[dataId].date = defaultDate;
+
+                    dateCollection[dataId].value = defaultDate;
+                    dateCollection[dataId].innerHTML = defaultDate;
+                }
+        });
+
+
+            // _ _ _
 
         // Add event listener to the parent div (event delegation)
 
-        parentDiv.addEventListener('click', function(event) {
-            console.log("parentDiv.addEventListener('click' ... körs")
+        // parentDiv.addEventListener('click', function(event) {
+        //     console.log("parentDiv.addEventListener('click' ... körs")
 
-        // addGlobalListener('click', 'parentDiv', e => {
-        // if (e.target && e.target.getAttribute('name') === 'color') {
+        // // addGlobalListener('click', 'parentDiv', e => {
+        // // if (e.target && e.target.getAttribute('name') === 'color') {
 
-            if (event.target && event.target.getAttribute('name') === 'color') {
-                // Open the color switcher panel by removing the 'hidden' class
-                // colorSwitcherPanel.classList.remove('hidden');
-                colorSwitcherPanel.style.display = 'flex';
-            }
-        });
+        //     if (event.target && event.target.getAttribute('name') === 'color') {
+        //         // Open the color switcher panel by removing the 'hidden' class
+        //         // colorSwitcherPanel.classList.remove('hidden');
+        //         colorSwitcherPanel.style.display = 'flex';
+        //     }
+        // });
 
 
         // colorSwitcherPanel click
@@ -5860,7 +6078,7 @@ let specificTodoContainer = wrapperContainer.getElementsByClassName('todo-contai
 
                             //_ _ _
 
-                            updateCurrentWeekSchedule();
+                            updateCurrentWeekSchedule(false);
 
                             // console.log("JSON.stringify(currentMondayTodos) = " + JSON.stringify(currentMondayTodos))
                             // console.log("JSON.stringify(currentTuesdayTodos) = " + JSON.stringify(currentTuesdayTodos))
@@ -6033,7 +6251,7 @@ let specificTodoContainer = wrapperContainer.getElementsByClassName('todo-contai
                                 todoColorCollection[i].style.backgroundColor = returnRgbColor(plannedTodos[i].color);
                             }
 
-                            updateCurrentWeekSchedule();
+                            updateCurrentWeekSchedule(false);
 
                             // _ _ _
 
@@ -6319,7 +6537,7 @@ let specificTodoContainer = wrapperContainer.getElementsByClassName('todo-contai
 
                 // _ _ _
 
-                updateCurrentWeekSchedule();
+                updateCurrentWeekSchedule(false);
 
                 removeLastDynamicTodoContainer();
 
@@ -6693,179 +6911,211 @@ let specificTodoContainer = wrapperContainer.getElementsByClassName('todo-contai
     function clearAll() {
         console.log("clearAll() körs")
 
-        todoElements.forEach((element) => {
-            element.style.backgroundColor = 'rgba(0, 0, 0, 0)';
-        });
+        // console.log("plannedTodos.length = " + plannedTodos.length);
+        // console.log("plannedTodos = " + plannedTodos);
 
-            // clear the DOM todo data
-            for (let i = 0; i < dateCollection.length; i++) {
-                dateCollection[i].value = '';
-                dateCollection[i].innerHTML = '';
-                todoCollection[i].value = '';
-                todoCollection[i].innerHTML = '';
-                todoColorCollection[i].style.backgroundColor = 'rgb(228, 228, 228)';
-            }
+        if (dateCollection[0].value !== undefined && plannedTodos.length > 0 && plannedTodos !== undefined) {
 
-            dateInputValue.value = dateDisplay.textContent;
-            // dateInputValue.value = '';
-            // plannedTodos.length = 0;
-            // plannedTodos = plannedTodosStart;
-            plannedTodos = [];
+            console.log("todoElements = " + todoElements);
 
-            for (let i = currentMondayTodoItems.length; currentMondayTodoItems.length > 10; i--) {
-                removeLastMondayTodoDiv();
-            }
-            for (let i = currentTuesdayTodoItems.length; currentTuesdayTodoItems.length > 10; i--) {
-                removeLastTuesdayTodoDiv();
-            }
-            for (let i = currentWednesdayTodoItems.length; currentWednesdayTodoItems.length > 10; i--) {
-                removeLastWednesdayTodoDiv();
-            }
-            for (let i = currentThursdayTodoItems.length; currentThursdayTodoItems.length > 10; i--) {
-                removeLastThursdayTodoDiv();
-            }
-            for (let i = currentFridayTodoItems.length; currentFridayTodoItems.length > 10; i--) {
-                removeLastFridayTodoDiv();
-            }
-            for (let i = currentSaturdayTodoItems.length; currentSaturdayTodoItems.length > 10; i--) {
-                removeLastSaturdayTodoDiv();
-            }
-            for (let i = currentSundayTodoItems.length; currentSundayTodoItems.length > 10; i--) {
-                removeLastSundayTodoDiv();
-            }
-
-            currentMondayTodoItems.forEach(Element => {
-                Element.innerHTML = "";
-                Element.style.backgroundColor = "";
-            })
-            currentTuesdayTodoItems.forEach(Element => {
-                Element.innerHTML = "";
-                Element.style.backgroundColor = "";
-            })
-            currentWednesdayTodoItems.forEach(Element => {
-                Element.innerHTML = "";
-                Element.style.backgroundColor = "";
-            })
-            currentThursdayTodoItems.forEach(Element => {
-                Element.innerHTML = "";
-                Element.style.backgroundColor = "";
-            })
-            currentFridayTodoItems.forEach(Element => {
-                Element.innerHTML = "";
-                Element.style.backgroundColor = "";
-            })
-            currentSaturdayTodoItems.forEach(Element => {
-                Element.innerHTML = "";
-                Element.style.backgroundColor = "";
-            })
-            currentSundayTodoItems.forEach(Element => {
-                Element.innerHTML = "";
-                Element.style.backgroundColor = "";
-            })
-
-            // removeAllTodoContainersWithDataIdGreaterThanTwo();
-            // removeAllExceptThreeDynamicTodoContainers();
-            // removeAllDynamicTodoContainers();
-            restoreTodoWrapper();
-
-            // returnRgbColor(colorPickerGray.value) = 'rgb(150, 150, 150)';
-            colorPickerSelect.style.backgroundColor = returnRgbColor(colorPickerGray.value);
-            colorPickerSelect.value = colorPickerGray.value;
-            // _ _ _
-            // _ _ _
-
-            currentMondayTodos = [];
-            currentTuesdayTodos = [];
-            currentWednesdayTodos = [];
-            currentThursdayTodos = [];
-            currentFridayTodos = [];
-            currentSaturdayTodos = [];
-            currentSundayTodos = [];
-
-            // _ _ _
-            pastTasksSet = new Set();
-            pastPlansTextArea.innerHTML = '';
-            pastPlansTextArea.value = '';
-            pastPlanStringToSaveUpdate = '';
-
-
-
-        // _ _ _
-        // _ _ _
-
-        // // Attach focus event listener to all todo-text textareas
-        // document.querySelectorAll(".todo-date").forEach(todoTextArea => {
-        //     todoTextArea.addEventListener("focus", () => {
-        //         // Get the current data-id of the focused textarea
-        //         // const dataId = todoTextArea.getAttribute("data-id");
-        //         dataId = todoTextArea.getAttribute("data-id");
-
-        //         // console.log("dataId = " + dataId);
-        //         // console.log("getDataId(dataId) = " + getDataId(dataId));
-
-        //         // // Get the value of the todo-text textarea for this data-id
-        //         // const todoValue = todoTextArea.value;
-
-        //         if (plannedTodos.length === 0) {
-        //             alert("Add tasks before editing");
-        //             console.log("Add tasks before editing");
-        //             todoTextArea.blur();
-        //             textInputValue.focus();
-        //         }
-        //     });
-        // });
-
-        // _ _ _
-        // _ _ _
-        // Attach focus event listener to all todo-text textareas
-        document.querySelectorAll(".todo-text").forEach(todoTextArea => {
-            todoTextArea.addEventListener("focus", () => {
-                console.log("todoTextArea.addEventListener('focus' ... körs")
-                // Get the current data-id of the focused textarea
-                // const dataId = todoTextArea.getAttribute("data-id");
-                dataId = todoTextArea.getAttribute("data-id");
-
-                console.log("dataId = " + dataId);
-                console.log("getDataId(dataId) = " + getDataId(dataId));
-
-                // // Get the value of the todo-text textarea for this data-id
-                // const todoValue = todoTextArea.value;
-
-                if (plannedTodos.length === 0) {
-                    alert("Add tasks before editing");
-                    console.log("Add tasks before editing");
-                    // removeEditDateButton(dataId);
-                    // isDateFieldFocus = false;
-                    // changeDateFieldBackgroundColor(isDateFieldFocus, dateFieldTextarea) // Optional: Highlight when active });
-                    // dateFieldTextarea.style.backgroundColor = '';
-                    todoTextArea.blur();
-                    textInputValue.focus();
-                }
-                // else if (plannedTodos.length > 0) {
-
-                //     // Log the data-id and value
-                //     console.log(`Focused todo-text with data-id="${dataId}"`);
-                //     console.log(`Value: "${todoValue}"`);
-                //     defaultTodoText = todoValue;
-                //     console.log("defaultDate = " + defaultDate + ", " + "defaultTodoText = " + defaultTodoText);
-
-                //     // Optional: Update a status or display this information somewhere in the UI
-                //     const status = document.getElementById("status");
-                //     if (status) {
-                //         status.textContent = `Focused todo-text (data-id: ${dataId}): "${todoValue}"`;
-                //     }
-                // }
+            todoElements.forEach((element) => {
+                element.style.backgroundColor = 'rgba(0, 0, 0, 0)';
             });
-        });
 
-        // _ _ _
-        //_ _ _
-        handleEnableDisableDefaultRows();
+                // clear the DOM todo data
+                for (let i = 0; i < dateCollection.length; i++) {
+                    dateCollection[i].value = '';
+                    dateCollection[i].innerHTML = '';
+                    todoCollection[i].value = '';
+                    todoCollection[i].innerHTML = '';
+                    todoColorCollection[i].style.backgroundColor = 'rgb(228, 228, 228)';
+                }
 
+                dateInputValue.value = dateDisplay.textContent;
+                // dateInputValue.value = '';
+                // plannedTodos.length = 0;
+                // plannedTodos = plannedTodosStart;
+                plannedTodos = [];
+
+                for (let i = currentMondayTodoItems.length; currentMondayTodoItems.length > 10; i--) {
+                    removeLastMondayTodoDiv();
+                }
+                for (let i = currentTuesdayTodoItems.length; currentTuesdayTodoItems.length > 10; i--) {
+                    removeLastTuesdayTodoDiv();
+                }
+                for (let i = currentWednesdayTodoItems.length; currentWednesdayTodoItems.length > 10; i--) {
+                    removeLastWednesdayTodoDiv();
+                }
+                for (let i = currentThursdayTodoItems.length; currentThursdayTodoItems.length > 10; i--) {
+                    removeLastThursdayTodoDiv();
+                }
+                for (let i = currentFridayTodoItems.length; currentFridayTodoItems.length > 10; i--) {
+                    removeLastFridayTodoDiv();
+                }
+                for (let i = currentSaturdayTodoItems.length; currentSaturdayTodoItems.length > 10; i--) {
+                    removeLastSaturdayTodoDiv();
+                }
+                for (let i = currentSundayTodoItems.length; currentSundayTodoItems.length > 10; i--) {
+                    removeLastSundayTodoDiv();
+                }
+
+                currentMondayTodoItems.forEach(Element => {
+                    Element.innerHTML = "";
+                    Element.style.backgroundColor = "";
+                })
+                currentTuesdayTodoItems.forEach(Element => {
+                    Element.innerHTML = "";
+                    Element.style.backgroundColor = "";
+                })
+                currentWednesdayTodoItems.forEach(Element => {
+                    Element.innerHTML = "";
+                    Element.style.backgroundColor = "";
+                })
+                currentThursdayTodoItems.forEach(Element => {
+                    Element.innerHTML = "";
+                    Element.style.backgroundColor = "";
+                })
+                currentFridayTodoItems.forEach(Element => {
+                    Element.innerHTML = "";
+                    Element.style.backgroundColor = "";
+                })
+                currentSaturdayTodoItems.forEach(Element => {
+                    Element.innerHTML = "";
+                    Element.style.backgroundColor = "";
+                })
+                currentSundayTodoItems.forEach(Element => {
+                    Element.innerHTML = "";
+                    Element.style.backgroundColor = "";
+                })
+
+                // removeAllTodoContainersWithDataIdGreaterThanTwo();
+                // removeAllExceptThreeDynamicTodoContainers();
+                // removeAllDynamicTodoContainers();
+                restoreTodoWrapper();
+
+                // returnRgbColor(colorPickerGray.value) = 'rgb(150, 150, 150)';
+                colorPickerSelect.style.backgroundColor = returnRgbColor(colorPickerGray.value);
+                colorPickerSelect.value = colorPickerGray.value;
+                // _ _ _
+                // _ _ _
+
+                currentMondayTodos = [];
+                currentTuesdayTodos = [];
+                currentWednesdayTodos = [];
+                currentThursdayTodos = [];
+                currentFridayTodos = [];
+                currentSaturdayTodos = [];
+                currentSundayTodos = [];
+
+                // _ _ _
+                pastTasksSet = new Set();
+                pastPlansTextArea.innerHTML = '';
+                pastPlansTextArea.value = '';
+                pastPlanStringToSaveUpdate = '';
+
+
+
+            // _ _ _
+            // _ _ _
+
+            // // Attach focus event listener to all todo-text textareas
+            // document.querySelectorAll(".todo-date").forEach(todoTextArea => {
+            //     todoTextArea.addEventListener("focus", () => {
+            //         // Get the current data-id of the focused textarea
+            //         // const dataId = todoTextArea.getAttribute("data-id");
+            //         dataId = todoTextArea.getAttribute("data-id");
+
+            //         // console.log("dataId = " + dataId);
+            //         // console.log("getDataId(dataId) = " + getDataId(dataId));
+
+            //         // // Get the value of the todo-text textarea for this data-id
+            //         // const todoValue = todoTextArea.value;
+
+            //         if (plannedTodos.length === 0) {
+            //             alert("Add tasks before editing");
+            //             console.log("Add tasks before editing");
+            //             todoTextArea.blur();
+            //             textInputValue.focus();
+            //         }
+            //     });
+            // });
+
+            // _ _ _
+            // _ _ _
+            // Attach focus event listener to all todo-text textareas
+            document.querySelectorAll(".todo-text").forEach(todoTextArea => {
+                todoTextArea.addEventListener("focus", () => {
+                    console.log("todoTextArea.addEventListener('focus' ... körs")
+                    // Get the current data-id of the focused textarea
+                    // const dataId = todoTextArea.getAttribute("data-id");
+                    dataId = todoTextArea.getAttribute("data-id");
+
+                    console.log("dataId = " + dataId);
+                    console.log("getDataId(dataId) = " + getDataId(dataId));
+
+                    // // Get the value of the todo-text textarea for this data-id
+                    // const todoValue = todoTextArea.value;
+
+                // _ _ _
+                // _ _ _
+
+                    // if (plannedTodos.length === 0) {
+                    //     alert("Add tasks before editing");
+                    //     console.log("Add tasks before editing");
+                    //     // removeEditDateButton(dataId);
+                    //     // isDateFieldFocus = false;
+                    //     // changeDateFieldBackgroundColor(isDateFieldFocus, dateFieldTextarea) // Optional: Highlight when active });
+                    //     // dateFieldTextarea.style.backgroundColor = '';
+                    //     todoTextArea.blur();
+                    //     textInputValue.focus();
+                    // }
+                // _ _ _
+                // _ _ _
+                    // else if (plannedTodos.length > 0) {
+
+                    //     // Log the data-id and value
+                    //     console.log(`Focused todo-text with data-id="${dataId}"`);
+                    //     console.log(`Value: "${todoValue}"`);
+                    //     defaultTodoText = todoValue;
+                    //     console.log("defaultDate = " + defaultDate + ", " + "defaultTodoText = " + defaultTodoText);
+
+                    //     // Optional: Update a status or display this information somewhere in the UI
+                    //     const status = document.getElementById("status");
+                    //     if (status) {
+                    //         status.textContent = `Focused todo-text (data-id: ${dataId}): "${todoValue}"`;
+                    //     }
+                    // }
+                });
+            });
+
+            // _ _ _
+            // _ _ _
+            handleEnableDisableDefaultRows();
+
+        } else {
+
+            textInputValue.focus();
+
+            // console.log("plannedTodos.length === 0 ooa")
+            // if (plannedTodos.length === 0) {
+            //     // alert("Add tasks before editing");
+            //     console.log("Add tasks before editing");
+            //     // removeEditDateButton(dataId);
+            //     // isDateFieldFocus = false;
+            //     // changeDateFieldBackgroundColor(isDateFieldFocus, dateFieldTextarea) // Optional: Highlight when active });
+            //     // dateFieldTextarea.style.backgroundColor = '';
+            //     // todoTextArea.blur();
+            //     textInputValue.focus();
+            // }
+        }
+        console.log("clearAll() end")
     }
 
 clearAllButton.addEventListener('click', clearAll);
-console.log("clearAllButton.addEventListener('click' ... körs")
+// _ _ _
+// clearAllButton.addEventListener('click', clearAll());
+// console.log("clearAllButton.addEventListener('click' ... körs")
+// _ _ _
 
 
 // FIXA! plannedTodos som ligger under
@@ -7375,7 +7625,9 @@ let sundayTodoCollection = document.querySelectorAll(".grid-item day7");
 
 // updateCurrentWeekSchedule() (start)
 // update data (to divs in the week schedule)
-function updateCurrentWeekSchedule() {
+
+// Add / Edit / Delete Specific / Clear all / Load
+function updateCurrentWeekSchedule(specialUpdateBoolean) {
         console.log("updateCurrentWeekSchedule() körs");
         // currentMondayTodos = plannedTodos.filter(todo => todo.date === weekDates[0]);
         // console.log("currentMondayTodos.object, JSON.stringify(currentMondayTodos) (i updateCurrentWeekSchedule)  = " + JSON.stringify(currentMondayTodos))
@@ -7409,87 +7661,169 @@ function updateCurrentWeekSchedule() {
         // if (defaultDate === undefined) {
         //     defaultDate = dateDisplay.textContent;
         // }
+
+        if (defaultDate === undefined) {
+            defaultDate = dateDisplay.textContent;
+        }
         console.log("defaultDate (i updateCurrentWeekSchedule) = " + defaultDate);
 
         //console.log("dataId = " + dataId)
 
+        // if (plannedTodos.length === 0) {
+        //     console.log("plannedTodos.length === 0");
+        // }
+        // else if (plannedTodos.length > 0) {}
+
         plannedTodos.forEach(element => {
 
-            if (plannedTodos.length === 1 && defaultDate === undefined) {
-                console.log("currentUpdateWeekSched #1");
-                defaultDate = dateDisplay.textContent;
-            }
 
-            // Hantera exempelvis ('2025-03-13a' #"2025-03-13a") felaktiga datum:
-            if (isValidDateExceptFebruary(element.date) === false) {
-                console.log("currentUpdateWeekSched #2");
-                element.date = defaultDate;
-                element.dataDate = weekdayNameToWeekDayNumber(defaultDate);
-                element.color = 'redColor';
-            }
+            if (specialUpdateBoolean === true && element.isRecurring === false) {
+                // on Edit
+                if (plannedTodos.length === 1 && defaultDate === undefined) {
+                    console.log("currentUpdateWeekSched #1");
+                    defaultDate = dateDisplay.textContent;
+                }
 
-            // if (isValidFebruaryDate(element.date) === false) {
-            //     element.date = defaultDate;
-            //     element.dataDate = weekdayNameToWeekDayNumber(defaultDate);
-            //     element.color = 'redColor';
-            // }
+                // Hantera exempelvis ('2025-03-13a' #"2025-03-13a") felaktiga datum:
+                if (isValidDateExceptFebruary(element.date) === false) {
+                    console.log("currentUpdateWeekSched #2");
+                    element.date = defaultDate;
+                    element.dataDate = weekdayNameToWeekDayNumber(defaultDate);
+                    // element.color = 'redColor';
+                }
 
-            // Hantera exempelvis ('2025-03-1' #"2025-03-1") felaktiga datum:
-            if (isValidDateExceptFebruary(element.date) === false && element.date < dateDisplay.textContent) {
-                console.log("currentUpdateWeekSched #3");
-                element.date = defaultDate;
-                element.dataDate = weekdayNameToWeekDayNumber(defaultDate);
-                element.color = 'redColor';
-            }
-
-            if (isValidFebruaryDate(element.date) === false && element.date < dateDisplay.textContent) {
-                console.log("currentUpdateWeekSched #4");
-                element.date = defaultDate;
-                element.dataDate = weekdayNameToWeekDayNumber(defaultDate);
-                element.color = 'redColor';
-            }
-
-            // if (isValidDateExceptFebruary(element.date) === false || isValidFebruaryDate(element.date) === false) {
-            //     element.date = defaultDate;
-            //     element.dataDate = weekdayNameToWeekDayNumber(defaultDate);
-            //     element.color = 'redColor';
-            // }
-
-            //exceptfeb
-            if (isValidDateExceptFebruary(element.date) === true || isValidFebruaryDate(element.date) === true) {
-                console.log("currentUpdateWeekSched #5.1");
-
-                console.log("element.date = " + element.date);
-                console.log("AAAAAAAAAAA");
-                console.log("date < dateDisplay.textContent = " + element.date < dateDisplay.textContent)
-
-                element.dataDate = weekdayNameToWeekDayNumberMultiDuration(element.date);
-                console.log("element.dataDate = " + element.dataDate);
-
-                // if (element.date < dateDisplay.textContent) {
-                //     // plannedTodos.remove(element);
-                //     // for (let i = 0; i < plannedTodos.length; i++) {
-                //     //     dateCollection[i].innerHTML = '';
-                //     //     dateCollection[i].value = '';
-                //     //     todoCollection[i].innerHTML = '';
-                //     //     todoCollection[i].value = '';
-                //     //     todoColorCollection[i].style.backgroundColor = '';
-                //     // }
+                // if (isValidFebruaryDate(element.date) === false) {
+                //     element.date = defaultDate;
+                //     element.dataDate = weekdayNameToWeekDayNumber(defaultDate);
+                //     element.color = 'redColor';
                 // }
 
+                // Hantera exempelvis ('2025-03-1' #"2025-03-1") felaktiga datum:
+                if (isValidDateExceptFebruary(element.date) === false && element.date < dateDisplay.textContent) {
+                    console.log("currentUpdateWeekSched #3");
+                    element.date = defaultDate;
+                    element.dataDate = weekdayNameToWeekDayNumber(defaultDate);
+                    // element.color = 'redColor';
+                }
+
+                if (isValidFebruaryDate(element.date) === false && element.date < dateDisplay.textContent) {
+                    console.log("currentUpdateWeekSched #4");
+                    element.date = defaultDate;
+                    element.dataDate = weekdayNameToWeekDayNumber(defaultDate);
+                    // element.color = 'redColor';
+                }
+
+                // if (isValidDateExceptFebruary(element.date) === false || isValidFebruaryDate(element.date) === false) {
+                //     element.date = defaultDate;
+                //     element.dataDate = weekdayNameToWeekDayNumber(defaultDate);
+                //     element.color = 'redColor';
+                // }
+
+                //exceptfeb
+                if (isValidDateExceptFebruary(element.date) === true || isValidFebruaryDate(element.date) === true) {
+                    console.log("currentUpdateWeekSched #5.1");
+
+                    console.log("element.date = " + element.date);
+                    console.log("AAAAAAAAAAA");
+                    console.log("date < dateDisplay.textContent = " + element.date < dateDisplay.textContent)
+
+                    element.dataDate = weekdayNameToWeekDayNumberMultiDuration(element.date);
+                    console.log("element.dataDate = " + element.dataDate);
+
+                    // if (element.date < dateDisplay.textContent) {
+                    //     // plannedTodos.remove(element);
+                    //     // for (let i = 0; i < plannedTodos.length; i++) {
+                    //     //     dateCollection[i].innerHTML = '';
+                    //     //     dateCollection[i].value = '';
+                    //     //     todoCollection[i].innerHTML = '';
+                    //     //     todoCollection[i].value = '';
+                    //     //     todoColorCollection[i].style.backgroundColor = '';
+                    //     // }
+                    // }
+
+                    if (element.date >= dateDisplay.textContent) {
+                        console.log("currentUpdateWeekSched #5.2.1");
+                    console.log("if (element.date < dateDisplay: delete the plannedTodos from the DOM)");
+                    plannedTodosEdit.push(element);
+                    }
+                    // } else if (isValidDateExceptFebruary(element.date) === false) {
+                    //     console.log("defaultDate (i updateCurrentWeekSchedule) = " + defaultDate);
+                    //     element.date = defaultDate;
+                    // }
+                    // else if (isValidFebruaryDate(element.date) === false) {
+                    //     console.log("defaultDate (i updateCurrentWeekSchedule) = " + defaultDate);
+                    //     element.date = defaultDate;
+                }
+            // } else if (specialUpdateBoolean === false) {
+            }
+
+            // Hur editera recurring todos? (vad skiljer mot standard-todos?)
+            else if (specialUpdateBoolean === true && element.isRecurring === true) {
+
+                // Hantera exempelvis ('2025-03-1' #"2025-03-1") felaktiga datum:
+                if (isValidDateExceptFebruary(element.date) === false && element.date < dateDisplay.textContent) {
+                    console.log("currentUpdateWeekSched #5.2.a");
+                    element.date = defaultDate;
+                    element.dataDate = weekdayNameToWeekDayNumber(defaultDate);
+                    // element.color = 'redColor';
+                }
+
+                else if (isValidFebruaryDate(element.date) === false && element.date < dateDisplay.textContent) {
+                    console.log("currentUpdateWeekSched #5.2.b");
+                    element.date = defaultDate;
+                    element.dataDate = weekdayNameToWeekDayNumber(defaultDate);
+                    // element.color = 'redColor';
+                }
+
+                // Hantera exempelvis ('2025-03-13a' #"2025-03-13a") felaktiga datum:
+                if (isValidDateExceptFebruary(element.date) === false) {
+                    console.log("currentUpdateWeekSched #5.2.c1");
+                    console.log("element.date (#5.2.c1) = " + element.date);
+
+                    if (isValidFebruaryDate(element.date) === true) {
+                        element.dataDate = weekdayNameToWeekDayNumber(element.date);
+                        console.log("currentUpdateWeekSched #5.2.c2");
+                        console.log("element.date (#5.2.c2) = " + element.date);
+
+
+                    } else if (isValidFebruaryDate(element.date) === false) {
+                        console.log("currentUpdateWeekSched #5.2.c3");
+                        console.log("element.date (#5.2.c3) = " + element.date);
+                        element.date = defaultDate;
+                        element.dataDate = weekdayNameToWeekDayNumber(defaultDate);
+                        // element.color = 'redColor';
+                    }
+                }
+
                 if (element.date >= dateDisplay.textContent) {
-                    console.log("currentUpdateWeekSched #5.2");
+                    console.log("currentUpdateWeekSched #5.2.2");
+                    console.log("element.date (#5.2.2) = " + element.date);
+                    console.log("if (element.date < dateDisplay: delete the plannedTodos from the DOM)");
+
+                    element.dataDate = weekdayNameToWeekDayNumberMultiDuration(element.date);
+
+                    console.log("element.dataDate = " + element.dataDate);
+
+                    plannedTodosEdit.push(element);
+                }
+            }
+
+            else if (specialUpdateBoolean === false) {
+                if (element.date >= dateDisplay.textContent) {
+                    console.log("currentUpdateWeekSched #5.2.3");
                 console.log("if (element.date < dateDisplay: delete the plannedTodos from the DOM)");
                 plannedTodosEdit.push(element);
                 }
-                // } else if (isValidDateExceptFebruary(element.date) === false) {
-                //     console.log("defaultDate (i updateCurrentWeekSchedule) = " + defaultDate);
-                //     element.date = defaultDate;
-                // }
-                // else if (isValidFebruaryDate(element.date) === false) {
-                //     console.log("defaultDate (i updateCurrentWeekSchedule) = " + defaultDate);
-                //     element.date = defaultDate;
-                }
+            }
+
+            // else {
+            //     if (element.date >= dateDisplay.textContent) {
+            //         console.log("currentUpdateWeekSched #5.2.2");
+            //     console.log("if (element.date < dateDisplay: delete the plannedTodos from the DOM)");
+            //     plannedTodosEdit.push(element);
+            //     }
+            // }
+
         })
 
         console.log("plannedTodosEdit = " + plannedTodosEdit);
@@ -8295,7 +8629,7 @@ function domUpdateCurrentWeekSchedule() {
 
 
 
-console.log("currentTuesdayTodos (utanför updateCurrent...) = " + currentTuesdayTodos)
+// console.log("currentTuesdayTodos (utanför updateCurrent...) = " + currentTuesdayTodos)
 
 
 //_ _ _
@@ -8658,7 +8992,7 @@ function addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId) 
         sortPlannedTodos(plannedTodos);
         removeEditDateButton(dataId);
 
-        updateCurrentWeekSchedule();
+        updateCurrentWeekSchedule(true);
 
         isDateFieldFocus = false;
         changeDateFieldBackgroundColor(isDateFieldFocus, userCreatedDateField); // Reset background color
@@ -8774,6 +9108,9 @@ function addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId) 
                 // else if (isValidDateExceptFebruary(oldDate) === false || isValidDateExceptFebruary(freshDate) === false || oldDate !== freshDate || isValidDateExceptFebruary(dateInputString) === false ||
                 // isValidFebruaryDate(oldDate) === false && isValidFebruaryDate(freshDate) === false && oldDate !== freshDate || isValidFebruaryDate(dateInputString) === false
                 // ) {
+
+                // _ _ _
+
                 else if (dateInput.value < dateDisplay.textContent ||
                     isValidDateExceptFebruary(oldDate) === false ||
                     isValidDateExceptFebruary(freshDate) === false ||
@@ -8784,6 +9121,8 @@ function addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId) 
                     plannedTodos[dataId].date = dateDisplay.textContent;
 
                 }
+
+                // _ _ _
 
                 console.log("plannedTodos.length = " + plannedTodos.length)
 
@@ -8909,7 +9248,7 @@ function addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId) 
             })
             if (todoDatesAreValid === true) {
                 console.log("todoDatesAreValid === true = " + todoDatesAreValid === true)
-                updateCurrentWeekSchedule();
+                updateCurrentWeekSchedule(true);
             }
             // Edit date (1-3 plannedTodos, index: 0-2) (2 end)
         });
@@ -9167,6 +9506,7 @@ function removeLastDynamicTodoContainer() {
 
 // Function to restore the todo-wrapper to the original structure
 function restoreTodoWrapper() {
+    console.log("restoreTodoWrapper() körs");
     // let wrapperContainer = document.getElementById('todo-wrapper');
 
     // Clear all existing child elements in wrapperContainer
@@ -10690,7 +11030,7 @@ function readFile(file) {
 
         sortPlannedTodos(plannedTodos);
 
-        updateCurrentWeekSchedule();
+        updateCurrentWeekSchedule(false);
         // updateRecurringPlannedTodos(plannedTodos);
         // updateRecDivBgColor();
     };
@@ -10704,7 +11044,11 @@ function readFile(file) {
 // readFile(file);
 
 function load_func(delimiter) {
-    clearAll();
+    console.log("clearAll() ska köras i readFile");
+
+    if (dateCollection[0].value !== undefined && plannedTodos.length > 0) {
+        clearAll();
+    }
     // pastPlansTextArea.innerHTML = '';
     // pastPlansTextArea.value = '';
     // pastPlanStringToSaveUpdate = '';

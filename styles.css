@@ -107,7 +107,7 @@ h3 {
 /* Navbar (end) */
 
 #todo-header-container {
-  display:flex;
+  display: flex;
   flex-direction: row;
   width: 100%;
   height: 100%;
@@ -115,14 +115,14 @@ h3 {
 }
 
 #todo-header-wrapper {
-  display:flex;
+  display: flex;
   justify-content: flex-start;
   width: 50%;
   height: 100%;
 }
 
 #language-selector-wrapper {
-  display:flex;
+  display: flex;
   justify-content: flex-end;
   width: 50%;
   height: 100%;

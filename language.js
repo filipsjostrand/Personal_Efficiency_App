@@ -96,6 +96,10 @@
   document.getElementById('timer').innerHTML = navbarTimer[selectedLanguage];
   document.getElementById('about-me').innerHTML = navbarAbout[selectedLanguage];
 
+  // const weekdayDisplay = {
+  //   sv: "",
+  //   en: "",
+  // }
 
     // _ _ _
 
@@ -276,15 +280,15 @@ const futureHeading = {
 // Edit (in table).
 // Copy/clear (past tasks).
 
-const currentPlanWords = {
-  sv: `Framtidsplaner`,
-  en: `Future Plans`,
-}
+// const currentPlanWords = {
+//   sv: `Framtidsplaner`,
+//   en: `Future Plans`,
+// }
 
-const pastTasksWords = {
-  sv: `Framtidsplaner`,
-  en: `Future Plans`,
-}
+// const pastTasksWords = {
+//   sv: `Framtidsplaner`,
+//   en: `Future Plans`,
+// }
 
 // const futureDesc = {
 //   sv: `Handle current Plan Words and watch pastTasksWords tasks`,
@@ -311,6 +315,52 @@ const futureDesc = {
     </ul>
   `,
 }
+
+const addTaskSpan = {
+  sv: 'Lägg till (nedan)',
+  en: 'Add Task (below)',
+}
+
+const addDateLabel = {
+  sv: 'Datum',
+  en: 'Date',
+}
+
+const addTodoLabel = {
+  sv: 'Text',
+  en: 'Task',
+}
+
+const addColorLabel = {
+  sv: 'Färg',
+  en: 'Color',
+}
+
+const grayPicker = {
+  sv: '-',
+  en: '-',
+}
+const yellowPicker = {
+  sv: 'Yellow',
+  en: 'Gul',
+}
+const greenPicker = {
+  sv: 'Grön',
+  en: 'Green',
+}
+const bluePicker = {
+  sv: 'Blå',
+  en: 'Blue',
+}
+const purplePicker = {
+  sv: 'Lila',
+  en: 'Purple',
+}
+const redPicker = {
+  sv: 'Röd',
+  en: 'Red',
+}
+
 //
 //
 //
@@ -807,7 +857,7 @@ const footerContact = {
           document.getElementById('about-me').innerHTML = navbarAbout[selectedLanguage];
           document.querySelector('.info').innerHTML = infoBullets[selectedLanguage];
 
-
+          // document.getElementById('weekday-display').innerHTML = weekdayDisplay[selectedLanguage];
 
           document.querySelector('.add-button-v2').innerHTML = addButton2[selectedLanguage];
           document.getElementById('top3-label').innerHTML = top3Label[selectedLanguage];
@@ -835,6 +885,19 @@ const footerContact = {
           // Framtidsplaner
           document.getElementById('future-heading').innerHTML = futureHeading[selectedLanguage];
           document.getElementById('future-desc').innerHTML = futureDesc[selectedLanguage];
+
+          document.getElementById('add-task-span').innerHTML = addTaskSpan[selectedLanguage];
+
+          document.getElementById('add-date-label').innerHTML = addDateLabel[selectedLanguage];
+          document.getElementById('add-todo-label').innerHTML = addTodoLabel[selectedLanguage];
+          document.getElementById('add-color-label').innerHTML = addColorLabel[selectedLanguage];
+
+          document.getElementById('gray-color').innerHTML = grayPicker[selectedLanguage];
+          document.getElementById('yellow-color').innerHTML = yellowPicker[selectedLanguage];
+          document.getElementById('green-color').innerHTML = greenPicker[selectedLanguage];
+          document.getElementById('blue-color').innerHTML = bluePicker[selectedLanguage];
+          document.getElementById('purple-color').innerHTML = purplePicker[selectedLanguage];
+          document.getElementById('red-color').innerHTML = redPicker[selectedLanguage];
 
           // Footer
           document.querySelector('.footer-contact h3').innerHTML = footerContact[selectedLanguage];

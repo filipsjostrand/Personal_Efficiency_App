@@ -281,21 +281,21 @@
 
         <!-- <button onclick="loadPlan()"> Load Saved </button><br><br> -->
 
-        <span>➕ <u>Add Task</u></span><br>
+        <span>➕ <u id="add-task-span">Add Task (below)</u></span><br>
         <div id="add-todo-container">
           <div id="date-wrapper">
-            <label for="date-input">Date</label>
+            <label id="add-date-label" for="date-input">Date</label>
             <input type="date" id="date-input" name="date" autocomplete="off" required/>
           </div>
 
           <div id="text-wrapper">
-            <label for="add-todo-text">Task</label>
+            <label id="add-todo-label" for="add-todo-text">Task</label>
             <input id="add-todo-text" placeholder="Add todo text..." type="text" name="text"/>
           </div>
 
           <!-- Select color (from dropdown) -->
           <div id="color-wrapper">
-            <label for="colors">Color</label>
+            <label id="add-color-label" for="colors">Color</label>
             <form id="color-drop-down">
                   <label for="colors"></label>
                   <select name="colors" id="colors">
@@ -469,7 +469,8 @@
                 <div id="todo-2-rec" class="todo-rec" data-id="2" data-key="rec" name="rec"></div>
               </div>
             </div>
-            <button id="clear-all">Clear All</button>
+            <!-- <button id="clear-all">Clear All</button> -->
+            <button id="clear-all" onclick="clearAll()">Clear All</button>
             <p id="status">No textarea is active.</p>
 
           <!-- Hidden color switcher panel -->
@@ -583,7 +584,7 @@
           <h2 class="timerDisplay">Time:&nbsp;<span id="timerDisplay">00:00:00:0</span></h2>
       </div><br>
 
-      <div class="iframe-box-container">
+      <!-- <div class="iframe-box-container">
         <div id="iframe-container-b">
             <iframe
                 id="music-player-pop-b"
@@ -663,7 +664,8 @@
               referrerpolicy="strict-origin-when-cross-origin"
               allowfullscreen>
           </iframe>
-      </div>
+      </div> -->
+
       </div>
 
       <audio
