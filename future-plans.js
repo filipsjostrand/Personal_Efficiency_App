@@ -2147,15 +2147,34 @@ function weekdayNameToWeekDayNumber(dateInputValue) {
     let currentWeekdayAbbreviated;
 
     //getCurrentWeekDayForSelectedLanguage(currentWeekDayToBeHandled)
-    if (dateInputValue.value !== undefined) {
+
+    if (isValidDateExceptFebruary(dateInputValue) === true) {
+        console.log("a");
+        if (isValidFebruaryDate(dateInputValue) === true) {
+            currentWeekdayAbbreviated = getCurrentWeekDayForSelectedLanguage(getDayOfWeek(dateInputValue));
+        }
+        currentWeekdayAbbreviated = getCurrentWeekDayForSelectedLanguage(getDayOfWeek(dateInputValue));
+    } else if (dateInputValue.value !== undefined) {
+        console.log("b");
         currentWeekdayAbbreviated = getCurrentWeekDayForSelectedLanguage(getDayOfWeek(dateInputValue.value));
     } else if (dateInputValue.value === undefined) {
+        console.log("c");
         if (dateInputValue !== undefined) {
             currentWeekdayAbbreviated = getCurrentWeekDayForSelectedLanguage(getDayOfWeek(dateInputValue));
         } else if (dateInputValue === undefined) {
             currentWeekdayAbbreviated = getCurrentWeekDayForSelectedLanguage(getDayOfWeek(defaultDate));
         }
     }
+
+    // if (dateInputValue.value !== undefined) {
+    //     currentWeekdayAbbreviated = getCurrentWeekDayForSelectedLanguage(getDayOfWeek(dateInputValue.value));
+    // } else if (dateInputValue.value === undefined) {
+    //     if (dateInputValue !== undefined) {
+    //         currentWeekdayAbbreviated = getCurrentWeekDayForSelectedLanguage(getDayOfWeek(dateInputValue));
+    //     } else if (dateInputValue === undefined) {
+    //         currentWeekdayAbbreviated = getCurrentWeekDayForSelectedLanguage(getDayOfWeek(defaultDate));
+    //     }
+    // }
 
     console.log("currentWeekdayAbbreviated (sv/en) = " + currentWeekdayAbbreviated)
 
@@ -7827,6 +7846,7 @@ function updateCurrentWeekSchedule(specialUpdateBoolean) {
         })
 
         console.log("plannedTodosEdit = " + plannedTodosEdit);
+        console.log("JSON.stringify(plannedTodosEdit) = " + JSON.stringify(plannedTodosEdit));
         plannedTodos = plannedTodosEdit;
 
         plannedTodosEdit = [];
@@ -7973,9 +7993,46 @@ function updateCurrentWeekSchedule(specialUpdateBoolean) {
         currentSaturdayTodos = [];
         currentSundayTodos = [];
 
+
+        // _ _ _
+
+        // Töm current...dayTodoItems
+        currentMondayTodoItems.forEach(Element => {
+            Element.innerHTML = "";
+            Element.style.backgroundColor = "";
+        })
+        currentTuesdayTodoItems.forEach(Element => {
+            Element.innerHTML = "";
+            Element.style.backgroundColor = "";
+        })
+        currentWednesdayTodoItems.forEach(Element => {
+            Element.innerHTML = "";
+            Element.style.backgroundColor = "";
+        })
+        currentThursdayTodoItems.forEach(Element => {
+            Element.innerHTML = "";
+            Element.style.backgroundColor = "";
+        })
+        currentFridayTodoItems.forEach(Element => {
+            Element.innerHTML = "";
+            Element.style.backgroundColor = "";
+        })
+        currentSaturdayTodoItems.forEach(Element => {
+            Element.innerHTML = "";
+            Element.style.backgroundColor = "";
+        })
+        currentSundayTodoItems.forEach(Element => {
+            Element.innerHTML = "";
+            Element.style.backgroundColor = "";
+        })
+
+        // _ _ _
+
         // Om dag (datum, plannedTodos[x].date) ändras ska även recurringTodosArray-datum ändras för aktuell todo)
         // Lägg in, push recurringTodosArray-värden för aktuell dag (Day: currentDayTodos..)
 
+
+        console.log("JSON.stringify(plannedTodos) (veckoschema-div:ar tömda) = " + JSON.stringify(plannedTodos));
 
 
         // console.log("currentMondayTodoItems[0].innerHTML = " + currentMondayTodoItems[0].innerHTML);
@@ -9278,7 +9335,8 @@ function addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId) 
             console.log("isEditDuplicate = " + isEditDuplicate);
             if (isEditDuplicate === true) {
                 console.log("isEditDuplicate === true")
-                alert("That task may already exists!")
+                // 2025-03-19: Alert-boxen buggar ur?
+                // alert("That task may already exists!")
             }
 
             // Edit plannedTodos (object) when todo (DOM-list) is changed

@@ -238,7 +238,7 @@ const weekPDesc = {
 }
 
 const goFuturePlans = {
-  sv: `Gå till "Framtidsplaner" (tryck och lägg till)`,
+  sv: `Lägg till uppgifter i "Framtidsplaner",`,
   en: `Go to "Future Plans" (to add tasks)`,
 }
 
@@ -362,8 +362,8 @@ const grayPicker = {
   en: '-',
 }
 const yellowPicker = {
-  sv: 'Yellow',
-  en: 'Gul',
+  sv: 'Gul',
+  en: 'Yellow',
 }
 const greenPicker = {
   sv: 'Grön',
@@ -387,7 +387,7 @@ const redPicker = {
 //
 
 const recHeader = {
-  sv: 'Återkommande uppgift 🔁',
+  sv: 'Återkommande 🔁',
   en: 'Recurring Task 🔁',
 }
 
@@ -520,7 +520,7 @@ const currentPlanTodoPlaceholder = {
 }
 
 const clearAllButtonTranslate = {
-  sv: 'Töm allt',
+  sv: 'Rensa allt',
   en: 'Clear All',
 }
 
