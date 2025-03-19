@@ -64,6 +64,8 @@
                           <option value="en">English</option>
                       </select>
                           <div class="flag-div">
+                            <div class="flag-img">
+                            </div>
                           </div>
                   </div>
                 </div>
@@ -290,7 +292,7 @@
 
           <div id="text-wrapper">
             <label id="add-todo-label" for="add-todo-text">Task</label>
-            <input id="add-todo-text" placeholder="Add todo text..." type="text" name="text"/>
+            <input id="add-todo-text" placeholder="Add task text..." type="text" name="text"/>
           </div>
 
           <!-- Select color (from dropdown) -->
@@ -317,87 +319,87 @@
 
         <!-- default: display: "none" (-> block) -->
           <fieldset id="periodicity">
-            <legend>Periodicity:</legend>
+            <legend id="periodicity-header">Periodicity:</legend>
 
             <div>
               <input type="radio" id="day" name="select-period" value="day"/>
-              <label for="day">Day-s (per week)</label>
+              <label id="day-period" for="day">Day-s (per week)</label>
             </div>
 
             <div>
               <input type="radio" id="week" name="select-period" value="week"/>
-              <label for="week">Week</label>
+              <label id="week-period" for="week">Week</label>
             </div>
 
             <div>
               <input type="radio" id="month" name="select-period" value="month"/>
-              <label for="month">Month</label>
+              <label id="month-period" for="month">Month</label>
             </div>
 
             <div>
               <input type="radio" id="year" name="select-period" value="year"/>
-              <label for="year">Year</label>
+              <label id="year-period" for="year">Year</label>
             </div>
           </fieldset>
 
           <fieldset id="per-weekday">
-            <legend>Day choices:</legend>
+            <legend id="day-choices">Day choices:</legend>
               <div class="day-selection-container">
                   <div class="weekday-selection-wrapper-one">
                     <div>
                       <input type="radio" id="day-name" name="days-periodicity" value="select"/>
-                      <label for="select">Select days &nbsp [D]</label>
+                      <label id="select-days" for="select">Select days &nbsp [D]</label>
                     </div>
                     <div>
                       <input type="radio" id="day-count" name="days-periodicity" value="duration"/>
-                      <label for="duration">Duration (days) &nbsp [#D]</label>
+                      <label id="select-duration" for="duration">Duration (days) &nbsp [#D]</label>
                     </div>
                   </div>
                   <div class="weekday-selection-wrapper-two">
                     <div>
                       <input type="checkbox" id="rec-mon" name="rec-mon"/>
-                      <label for="rec-mon">Mon</label>
+                      <label id="rec-mon-day" for="rec-mon">Mon</label>
                     </div>
                     <div>
                       <input type="checkbox" id="rec-tue" name="rec-tue"/>
-                      <label for="rec-tue">Tue</label>
+                      <label id="rec-tue-day" for="rec-tue">Tue</label>
                     </div>
                     <div>
                       <input type="checkbox" id="rec-wed" name="rec-wed"/>
-                      <label for="rec-wed">Wed</label>
+                      <label id="rec-wed-day" for="rec-wed">Wed</label>
                     </div>
                     <div>
                       <input type="checkbox" id="rec-thu" name="rec-thu"/>
-                      <label for="rec-thu">Thu</label>
+                      <label id="rec-thu-day" for="rec-thu">Thu</label>
                     </div>
                     <div>
                       <input type="checkbox" id="rec-fri" name="rec-fri"/>
-                      <label for="rec-fri">Fri</label>
+                      <label id="rec-fri-day" for="rec-fri">Fri</label>
                     </div>
                     <div>
                       <input type="checkbox" id="rec-sat" name="rec-sat"/>
-                      <label for="rec-sat">Sat</label>
+                      <label id="rec-sat-day" for="rec-sat">Sat</label>
                     </div>
                     <div>
                       <input type="checkbox" id="rec-sun" name="rec-sun"/>
-                      <label for="rec-sun">Sun</label>
+                      <label id="rec-sun-day" for="rec-sun">Sun</label>
                     </div>
                   </div>
               </div>
             <br>
             <div>
-              <label for="rec-month-days">Event duration (days):</label>
+              <label id="event-duration-day" for="rec-month-days">Event duration (days):</label>
               <input type="number" id="rec-day-days" name="rec-days" min=1 value="1"/>
             </div>
             <div id="each-week">
               <input type="checkbox" id="every-week" name="every-week"/>
-              <label for="every-week">Every week</label>
+              <label id="every-week" for="every-week">Every week</label>
             </div>
           </fieldset>
 
           <fieldset id="per-week">
-            <legend>Weekly choices:</legend>
-            <span>Every:</span>
+            <legend id="week-header">Weekly choices:</legend>
+            <span id="week-intervall-every">Every:</span>
           <div>
             <input type="radio" id="rec-1-week" name="select-week-periodicity" value="1"/>
             <label for="1">1 &nbsp [W1]</label>
@@ -417,26 +419,26 @@
             <input type="radio" id="rec-4-week" name="select-week-periodicity" value="4"/>
             <label for="4">4 &nbsp [W4]</label>
           </div>
-          <span>weeks</span><br><br>
+          <span id="week-intervall-weeks">weeks</span><br><br>
             <div>
-              <label for="rec-month-days">Event duration (days):</label>
+              <label id="event-duration-week" for="rec-month-days">Event duration (days):</label>
               <input type="number" id="rec-week-days" name="rec-week-days" min=1 max=7 value="1"/>
             </div>
           </fieldset>
 
 
           <fieldset id="per-month">
-            <legend>Monthly:</legend>
+            <legend id="month-header">Monthly:</legend>
             <div>
-              <label for="rec-month-days">[M] &nbsp Event duration (days):</label>
+              <label id="event-duration-month" for="rec-month-days">[M] &nbsp Event duration (days):</label>
               <input type="number" id="rec-month-days" name="rec-month-days" min=1 max=31 value="1"/>
             </div>
           </fieldset>
 
           <fieldset id="per-year">
-            <legend>Yearly:</legend>
+            <legend id="year-header">Yearly:</legend>
           <div>
-            <label for="rec-year-days">[Y] &nbsp Event duration (days):</label>
+            <label id="event-duration-year" for="rec-year-days">[Y] &nbsp Event duration (days):</label>
             <input type="number" id="rec-year-days" name="rec-year-days" min=1 max=365 value="1"/>
           </div>
         </fieldset>
@@ -448,7 +450,7 @@
 
             <!-- <button id="clear-all">Clear All</button><br><br> -->
 
-            <span id="current-plan-header">📝<u>Current Plan</u></span><br>
+            <span id="current-plan-header">📝<u id="current-plan-text">Current Plan</u></span><br>
             <div id="todo-wrapper">
               <div id="todo-container" class="todo-container-element" data-id="0" tabindex="0">
                 <textarea id="todo-0-date" class="todo-date" type="text" placeholder="Next date..." data-id="0" data-key="date" name="date"></textarea>
@@ -476,7 +478,7 @@
           <!-- Hidden color switcher panel -->
           <div id="color-switcher-panel" class="hidden">
             <div id="color-switcher-content">
-                <p>Change color:</p>
+                <p id="color-switcher-heading">Change color:</p>
                 <div id="change-color-wrapper">
                   <div class="color-option" style="background-color: rgb(150,150,150);" data-color="grayColor" text="Gray"></div>
                   <div class="color-option" style="background-color: rgb(255,204,0);" data-color="yellowColor" text="Yellow"></div>
@@ -485,33 +487,33 @@
                   <div class="color-option" style="background-color: rgb(153,51,102);" data-color="purpleColor" text="Purple"></div>
                   <div class="color-option" style="background-color: rgb(255,64,64);" data-color="redColor" text="Red"></div>
                 </div>
-                <p>Clear row:</p>
+                <p id="clear-row">Clear row:</p>
                 <div class="color-option" id="trash-can"><i class="fa-solid fa-trash-can" id="trash-can-icon"></i></div>
                 <button id="close-panel">Store Current</button>
             </div>
           </div>
 
-          <span>📁<u>Load Plan</u> </span><br>
+          <span>📁<u id="load-plan-heading">Load Plan</u> </span><br>
           <!-- <button onclick="loadPlan()"> Load (Chrome) </button><br><br> -->
 
           <input id="load" class="custom-file-button" type="file" value="load" onChange="load_func()">
 
           <!-- Loading delay, .custom-file-button (load file) -->
           <!-- <input id="load" class="custom-file-button" type="file" value="load" onChange="load_func()" style="opacity: 0.3" disabled> -->
-          <label for="load" class="custom-file-label">Load File</label><br><br><br>
+          <label id="load-file-button" for="load" class="custom-file-label">Load File</label><br><br><br>
 
-          <span>💾<u>Save Plan</u></span><br>
+          <span>💾<u id="save-plan-heading">Save Plan</u></span><br>
           <label id="file-name-label" for="file-name">File Name:</label>
           <input type="text" id="file-name" name="file-name"><br>
 
           <p id="dl-1">Download (option <b>1</b>):</p>
           <p id="browser-compatibility">✅ <i>PC/Android</i></p>
-          <p id="browser-compatibility">❌ <i>Firefox, iOS devices</i></p>
+          <p id="browser-compatibility">❌ <i id="incompatible-devices">Firefox, iOS devices</i></p>
           <button id="save-as-anywhere" onclick="saveAs()"> Save As (anywhere) </button><br><br>
           <!-- <button onclick="save()"> Save As (loaded name) </button><br><br> -->
 
-          <p id="browser-compatibility">Download (option <b>2</b>):</p>
-          <p id="browser-compatibility">✅ <i>Any browser</i></p>
+          <p id="dl-2">Download (option <b>2</b>):</p>
+          <p id="browser-compatibility">✅ <i id="any-browser-dl">Any browser</i></p>
           <button id="save-to-downloads" onclick="save_func()"> Save (to downloads) </button>
           <br><br>
 
@@ -523,9 +525,9 @@
           </div> -->
           <div id="past-plan-container">
               <div id="past-plan-wrapper">
-                <span id="past-plan-heading">📄<u>Past Tasks</u></span>
+                <span id="past-plan-heading">📄<u id="past-tasks"> Past Tasks</u></span>
                 <div id="past-tasks-text">
-                  <p>
+                  <p id="copy-or-clear-past">
                     Copy or clear (past tasks).
                   </p>
                 </div>
@@ -543,7 +545,7 @@
           <div class="timer-wrapper">
             <div id="timer-div"></div>
             <h3 id="timer-heading" class="app-heading">Timer</h3>
-            Set a time limit:
+            <p id="timer-limit">Set a time limit:</p>
             <ul>
               <li>hours,</li>
               <li>minutes,</li>
@@ -553,21 +555,21 @@
             <br>
 
             <div>
-              <label for="hours">Hours:</label>
+              <label id="hours-label" for="hours">Hours:</label>
               <input type="number" id="hours" placeholder="0" min="0"><br>
-              <label for="minutes">Minutes:</label>
+              <label id="minutes-label" for="minutes">Minutes:</label>
               <input type="number" id="minutes" placeholder="0" min="0" max="59"><br>
-              <label for="seconds">Seconds:</label>
+              <label id="seconds-label" for="seconds">Seconds:</label>
               <input type="number" id="seconds" placeholder="0" min="0" max="59"><br>
-              <label for="tenths">Tenths:</label>
+              <label id="tenths-label" for="tenths">Tenths:</label>
               <input type="number" id="tenths" placeholder="0" min="0" max="9">
             </div>
 
             <div>
-                <label for="countMode">Mode:</label>
+                <label id="timer-mode" for="countMode">Mode:</label>
                 <select id="countMode">
-                    <option value="countdown">Countdown</option>
-                    <option value="countup">Count Up</option>
+                    <option id="countdown" value="countdown">Countdown</option>
+                    <option id="countup" value="countup">Count Up</option>
                 </select>
             </div>
           </div>
@@ -581,7 +583,7 @@
 
 
       <div>
-          <h2 class="timerDisplay">Time:&nbsp;<span id="timerDisplay">00:00:00:0</span></h2>
+          <h2 class="timerDisplay"><p id="timer-time">Time:</p>&nbsp;<span id="timerDisplay">00:00:00:0</span></h2>
       </div><br>
 
       <!-- <div class="iframe-box-container">

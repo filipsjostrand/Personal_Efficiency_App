@@ -203,6 +203,8 @@ h3 {
   /* border-color: rgb(142, 182, 151); */
 
 .flag-div {
+  width: 50px;
+  height: auto;
   display: flex;
   align-items: center;
   background-color: rgba(58, 58, 58, 0.8);
@@ -433,7 +435,7 @@ h3 {
 }
 
 #add-todo-button {
-  width: 100px;
+  width: 105px;
   height: 30px;
   display:flex;
   align-items: center;
@@ -469,6 +471,24 @@ h3 {
 }
   /* color: rgb(0, 0, 0); */
   /* font-weight: bold; */
+
+  #color-switcher-heading {
+      margin-bottom: 9px;
+  }
+
+  #clear-row {
+    margin-bottom: 9px;
+  }
+
+  #close-panel {
+    width: auto;
+    height: auto;
+    background-color: rgb(228, 228, 228);
+    color: rgb(0, 0, 0);
+    border: 1px solid rgb(82, 82, 82);
+    border-radius: 6px;
+  }
+  /* rgb(186, 219, 123); */
 
 /* load button CSS */
 /* Hide the default file input */
@@ -541,6 +561,8 @@ h3 {
   border: 1px solid rgb(91, 126, 102);
   color:rgb(255, 255, 255);
 }
+/* width: auto; */
+/* width: 160px; */
   /* font-weight: bold; */
 
 #save-to-downloads {
@@ -558,14 +580,17 @@ h3 {
   cursor: pointer;
   font-size: 15px;
   border-radius: 7px;
-  /* border-color: rgb(8, 17, 10); */
   background-color: rgb(32, 43, 34);
-  border: 1px solid rgb(4, 17, 7);
+  border: 1px solid rgb(0, 0, 0);
   color:rgb(255, 255, 255);
 }
+/* border: 1px solid rgb(4, 17, 7); */
+/* width: auto; */
+/* width: 160px; */
+  /* border-color: rgb(8, 17, 10); */
 
 #clear-past-tasks {
-  width: 90px;
+  width: auto;
   height: 30px;
   display:flex;
   align-items: center;
@@ -578,6 +603,7 @@ h3 {
   border-radius: 6px;
   cursor: pointer;
 }
+/* width: 90px; */
 
 #date-wrapper,
 #text-wrapper,
@@ -863,6 +889,13 @@ _ _ _ */
   margin-bottom: 0px;
 }
 /* margin-top: 15px; */
+
+#dl-2 {
+  font-size: 14px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
 
 /* _ _ _
 _ _ _ */

@@ -58,6 +58,22 @@
   // var dynamicLanguageImage = document.querySelector(".flag-div");
   // var fetchLanguageImage = document.querySelector(".flag-div").innerHTML;
 
+  const languageFlagImage = {
+    en: "us-uk-flag-small.png",
+    sv: "sweden-flag-icon-small.png",
+  }
+
+  const dynamicLanguageImage = document.querySelector(".flag-div");
+  const fetchLanguageImage = document.querySelector(".flag-div").innerHTML;
+
+  function changeFlagImage() {
+    dynamicLanguageImage.innerHTML =
+    fetchLanguageImage +
+    `<img class="flag-img" src="./media/img/${languageFlagImage[selectedLanguage]}" alt="language flag image | https://uxwing.com/tag/country-flag-icons/">`
+  };
+  // changeFlagImage();
+
+
   // _ _ _
 
 //  var languageSelector = document.querySelector(".language-selector");
@@ -96,10 +112,10 @@
   document.getElementById('timer').innerHTML = navbarTimer[selectedLanguage];
   document.getElementById('about-me').innerHTML = navbarAbout[selectedLanguage];
 
-  // const weekdayDisplay = {
-  //   sv: "",
-  //   en: "",
-  // }
+  const weekdayDisplayText = {
+    sv: "Ons",
+    en: "Wed",
+  }
 
     // _ _ _
 
@@ -158,8 +174,8 @@ const top3Todos = {
 }
 
 const placeholderTop3Text = {
-  sv: `Lägg till text`,
-  en: `Add todo text`,
+  sv: `Lägg till text...`,
+  en: `Add todo text...`,
 }
 
 const top3Label = {
@@ -168,7 +184,7 @@ const top3Label = {
 }
 
 const addButton2 = {
-  sv: `Lägg till`,
+  sv: `Lägg till (fix)`,
   en: `Add Todo`,
 }
 
@@ -331,6 +347,11 @@ const addTodoLabel = {
   en: 'Task',
 }
 
+const placeholderScheduleTask = {
+  sv: `Lägg till text...`,
+  en: `Add task text...`,
+}
+
 const addColorLabel = {
   sv: 'Färg',
   en: 'Color',
@@ -364,11 +385,263 @@ const redPicker = {
 //
 //
 //
+
+const recHeader = {
+  sv: 'Återkommande uppgift 🔁',
+  en: 'Recurring Task 🔁',
+}
+
+const periodicityHeader = {
+  sv: 'Intervall',
+  en: 'Periodicity',
+}
+
+const periodDay = {
+  sv: 'Dag-ar (per vecka)',
+  en: 'Day-s (per week)',
+}
+const periodWeek = {
+  sv: 'Vecka',
+  en: 'Week',
+}
+const periodMonth = {
+  sv: 'Månad',
+  en: 'Month',
+}
+const periodYear = {
+  sv: 'År',
+  en: 'Year',
+}
+
+const dayChoices = {
+  sv: 'Dagligen:',
+  en: 'Day choices:',
+}
+const selectDays = {
+  sv: 'Välj dagar &nbsp [D]',
+  en: 'Select days &nbsp [D]',
+}
+const selectDuration = {
+  sv: 'Varaktighet (dagar) &nbsp [#D]',
+  en: 'Duration (days) &nbsp [#D]',
+}
+
+const recMon = {
+  sv: 'Mån',
+  en: 'Mon',
+}
+const recTue = {
+  sv: 'Tis',
+  en: 'Tue',
+}
+const recWed = {
+  sv: 'Ons',
+  en: 'wed',
+}
+const recThu = {
+  sv: 'Tor',
+  en: 'Thu',
+}
+const recFri = {
+  sv: 'Fre',
+  en: 'Fri',
+}
+const recSat = {
+  sv: 'Lör',
+  en: 'Sat',
+}
+const recSun = {
+  sv: 'Sön',
+  en: 'Sön',
+}
+
+const eventDurationDay = {
+  sv: 'Varaktighet (dagar)',
+  en: 'Event duration (days):',
+}
+const eachWeek = {
+  sv: 'Varje vecka',
+  en: 'Every week',
+}
+
+const eventDurationWeek = {
+  sv: 'Varaktighet (dagar)',
+  en: 'Event duration (days):',
+}
+const eventDurationMonth = {
+  sv: 'Varaktighet (dagar)',
+  en: 'Event duration (days):',
+}
+const eventDurationYear = {
+  sv: 'Varaktighet (dagar)',
+  en: 'Event duration (days):',
+}
+
+const recEvery = {
+  sv: 'Var (återkommande):',
+  en: 'Every:',
+}
+const recWeek = {
+  sv: 'vecka',
+  en: 'week',
+}
+const weekHeader = {
+  sv: 'Veckovis:',
+  en: 'Weekly choices:',
+}
+const monthHeader = {
+  sv: 'Månadsvis:',
+  en: 'Monthly:',
+}
+const yearHeader = {
+  sv: 'Årligen:',
+  en: 'Yearly:',
+}
+const addTaskToScheduleButton = {
+  sv: 'Lägg till',
+  en: 'Add Task',
+}
+
 // Edit current plan (in the table).
+
+const currentPlanHeader = {
+  sv: 'Aktuell plan',
+  en: 'Current Plan',
+}
+
+const currentPlanDatePlaceholder = {
+  sv: 'Datum...',
+  en: 'Next date...',
+}
+
+const currentPlanTodoPlaceholder = {
+  sv: 'Planerad uppg... (Lägg till)',
+  en: 'Planned todo... (Add Task)',
+}
+
+const clearAllButtonTranslate = {
+  sv: 'Töm allt',
+  en: 'Clear All',
+}
+
+const colorSwitcherHeading = {
+  sv: 'Ändra färg:',
+  en: 'Change color:',
+}
+
+const clearRowTranslation = {
+  sv: 'Ta bort rad:',
+  en: 'Clear row:',
+}
+const closePanelButtonTranslation = {
+  sv: 'Spara val',
+  en: 'Store Current',
+}
+
+// Load
+const loadPlanHeading = {
+  sv: 'Hämta schema (sparat)',
+  en: 'Load Plan',
+}
+const loadFileButton = {
+  sv: 'Hämta fil',
+  en: 'Load File',
+}
+
+// Save
+const savePlanHeading = {
+  sv: 'Spara schema',
+  en: 'Save Plan',
+}
+const saveFileName = {
+  sv: 'Filnamn:',
+  en: 'File Name:',
+}
+const downloadOpt1 = {
+  sv: 'Nedladdning (Alt 1):',
+  en: 'Download (option 1):',
+}
+const incompatibleDevices = {
+  sv: 'Firefox, iOS-enheter (Apple-enheter)',
+  en: 'Firefox, iOS devices',
+}
+const saveAsAnywhere = {
+  sv: 'Spara som (välj)',
+  en: 'Save As (anywhere)',
+}
+
+const downloadOpt2 = {
+  sv: 'Nedladdning (Alt 1):',
+  en: 'Download (option 2):',
+}
+const anyBrowserDl = {
+  sv: 'Alla webbläsare',
+  en: 'Any browser',
+}
+const saveToDownloads = {
+  sv: 'Spara (hämtade filer)',
+  en: 'Save (to downloads)',
+}
+
 // Copy/clear past tasks.
+const pastTasks = {
+  sv: 'Tidigare händelser',
+  en: 'Past Tasks',
+}
 
+const copyOrClearPast = {
+  sv: 'Kopiera eller ta bort (tidigare händelser)',
+  en: 'Copy or clear (past tasks).',
+}
 
+const clearPastTasksButtonTranslate = {
+  sv: 'Töm utfört',
+  en: 'Clear Past',
+}
 
+// Timer
+const timerLimit = {
+  sv: 'Välj en tidsgräns:',
+  en: 'Set a time limit:',
+}
+const timerHours = {
+  sv: 'Timmar:',
+  en: 'Hours:',
+}
+const timerMinutes = {
+  sv: 'Minuter:',
+  en: 'Minutes:',
+}
+const timerSeconds = {
+  sv: 'Sekunder:',
+  en: 'Seconds:',
+}
+const timerTenths = {
+  sv: 'Tiondelar:',
+  en: 'Tenths:',
+}
+const timerMode = {
+  sv: 'Läge:',
+  en: 'Mode:',
+}
+const countDown = {
+  sv: 'Räkna ner',
+  en: 'Countdown',
+}
+const countUp = {
+  sv: 'Räkna upp',
+  en: 'Count Up',
+}
+const timerTime = {
+  sv: 'Tid:',
+  en: 'Time:',
+}
+
+// Om
+const aboutHeading = {
+  sv: 'Om',
+  en: 'About',
+}
 
   // Översättning (Footer)
 
@@ -728,8 +1001,8 @@ const footerContact = {
       // }
 
       // const placeholderTop3Text = {
-      //   sv: `Lägg till text`,
-      //   en: `Add todo text`,
+      //   sv: `Lägg till text...`,
+      //   en: `Add todo text...`,
       // }
 
       // const top3Label = {
@@ -857,7 +1130,7 @@ const footerContact = {
           document.getElementById('about-me').innerHTML = navbarAbout[selectedLanguage];
           document.querySelector('.info').innerHTML = infoBullets[selectedLanguage];
 
-          // document.getElementById('weekday-display').innerHTML = weekdayDisplay[selectedLanguage];
+          document.getElementById('weekday-display').innerHTML = weekdayDisplayText[selectedLanguage];
 
           document.querySelector('.add-button-v2').innerHTML = addButton2[selectedLanguage];
           document.getElementById('top3-label').innerHTML = top3Label[selectedLanguage];
@@ -872,13 +1145,13 @@ const footerContact = {
 
           document.getElementById('go-future-plans').innerHTML = goFuturePlans[selectedLanguage];
           document.getElementById('go-future-navbar').innerHTML = goFutureNavbar[selectedLanguage];
-          document.getElementById('mon-day').innerHTML = monWeekSchedule[selectedLanguage];
-          document.getElementById('tue-day').innerHTML = tueWeekSchedule[selectedLanguage];
-          document.getElementById('wed-day').innerHTML = wedWeekSchedule[selectedLanguage];
-          document.getElementById('thu-day').innerHTML = thuWeekSchedule[selectedLanguage];
-          document.getElementById('fri-day').innerHTML = friWeekSchedule[selectedLanguage];
-          document.getElementById('sat-day').innerHTML = satWeekSchedule[selectedLanguage];
-          document.getElementById('sun-day').innerHTML = sunWeekSchedule[selectedLanguage];
+          document.getElementById('rec-mon-day').innerHTML = monWeekSchedule[selectedLanguage];
+          document.getElementById('rec-tue-day').innerHTML = tueWeekSchedule[selectedLanguage];
+          document.getElementById('rec-wed-day').innerHTML = wedWeekSchedule[selectedLanguage];
+          document.getElementById('rec-thu-day').innerHTML = thuWeekSchedule[selectedLanguage];
+          document.getElementById('rec-fri-day').innerHTML = friWeekSchedule[selectedLanguage];
+          document.getElementById('rec-sat-day').innerHTML = satWeekSchedule[selectedLanguage];
+          document.getElementById('rec-sun-day').innerHTML = sunWeekSchedule[selectedLanguage];
 
 
 
@@ -890,6 +1163,9 @@ const footerContact = {
 
           document.getElementById('add-date-label').innerHTML = addDateLabel[selectedLanguage];
           document.getElementById('add-todo-label').innerHTML = addTodoLabel[selectedLanguage];
+
+          document.getElementById('add-todo-text').placeholder = placeholderScheduleTask[selectedLanguage];
+
           document.getElementById('add-color-label').innerHTML = addColorLabel[selectedLanguage];
 
           document.getElementById('gray-color').innerHTML = grayPicker[selectedLanguage];
@@ -899,12 +1175,100 @@ const footerContact = {
           document.getElementById('purple-color').innerHTML = purplePicker[selectedLanguage];
           document.getElementById('red-color').innerHTML = redPicker[selectedLanguage];
 
+          document.getElementById('rec-text-span').innerHTML = recHeader[selectedLanguage];
+
+          // Periodicity
+          document.getElementById('periodicity-header').innerHTML = periodicityHeader[selectedLanguage];
+          document.getElementById('day-period').innerHTML = periodDay[selectedLanguage];
+          document.getElementById('week-period').innerHTML = periodWeek[selectedLanguage];
+          document.getElementById('month-period').innerHTML = periodMonth[selectedLanguage];
+          document.getElementById('year-period').innerHTML = periodYear[selectedLanguage];
+
+          document.getElementById('day-choices').innerHTML = dayChoices[selectedLanguage];
+          document.getElementById('select-days').innerHTML = selectDays[selectedLanguage];
+          document.getElementById('select-duration').innerHTML = selectDuration[selectedLanguage];
+
+          document.getElementById('mon-day').innerHTML = recMon[selectedLanguage];
+          document.getElementById('tue-day').innerHTML = recTue[selectedLanguage];
+          document.getElementById('wed-day').innerHTML = recWed[selectedLanguage];
+          document.getElementById('thu-day').innerHTML = recThu[selectedLanguage];
+          document.getElementById('fri-day').innerHTML = recFri[selectedLanguage];
+          document.getElementById('sat-day').innerHTML = recSat[selectedLanguage];
+          document.getElementById('sun-day').innerHTML = recSun[selectedLanguage];
+
+          document.getElementById('event-duration-day').innerHTML = eventDurationDay[selectedLanguage];
+          document.getElementById('every-week').innerHTML = eachWeek[selectedLanguage];
+
+          document.getElementById('event-duration-week').innerHTML = eventDurationWeek[selectedLanguage];
+          document.getElementById('event-duration-month').innerHTML = eventDurationMonth[selectedLanguage];
+          document.getElementById('event-duration-year').innerHTML = eventDurationYear[selectedLanguage];
+
+          document.getElementById('event-duration-year').innerHTML = recEvery[selectedLanguage];
+          document.getElementById('week-intervall-weeks').innerHTML = recWeek[selectedLanguage];
+          document.getElementById('week-header').innerHTML = weekHeader[selectedLanguage];
+          document.getElementById('month-header').innerHTML = monthHeader[selectedLanguage];
+          document.getElementById('year-header').innerHTML = yearHeader[selectedLanguage];
+
+          document.getElementById('add-todo-button').innerHTML = addTaskToScheduleButton[selectedLanguage];
+
+          // Current Plan
+          document.getElementById('current-plan-text').innerHTML = currentPlanHeader[selectedLanguage];
+
+          document.getElementById('todo-0-date').placeholder = currentPlanDatePlaceholder[selectedLanguage];
+          document.getElementById('todo-0-text').placeholder = currentPlanTodoPlaceholder[selectedLanguage];
+          document.getElementById('clear-all').innerHTML = clearAllButtonTranslate[selectedLanguage];
+
+          document.getElementById('color-switcher-heading').innerHTML = colorSwitcherHeading[selectedLanguage];
+          document.getElementById('clear-row').innerHTML = clearRowTranslation[selectedLanguage];
+          document.getElementById('close-panel').innerHTML = closePanelButtonTranslation[selectedLanguage];
+
+          // Load Plan
+          document.getElementById('load-plan-heading').innerHTML = loadPlanHeading[selectedLanguage];
+          document.getElementById('load-file-button').innerHTML = loadFileButton[selectedLanguage];
+
+          // Save Plan
+          document.getElementById('save-plan-heading').innerHTML = savePlanHeading[selectedLanguage];
+          document.getElementById('file-name-label').innerHTML = saveFileName[selectedLanguage];
+          document.getElementById('save-as-anywhere').innerHTML = saveAsAnywhere[selectedLanguage];
+          document.getElementById('save-to-downloads').innerHTML = saveToDownloads[selectedLanguage];
+
+          // Download
+          document.getElementById('dl-1').innerHTML = downloadOpt1[selectedLanguage];
+          document.getElementById('incompatible-devices').innerHTML = incompatibleDevices[selectedLanguage];
+          document.getElementById('dl-2').innerHTML = downloadOpt2[selectedLanguage];
+          document.getElementById('any-browser-dl').innerHTML = anyBrowserDl[selectedLanguage];
+
+          // Past Tasks
+          document.getElementById('past-tasks').innerHTML = pastTasks[selectedLanguage];
+          document.getElementById('copy-or-clear-past').innerHTML = copyOrClearPast[selectedLanguage];
+          document.getElementById('clear-past-tasks').innerHTML = clearPastTasksButtonTranslate[selectedLanguage];
+
+
+          // Timer
+          document.getElementById('timer-limit').innerHTML = timerLimit[selectedLanguage];
+          document.getElementById('hours-label').innerHTML = timerHours[selectedLanguage];
+          document.getElementById('minutes-label').innerHTML = timerMinutes[selectedLanguage];
+          document.getElementById('seconds-label').innerHTML = timerSeconds[selectedLanguage];
+          document.getElementById('tenths-label').innerHTML = timerTenths[selectedLanguage];
+          document.getElementById('timer-mode').innerHTML = timerMode[selectedLanguage];
+
+          document.getElementById('countdown').innerHTML = countDown[selectedLanguage];
+          document.getElementById('countup').innerHTML = countUp[selectedLanguage];
+
+          document.getElementById('timer-time').innerHTML = timerTime[selectedLanguage];
+
+          // Om
+          document.getElementById('about-heading').innerHTML = aboutHeading[selectedLanguage];
+
+
           // Footer
           document.querySelector('.footer-contact h3').innerHTML = footerContact[selectedLanguage];
           document.querySelector('.footer-contact a').innerHTML = footerContactEmail[selectedLanguage];
 
           // weekDisplay.textContent = weekInfo[selectedLanguage] + weekNumber;
           // weekDisplay2.textContent = weekInfo2[selectedLanguage] + weekNumber;
+
+          changeFlagImage();
         }
 
         // Declare the variable
