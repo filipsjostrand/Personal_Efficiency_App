@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="top3todos.css">
     <link rel="stylesheet" href="timerstyle.css">
+    <link rel="stylesheet" href="about.css">
     <link rel="stylesheet" href="footer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,99 +31,100 @@
       </div>
     </div>
 
-      <main>
+      <main id="main-section">
+        <div id="main-section-wrapper">
 
-        <div class="start-container-wrapper">
+          <div class="start-container-wrapper">
 
-          <!-- _ _ _ Top 3 Todos (start)-->
+            <!-- _ _ _ Top 3 Todos (start)-->
 
-          <div class="todo-div">
+            <div class="todo-div">
 
-            <div id="todo-header-container">
+              <div id="todo-header-container">
 
-              <div id="todo-header-wrapper">
-                <div class="start-container">
-                    <div id="character-counter" class="character-counter"></div>
-                    <div id="weekday-display"></div>
-                    <div id="date-display"></div>
-                    <div id="week-display"></div><br>
+                <div id="todo-header-wrapper">
+                  <div class="start-container">
+                      <div id="character-counter" class="character-counter"></div>
+                      <div id="weekday-display"></div>
+                      <div id="date-display"></div>
+                      <div id="week-display"></div><br>
 
-                    <h3 id="todos-heading">Top 3 Todos</h3>
+                      <h3 id="todos-heading">Top 3 Todos</h3>
 
-                    <button onclick="resetTodoSet()" class="reset-todo-button">
-                      <p id="top3-todo-buton-text">Start&#10;<sub>Reset</sub></p>
-                    </button>
+                      <button onclick="resetTodoSet()" class="reset-todo-button">
+                        <p id="top3-todo-buton-text">Start&#10;<sub>Reset</sub></p>
+                      </button>
+                  </div>
                 </div>
-              </div>
 
-              <div id="language-selector-wrapper">
-                <div id="language-selector-container">
-                  <div id="language-wrapper">
-                      <i id="language-icon" class="fa-solid fa-globe"></i>
-                      <select class="language-selector">
-                        <option value="sv">Svenska</option>
-                          <option value="en">English</option>
-                      </select>
-                          <div class="flag-div">
-                            <div class="flag-img">
+                <div id="language-selector-wrapper">
+                  <div id="language-selector-container">
+                    <div id="language-wrapper">
+                        <i id="language-icon" class="fa-solid fa-globe"></i>
+                        <select class="language-selector">
+                          <option value="sv">Svenska</option>
+                            <option value="en">English</option>
+                        </select>
+                            <div class="flag-div">
+                              <div class="flag-img">
+                              </div>
                             </div>
-                          </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <br>
-            <input class="todo-input-v2" type="text" id="input-box-v2" placeholder="Add todo text...">
-            <label for="todo-select" id="top3-label">Apply to:</label>
-                <select name="todos" id="todo-select">
-                <option value="" selected>Top3 list</option>
-                <option value="todo-one">#1</option>
-                <option value="todo-two">#2</option>
-                <option value="todo-three">#3</option>
-                </select>
-            <button onclick="addTaskToSet()" class="add-button-v2">Add Todo</button>
-            <br>
+              <br>
+              <input class="todo-input-v2" type="text" id="input-box-v2" placeholder="Add todo text...">
+              <label for="todo-select" id="top3-label">Apply to:</label>
+                  <select name="todos" id="todo-select">
+                  <option value="" selected>Top3 list</option>
+                  <option value="todo-one">#1</option>
+                  <option value="todo-two">#2</option>
+                  <option value="todo-three">#3</option>
+                  </select>
+              <button onclick="addTaskToSet()" class="add-button-v2">Add Todo</button>
+              <br>
 
+          </div>
+
+          <div id="todo-1-container">
+                  <input type="checkbox" class="checkbox" id="first" name="todo" value="first" />
+                  <label for="first"></label>
+              <div id="todo-1">
+                  <span class="todo-text-1">1. ...</span>
+              </div>
+          </div>
+
+          <div id="todo-2-container">
+                  <input type="checkbox" class="checkbox" id="second" name="todo" value="second" />
+                  <label for="second"></label>
+              <div id="todo-2">
+                  <span class="todo-text-2">2. ...</span>
+              </div>
+          </div>
+
+          <div id="todo-3-container">
+                  <input type="checkbox" class="checkbox" id="third" name="todo" value="third" />
+                  <label for="third"></label>
+              <div id="todo-3">
+                  <span class="todo-text-3">3. ...</span>
+              </div>
+          </div>
+          <br>
+          <h4 id="app-info">Application information</h4>
+              <div class="info">
+              <ol>
+                  <li><b>Reset:</b> &nbsp Press "Start Reset" (application reactivates).</li><br>
+                  <li><b>Add:</b> &nbsp Write a todo text &nbsp &nbsp → &nbsp &nbsp press "Add Todo" (ensure "Top3 list" is selected in rolldown).</li><br>
+                  <li><b>Replace: </b> &nbsp Write a new todo text &nbsp &nbsp → &nbsp &nbsp select "#" (to replace) in rolldown &nbsp &nbsp → &nbsp &nbsp press "Add Todo".</li>
+              </ol>
+                  <br>
+
+              </div>
+
+            <!-- _ _ _ Top 3 Todos (end) -->
         </div>
-
-        <div id="todo-1-container">
-                <input type="checkbox" class="checkbox" id="first" name="todo" value="first" />
-                <label for="first"></label>
-            <div id="todo-1">
-                <span class="todo-text-1">1. ...</span>
-            </div>
-        </div>
-
-        <div id="todo-2-container">
-                <input type="checkbox" class="checkbox" id="second" name="todo" value="second" />
-                <label for="second"></label>
-            <div id="todo-2">
-                <span class="todo-text-2">2. ...</span>
-            </div>
-        </div>
-
-        <div id="todo-3-container">
-                <input type="checkbox" class="checkbox" id="third" name="todo" value="third" />
-                <label for="third"></label>
-            <div id="todo-3">
-                <span class="todo-text-3">3. ...</span>
-            </div>
-        </div>
-        <br>
-        <h4 id="app-info">Application information</h4>
-             <div class="info">
-             <ol>
-                 <li><b>Reset:</b> &nbsp Press "Start Reset" (application reactivates).</li><br>
-                 <li><b>Add:</b> &nbsp Write a todo text &nbsp &nbsp → &nbsp &nbsp press "Add Todo" (ensure "Top3 list" is selected in rolldown).</li><br>
-                 <li><b>Replace: </b> &nbsp Write a new todo text &nbsp &nbsp → &nbsp &nbsp select "#" (to replace) in rolldown &nbsp &nbsp → &nbsp &nbsp press "Add Todo".</li>
-             </ol>
-                 <br>
-
-             </div>
-
-          <!-- _ _ _ Top 3 Todos (end) -->
-
       </main>
 
       <section>
@@ -255,69 +257,71 @@
             <div class="sunday-target-div" data-date="6"></div>
           </div>
         </div>
-      </section>
+      </section><br>
+      <div class="comment">Current time zone: CET (Central European Time)</div>
 
-      <section>
-        <div id="future-div"></div>
-        <h3 id="future-heading" class="app-heading">Future Plans</h3>
+      <section id="future-plans-section">
+        <div id="future-plans-wrapper">
+          <div id="future-div"></div>
+          <h3 id="future-heading" class="app-heading">Future Plans</h3>
 
-        <p id="future-desc"><u id="current-plan-words"></u><u id="past-tasks-words"></u>.
-          <ul>
-            <!-- <li id="add-list"></li>
-            <li id="save-list"></li>
-            <li id="edit-list"></li>
-            <li id="copy-clear-list"></li> -->
-          </ul>
-        </p>
+          <p id="future-desc"><u id="current-plan-words"></u><u id="past-tasks-words"></u>.
+            <ul>
+              <!-- <li id="add-list"></li>
+              <li id="save-list"></li>
+              <li id="edit-list"></li>
+              <li id="copy-clear-list"></li> -->
+            </ul>
+          </p>
 
-        <!-- <p id="future-desc">Handle <u id="current-plan-words">Current Plan</u> and watch <u id="past-tasks-words">Past tasks</u>.
-          <ul>
-            <li id="add-list">Add Task / Load File (Schedule).</li>
-            <li id="save-list">Save (Schedule).</li>
-            <li id="edit-list">Edit (in table).</li>
-            <li id="copy-clear-list">Copy/clear (past tasks).</li>
-          </ul>
-        </p> -->
-        <br>
+          <!-- <p id="future-desc">Handle <u id="current-plan-words">Current Plan</u> and watch <u id="past-tasks-words">Past tasks</u>.
+            <ul>
+              <li id="add-list">Add Task / Load File (Schedule).</li>
+              <li id="save-list">Save (Schedule).</li>
+              <li id="edit-list">Edit (in table).</li>
+              <li id="copy-clear-list">Copy/clear (past tasks).</li>
+            </ul>
+          </p> -->
+          <br>
 
 
-        <!-- <button onclick="loadPlan()"> Load Saved </button><br><br> -->
+          <!-- <button onclick="loadPlan()"> Load Saved </button><br><br> -->
 
-        <span>➕ <u id="add-task-span">Add Task (below)</u></span><br>
-        <div id="add-todo-container">
-          <div id="date-wrapper">
-            <label id="add-date-label" for="date-input">Date</label>
-            <input type="date" id="date-input" name="date" autocomplete="off" required/>
-          </div>
+          <span>➕ <u id="add-task-span">Add Task (below)</u></span><br>
+          <div id="add-todo-container">
+            <div id="date-wrapper">
+              <label id="add-date-label" for="date-input">Date</label>
+              <input type="date" id="date-input" name="date" autocomplete="off" required/>
+            </div>
 
-          <div id="text-wrapper">
-            <label id="add-todo-label" for="add-todo-text">Task</label>
-            <input id="add-todo-text" placeholder="Add task text..." type="text" name="text"/>
-          </div>
+            <div id="text-wrapper">
+              <label id="add-todo-label" for="add-todo-text">Task</label>
+              <input id="add-todo-text" placeholder="Add task text..." type="text" name="text"/>
+            </div>
 
-          <!-- Select color (from dropdown) -->
-          <div id="color-wrapper">
-            <label id="add-color-label" for="colors">Color</label>
-            <form id="color-drop-down">
-                  <label for="colors"></label>
-                  <select name="colors" id="colors">
-                    <option id="gray-color" value="grayColor" style="color:rgb(150,150,150)">-</option>
-                    <option id="yellow-color" value="yellowColor" style="color:rgb(255,204,0)">Yellow</option>
-                    <option id="green-color" value="greenColor" style="color:rgb(51,153,102)">Green</option>
-                    <option id="blue-color" value="blueColor" style="color:rgb(51,102,255)">Blue</option>
-                    <option id="purple-color" value="purpleColor" style="color:rgb(153,51,102)">Purple</option>
-                    <option id="red-color" value="redColor" style="color:rgb(255,64,64)">Red</option>
-                  </select>
+            <!-- Select color (from dropdown) -->
+            <div id="color-wrapper">
+              <label id="add-color-label" for="colors">Color</label>
+              <form id="color-drop-down">
+                    <label for="colors"></label>
+                    <select name="colors" id="colors">
+                      <option id="gray-color" value="grayColor" style="color:rgb(150,150,150)">-</option>
+                      <option id="yellow-color" value="yellowColor" style="color:rgb(255,204,0)">Yellow</option>
+                      <option id="green-color" value="greenColor" style="color:rgb(51,153,102)">Green</option>
+                      <option id="blue-color" value="blueColor" style="color:rgb(51,102,255)">Blue</option>
+                      <option id="purple-color" value="purpleColor" style="color:rgb(153,51,102)">Purple</option>
+                      <option id="red-color" value="redColor" style="color:rgb(255,64,64)">Red</option>
+                    </select>
+            </div><br>
           </div><br>
-        </div><br>
                     <!-- <div> -->
           <label id="rec-task">
-            <input id="todo-recurring-input" type="checkbox" />
-            <span id="rec-text-span">Recurring Task 🔁</span>
-        </label>
-        <br>
+              <input id="todo-recurring-input" type="checkbox" />
+              <span id="rec-text-span">Recurring Task 🔁</span>
+          </label>
+          <br>
 
-        <!-- default: display: "none" (-> block) -->
+          <!-- default: display: "none" (-> block) -->
           <fieldset id="periodicity">
             <legend id="periodicity-header">Periodicity:</legend>
 
@@ -436,14 +440,14 @@
           </fieldset>
 
           <fieldset id="per-year">
-            <legend id="year-header">Yearly:</legend>
-          <div>
-            <label id="event-duration-year" for="rec-year-days">[Y] &nbsp Event duration (days):</label>
-            <input type="number" id="rec-year-days" name="rec-year-days" min=1 max=365 value="1"/>
-          </div>
-        </fieldset>
+              <legend id="year-header">Yearly:</legend>
+            <div>
+              <label id="event-duration-year" for="rec-year-days">[Y] &nbsp Event duration (days):</label>
+              <input type="number" id="rec-year-days" name="rec-year-days" min=1 max=365 value="1"/>
+            </div>
+          </fieldset>
 
-      <!-- </div> -->
+          <!-- </div> -->
           </form>
             <!-- <pre id="textarea" contenteditable></pre> -->
             <button id="add-todo-button" onclick="addTaskToList()"> Add Task </button><br>
@@ -538,6 +542,7 @@
                   <button id="clear-past-tasks">Clear Past</button>
               </div>
           </div>
+        </div>
       </section>
 
       <section class="timer-section">
@@ -547,10 +552,10 @@
             <h3 id="timer-heading" class="app-heading">Timer</h3>
             <p id="timer-limit">Set a time limit:</p>
             <ul>
-              <li>hours,</li>
-              <li>minutes,</li>
-              <li>seconds,</li>
-              <li>tenths.</li>
+              <li id="hours-list">hours,</li>
+              <li id="minutes-list">minutes,</li>
+              <li id="seconds-list">seconds,</li>
+              <li id="tenths-list">tenths.</li>
             </ul>
             <br>
 
@@ -588,7 +593,7 @@
 
       <!-- youtube-iframe-divs (Start) -->
 
-      <div class="iframe-box-container">
+      <!-- <div class="iframe-box-container">
         <div id="iframe-container-b">
             <iframe
                 id="music-player-pop-b"
@@ -668,7 +673,7 @@
               referrerpolicy="strict-origin-when-cross-origin"
               allowfullscreen>
           </iframe>
-      </div>
+      </div> -->
 
       <!-- youtube-iframe-divs (end) -->
 
@@ -685,42 +690,50 @@
 
       </section>
 
-      <section>
-        <div id="about-div"></div>
-        <h3 id="about-heading" class="app-heading">About</h3>
+      <section id="about-section">
+        <div id="about-section-wrapper">
+          <div id="about-div"></div>
+          <h3 id="about-heading" class="app-heading">About</h3>
 
-        <div>
-          <p>Website under construction</p>
-          <p>Webmaster: Filip Sjöstrand (filip_sjostrand@hotmail.com)</p>
-      </div>
+          <div>
+              <p>Website under construction</p>
+              <p>Webmaster: Filip Sjöstrand (filip_sjostrand@hotmail.com)</p>
+          </div>
 
 
-        <div class="comment">Current time zone: Central European Time (CET)</div>
+          <!-- <div class="comment">Current time zone: Central European Time (CET)</div> -->
 
-        hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
-        dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadd
-        hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
-        dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadd<br><br>
+          hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
+          dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadd
+          hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
+          dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadd<br><br>
 
-        hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
-        dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadd
-        hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
-        dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadd<br><br>
+          Är<br>
+          hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
+          dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadd
+          hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
+          dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadd<br><br>
 
-        hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
-        dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadd
-        hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
-        dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadd<br><br>
+          Vill<br>
+          hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
+          dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadd
+          hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
+          dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadd<br><br>
 
-        hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
-        dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadd
-        hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
-        dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadd
+          Kan<br>
+          hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
+          dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadd
+          hfghfg fgh fghfgh fghfgf f ffg fgh fghfghfghfgh dfjassfasjfsalödj sadöjljsadöasl
+          dfsd fds fsdsfsd fsdf sdf fgf f ffg fgh fghfghfghfgh dfjassfasj sadsadsadasdsadd
+        </div>
       </section>
-
+<div id="about-section-divider-1"></div>
+<div id="about-section-divider-2"></div>
 <div id="efficiency-image-container">
   <img src="sun_big_fun.png" id="efficiency-image" alt="sun">
-  <a class="bg-photograph-link" href="https://www.pexels.com/photo/painting-of-red-planet-87611/" target="_blank" alt="Pixabay (pexels.com)">Photo: Pixabay (pexels.com)</a>
+  <div id="link-wrapper">
+    <a class="bg-photograph-link" href="https://www.pexels.com/photo/painting-of-red-planet-87611/" target="_blank" alt="Pixabay (pexels.com)">Photo: Pixabay (pexels.com)</a>
+  </div>
 </div>
 
 <!-- Footer (start) -->
@@ -872,6 +885,9 @@
       <script async src="future-plans.js"></script>
       <script async src="timer-app.js"></script>
       <script async src="footer.js"></script>
+      <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+      <script>emailjs.init("uXilaKD1gHjMOC_Fk");</script>
       <script async src="contact-form.js"></script>
+      <!-- <script src="contact-form.js"></script> -->
 </body>
 </html>

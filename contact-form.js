@@ -1,62 +1,73 @@
 // Formulär [Översättning]
 
-  // Formulär-rubrik (footer)
-  const footerFormTitle = {
-    en: 'Contact Form <i class="fa-solid fa-pencil"></i>',
-    sv: 'Kontaktformulär <i class="fa-solid fa-pencil"></i>',
-  }
+console.log("(contact form körs");
 
-const formTitle = {
-    en: "Contact Form",
-    sv: "Kontaktformulär",
-}
+// console.log("selectedLanguage (i contact form) (1) = " + selectedLanguage);
 
-const usernameLabel = {
-    en: "Name",
-    sv: "Namn",
-}
+// selectedLanguage = getSelectedLanguage();
 
-const emailLabel = {
-    en: "Email",
-    sv: "E-post",
-}
+selectedLanguage = sessionStorage.getItem("languageVariable");
 
-const messageLabel = {
-    en: "Message",
-    sv: "Meddelande",
-}
+console.log("selectedLanguage (i contact form) (2) = " + selectedLanguage);
 
-const charCounterText = {
-    en: "Characters (current/max): 0/1000",
-    sv: "Antal tecken (Nu/Max): 0/1000",
-}
+// // Formulär-rubrik (footer)
+// const footerFormTitle = {
+//     sv: `Kontaktformulär <i class="fa-solid fa-pencil"></i>`,
+//     en: `Contact Form <i class="fa-solid fa-pencil"></i>`,
+// }
 
-const sendButtonText = {
-    en: "Send",
-    sv: "Skicka",
-}
+// const formTitle = {
+//     sv: "Kontaktformulär",
+//     en: "Contact Form",
+// }
 
-const usernamePlaceholder = {
-    en: "Please write name...",
-    sv: "Uppge gärna namn...",
-}
+// const usernameLabel = {
+//     sv: "Namn",
+//     en: "Name",
+// }
 
-const userEmailPlaceholder = {
-    en: "my.email@domain.com...",
-    sv: "min.epost@domän.com...",
-}
+// const emailLabel = {
+//     sv: "E-post",
+//     en: "Email",
+// }
 
-const userSubjectPlaceholder = {
-    en: "Subject...",
-    sv: "Ämne...",
-}
+// const messageLabel = {
+//     sv: "Meddelande",
+//     en: "Message",
+// }
 
-const userMessagePlaceholder = {
-    en: "(Please write something anything :)...",
-    sv: "(Skriv gärna något :)...",
-}
+// const charCounterText = {
+//     sv: "Antal tecken (Nu/Max): 0/1000",
+//     en: "Characters (current/max): 0/1000",
+// }
 
-let navBarContainer = document.querySelector('.grid-container');
+// const sendButtonText = {
+//     sv: "Skicka",
+//     en: "Send",
+// }
+
+// const usernamePlaceholder = {
+//     sv: "Uppge gärna namn...",
+//     en: "Please write name...",
+// }
+
+// const userEmailPlaceholder = {
+//     sv: "min.epost@domän.com...",
+//     en: "my.email@domain.com...",
+// }
+
+// const userSubjectPlaceholder = {
+//     sv: "Ämne...",
+//     en: "Subject...",
+// }
+
+// const userMessagePlaceholder = {
+//     sv: "(Skriv gärna något :)...",
+//     en: "(Please write something anything :)...",
+// }
+
+// let navBarContainer = document.querySelector('.grid-container');
+var navBarContainer = document.querySelector('.grid-container');
 
 if (!selectedLanguage) {
     // sessionStorage.removeItem("selectedLanguage");
@@ -65,20 +76,21 @@ if (!selectedLanguage) {
     console.log("selectedLanguage (om !selectedLanguage (i form)) = " + selectedLanguage)
   }
 
-// Formulär-rubriker (text) [Översättning]
-document.getElementById('form-button').innerHTML = footerFormTitle[selectedLanguage]
-document.querySelector('.contact-form-title').innerHTML = formTitle[selectedLanguage];
-document.getElementById("name-label").innerHTML = usernameLabel[selectedLanguage];
-document.getElementById("email-label").innerHTML = emailLabel[selectedLanguage];
-document.getElementById("message-label").innerHTML = messageLabel[selectedLanguage];
-document.getElementById("char-counter").innerHTML = charCounterText[selectedLanguage];
-document.getElementById("send-button").innerHTML = sendButtonText[selectedLanguage];
+// // Formulär-rubriker (text) [Översättning]
+// document.getElementById('form-button').innerHTML = footerFormTitle[selectedLanguage];
+// // document.querySelector('.get-contact-form').innerHTML = footerFormTitle[selectedLanguage];
+// document.querySelector('.contact-form-title').innerHTML = formTitle[selectedLanguage];
+// document.getElementById("name-label").innerHTML = usernameLabel[selectedLanguage];
+// document.getElementById("email-label").innerHTML = emailLabel[selectedLanguage];
+// document.getElementById("message-label").innerHTML = messageLabel[selectedLanguage];
+// document.getElementById("char-counter").innerHTML = charCounterText[selectedLanguage];
+// document.getElementById("send-button").innerHTML = sendButtonText[selectedLanguage];
 
-//Placeholders [Översättning]
-document.getElementById('user-name').placeholder = usernamePlaceholder[selectedLanguage];
-document.getElementById('user-email').placeholder = userEmailPlaceholder[selectedLanguage];
-document.getElementById('subject').placeholder = userSubjectPlaceholder[selectedLanguage];
-document.getElementById('user-message').placeholder = userMessagePlaceholder[selectedLanguage];
+// //Placeholders [Översättning]
+// document.getElementById('user-name').placeholder = usernamePlaceholder[selectedLanguage];
+// document.getElementById('user-email').placeholder = userEmailPlaceholder[selectedLanguage];
+// document.getElementById('subject').placeholder = userSubjectPlaceholder[selectedLanguage];
+// document.getElementById('user-message').placeholder = userMessagePlaceholder[selectedLanguage];
 
 // Tack-meddelande (alert-box) [Översättning]
 var formThankYouMessage = [{
@@ -88,7 +100,7 @@ var formThankYouMessage = [{
 }
 }]
 
-var isFormOpen;
+var isFormOpen = false;
 
 // Get the Form
 var form = document.getElementById("myForm");
@@ -99,46 +111,78 @@ var formBtn = document.getElementById("form-button");
 // Get the <span> element that closes the form
 var closeFormSpan = document.getElementsByClassName("close-form")[0];
 
-const formMessageBox = document.getElementById("user-message");
-const charCounter = document.getElementById('char-counter');
-const maxChars = 1000;
+var formMessageBox = document.getElementById("user-message");
+var charCounter = document.getElementById('char-counter');
+var maxChars = 1000;
+
+
+// const formMessageBox = document.getElementById("user-message");
+// const charCounter = document.getElementById('char-counter');
+// const maxChars = 1000;
 
 // When the user clicks the button, open the form
 formBtn.onclick = function() {
   form.style.display = "flex";
   isFormOpen = true;
   navBarContainer.style.display = "none";
+//   navBarContainer.style.opacity = 0;
 }
 
 // Initialize the input field booleans to false
-let isUserNameValid = false;
-let isUserEmailValid = false;
-let isUserSubjectValid = false;
-let isUserMessageValid = false;
+var isUserNameValid = false;
+var isUserEmailValid = false;
+var isUserSubjectValid = false;
+var isUserMessageValid = false;
 
-let isSendFormValid = false;
+var isSendFormValid = false;
 
-const usernamePattern = /^[a-zA-Z0-9_åäöÅÄÖ ]{2,50}$/;
-const userEmailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+var usernamePattern = /^[a-zA-Z0-9_åäöÅÄÖ ]{2,50}$/;
+var userEmailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// let isUserNameValid = false;
+// let isUserEmailValid = false;
+// let isUserSubjectValid = false;
+// let isUserMessageValid = false;
+
+// let isSendFormValid = false;
+
+// const usernamePattern = /^[a-zA-Z0-9_åäöÅÄÖ ]{2,50}$/;
+// const userEmailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 // Get references to the input fields
-const usernameField = document.getElementById('user-name');
-const userEmailField = document.getElementById('user-email');
-const userSubjectField = document.getElementById('subject');
-const userMessageField = document.getElementById('user-message');
+var usernameField = document.getElementById('user-name');
+var userEmailField = document.getElementById('user-email');
+var userSubjectField = document.getElementById('subject');
+var userMessageField = document.getElementById('user-message');
+// const usernameField = document.getElementById('user-name');
+// const userEmailField = document.getElementById('user-email');
+// const userSubjectField = document.getElementById('subject');
+// const userMessageField = document.getElementById('user-message');
 
-const sendFormButton = document.getElementById('send-button');
-const loaderSymbol = document.querySelector('.loader');
+// const sendFormButton = document.getElementById('send-button');
+var sendFormButton = document.querySelector('.send-form-button');
+var loaderSymbol = document.querySelector('.loader');
 
-let username = '';
-let userEmail = '';
-let userSubject = '';
-let userMessage = '';
+var username = '';
+var userEmail = '';
+var userSubject = '';
+var userMessage = '';
 
-let formInputText = '';
+var formInputText = '';
+
+// const sendFormButton = document.querySelector('.send-form-button');
+// const loaderSymbol = document.querySelector('.loader');
+
+// let username = '';
+// let userEmail = '';
+// let userSubject = '';
+// let userMessage = '';
+
+// let formInputText = '';
 
 // When the user clicks on <span> (x), close the form
 function closeForm() {
+    console.log("closeForm() körs")
         resetForm();
         form.style.display = "none";
         isUserNameValid = false;
@@ -147,15 +191,17 @@ function closeForm() {
         isUserMessageValid = false;
         isFormOpen = false;
         navBarContainer.style.display = "grid";
+        // navBarContainer.style.opacity = 1;
 }
 
 // When the user clicks anywhere outside of the form, close it
 window.onclick = function(event) {
   if (event.target == form) {
     form.style.display = "none";
+    isFormOpen === false;
+    navBarContainer.style.display = "grid";
   }
 }
-
 
 // Check number of characters in the form message
 function checkNumberOfCharacters(formMessageBox) {
@@ -283,8 +329,25 @@ formMessageBox.addEventListener("keydown", (e) => {checkNumberOfCharacters(formM
         userMessageField.disabled = false;
     }
 
+    // _ _ _
+
+    // document.addEventListener("DOMContentLoaded", function () {
+    //     const sendFormButton = document.getElementById("sendFormButton");
+    //     sendFormButton.addEventListener("click", function(event) {
+    //         console.log("sendForm-knappen trycks ned");
+    //         if (!sendFormButton.disabled) {
+    //             sendFormEmail();
+    //         } else {
+    //             event.preventDefault();
+    //         }
+    //     });
+    // });
+
+    // _ _ _
+
         // Event listener for the sendFormButton click
         sendFormButton.addEventListener("click", function(event) {
+            console.log("sendForm-knappen trycks ned");
             // Check if the button is disabled
             if (!sendFormButton.disabled) {
                 // If the button is not disabled, run the submit functionality
@@ -294,6 +357,9 @@ formMessageBox.addEventListener("keydown", (e) => {checkNumberOfCharacters(formM
                 event.preventDefault();
             }
         });
+
+            // _ _ _
+
 
 // Ersätt "http" och "www" om de finns i input (test kan användas på RegEx)
 function validateInput(formInputText) {
@@ -347,11 +413,15 @@ function checkKey(e) {
 
 // Send form to email
 function sendFormEmail() {
+    console.log("sendFormEmail() körs");
+    selectedLanguage = sessionStorage.getItem("languageVariable");
+
+    console.log("selectedLanguage i sendFormEmail() = " + selectedLanguage);
 
     let user_name = usernameField.value;
     let message = "Email: " + userEmailField.value + "\nSubject: " + userSubjectField.value + "\n\nMessage:\n" + userMessageField.value;
 
-    emailjs.send("service_71hlj55", "template_cmihpce", {
+    emailjs.send("service_qes9d4k", "template_cmihpce", {
         from_name: user_name,
         message: message,
     }).then(function(response) {

@@ -216,12 +216,12 @@
 /* Computer screens and larger */
 @media screen and (min-width: 1024px) {
 
-    .bg-photograph-link {
+    /* .bg-photograph-link {
       display: flex;
       flex-direction: column;
       flex-wrap: wrap;
       justify-content: end;
-  }
+  } */
 
     .form-content {
         width: 40%;

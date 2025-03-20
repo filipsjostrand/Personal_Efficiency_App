@@ -247,10 +247,10 @@ const goFutureNavbar = {
   en: `Scroll down or click "Future" (navbar)`,
 }
 
-const weekDisplayTwo = {
-  sv: `v.11`,
-  en: `wk. 11`,
-}
+// const weekDisplayTwo = {
+//   sv: `v.`,
+//   en: `wk.`,
+// }
 
 const monWeekSchedule = {
   sv: `Mån`,
@@ -314,7 +314,7 @@ const futureHeading = {
 // }
 
 const futureDesc = {
-  sv: `Hantera <u id="current-plan-words">Framtidsplaner</u> och visa <u id="past-tasks-words">Tidigare uppgifter</u>.
+  sv: `Hantera <u id="current-plan-words">Framtidsplaner</u> och visa <u id="past-tasks-words">Tidigare uppgifter</u>:
     <ul>
       <li id="add-list">Lägg till uppgift / Ladda fil (Schema).</li>
       <li id="save-list">Spara (Schema).</li>
@@ -322,7 +322,7 @@ const futureDesc = {
       <li id="copy-clear-list">Kopiera/rensa (tidigare uppgifter).</li>
     </ul>
   `,
-  en: `Handle <u id="current-plan-words">"Future Plans"</u> and watch <u id="past-tasks-words">Past tasks</u>.
+  en: `Handle <u id="current-plan-words">"Future Plans"</u> and watch <u id="past-tasks-words">Past tasks</u>:
     <ul>
       <li id="add-list">Add Task / Load File (Schedule)..</li>
       <li id="save-list">Save (Schedule).</li>
@@ -590,7 +590,7 @@ const pastTasks = {
 }
 
 const copyOrClearPast = {
-  sv: 'Kopiera eller ta bort (tidigare händelser)',
+  sv: 'Kopiera eller töm (tidigare händelser)',
   en: 'Copy or clear (past tasks).',
 }
 
@@ -603,6 +603,22 @@ const clearPastTasksButtonTranslate = {
 const timerLimit = {
   sv: 'Välj en tidsgräns:',
   en: 'Set a time limit:',
+}
+const hourList = {
+  sv: 'timmar,',
+  en: 'hours,',
+}
+const minutesList = {
+  sv: 'minuter,',
+  en: 'minutes,',
+}
+const secondsList = {
+  sv: 'sekunder,',
+  en: 'seconds,',
+}
+const tenthsList = {
+  sv: 'tiondelar.',
+  en: 'tenths.',
 }
 const timerHours = {
   sv: 'Timmar:',
@@ -654,6 +670,62 @@ const footerContact = {
     en: `Send e-mail <i class="fa-solid fa-envelope"></i>`,
     sv: `Skicka e-post <i class="fa-solid fa-envelope"></i>`,
   }
+
+// Formulär-rubrik (footer)
+const footerFormTitle = {
+  sv: `Kontaktformulär <i class="fa-solid fa-pencil"></i>`,
+  en: `Contact Form <i class="fa-solid fa-pencil"></i>`,
+}
+
+const formTitle = {
+  sv: "Kontaktformulär",
+  en: "Contact Form",
+}
+
+const usernameLabel = {
+  sv: "Namn",
+  en: "Name",
+}
+
+const emailLabel = {
+  sv: "E-post",
+  en: "Email",
+}
+
+const messageLabel = {
+  sv: "Meddelande",
+  en: "Message",
+}
+
+const charCounterText = {
+  sv: "Antal tecken (Nu/Max): 0/1000",
+  en: "Characters (current/max): 0/1000",
+}
+
+const sendButtonText = {
+  sv: "Skicka",
+  en: "Send",
+}
+
+const usernamePlaceholder = {
+  sv: "Uppge gärna namn...",
+  en: "Please write name...",
+}
+
+const userEmailPlaceholder = {
+  sv: "min.epost@domän.com...",
+  en: "my.email@domain.com...",
+}
+
+const userSubjectPlaceholder = {
+  sv: "Ämne...",
+  en: "Subject...",
+}
+
+const userMessagePlaceholder = {
+  sv: "(Skriv gärna något :)...",
+  en: "(Please write something anything :)...",
+}
 
   // document.querySelector('.footer-contact h3').innerHTML = footerContact[selectedLanguage];
   // document.querySelector('.footer-contact a').innerHTML = footerContactEmail[selectedLanguage];
@@ -1072,11 +1144,21 @@ const footerContact = {
         //   footerContactEmail[selectedLanguage];
         // }
 
+    // // Tack-meddelande (alert-box) [Översättning]
+    // var formThankYouMessage = [{
+    //   formMessage: {
+    //   en: ["Thank you for your message! :) ʕ •ᴥ•ʔ "],
+    //   sv: ["Tack för ditt meddelande! :) ʕ •ᴥ•ʔ "],
+    // }
+    // }]
+
         var selectedLanguage;
 
         // Select the dropdown element
         var languageSelectElement = document.querySelector('.language-selector');
         var languageSelectVariable;
+        var languageVariable = 'sv';
+        sessionStorage.setItem("languageVariable", languageVariable);
         var selectedValue;
         // var languageSelectVariable = languageSelectElement.options[languageSelectElement.selectedIndex].text;
 
@@ -1097,16 +1179,21 @@ const footerContact = {
             if (selectedValue === 'sv') {
                 console.log('You selected Svenska');
                 selectedLanguage = 'sv';
+                languageVariable = selectedLanguage;
+                sessionStorage.setItem("languageVariable", languageVariable);
                 languageSelectVariable = languageSelectElement.options[0].text
                 console.log("languageSelectVariable = " + languageSelectVariable);
                 runTranslation(selectedLanguage);
             } else if (selectedValue === 'en') {
                 console.log('You selected English');
                 selectedLanguage = 'en';
+                languageVariable = selectedLanguage;
+                sessionStorage.setItem("languageVariable", languageVariable);
                 languageSelectVariable = languageSelectElement.options[1].text
                 // languageSelectElement.options[languageSelectElement.selectedIndex].text = 'English';
                 console.log("languageSelectVariable = " + languageSelectVariable);
                 runTranslation(selectedLanguage);
+
             }
             // sessionStorage.setItem("languageVariable", selectedValue);
 
@@ -1116,6 +1203,12 @@ const footerContact = {
 
           // sessionStorage.setItem("selectedLanguage", selectedLanguage);
           // console.log("selectedLanguage (sessionStorage i langugage.js) = " + selectedLanguage);
+
+          // function getSelectedLanguage() {
+          //   var languageVariable = selectedLanguage;
+          //   return languageVariable;
+          // }
+
 
         // runTranslation(selectedLanguage);
         function runTranslation(selectedLanguage) {
@@ -1141,7 +1234,7 @@ const footerContact = {
           // Veckoschema
           document.getElementById('weekly-heading').innerHTML = weekHeading[selectedLanguage];
           document.getElementById('weekly-desc').innerHTML = weekPDesc[selectedLanguage];
-          document.getElementById('week-display-2').innerHTML = weekDisplayTwo[selectedLanguage];
+          // document.getElementById('week-display-2').innerHTML = weekDisplayTwo[selectedLanguage];
 
           document.getElementById('go-future-plans').innerHTML = goFuturePlans[selectedLanguage];
           document.getElementById('go-future-navbar').innerHTML = goFutureNavbar[selectedLanguage];
@@ -1246,6 +1339,12 @@ const footerContact = {
 
           // Timer
           document.getElementById('timer-limit').innerHTML = timerLimit[selectedLanguage];
+
+          document.getElementById('hours-list').innerHTML = hourList[selectedLanguage];
+          document.getElementById('minutes-list').innerHTML = minutesList[selectedLanguage];
+          document.getElementById('seconds-list').innerHTML = secondsList[selectedLanguage];
+          document.getElementById('tenths-list').innerHTML = tenthsList[selectedLanguage];
+
           document.getElementById('hours-label').innerHTML = timerHours[selectedLanguage];
           document.getElementById('minutes-label').innerHTML = timerMinutes[selectedLanguage];
           document.getElementById('seconds-label').innerHTML = timerSeconds[selectedLanguage];
@@ -1264,6 +1363,22 @@ const footerContact = {
           // Footer
           document.querySelector('.footer-contact h3').innerHTML = footerContact[selectedLanguage];
           document.querySelector('.footer-contact a').innerHTML = footerContactEmail[selectedLanguage];
+
+          // Formulär-rubriker (text) [Översättning]
+          document.getElementById('form-button').innerHTML = footerFormTitle[selectedLanguage];
+          // document.querySelector('.get-contact-form').innerHTML = footerFormTitle[selectedLanguage];
+          document.querySelector('.contact-form-title').innerHTML = formTitle[selectedLanguage];
+          document.getElementById("name-label").innerHTML = usernameLabel[selectedLanguage];
+          document.getElementById("email-label").innerHTML = emailLabel[selectedLanguage];
+          document.getElementById("message-label").innerHTML = messageLabel[selectedLanguage];
+          document.getElementById("char-counter").innerHTML = charCounterText[selectedLanguage];
+          document.getElementById("send-button").innerHTML = sendButtonText[selectedLanguage];
+
+          //Placeholders [Översättning]
+          document.getElementById('user-name').placeholder = usernamePlaceholder[selectedLanguage];
+          document.getElementById('user-email').placeholder = userEmailPlaceholder[selectedLanguage];
+          document.getElementById('subject').placeholder = userSubjectPlaceholder[selectedLanguage];
+          document.getElementById('user-message').placeholder = userMessagePlaceholder[selectedLanguage];
 
           // weekDisplay.textContent = weekInfo[selectedLanguage] + weekNumber;
           // weekDisplay2.textContent = weekInfo2[selectedLanguage] + weekNumber;

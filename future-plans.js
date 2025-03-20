@@ -1218,8 +1218,8 @@ const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
       }
 
       const weekInfo2 = {
-        sv: `v.`,
-        en: `Week #`,
+        sv: `v. `,
+        en: `wk. `,
       }
 
 
@@ -1359,7 +1359,11 @@ console.log("selectedLanguage i future-plans = " + selectedLanguage);
     var weekDisplay = document.getElementById('week-display');
       weekDisplay.textContent = weekInfo[selectedLanguage] + weekNumber;
 
-      console.log("weekDisplay.textContent =  " + weekDisplay.textContent);
+      document.getElementById('week-display-2').innerHTML = weekInfo2[selectedLanguage] + weekNumber;
+
+      console.log("weekDisplay.textContent = " + weekDisplay.textContent);
+
+      console.log("weekInfo2[selectedLanguage] + weekNumber = " + weekInfo2[selectedLanguage] + weekNumber);
     }
 
     // ___________________________
@@ -1381,8 +1385,12 @@ console.log("selectedLanguage i future-plans = " + selectedLanguage);
 
     //   const weekDisplay2 = document.getElementById('week-display-2');
 
-    var weekDisplay2 = document.getElementById('week-display-2');
-      weekDisplay2.textContent = weekInfo2[selectedLanguage] + weekNumber;
+    // var weekDisplay2 = document.getElementById('week-display-2');
+    //   weekDisplay2.textContent = weekInfo2[selectedLanguage] + weekNumber;
+
+      document.getElementById('week-display-2').innerHTML = weekInfo2[selectedLanguage] + ' ' + weekNumber;
+
+      console.log("weekInfo2[selectedLanguage] + ' ' + weekNumber = " + weekInfo2[selectedLanguage] + weekNumber);
 
     // weekDisplay2.textContent = weekInfo2Text;
     //   weekDisplay2.textContent = "Week #" + weekNumber;

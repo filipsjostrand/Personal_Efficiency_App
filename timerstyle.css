@@ -122,8 +122,25 @@ a:link:active, a:visited:active {
     color: rgb(85, 75, 107);
   }
 
+  .timer-button-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
 /* Computer screens and larger (start) */
 @media screen and (min-width: 1024px) {
+
+    .timer-container {
+        display: flex;
+        justify-content: center;
+      }
+
+      .timer-wrapper {
+        display: flex;
+        flex-direction: column;
+      }
+
     #billboard-top50-img {
         width: 560px;
         height: 315px;
@@ -144,6 +161,20 @@ a:link:active, a:visited:active {
         object-fit: cover;
     }
 }
+
+/* Tablets and larger screens */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .timer-container {
+        display: flex;
+        justify-content: center;
+      }
+
+      .timer-wrapper {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  /* Tablets and larger screens (end) */
 
 /* Mobile screens (start) */
 @media screen and (max-width: 767px) {
