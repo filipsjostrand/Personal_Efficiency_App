@@ -5,7 +5,9 @@
 /* background-image: radial-gradient(rgb(12, 14, 32), rgb(24, 24, 24)); */
 /* background-image: radial-gradient(rgb(37, 39, 66), rgb(24, 24, 24)); */
 
-
+#about-section-wrapper {
+    color: rgb(180, 180, 180)
+}
 
 #about-section-divider-1 {
     height: 100px;
@@ -14,12 +16,92 @@
     background-image: linear-gradient(180deg, rgb(24, 25, 30), rgb(24, 24, 24));
 }
 
-#about-section-divider-2 {
+/* #about-section-divider-2 {
+    width: 100%;
+    height: 75px;
+    background: radial-gradient(circle, rgb(173, 171, 171) 1px, transparent 1px) 0 0,
+                radial-gradient(circle, rgb(149, 150, 138) 1px, transparent 1px) 50px 50px;
+    background-color: rgb(24, 24, 24);
+    background-size: 145px 100px;
+} */
+
+#tools-wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+#tool-list-container {
+    display: flex;
+    padding-left: 5px;
+}
+
+#about-section-divider-3 {
     height: 100px;
     background-color: rgb(24, 24, 24); /* For browsers that do not support gradients */
     /* background-image: linear-gradient(rgb(24, 24, 24), rgb(0,0,0)); */
     background-image: linear-gradient(180deg, rgb(24, 24, 24), rgb(0,0,0));
 }
+
+#github-container {
+    display: flex;
+    flex-direction: row;
+}
+
+#github-img-container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 5px;
+}
+
+#basic-info-container {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    /* min-height: 100vh; */
+    margin: 0;
+    /* background: #f4f4f4; */
+    font-family: Arial, sans-serif;
+}
+
+#image-container {
+    display: flex;
+}
+
+#image-wrapper {
+    /* width: 300px;
+    height: 300px; */
+    display: flex;
+    overflow: hidden; /* Ensures the image stays within the container */
+    border-radius: 20px; /* Rounded edges */
+    box-shadow: 0 4px 10px rgba(110, 109, 106, 0.2); /* A subtle shadow for a polished look */
+    background-color: #2b2b2b; /* Fallback in case no image is loaded */
+    /* justify-content: center; */
+    /* align-items: center; */
+}
+
+#daily-image {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    border: 1px solid rgb(24, 24, 24);
+    /* border-radius: 10px; */
+    box-shadow: 7px 7px 3px rgba(74, 84, 110, 0.1);
+    /* box-shadow: 3px 3px 3px 3px rgba(29, 32, 51, 0.8); */
+}
+
+#image-wrapper img {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    /* object-fit: cover; */
+    border-radius: 9px;
+    transition: transform 0.3s ease; /* Adds a smooth zoom-in effect */
+}
+
+#image-wrapper img:hover {
+    transform: scale(1.05); /* Zoom in slightly when hovering */
+}
+
 
 /* Computer screens and larger (start) */
 @media screen and (min-width: 1024px) {
@@ -34,6 +116,46 @@
         display: flex;
         flex-direction: column;
     }
+
+    #basic-info-container {
+        flex-direction: row;
+    }
+
+    #about-section-divider-2 {
+        width: 100%;
+        height: 175px;
+        background:
+                    /* radial-gradient(circle, rgb(77, 76, 74) 1px, transparent 1px) 0 0,
+                    radial-gradient(circle, rgb(92, 92, 86) 1px, transparent 1px) 50px 50px; */
+                    radial-gradient(circle, rgba(83, 82, 82, 0.8) 1px, transparent 1px) 170px 180px,
+                    radial-gradient(circle, rgba(59, 58, 58, 0.9) 1px, transparent 1px) 50px 80px,
+                    radial-gradient(circle, rgba(71, 71, 71, 0.7) 1px, transparent 1px) 140px 25px,
+                    radial-gradient(circle, rgba(71, 71, 71, 0.7) 1px, transparent 1px) -140px -50px,
+                    radial-gradient(circle, rgba(71, 71, 71, 0.7) 1px, transparent 1px) -240px -250px,
+                    radial-gradient(circle, rgba(71, 71, 71, 0.7) 1px, transparent 1px) -340px -350px,
+                    radial-gradient(circle, rgba(71, 71, 71, 0.7) 1px, transparent 1px) 150px 60px,
+                    radial-gradient(circle, rgba(80, 80, 80, 0.9) 1px, transparent 1px) 115px 200px,
+                    radial-gradient(circle, rgba(99, 97, 97, 0.8) 1px, transparent 1px) 220px 20px,
+                    radial-gradient(circle, rgb(87, 85, 85) 1px, transparent 1px) -10px 300px,
+                    radial-gradient(circle, rgba(95, 93, 93, 0.9) 1px, transparent 1px) 300px 150px,
+                    radial-gradient(circle, rgba(95, 93, 93, 0.9) 1px, transparent 1px) 40px 55px,
+                    radial-gradient(circle, rgba(122, 121, 121, 0.7) 1px, transparent 1px) 400px 100px,
+                    radial-gradient(circle, rgba(92, 91, 91, 0.85) 1px, transparent 1px) 320px 250px,
+                    radial-gradient(circle, rgba(102, 101, 101, 0.9) 1px, transparent 1px) -100px 400px;
+        background-color: rgb(24, 24, 24); /* Base background color (space-like) */
+        background-size: 225px 225px; /* Adjust the size of the grid */
+    }
+
+    #filip-info {
+        width: 100%;
+    }
+
+    #image-container {
+        /* padding-left: 50px; */
+        width: 100%;
+        justify-content: flex-end;
+    }
+
 }
 
 /* Tablets and larger screens */
@@ -49,5 +171,88 @@
         display: flex;
         flex-direction: column;
     }
+    #basic-info-container {
+        flex-direction: row;
+    }
+    #about-section-divider-2 {
+        width: 100%;
+        height: 135px;
+        background:
+                    /* radial-gradient(circle, rgb(82, 79, 79) 1px, transparent 1px) 0 0,
+                    radial-gradient(circle, rgb(70, 70, 67) 1px, transparent 1px) 40px 40px; */
+                    radial-gradient(circle, rgba(121, 119, 119, 0.8) 1px, transparent 1px) 20px 30px,
+                    radial-gradient(circle, rgba(59, 58, 58, 0.9) 1px, transparent 1px) 50px 80px,
+                    radial-gradient(circle, rgba(71, 71, 71, 0.7) 1px, transparent 1px) 150px 60px,
+                    radial-gradient(circle, rgba(80, 80, 80, 0.9) 1px, transparent 1px) 120px 200px,
+                    radial-gradient(circle, rgba(78, 78, 78, 0.8) 1px, transparent 1px) 220px 20px,
+                    radial-gradient(circle, rgba(71, 71, 71, 0.7) 1px, transparent 1px) -240px -250px,
+                    radial-gradient(circle, rgba(71, 71, 71, 0.7) 1px, transparent 1px) -340px -350px,
+                    radial-gradient(circle, rgba(71, 71, 71, 0.7) 1px, transparent 1px) 150px 60px,
+                    radial-gradient(circle, rgba(80, 80, 80, 0.9) 1px, transparent 1px) 120px 200px,
+                    radial-gradient(circle, rgba(78, 78, 78, 0.8) 1px, transparent 1px) 220px 20px,
+                    radial-gradient(circle, rgb(102, 99, 99) 1px, transparent 1px) -10px 300px,
+                    radial-gradient(circle, rgba(95, 93, 93, 0.9) 1px, transparent 1px) 300px 150px,
+                    radial-gradient(circle, rgba(122, 121, 121, 0.7) 1px, transparent 1px) 400px 100px,
+                    radial-gradient(circle, rgba(124, 122, 122, 0.85) 1px, transparent 1px) 320px 250px,
+                    radial-gradient(circle, rgba(102, 101, 101, 0.9) 1px, transparent 1px) -100px 400px;
+        background-color: rgb(24, 24, 24); /* Base background color (space-like) */
+        background-size: 125px 130px; /* Adjust the size of the grid */
+    }
   }
   /* Tablets and larger screens (end) */
+
+    /* Mobile screens */
+    @media screen and (max-width: 767px) {
+        #about-section-divider-2 {
+            width: 100%;
+            height: 105px;
+            /* background: radial-gradient(circle, rgb(73, 72, 71) 1px, transparent 1px) 0 0,
+                        radial-gradient(circle, rgb(83, 83, 81) 1px, transparent 1px) 50px 50px,
+                        radial-gradient(circle, rgb(83, 83, 81) 1px, transparent 1px) -30px -40px,
+                        radial-gradient(circle, rgb(83, 83, 81) 1px, transparent 1px) 70px 70px,
+                        radial-gradient(circle, rgb(83, 83, 81) 1px, transparent 1px) -50px -70px,
+                        radial-gradient(circle, rgb(83, 83, 81) 1px, transparent 1px) 75px -20px,
+                        radial-gradient(circle, rgb(83, 83, 81) 1px, transparent 1px) 40px,
+                        radial-gradient(circle, rgb(83, 83, 81) 1px, transparent 1px) -10px, 10px,
+                        radial-gradient(circle, rgb(83, 83, 81) 1px, transparent 1px) -20px, 10px, 20px,
+                        radial-gradient(circle, rgb(83, 83, 81) 1px, transparent 1px) 80px 80px,
+                        radial-gradient(circle, rgb(83, 83, 81) 1px, transparent 1px) 90px 75px,
+                        radial-gradient(circle, rgb(114, 114, 109) 1px, transparent 1px) 40px 40px; */
+            background:
+                radial-gradient(circle, rgba(92, 91, 91, 0.8) 1px, transparent 1px) 20px 30px,
+                radial-gradient(circle, rgba(59, 58, 58, 0.9) 1px, transparent 1px) 50px 80px,
+                radial-gradient(circle, rgba(71, 71, 71, 0.7) 1px, transparent 1px) 150px 60px,
+                radial-gradient(circle, rgba(80, 80, 80, 0.9) 1px, transparent 1px) 120px 200px,
+                radial-gradient(circle, rgba(78, 78, 78, 0.8) 1px, transparent 1px) 220px 20px,
+                radial-gradient(circle, rgb(73, 72, 72) 1px, transparent 1px) -10px 300px,
+                radial-gradient(circle, rgba(95, 93, 93, 0.9) 1px, transparent 1px) 300px 150px,
+                radial-gradient(circle, rgba(122, 121, 121, 0.7) 1px, transparent 1px) 400px 100px,
+                radial-gradient(circle, rgba(75, 74, 74, 0.85) 1px, transparent 1px) 320px 250px,
+                radial-gradient(circle, rgba(102, 101, 101, 0.9) 1px, transparent 1px) -100px 400px;
+            background-size: 200px 200px; /* Defines repetition area for stars */
+            background-color: rgb(24, 24, 24); /* Base background color (space-like) */
+            background-size: 60px 55px; /* Adjust the size of the grid */
+        }
+        #basic-info-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #filip-info {
+            padding-bottom: 20px;
+        }
+
+        #image-container {
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #image-wrapper {
+            flex-direction: column;
+        }
+
+    }
+    /* Mobile screens (end) */

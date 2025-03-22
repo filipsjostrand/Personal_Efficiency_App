@@ -1100,6 +1100,8 @@ const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     // currentWeekDayToBeHandled = "mon" / "tue" / "wed" / ... / "sun"
     function getCurrentWeekDayForSelectedLanguage(currentWeekDayToBeHandled) {
 
+        selectedLanguage = sessionStorage.getItem("languageVariable");
+
         let getCurrentWeekDay;
 
         if (selectedLanguage === 'sv') {
