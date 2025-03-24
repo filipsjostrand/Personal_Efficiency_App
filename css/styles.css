@@ -3,8 +3,11 @@
 *::before {
 
 } */
-  /* margin: 0;
-  padding: 0; */
+
+/* * {
+  margin: 0;
+  padding: 0;
+} */
 
 html {
   font-family: 'Roboto', 'sans-serif';
@@ -240,7 +243,11 @@ h3 {
 /* Weekly schedule (start) */
 
 #week-plan-info {
-  margin-bottom: 20px;
+  overflow: visible; /* Ensure content is visible */
+  margin-bottom: 15px;
+  max-width: 100%; /* Avoid content overflow */
+  box-sizing: border-box; /* Adjust width to include padding */
+
 }
 
 .grid-day-container {
@@ -954,6 +961,7 @@ _ _ _ */
 
   .grid-day-container {
     grid-template-columns: calc(99%/7) calc(99%/7) calc(99%/7) calc(99%/7) calc(99%/7) calc(99%/7) calc(99%/7);
+    /* grid-template-columns: auto auto auto auto auto auto auto; */
   }
 
   /* Future plans (start) */
@@ -1083,8 +1091,21 @@ _ _ _ */
 /* Tablets and larger screens (start) */
 @media screen and (min-width: 768px) and (max-width: 1023px) {
 
-  .grid-day-container {
+  /* .grid-day-container {
     grid-template-columns: calc(99%/7) calc(99%/7) calc(99%/7) calc(99%/7) calc(99%/7) calc(99%/7) calc(99%/7);
+  } */
+
+  .grid-day-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto;
+  }
+
+  #week-plan-info {
+    padding-left: 15px;
+  }
+
+  #weekly-heading {
+    padding-left: 15px;
   }
 
   #text-wrapper {
@@ -1113,6 +1134,7 @@ _ _ _ */
   }
 
   #future-plans-section {
+    width: 100vw;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -1135,8 +1157,8 @@ _ _ _ */
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* background-color: rgb(0, 0, 0); */
   }
+      /* background-color: rgb(0, 0, 0); */
 
   #efficiency-image {
     display: flex;
@@ -1206,6 +1228,30 @@ _ _ _ */
 
 }
 /* Mobile screens (end) */
+
+/* Nest Hub */
+@media screen and (max-width:1024px) and (-webkit-min-device-pixel-ratio:0){
+  .grid-day-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto;
+  }
+}
+
+  /* Nest Hub Max */
+@media screen and (min-width: 1280px) and (max-width: 1280px) and (min-height: 800px) and (max-height: 800px) {
+  .grid-day-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto;
+  }
+}
+
+  /* iPad Air */
+/* @media only screen and (min-width: 768px) and (max-width: 768px) and (min-height: 1024px) and (max-height: 1024px) and (orientation: portrait) {
+  #week-plan-info {
+    padding-left: 100px;
+  }
+} */
+
 
 
 /* _ _ _ (scroll functionality with arrows) */

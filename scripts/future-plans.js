@@ -10309,6 +10309,91 @@ function isDayLessThan29(dateString) {
     return day < 29;
 }
 
+// _ _ _
+
+// function isDayBetween29And31(dateString) {
+//     console.log("isDayBetween29And31() körs")
+//     // Parse the date string to extract the day component
+//     const dateParts = dateString.split('-');
+//     const day = parseInt(dateParts[2], 10);
+
+//     // Check if the day is less than 29
+//     return day >= 29 && day <=31;
+// }
+
+// function isDayBetween29And30(dateString) {
+//     console.log("isDayBetween29And30() körs")
+//     // Parse the date string to extract the day component
+//     const dateParts = dateString.split('-');
+//     const day = parseInt(dateParts[2], 10);
+
+//     // Check if the day is less than 29
+//     return day >= 29 && day <=30;
+// }
+
+// // Returns month number 1 to 12
+// function getMonthNumber(dateString) {
+//     console.log("getMonthNumber() is running");
+//     // Parse the date string to extract the month component
+//     const dateParts = dateString.split('-');
+//     const month = parseInt(dateParts[1], 10);
+
+//     // Check if the month is valid (01 to 12)
+//     if (month >= 1 && month <= 12) {
+//         return month; // Return the month number
+//     } else {
+//         console.error("Invalid month in the date string");
+//         return null; // Return null if the month is invalid
+//     }
+// }
+
+// _ _ _
+
+// function nextOccasionMonthHasAmountOfDays(dateString) {
+//     console.log("nextOccasionMonthHasAmountOfDays() körs")
+//     getMonthNumber(dateString);
+// }
+
+// _ _ _
+
+function replaceInvalidDate(todoRow, plannedTodos) {
+    console.log("replaceInvalidDate() is running");
+
+    // Parse the current date from todoRow
+    let date = new Date(todoRow.date);
+
+    // Get the current month and last day of the current month
+    const currentMonth = date.getMonth();
+    const lastDayOfMonth = new Date(date.getFullYear(), currentMonth + 1, 0).getDate();
+
+    // Check if the current date exceeds the last valid day of the month
+    if (date.getDate() > lastDayOfMonth) {
+        // Move to the first day of the coming month
+        const nextMonth = currentMonth + 1;
+        date = new Date(date.getFullYear(), nextMonth, 1); // First day of next month
+
+        // Check for conflicts with plannedTodos
+        let conflict = plannedTodos.some(
+            task =>
+                task.date === date.toISOString().split("T")[0] && task.todo === todoRow.todo
+        );
+
+        // Find the next available date without conflicts
+        while (conflict) {
+            date.setDate(date.getDate() + 1); // Increment to the next day
+            conflict = plannedTodos.some(
+                task =>
+                    task.date === date.toISOString().split("T")[0] && task.todo === todoRow.todo
+            );
+        }
+    }
+
+    // Update the todoRow's date with the new valid date
+    todoRow.date = date.toISOString().split("T")[0];
+}
+
+
+
 function ensureRecurringMonthDate(todoDateLoad, currentDate) {
     console.log("ensureRecurringMonthDate() körs")
     // Parse the loaded date and current date
@@ -10835,6 +10920,34 @@ function readFile(file) {
             // If the recurring month is in the future: Update recurring todos (month)
             else if (todoDateLoad >= currentDate && todoRow.isRecurring === true && todoRow.recurringType === 'm' && isDayLessThan29(todoRow.date) === true) {
                 console.log("todoDateLoad >= currentDate (M)")
+                plannedTodosOnLoad.push(todoRow);
+            }
+            else if (todoDateLoad >= currentDate &&
+                todoRow.isRecurring === true &&
+                todoRow.recurringType === 'm' &&
+                isDayLessThan29(todoRow.date) === false &&
+                isValidDateExceptFebruary(todoRow.date) === true) {
+                console.log("todoDateLoad >= currentDate (M) ((29 - 30/31 ooa))")
+                plannedTodosOnLoad.push(todoRow);
+            }
+            else if (todoDateLoad >= currentDate &&
+                todoRow.isRecurring === true &&
+                todoRow.recurringType === 'm' &&
+                isDayLessThan29(todoRow.date) === false &&
+                isValidFebruaryDate(todoRow.date) === true) {
+                console.log("todoDateLoad >= currentDate (M) ((29 feb ooa))")
+                plannedTodosOnLoad.push(todoRow);
+            }
+            else if (todoDateLoad >= currentDate &&
+                todoRow.isRecurring === true &&
+                todoRow.recurringType === 'm' &&
+                isDayLessThan29(todoRow.date) === false &&
+                isValidDateExceptFebruary(todoRow.date) === false &&
+                isValidFebruaryDate(todoRow.date) === false) {
+                console.log("todoDateLoad >= currentDate (M) ((> last day of month))")
+
+                replaceInvalidDate(todoRow, plannedTodos);
+
                 plannedTodosOnLoad.push(todoRow);
             }
             // If the recurring month is in the past: update the month (and dataDate) to the coming month (and weekday number)

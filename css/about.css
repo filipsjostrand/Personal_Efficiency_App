@@ -102,6 +102,37 @@
     transform: scale(1.05); /* Zoom in slightly when hovering */
 }
 
+.list-term, li {
+    font-size: 97%;
+}
+
+/* #button-wrapper {
+
+} */
+
+#consultant-button,
+#employment-button,
+#edu-button,
+#ref-button {
+    height: 30px;
+    background-color: rgb(201, 205, 214);
+    border: 1px solid rgb(8, 27, 70);
+    border-radius: 5px;
+    cursor: pointer;
+    color: rgb(2, 6, 17);
+}
+
+
+#consultant-button:active,
+#employment-button:active,
+#edu-button:active,
+#ref-button:active {
+    box-shadow:
+      inset -1px -1px 2px 2px rgb(3, 23, 43),
+      inset 1px 1px 2px 2px rgba(0, 0, 0, 0.6);
+  }
+
+
 
 /* Computer screens and larger (start) */
 @media screen and (min-width: 1024px) {
@@ -146,6 +177,30 @@
         background-size: 225px 225px; /* Adjust the size of the grid */
     }
 
+    /* #button-container {
+        width: 100%;
+        display: flex;
+    } */
+
+    /* #button-wrapper {
+        width: 100%;
+        display: flex;
+    } */
+
+    #consultant-button,
+    #employment-button,
+    #edu-button,
+    #ref-button {
+        width: 24%;
+    }
+
+    #filip-desc {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+    }
+
     #filip-info {
         width: 100%;
     }
@@ -164,6 +219,16 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+
+    #button-wrapper {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        column-gap: 4px;
+        padding-top: 14px;
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-bottom: 1px;
     }
 
     #about-section-wrapper {
@@ -240,6 +305,20 @@
 
         #filip-info {
             padding-bottom: 20px;
+        }
+
+        #filip-desc {
+            margin-bottom: 5px;
+        }
+
+        #button-wrapper {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            column-gap: 4px;
+            padding-top: 14px;
+            padding-left: 5px;
+            padding-right: 5px;
+            padding-bottom: 1px;
         }
 
         #image-container {

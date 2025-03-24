@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Efficiency</title>
     <link rel="canonical" href="https://www.filipsjostrand.github.io" />
-    <link rel="icon" href="sun_fun.ico" type="image/x-icon">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="top3todos.css">
-    <link rel="stylesheet" href="timerstyle.css">
-    <link rel="stylesheet" href="about.css">
-    <link rel="stylesheet" href="footer.css">
+    <link rel="icon" href="./media/img/sun_fun.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/top3todos.css">
+    <link rel="stylesheet" href="./css/timerstyle.css">
+    <link rel="stylesheet" href="./css/about.css">
+    <link rel="stylesheet" href="./css/footer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -258,7 +258,7 @@
           </div>
         </div>
       </section><br>
-      <div class="comment">Current time zone: CET (Central European Time)</div>
+      <div class="comment">Aktuell tidszon: Central European Standard Time (CET)</div>
 
       <section id="future-plans-section">
         <div id="future-plans-wrapper">
@@ -609,16 +609,30 @@
         </div>
 
         <div id="billboard-top50-div">
-            <a href="https://www.youtube.com/watch?v=kPa7bsKwL-c&list=PLx0sYbCqOb8TBPRdmBHs5Iftvv9TPboYG&pp=iAQB8AUB" target="_blank" id="billboard-link-1">Billboard Top 50 #1
-            <img id="billboard-top50-img" src="pexels-myatezhny39-2422404.jpg" alt="Billboard top 50 songs">
+            <a href="https://www.youtube.com/watch?v=kPa7bsKwL-c&list=PLx0sYbCqOb8TBPRdmBHs5Iftvv9TPboYG&pp=iAQB8AUB" target="_blank" id="billboard-link-1"><p class="billboard-link-text">Trending Music #1</p>
+            <img id="billboard-top50-img" src="./media/img/pexels-myatezhny39-2422404.jpg" alt="Billboard top 50 songs">
             </a>
         </div>
 
         <div id="billboard-div">
-                <a href="https://www.youtube.com/watch?v=cF1Na4AIecM&list=PLDIoUOhQQPlWc-Kd6TCjTRIl0Z6fSQV0X" target="_blank" id="billboard-link-2">Billboard Top 50 #2
-                <img id="billboard-img" src="pexels-freestockpro-1031700.jpg" alt="Billboard top songs">
+                <a href="https://www.youtube.com/watch?v=cF1Na4AIecM&list=PLDIoUOhQQPlWc-Kd6TCjTRIl0Z6fSQV0X" target="_blank" id="billboard-link-2"><p class="billboard-link-text">Trending Music #2</p>
+                <img id="billboard-img" src="./media/img/pexels-freestockpro-1031700.jpg" alt="Billboard top songs">
                 </a>
         </div>
+
+        <div id="iframe-container-f">
+          <iframe
+              id="music-player-lofi-girl"
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/V0Ddn6Ldcuc?list=PLokZxVutIzTQMMoDsz1qrLSYywgswhz3Q"
+              title="Beautiful Life - Summer Fruits | @RFM_NCM"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen>
+          </iframe>
+      </div>
 
         <div id="iframe-container-c">
             <iframe
@@ -662,19 +676,6 @@
             </iframe>
         </div>
 
-        <div id="iframe-container-f">
-          <iframe
-              id="music-player-lofi-girl"
-              width="560"
-              height="315"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen>
-          </iframe>
-      </div>
-
       <!-- youtube-iframe-divs (end) -->
 
       </div>
@@ -686,7 +687,6 @@
           alt="Oversimplified [ALARM CLOCK], by Lesiakower, from: https://pixabay.com/sound-effects/oversimplified-alarm-clock-113180/"
           preload="auto">
       </audio>
-
 
       </section>
 
@@ -705,6 +705,8 @@
               <p>Namn: Filip Sjöstrand</p>
               <span>Födelseår: 1985</span><br>
               <span>Bostadsort: Växjö</span><br>
+              <a href="#contact-info-div" alt="link to contact info"><p>Kontakt: ⬇️</p></a>
+
             </div>
             <div id="image-container">
               <div id="image-wrapper">
@@ -713,9 +715,30 @@
             </div>
           </div>
 
-          <p>Konsult | Programmerare | Ingenjör | Läxhjälpare | Lagledare | Författare</p><br><br>
+          <p id="filip-desc">Konsult | Programmerare | Ingenjör | Läxhjälpare | Lagledare | Författare</p>
+          <!-- <br><br> -->
 
-          <button>Tjänster</button> <button>Erfarenhet</button> <button>Utbildning</button> <button>Referenser</button> <br><br>
+          <div id="button-container">
+            <div id="button-wrapper">
+              <a href="https://docs.google.com/spreadsheets/d/16xyzQTj4lv9sda_N9nL30jtmY8T9ZH0oOfohrC-cC28/edit?usp=sharing" target="_blank">
+              <button id="consultant-button">Konsultande</button>
+              </a>
+
+              <a href="https://docs.google.com/spreadsheets/d/1T0DDac-9PDkUwS2AKMkAtCVaMUD3Jr90eSSdtlDtXDs/edit?usp=sharing" target="_blank">
+               <button id="employment-button">Anställningar</button>
+              </a>
+
+              <a href="https://docs.google.com/spreadsheets/d/1HCQZwjj94Enwtw1rmGBZ2c_m_4JdIsiP6t1LmY--i0Q/edit?usp=sharing" target="_blank">
+              <button id="edu-button">Utbildning</button>
+              </a>
+
+              <a href="https://docs.google.com/spreadsheets/d/1vHtHscZ18Da1uZVxSNdHWXDzbaOMAoG3G2GmjtpevF0/edit?usp=sharing" target="_blank">
+              <button id="ref-button">Referenser</button>
+              </a>
+
+              <br><br>
+            </div>
+          </div>
 
           <b>Är</b>
           <ul>
@@ -731,21 +754,24 @@
           <ul>
             <li>Göra gott</li>
             <li>Spara energi</li>
-            <li>Skapa hållbara lösningar.</li>
+            <li>Hitta glädje & enkelhet.</li>
           </ul>
           <br>
 
           <b>Kan</b>
           <ul>
+            <li>Blåställsarbeta,</li>
             <li>Omvandla</li>
-            <li>skrift,</li>
-            <li>kalkyler,</li>
-            <li>kod,</li>
-            <li>(till praktisk nytta).</li>
+              <ul>
+              <li class="list-term">text,</li>
+              <li class="list-term">siffror,</li>
+              <li class="list-term">kod</li>
+              <li class="list-term">till praktisk nytta.</li>
+            </ul>
           </ul>
           <br>
 
-          <p id="i-like-div">Gillar att dela kunskap och lösa problem tillsammans med andra.</p><br><br>
+          <p id="i-like-div">Gillar att dela kunskap, glädje och att lösa problem tillsammans med andra.</p><br><br>
 
           <div id="tools-wrapper">
             <div><p><u>Verktyg:</u></p></div>
@@ -791,7 +817,7 @@
 <div id="about-section-divider-2"></div>
 <div id="about-section-divider-3"></div>
 <div id="efficiency-image-container">
-  <img src="sun_big_fun.png" id="efficiency-image" alt="sun">
+  <img src="./media/img/sun_big_fun.png" id="efficiency-image" alt="sun">
   <div id="link-wrapper">
     <a class="bg-photograph-link" href="https://www.pexels.com/photo/painting-of-red-planet-87611/" target="_blank" alt="Pixabay (pexels.com)">Photo: Pixabay (pexels.com)</a>
   </div>
@@ -800,9 +826,9 @@
 <!-- Footer (start) -->
 <div id="main-footer-container">
 
-  <div class="footer-contact">
+  <div class="footer-contact" id="contact-info-div">
       <h3>Contact</h3>
-      <a href="mailto: filip_sjostrand@99sleepideas.com" title="filip_sjostrand@99sleepideas.com">Send e-mail <i class="fa-solid fa-envelope"></i></a>
+      <a href="mailto: filip_sjostrand@hotmail.com" title="filip_sjostrand@hotmail.com">Send e-mail <i class="fa-solid fa-envelope"></i></a>
 
       <!-- Contact Form -->
       <a class="get-contact-form" id="form-button" title="Contact Form">Contact Form <i class="fa-solid fa-pencil"></i></a>
@@ -941,15 +967,15 @@
 
 
       <!-- <script async src="future-plans.js"></script> -->
-      <script async src="language.js"></script>
-      <script async src="top-3-todos.js"></script>
-      <script async src="future-plans.js"></script>
-      <script async src="timer-app.js"></script>
-      <script src="photo-script.js"></script>
-      <script async src="footer.js"></script>
+      <script async src="./scripts/language.js"></script>
+      <script async src="./scripts/top-3-todos.js"></script>
+      <script async src="./scripts/future-plans.js"></script>
+      <script async src="./scripts/timer-app.js"></script>
+      <script src="./scripts/photo-script.js"></script>
+      <script async src="./scripts/footer.js"></script>
       <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
       <script>emailjs.init("uXilaKD1gHjMOC_Fk");</script>
-      <script async src="contact-form.js"></script>
+      <script async src="./scripts/contact-form.js"></script>
       <!-- <script src="contact-form.js"></script> -->
 </body>
 </html>
