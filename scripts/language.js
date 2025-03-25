@@ -142,10 +142,10 @@
     en: "Sun",
   }
 
-  // Get the current day of the week (0 = Sunday, 1 = Monday, ...)
+  // Get the current day number of the week (0 = Sunday, 1 = Monday, ...)
   var todaysWeekdayAbbNr = new Date().getDay();
 
-  // Get the image element by its ID
+  // Day id variable
   var dailyAbbreviation;
 
 function getTodaysDayAbbreviation(todaysWeekdayAbbNr) {
@@ -182,35 +182,10 @@ function getTodaysDayAbbreviation(todaysWeekdayAbbNr) {
   return dailyAbbreviation;
 }
 
-  // dailyAbbreviation = [
-  //   sunDayAbb[selectedLanguage],    // Replace with your Sunday [selectedLanguage]
-  //   monDayAbb[selectedLanguage],    // Replace with your Monday [selectedLanguage]
-  //   tueDayAbb[selectedLanguage],   // Replace with your Tuesday [selectedLanguage]
-  //   wedDayAbb[selectedLanguage], // Replace with your Wednesday [selectedLanguage]
-  //   thuDayAbb[selectedLanguage],  // Replace with your Thursday [selectedLanguage]
-  //   friDayAbb[selectedLanguage],    // Replace with your Friday [selectedLanguage]
-  //   satDayAbb[selectedLanguage]   // Replace with your Saturday [selectedLanguage]
-  // ];
-
-
-
-  // // Set the source of the image element to today's image
-  // dailyAbbreviation = dailyAbbreviation[todaysWeekday];
-
-  // // Provide an alt text description dynamically
-  // const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-  // dailyAbbreviation.alt = `Abbreviation for ${dayNames[todaysWeekday]}`;
-
-  // _ _ _
-
-  // let weekdayDisplayText = getTodaysDayAbbreviation(todaysWeekdayAbbNr);
-
-  // console.log("weekdayDisplayText = " + weekdayDisplayText);
 
 // _ _ _
 
   // const weekdayDisplayText = {
-  //   dailyAbbreviation
   //   // sv: "Ons",
   //   // en: "Wed",
   // }
@@ -412,12 +387,12 @@ const futureHeading = {
 // }
 
 const futureDesc = {
-  sv: `Hantera <u id="current-plan-words">Framtidsplaner</u> och visa <u id="past-tasks-words">Tidigare uppgifter</u>:
+  sv: `Hantera <u id="current-plan-words">Framtidsplaner</u> och visa <u id="past-tasks-words">Tidigare händelser</u>:
     <ul>
       <li id="add-list">Lägg till uppgift / Ladda fil (Schema).</li>
       <li id="save-list">Spara (Schema).</li>
       <li id="edit-list">Redigera (i tabell).</li>
-      <li id="copy-clear-list">Kopiera/rensa (tidigare uppgifter).</li>
+      <li id="copy-clear-list">Kopiera/rensa (tidigare händelser).</li>
     </ul>
   `,
   en: `Handle <u id="current-plan-words">"Future Plans"</u> and watch <u id="past-tasks-words">Past tasks</u>:
@@ -1390,7 +1365,7 @@ const userMessagePlaceholder = {
           document.getElementById('sun-day').innerHTML = recSun[selectedLanguage];
 
           document.getElementById('event-duration-day').innerHTML = eventDurationDay[selectedLanguage];
-          document.getElementById('every-week').innerHTML = eachWeek[selectedLanguage];
+          document.getElementById('every-week-label').innerHTML = eachWeek[selectedLanguage];
 
           document.getElementById('event-duration-week').innerHTML = eventDurationWeek[selectedLanguage];
           document.getElementById('event-duration-month').innerHTML = eventDurationMonth[selectedLanguage];

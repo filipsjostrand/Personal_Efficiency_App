@@ -112,16 +112,21 @@
               </div>
           </div>
           <br>
-          <h4 id="app-info">Application information</h4>
-              <div class="info">
-              <ol>
-                  <li><b>Reset:</b> &nbsp Press "Start Reset" (application reactivates).</li><br>
-                  <li><b>Add:</b> &nbsp Write a todo text &nbsp &nbsp → &nbsp &nbsp press "Add Todo" (ensure "Top3 list" is selected in rolldown).</li><br>
-                  <li><b>Replace: </b> &nbsp Write a new todo text &nbsp &nbsp → &nbsp &nbsp select "#" (to replace) in rolldown &nbsp &nbsp → &nbsp &nbsp press "Add Todo".</li>
-              </ol>
-                  <br>
+
+
+            <div id="top-3-info-header">
+              <a href="#" id="toggle-link"><h4 id="app-info">Application information </h4><div id="info-symbol">ℹ️</div></a>
+            </div>
+              <div class="info" id="content" style="display: none;">
+                <ol>
+                    <li><b>Reset:</b> &nbsp Press "Start Reset" (application reactivates).</li><br>
+                    <li><b>Add:</b> &nbsp Write a todo text &nbsp &nbsp → &nbsp &nbsp press "Add Todo" (ensure "Top3 list" is selected in rolldown).</li><br>
+                    <li><b>Replace: </b> &nbsp Write a new todo text &nbsp &nbsp → &nbsp &nbsp select "#" (to replace) in rolldown &nbsp &nbsp → &nbsp &nbsp press "Add Todo".</li>
+                </ol>
+                    <br>
 
               </div>
+
 
             <!-- _ _ _ Top 3 Todos (end) -->
         </div>
@@ -397,7 +402,7 @@
             </div>
             <div id="each-week">
               <input type="checkbox" id="every-week" name="every-week"/>
-              <label id="every-week" for="every-week">Every week</label>
+              <label id="every-week-label" for="every-week">Every week</label>
             </div>
           </fieldset>
 
