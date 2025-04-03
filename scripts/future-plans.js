@@ -13,12 +13,115 @@
 
 // _ _ _
 
+// Toggle info-div (week schedule)
+const toggleLinkWeek = document.getElementById("toggle-link-week");
+const contentWeek = document.getElementById("content-week");
+
+toggleLinkWeek.addEventListener("click", function (event) {
+    event.preventDefault(); // Prevent the anchor from navigating or refreshing the page
+    if (contentWeek.style.display === "none") {
+        contentWeek.style.display = "flex"; // Show the content as flex
+    } else {
+        contentWeek.style.display = "none"; // Hide the content
+    }
+});
+
+// Toggle info-div (future plans)
+const toggleLinkFuture = document.getElementById("toggle-link-future");
+const contentFuture = document.getElementById("content-future");
+
+toggleLinkFuture.addEventListener("click", function (event) {
+    event.preventDefault(); // Prevent the anchor from navigating or refreshing the page
+    if (contentFuture.style.display === "none") {
+        contentFuture.style.display = "flex"; // Show the content as flex
+    } else {
+        contentFuture.style.display = "none"; // Hide the content
+    }
+});
+
 let fileHandle;
 const dateInput = document.getElementById('date-input');
 
 // Ska todo-objekt-array ("plannedTodos") innehålla några objekt från början (exempelvis 3 till 9 objekt/dag*365 dagar = 3285 objekt/år) eller ska den vara tom?
 
 var plannedTodos = [];
+
+// _ _ _
+
+// if (localStorage.getItem("selectedLanguage") === null) {
+//     localStorage.setItem("selectedLanguage", "sv");
+// }
+
+// _ _ _
+
+
+// disableDefaultTaskRows();
+
+// _ _ _
+
+
+// let pastPlansTextArea = document.getElementById('past-tasks-input-field');
+
+// // var pastPlanStringLS = JSON.parse(localStorage.getItem("pastPlanStringLS"));
+// var pastPlanStringLS = localStorage.getItem("pastPlanStringLS");
+// console.log("pastPlanStringLS = " + pastPlanStringLS);
+
+// if (pastPlanStringLS !== '') {
+//     pastPlansTextArea.innerHTML = localStorage.getItem("pastPlanStringLS");
+//     pastPlansTextArea.value = localStorage.getItem("pastPlanStringLS");
+
+//     // pastPlansTextArea.innerHTML = JSON.parse(localStorage.getItem("pastPlanStringLS")).trim();
+//     // pastPlansTextArea.value = JSON.parse(localStorage.getItem("pastPlanStringLS")).trim();
+
+// }
+
+// _ _ _
+
+
+// _ _ _// _ _ _
+
+// var currentMondayTodoItems = document.querySelectorAll(".monday-target-div");
+// var currentTuesdayTodoItems = document.querySelectorAll(".tuesday-target-div");
+// var currentWednesdayTodoItems = document.querySelectorAll(".wednesday-target-div");
+// var currentThursdayTodoItems = document.querySelectorAll(".thursday-target-div");
+// var currentFridayTodoItems = document.querySelectorAll(".friday-target-div");
+// var currentSaturdayTodoItems = document.querySelectorAll(".saturday-target-div");
+// var currentSundayTodoItems = document.querySelectorAll(".sunday-target-div");
+
+// let mondayTodoItem = document.querySelector(".mon-todo-week-item");
+// let tuesdayTodoItem = document.querySelector(".tue-todo-week-item");
+// let wednesdayTodoItem = document.querySelector(".wed-todo-week-item");
+// let thursdayTodoItem = document.querySelector(".thu-todo-week-item");
+// let fridayTodoItem = document.querySelector(".fri-todo-week-item");
+// let saturdayTodoItem = document.querySelector(".sat-todo-week-item");
+// let sundayTodoItem = document.querySelector(".sun-todo-week-item");
+
+// let currentMonCollection = document.getElementsByClassName("mon-todo-week-item");
+// let currentTueCollection = document.getElementsByClassName("tue-todo-week-item");
+// let currentWedCollection = document.getElementsByClassName("wed-todo-week-item");
+// let currentThuCollection = document.getElementsByClassName("thu-todo-week-item");
+// let currentFriCollection = document.getElementsByClassName("fri-todo-week-item");
+// let currentSatCollection = document.getElementsByClassName("sat-todo-week-item");
+// let currentSunCollection = document.getElementsByClassName("sun-todo-week-item");
+
+// let mondayTodoCollection = document.querySelectorAll(".grid-item day1");
+// let tuesdayTodoCollection = document.querySelectorAll(".grid-item day2");
+// let wednesdayTodoCollection = document.querySelectorAll(".grid-item day3");
+// let thursdayTodoCollection = document.querySelectorAll(".grid-item day4");
+// let fridayTodoCollection = document.querySelectorAll(".grid-item day5");
+// let saturdayTodoCollection = document.querySelectorAll(".grid-item day6");
+// let sundayTodoCollection = document.querySelectorAll(".grid-item day7");
+
+// _ _ _// _ _ _
+
+// if (plannedTodos.length === 0 && localStorage.getItem("plannedTodosLS") !== 0) {
+//     console.log("plannedTodos.length === 0   ((plannedTodos = plannedTodosLS))")
+//     let plannedTodos = JSON.parse(localStorage.getItem("plannedTodosLS"));
+//     console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos));
+//     updateCurrentWeekSchedule(plannedTodos);
+// }
+
+// var plannedTodosLS = [];
 
 // _ _ _
 // _ _ _
@@ -426,8 +529,11 @@ class ChoiceManager {
 
 
 
+// _ _ _
+
     // if (plannedTodos.length >= 1)
     function disableFirstTaskRowDivs() {
+        console.log("disableFirstTaskRowDivs() körs");
         document.getElementById("todo-0-date").disabled = true;
         document.getElementById("todo-0-text").disabled = true;
         document.getElementById("todo-0-color").disabled = true;
@@ -435,6 +541,7 @@ class ChoiceManager {
 
     // if (plannedTodos.length < 1)
     function enableFirstTaskRowDivs() {
+        console.log("enableFirstTaskRowDivs() körs");
         document.getElementById("todo-0-date").disabled = false;
         document.getElementById("todo-0-text").disabled = false;
         document.getElementById("todo-0-color").disabled = false;
@@ -444,6 +551,7 @@ class ChoiceManager {
 
     // if (plannedTodos.length < 2)
     function disableSecondTaskRowDivs() {
+        console.log("disableSecondTaskRowDivs() körs");
         document.getElementById("todo-1-date").disabled = true;
         document.getElementById("todo-1-text").disabled = true;
         document.getElementById("todo-1-color").disabled = true;
@@ -451,6 +559,7 @@ class ChoiceManager {
 
     // if (plannedTodos.length >= 2)
     function enableSecondTaskRowDivs() {
+        console.log("enableSecondTaskRowDivs() körs");
         document.getElementById("todo-1-date").disabled = false;
         document.getElementById("todo-1-text").disabled = false;
         document.getElementById("todo-1-color").disabled = false;
@@ -460,6 +569,7 @@ class ChoiceManager {
 
     // if (plannedTodos.length < 3)
     function disableThirdTaskRowDivs() {
+        console.log("disableThirdTaskRowDivs() körs");
         document.getElementById("todo-2-date").disabled = true;
         document.getElementById("todo-2-text").disabled = true;
         document.getElementById("todo-2-color").disabled = true;
@@ -467,6 +577,7 @@ class ChoiceManager {
 
     // if (plannedTodos.length >= 3)
     function enableThirdTaskRowDivs() {
+        console.log("enableThirdTaskRowDivs() körs");
         document.getElementById("todo-2-date").disabled = false;
         document.getElementById("todo-2-text").disabled = false;
         document.getElementById("todo-2-color").disabled = false;
@@ -474,35 +585,143 @@ class ChoiceManager {
 
     // if (plannedTodos.length === 0)
     function disableDefaultTaskRows() {
+        console.log("disableDefaultTaskRows() körs");
         disableFirstTaskRowDivs();
         disableSecondTaskRowDivs();
         disableThirdTaskRowDivs();
     }
 
-function handleEnableDisableDefaultRows() {
-    console.log("handleEnableDisableDefaultRows() körs");
-    if (plannedTodos.length === 0) {
-        console.log("No plannedTodos added.");
-        disableDefaultTaskRows();
-        // Add logic for plannedTodos.length === 1
-    } else if (plannedTodos.length === 1) {
-        console.log("There is 1 planned todos.");
-        enableFirstTaskRowDivs();
-        disableSecondTaskRowDivs();
-        disableThirdTaskRowDivs();
-    } else if (plannedTodos.length === 2) {
-        console.log("There are 2 planned todos. Execute different behavior.");
-        enableFirstTaskRowDivs();
-        enableSecondTaskRowDivs();
-        disableThirdTaskRowDivs();
-        // Add logic for plannedTodos.length === 2
-    } else if (plannedTodos.length >= 3) {
-        console.log("There are 3 planned todos. Handle accordingly.");
-        enableFirstTaskRowDivs();
-        enableSecondTaskRowDivs();
-        enableThirdTaskRowDivs();
+    function handleEnableDisableDefaultRows() {
+        if (plannedTodos.length === 0) {
+            //No plannedTodos added.
+            disableDefaultTaskRows();
+        } else if (plannedTodos.length === 1) {
+            //There is 1 planned todos.
+            enableFirstTaskRowDivs();
+            disableSecondTaskRowDivs();
+            disableThirdTaskRowDivs();
+        } else if (plannedTodos.length === 2) {
+            //There are 2 planned todos. Execute different behavior.
+            enableFirstTaskRowDivs();
+            enableSecondTaskRowDivs();
+            disableThirdTaskRowDivs();
+        } else if (plannedTodos.length >= 3) {
+            //There are 3 planned todos. Handle accordingly.
+            enableFirstTaskRowDivs();
+            enableSecondTaskRowDivs();
+            enableThirdTaskRowDivs();
+        }
     }
-}
+
+    // _ _ _
+
+// function handleEnableDisableDefaultRows() {
+//     console.log("handleEnableDisableDefaultRows() körs");
+
+//     // Retrieve from localStorage
+//     let plannedTodosLS = localStorage.getItem("plannedTodosLS");
+
+//     // Parse and check length
+//     if (plannedTodosLS && JSON.parse(plannedTodosLS).length === 0) {
+//         console.log("plannedTodosLS has exactly 0 item.");
+//         disableDefaultTaskRows();
+//     } else if (plannedTodosLS && JSON.parse(plannedTodosLS).length === 1) {
+//         enableFirstTaskRowDivs();
+//         disableSecondTaskRowDivs();
+//         disableThirdTaskRowDivs();
+//         console.log("plannedTodosLS has exactly 1 item.");
+//     } else if (plannedTodosLS && JSON.parse(plannedTodosLS).length === 2) {
+//         console.log("plannedTodosLS === 2 item.");
+//         enableFirstTaskRowDivs();
+//         enableSecondTaskRowDivs();
+//         disableThirdTaskRowDivs();
+//     }
+//     else if (plannedTodosLS && JSON.parse(plannedTodosLS).length >= 3) {
+//         console.log("plannedTodosLS >= 3 item.");
+//         enableFirstTaskRowDivs();
+//         enableSecondTaskRowDivs();
+//         enableThirdTaskRowDivs();
+//     }
+
+//     // // Parse it and check the length
+//     // let length = plannedTodosLS ? JSON.parse(plannedTodosLS).length : 0;
+
+//     // console.log("Length of plannedTodosLS:", length);
+
+//     // let plannedTodosLS = localStorage.getItem("plannedTodosLS");
+
+//     // console.log("localStorage.getItem('plannedTodosLS') = " + localStorage.getItem('plannedTodosLS'));
+//     // console.log("JSON.parse(plannedTodosLS).length = " + JSON.parse(plannedTodosLS).length);
+//     // console.log("JSON.parse(localStorage.getItem('plannedTodosLS')).length = " + JSON.parse(localStorage.getItem('plannedTodosLS')).length);
+//     console.log("plannedTodos.length = " + plannedTodos.length);
+
+
+//     if (localStorage.getItem("plannedTodosLS") === null) {
+
+//         localStorage.setItem("plannedTodosLS", JSON.stringify([]));
+
+//         if (plannedTodos.length === 0) {
+//             //No plannedTodos added.
+//             disableDefaultTaskRows();
+//         } else if (plannedTodos.length === 1) {
+//             //There is 1 planned todos.
+//             enableFirstTaskRowDivs();
+//             disableSecondTaskRowDivs();
+//             disableThirdTaskRowDivs();
+//         } else if (plannedTodos.length === 2) {
+//             //There are 2 planned todos. Execute different behavior.
+//             enableFirstTaskRowDivs();
+//             enableSecondTaskRowDivs();
+//             disableThirdTaskRowDivs();
+//         } else if (plannedTodos.length >= 3) {
+//             //There are 3 planned todos. Handle accordingly.
+//             enableFirstTaskRowDivs();
+//             enableSecondTaskRowDivs();
+//             enableThirdTaskRowDivs();
+//         }
+
+//     } else if (plannedTodos.length === 0 && localStorage.getItem("plannedTodosLS") === JSON.stringify([])) {
+//         disableDefaultTaskRows()
+//         console.log("No plannedTodos added.");
+//     }
+//     else if (plannedTodos.length === 0 && localStorage.getItem("plannedTodosLS") === JSON.stringify([])) {
+
+//         if (plannedTodos.length > 0 && localStorage.getItem("plannedTodosLS").length > 0) {
+
+//             // if (plannedTodos.length >= 3) {
+//             //     console.log("add dynamic container");
+//             //     dynamicContainerToken = "load_func";
+//             //     dynamicContainerDataId = plannedTodos.length;
+//             //     console.log("plannedTodos.length (add rec day everyday) = " + plannedTodos.length);
+//             //     addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
+//             // }
+
+//             // console.log("No plannedTodos added.");
+//             // disableDefaultTaskRows();
+
+//             // Add logic for plannedTodos.length === 1
+//             if (plannedTodos.length === 1 && localStorage.getItem("plannedTodosLS").length === 1) {
+//                 console.log("There is 1 planned todos.");
+//                 enableFirstTaskRowDivs();
+//                 disableSecondTaskRowDivs();
+//                 disableThirdTaskRowDivs();
+//             } else if (plannedTodos.length === 2 && localStorage.getItem("plannedTodosLS").length === 2) {
+//                 console.log("There are 2 planned todos. Execute different behavior.");
+//                 enableFirstTaskRowDivs();
+//                 enableSecondTaskRowDivs();
+//                 disableThirdTaskRowDivs();
+//                 // Add logic for plannedTodos.length === 2
+//             } else if (plannedTodos.length >= 3 && localStorage.getItem("plannedTodosLS").length >= 3) {
+//                 console.log("There are 3 planned todos. Handle accordingly.");
+//                 enableFirstTaskRowDivs();
+//                 enableSecondTaskRowDivs();
+//                 enableThirdTaskRowDivs();
+//             }
+//         }
+//     }
+// }
+
+    // _ _ _
 
 handleEnableDisableDefaultRows();
 
@@ -1060,7 +1279,9 @@ let colorPickerPurple = document.getElementById('purple-color');
 let colorPickerRed = document.getElementById('red-color');
 
 // Clear todos...
+// let clearAllButton = document.getElementById('clear-schedule');
 let clearAllButton = document.getElementById('clear-all');
+// let clearAppDataButton = document.getElementById('clear-all-data');
 let clearSpecificTodoRowButton = document.getElementById('trash-can');
 
 // Color definition
@@ -1099,6 +1320,10 @@ const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
     // currentWeekDayToBeHandled = "mon" / "tue" / "wed" / ... / "sun"
     function getCurrentWeekDayForSelectedLanguage(currentWeekDayToBeHandled) {
+
+        // if (sessionStorage.getItem("languageVariable") === null) {
+        //     sessionStorage.setItem("languageVariable", "sv");
+        // }
 
         selectedLanguage = sessionStorage.getItem("languageVariable");
 
@@ -1171,7 +1396,7 @@ const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
     // _ _ _
 
-    // Function to get the current date in CET
+    // Function to get the current date in CET (Winter Time)
     function getCETDate() {
         const now = new Date();
         // Convert to milliseconds
@@ -1184,6 +1409,19 @@ const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
         return new Date(cetTime);
     }
 
+        // _ _ _
+        // Function to get the current date in CET (Format: YYYY-MM-DD)
+    function getCETDateYYYYMMDD() {
+        const now = new Date();
+        return new Intl.DateTimeFormat("sv-SE", {
+            timeZone: "Europe/Berlin", // CET Timezone
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit"
+        }).format(now);
+    }
+        // _ _ _
+
 
     function capitalizeFirstLetter(str) {
         if (!str) return ''; // Handle empty strings
@@ -1192,6 +1430,8 @@ const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
       // Get today's date in CET
       const today = getCETDate();
+
+      console.log("today (getCETDate() = " + today)
 
       // Display current weekday
       const weekdayDisplay = document.getElementById('weekday-display');
@@ -1209,8 +1449,8 @@ const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
       // Display today's date
       const dateDisplay = document.getElementById('date-display');
-      dateDisplay.textContent = `${formatDate(today)}`;
-
+    //   dateDisplay.textContent = `${formatDate(today)}`;
+      dateDisplay.textContent = getCETDateYYYYMMDD();
 
 
 
@@ -2500,6 +2740,44 @@ let plannedTodosObjectsArray = [];
     });
 
     // _ _ _
+    // _ _ _
+
+    // // if (plannedTodos.length === 0 && localStorage.getItem("plannedTodosLS") !== 0) {
+    //     if (plannedTodos.length === 0 && localStorage.getItem("plannedTodosLS") !== 0) {
+    //     console.log("plannedTodos.length === 0   ((plannedTodos = plannedTodosLS))")
+    //         if (JSON.stringify(localStorage.getItem("plannedTodosLS")) === null) {
+    //             // localStorage.setItem("plannedTodosLS", []);
+    //             console.log("localStorage.getItem('plannedTodosLS') = null");
+    //             localStorage.setItem("plannedTodosLS", JSON.stringify([]));
+    //             console.log("localStorage.getItem('plannedTodosLS') = " + localStorage.getItem("plannedTodosLS"));
+    //         } else if (JSON.parse(localStorage.getItem("plannedTodosLS") === JSON.stringify([]))) {
+
+    //         }
+    //         else if (JSON.parse(localStorage.getItem("plannedTodosLS") !== null)) {
+
+    //                 // let plannedTodos = JSON.parse(localStorage.getItem("plannedTodosLS")) || [];
+    //                 let plannedTodos = JSON.parse(localStorage.getItem("plannedTodosLS"));
+    //                 console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos));
+    //                 console.log("plannedTodos[0].date = " + plannedTodos[0].date);
+
+    //                 if (plannedTodos.length === 1) {
+    //                     enableFirstTaskRowDivs();
+    //                 } else if (plannedTodos.length === 2) {
+    //                     enableFirstTaskRowDivs();
+    //                     enableSecondTaskRowDivs();
+    //                 }
+    //                 else if (plannedTodos.length > 2) {
+    //                     enableFirstTaskRowDivs();
+    //                     enableSecondTaskRowDivs();
+    //                     enableThirdTaskRowDivs();
+    //                 }
+
+    //             updateCurrentWeekSchedule(false);
+    //         }
+    // }
+
+    // _ _ _
+    // _ _ _
 
     // var enterKeyPressActive = false;
 
@@ -3623,6 +3901,22 @@ let plannedTodosObjectsArray = [];
 
     // _ _ _
     // _ _ _
+    // _ _ _
+
+    // // plannedTodosLS = plannedTodos;
+
+    // // var plannedTodosLS = [];
+
+    // var plannedTodosLS;
+
+    // // localStorage.setItem(plannedTodosLS, plannedTodos);
+    // localStorage.setItem("plannedTodosLS", JSON.stringify(plannedTodos));
+    // console.log("JSON.stringify(plannedTodosLS) = " + JSON.stringify(plannedTodosLS));
+    // console.log("localStorage.setItem('plannedTodosLS') = " + localStorage.getItem("plannedTodosLS"));
+
+    // _ _ _
+    // _ _ _
+    // _ _ _
 
     updateRecurringPlannedTodos(plannedTodos);
 
@@ -3648,6 +3942,7 @@ let plannedTodosObjectsArray = [];
     recurringYearDayDurationInput.value = 1;
     recCheckBoxIsUnchecked();
     isRecurringCheckbox.checked = false;
+
 }
 
 // function addTaskToList() (end)
@@ -6943,13 +7238,22 @@ let specificTodoContainer = wrapperContainer.getElementsByClassName('todo-contai
         // console.log("plannedTodos.length = " + plannedTodos.length);
         // console.log("plannedTodos = " + plannedTodos);
 
+            // _ _ _
+        // localStorage.setItem("pastPlanStringLS", "");
+        // localStorage.setItem("plannedTodosLS", JSON.stringify([]));
+        // // localStorage.removeItem("plannedTodosLS");
+            // _ _ _
+
         if (dateCollection[0].value !== undefined && plannedTodos.length > 0 && plannedTodos !== undefined) {
 
             console.log("todoElements = " + todoElements);
 
             todoElements.forEach((element) => {
                 element.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+                // element.style.backgroundColor = 'rgb(202, 202, 202)';
             });
+
+
 
                 // clear the DOM todo data
                 for (let i = 0; i < dateCollection.length; i++) {
@@ -7137,10 +7441,35 @@ let specificTodoContainer = wrapperContainer.getElementsByClassName('todo-contai
             //     textInputValue.focus();
             // }
         }
+
+        if (plannedTodos.length === 0) {
+            disableDefaultTaskRows();
+        }
+
         console.log("clearAll() end")
     }
 
 clearAllButton.addEventListener('click', clearAll);
+
+// _ _ _
+
+// clearAppDataButton.addEventListener('click', clearAppData);
+
+// function clearAppData() {
+//     console.log("clearAppData() körs")
+//     // pastPlansTextArea.innerHTML = '';
+//     // pastPlansTextArea.value = '';
+//     // clearAll();
+//     localStorage.removeItem("pastPlanStringLS");
+//     localStorage.removeItem("plannedTodosLS");
+//     localStorage.clear();
+//     clearAll();
+// }
+
+// _ _ _
+
+// clearAppDataButton.addEventListener('click', clearAppData);
+
 // _ _ _
 // clearAllButton.addEventListener('click', clearAll());
 // console.log("clearAllButton.addEventListener('click' ... körs")
@@ -7286,6 +7615,9 @@ let newSunWeekDiv = document.createElement("sun-schedule-div");
 // let currentSaturdayTodoItems = document.querySelectorAll(".saturday-target-div");
 // let currentSundayTodoItems = document.querySelectorAll(".sunday-target-div");
 
+// _ _ _// _ _ _
+// 2025-03-31 ((FIX plannedTodosLS)): Test (moving currentXdayTodoItems further up (?))
+
 var currentMondayTodoItems = document.querySelectorAll(".monday-target-div");
 var currentTuesdayTodoItems = document.querySelectorAll(".tuesday-target-div");
 var currentWednesdayTodoItems = document.querySelectorAll(".wednesday-target-div");
@@ -7293,6 +7625,8 @@ var currentThursdayTodoItems = document.querySelectorAll(".thursday-target-div")
 var currentFridayTodoItems = document.querySelectorAll(".friday-target-div");
 var currentSaturdayTodoItems = document.querySelectorAll(".saturday-target-div");
 var currentSundayTodoItems = document.querySelectorAll(".sunday-target-div");
+
+// _ _ _
 
 let mondayTodoItem = document.querySelector(".mon-todo-week-item");
 let tuesdayTodoItem = document.querySelector(".tue-todo-week-item");
@@ -7338,6 +7672,8 @@ let fridayTodoCollection = document.querySelectorAll(".grid-item day5");
 let saturdayTodoCollection = document.querySelectorAll(".grid-item day6");
 let sundayTodoCollection = document.querySelectorAll(".grid-item day7");
 
+
+// _ _ _// _ _ _
 
 
 // function updateCurrentWeekScheduleSpecial() {
@@ -7675,191 +8011,266 @@ function updateCurrentWeekSchedule(specialUpdateBoolean) {
         // _ _ _
 
 
-        console.log("plannedTodos.length = " + plannedTodos.length)
-        console.log("JSON.stringify(plannedTodos) (i updateCurrentWeekSchedule) = " + JSON.stringify(plannedTodos))
-
         // _ _ _
-        // _ _ _ (2025-01-07 test)
 
-        // Uppdatera DOM:en (för recurring Todos, "year")
+        // // If plannedTodos.length is empty -> plannedTodos = plannedTodosLS
+        // if (plannedTodos.length === 0 && JSON.parse(localStorage.getItem("plannedTodosLS")).length > 0) {
+        //         plannedTodos = JSON.parse(localStorage.getItem("plannedTodosLS"));
 
-        // if the year for the recurring plannedTodos is in the past:
+        //         console.log("plannedTodos.length (= plannedTodosLS) = " + plannedTodos.length)
+        //         console.log("JSON.stringify(plannedTodos) (i updateCurrentWeekSchedule) (= plannedTodosLS) = " + JSON.stringify(plannedTodos))
 
-        console.log("if the year for the recurring plannedTodos (recurringType: 'y') is in the past (future (for this test)):")
+        //     // _ _ _
 
-        // if (defaultDate === undefined) {
-        //     defaultDate = dateDisplay.textContent;
+        //         plannedTodos.forEach(todoRow => {
+
+        //             todoRow.date
+
+        //             // let element = document.querySelector(".todo-date");
+        //             // let dataId = element.getAttribute("data-id");
+        //             // console.log("dataId (i updatgeCurrentWeekSchedule gg (1) = " + dataId);
+
+        //             // if (plannedTodos.length > 3 && dataId < 2) {
+        //             // } else if (plannedTodos.length > 3 && dataId > 2) {
+        //                 if (plannedTodos.length !== dateCollection.length && plannedTodos.length > dateCollection.length) {
+        //                 // addDynamicTodoContainer();
+        //                 for (let i = 3; i < plannedTodos.length; i++) {
+        //                     console.log("i ooa (i plannedTodosLS updateCurrentWeekSchedule) = " + i)
+        //                     if (plannedTodos[i].date >= dateDisplay.textContent) {
+        //                         console.log("plannedTodos[i].date >= dateDisplay.textContent");
+        //                         console.log("plannedTodos[i].date = " + plannedTodos[i].date);
+        //                         dynamicContainerToken = "load_func";
+        //                         dynamicContainerDataId = i;
+        //                         addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
+        //                         // dynamicContainerToken = "addTaskToList";
+        //                         // addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
+        //                     }
+        //                 }
+        //             }
+
+
+        //             // addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId)
+        //         });
+
         // }
 
-        if (defaultDate === undefined) {
-            defaultDate = dateDisplay.textContent;
-        }
-        console.log("defaultDate (i updateCurrentWeekSchedule) = " + defaultDate);
+            // _ _ _
+            // _ _ _
+        // // else if (plannedTodos.length === 0 && JSON.parse(localStorage.getItem("plannedTodosLS")).length === 0 ||
+        // if (plannedTodos.length === 0 && JSON.parse(localStorage.getItem("plannedTodosLS")).length === 0 ||
+        // plannedTodos.length === 0 && JSON.parse(localStorage.getItem("plannedTodosLS")).length === null
+        // ) {
 
-        //console.log("dataId = " + dataId)
+            // _ _ _
+            // _ _ _
+            // _ _ _ (2025-01-07 test)
 
-        // if (plannedTodos.length === 0) {
-        //     console.log("plannedTodos.length === 0");
-        // }
-        // else if (plannedTodos.length > 0) {}
+            // Uppdatera DOM:en (för recurring Todos, "year")
 
-        plannedTodos.forEach(element => {
+            // if the year for the recurring plannedTodos is in the past:
 
+            console.log("if the year for the recurring plannedTodos (recurringType: 'y') is in the past (future (for this test)):")
 
-            if (specialUpdateBoolean === true && element.isRecurring === false) {
-                // on Edit
-                if (plannedTodos.length === 1 && defaultDate === undefined) {
-                    console.log("currentUpdateWeekSched #1");
-                    defaultDate = dateDisplay.textContent;
-                }
+            // if (defaultDate === undefined) {
+            //     defaultDate = dateDisplay.textContent;
+            // }
 
-                // Hantera exempelvis ('2025-03-13a' #"2025-03-13a") felaktiga datum:
-                if (isValidDateExceptFebruary(element.date) === false) {
-                    console.log("currentUpdateWeekSched #2");
-                    element.date = defaultDate;
-                    element.dataDate = weekdayNameToWeekDayNumber(defaultDate);
-                    // element.color = 'redColor';
-                }
-
-                // if (isValidFebruaryDate(element.date) === false) {
-                //     element.date = defaultDate;
-                //     element.dataDate = weekdayNameToWeekDayNumber(defaultDate);
-                //     element.color = 'redColor';
-                // }
-
-                // Hantera exempelvis ('2025-03-1' #"2025-03-1") felaktiga datum:
-                if (isValidDateExceptFebruary(element.date) === false && element.date < dateDisplay.textContent) {
-                    console.log("currentUpdateWeekSched #3");
-                    element.date = defaultDate;
-                    element.dataDate = weekdayNameToWeekDayNumber(defaultDate);
-                    // element.color = 'redColor';
-                }
-
-                if (isValidFebruaryDate(element.date) === false && element.date < dateDisplay.textContent) {
-                    console.log("currentUpdateWeekSched #4");
-                    element.date = defaultDate;
-                    element.dataDate = weekdayNameToWeekDayNumber(defaultDate);
-                    // element.color = 'redColor';
-                }
-
-                // if (isValidDateExceptFebruary(element.date) === false || isValidFebruaryDate(element.date) === false) {
-                //     element.date = defaultDate;
-                //     element.dataDate = weekdayNameToWeekDayNumber(defaultDate);
-                //     element.color = 'redColor';
-                // }
-
-                //exceptfeb
-                if (isValidDateExceptFebruary(element.date) === true || isValidFebruaryDate(element.date) === true) {
-                    console.log("currentUpdateWeekSched #5.1");
-
-                    console.log("element.date = " + element.date);
-                    console.log("AAAAAAAAAAA");
-                    console.log("date < dateDisplay.textContent = " + element.date < dateDisplay.textContent)
-
-                    element.dataDate = weekdayNameToWeekDayNumberMultiDuration(element.date);
-                    console.log("element.dataDate = " + element.dataDate);
-
-                    // if (element.date < dateDisplay.textContent) {
-                    //     // plannedTodos.remove(element);
-                    //     // for (let i = 0; i < plannedTodos.length; i++) {
-                    //     //     dateCollection[i].innerHTML = '';
-                    //     //     dateCollection[i].value = '';
-                    //     //     todoCollection[i].innerHTML = '';
-                    //     //     todoCollection[i].value = '';
-                    //     //     todoColorCollection[i].style.backgroundColor = '';
-                    //     // }
-                    // }
-
-                    if (element.date >= dateDisplay.textContent) {
-                        console.log("currentUpdateWeekSched #5.2.1");
-                    console.log("if (element.date < dateDisplay: delete the plannedTodos from the DOM)");
-                    plannedTodosEdit.push(element);
-                    }
-                    // } else if (isValidDateExceptFebruary(element.date) === false) {
-                    //     console.log("defaultDate (i updateCurrentWeekSchedule) = " + defaultDate);
-                    //     element.date = defaultDate;
-                    // }
-                    // else if (isValidFebruaryDate(element.date) === false) {
-                    //     console.log("defaultDate (i updateCurrentWeekSchedule) = " + defaultDate);
-                    //     element.date = defaultDate;
-                }
-            // } else if (specialUpdateBoolean === false) {
+            if (defaultDate === undefined) {
+                defaultDate = dateDisplay.textContent;
             }
+            console.log("defaultDate (i updateCurrentWeekSchedule) = " + defaultDate);
 
-            // Hur editera recurring todos? (vad skiljer mot standard-todos?)
-            else if (specialUpdateBoolean === true && element.isRecurring === true) {
+            //console.log("dataId = " + dataId)
 
-                // Hantera exempelvis ('2025-03-1' #"2025-03-1") felaktiga datum:
-                if (isValidDateExceptFebruary(element.date) === false && element.date < dateDisplay.textContent) {
-                    console.log("currentUpdateWeekSched #5.2.a");
-                    element.date = defaultDate;
-                    element.dataDate = weekdayNameToWeekDayNumber(defaultDate);
-                    // element.color = 'redColor';
-                }
+            // if (plannedTodos.length === 0) {
+            //     console.log("plannedTodos.length === 0");
+            // }
+            // else if (plannedTodos.length > 0) {}
 
-                else if (isValidFebruaryDate(element.date) === false && element.date < dateDisplay.textContent) {
-                    console.log("currentUpdateWeekSched #5.2.b");
-                    element.date = defaultDate;
-                    element.dataDate = weekdayNameToWeekDayNumber(defaultDate);
-                    // element.color = 'redColor';
-                }
-
-                // Hantera exempelvis ('2025-03-13a' #"2025-03-13a") felaktiga datum:
-                if (isValidDateExceptFebruary(element.date) === false) {
-                    console.log("currentUpdateWeekSched #5.2.c1");
-                    console.log("element.date (#5.2.c1) = " + element.date);
-
-                    if (isValidFebruaryDate(element.date) === true) {
-                        element.dataDate = weekdayNameToWeekDayNumber(element.date);
-                        console.log("currentUpdateWeekSched #5.2.c2");
-                        console.log("element.date (#5.2.c2) = " + element.date);
+            plannedTodos.forEach(element => {
 
 
-                    } else if (isValidFebruaryDate(element.date) === false) {
-                        console.log("currentUpdateWeekSched #5.2.c3");
-                        console.log("element.date (#5.2.c3) = " + element.date);
+                if (specialUpdateBoolean === true && element.isRecurring === false) {
+                    // on Edit
+                    if (plannedTodos.length === 1 && defaultDate === undefined) {
+                        console.log("currentUpdateWeekSched #1");
+                        defaultDate = dateDisplay.textContent;
+                    }
+
+                    // Hantera exempelvis ('2025-03-13a' #"2025-03-13a") felaktiga datum:
+                    if (isValidDateExceptFebruary(element.date) === false) {
+                        console.log("currentUpdateWeekSched #2");
                         element.date = defaultDate;
                         element.dataDate = weekdayNameToWeekDayNumber(defaultDate);
                         // element.color = 'redColor';
                     }
+
+                    // if (isValidFebruaryDate(element.date) === false) {
+                    //     element.date = defaultDate;
+                    //     element.dataDate = weekdayNameToWeekDayNumber(defaultDate);
+                    //     element.color = 'redColor';
+                    // }
+
+                    // Hantera exempelvis ('2025-03-1' #"2025-03-1") felaktiga datum:
+                    if (isValidDateExceptFebruary(element.date) === false && element.date < dateDisplay.textContent) {
+                        console.log("currentUpdateWeekSched #3");
+                        element.date = defaultDate;
+                        element.dataDate = weekdayNameToWeekDayNumber(defaultDate);
+                        // element.color = 'redColor';
+                    }
+
+                    if (isValidFebruaryDate(element.date) === false && element.date < dateDisplay.textContent) {
+                        console.log("currentUpdateWeekSched #4");
+                        element.date = defaultDate;
+                        element.dataDate = weekdayNameToWeekDayNumber(defaultDate);
+                        // element.color = 'redColor';
+                    }
+
+                    // if (isValidDateExceptFebruary(element.date) === false || isValidFebruaryDate(element.date) === false) {
+                    //     element.date = defaultDate;
+                    //     element.dataDate = weekdayNameToWeekDayNumber(defaultDate);
+                    //     element.color = 'redColor';
+                    // }
+
+                    //exceptfeb
+                    if (isValidDateExceptFebruary(element.date) === true || isValidFebruaryDate(element.date) === true) {
+                        console.log("currentUpdateWeekSched #5.1");
+
+                        console.log("element.date = " + element.date);
+                        console.log("AAAAAAAAAAA");
+                        console.log("date < dateDisplay.textContent = " + element.date < dateDisplay.textContent)
+
+                        element.dataDate = weekdayNameToWeekDayNumberMultiDuration(element.date);
+                        console.log("element.dataDate = " + element.dataDate);
+
+                        // if (element.date < dateDisplay.textContent) {
+                        //     // plannedTodos.remove(element);
+                        //     // for (let i = 0; i < plannedTodos.length; i++) {
+                        //     //     dateCollection[i].innerHTML = '';
+                        //     //     dateCollection[i].value = '';
+                        //     //     todoCollection[i].innerHTML = '';
+                        //     //     todoCollection[i].value = '';
+                        //     //     todoColorCollection[i].style.backgroundColor = '';
+                        //     // }
+                        // }
+
+                        if (element.date >= dateDisplay.textContent) {
+                            console.log("currentUpdateWeekSched #5.2.1");
+                        console.log("if (element.date < dateDisplay: delete the plannedTodos from the DOM)");
+                        plannedTodosEdit.push(element);
+                        }
+                        // } else if (isValidDateExceptFebruary(element.date) === false) {
+                        //     console.log("defaultDate (i updateCurrentWeekSchedule) = " + defaultDate);
+                        //     element.date = defaultDate;
+                        // }
+                        // else if (isValidFebruaryDate(element.date) === false) {
+                        //     console.log("defaultDate (i updateCurrentWeekSchedule) = " + defaultDate);
+                        //     element.date = defaultDate;
+                    }
+                // } else if (specialUpdateBoolean === false) {
                 }
 
-                if (element.date >= dateDisplay.textContent) {
-                    console.log("currentUpdateWeekSched #5.2.2");
-                    console.log("element.date (#5.2.2) = " + element.date);
+                // Hur editera recurring todos? (vad skiljer mot standard-todos?)
+                else if (specialUpdateBoolean === true && element.isRecurring === true) {
+
+                    // Hantera exempelvis ('2025-03-1' #"2025-03-1") felaktiga datum:
+                    if (isValidDateExceptFebruary(element.date) === false && element.date < dateDisplay.textContent) {
+                        console.log("currentUpdateWeekSched #5.2.a");
+                        element.date = defaultDate;
+                        element.dataDate = weekdayNameToWeekDayNumber(defaultDate);
+                        // element.color = 'redColor';
+                    }
+
+                    else if (isValidFebruaryDate(element.date) === false && element.date < dateDisplay.textContent) {
+                        console.log("currentUpdateWeekSched #5.2.b");
+                        element.date = defaultDate;
+                        element.dataDate = weekdayNameToWeekDayNumber(defaultDate);
+                        // element.color = 'redColor';
+                    }
+
+                    // Hantera exempelvis ('2025-03-13a' #"2025-03-13a") felaktiga datum:
+                    if (isValidDateExceptFebruary(element.date) === false) {
+                        console.log("currentUpdateWeekSched #5.2.c1");
+                        console.log("element.date (#5.2.c1) = " + element.date);
+
+                        if (isValidFebruaryDate(element.date) === true) {
+                            element.dataDate = weekdayNameToWeekDayNumber(element.date);
+                            console.log("currentUpdateWeekSched #5.2.c2");
+                            console.log("element.date (#5.2.c2) = " + element.date);
+
+
+                        } else if (isValidFebruaryDate(element.date) === false) {
+                            console.log("currentUpdateWeekSched #5.2.c3");
+                            console.log("element.date (#5.2.c3) = " + element.date);
+                            element.date = defaultDate;
+                            element.dataDate = weekdayNameToWeekDayNumber(defaultDate);
+                            // element.color = 'redColor';
+                        }
+                    }
+
+                    if (element.date >= dateDisplay.textContent) {
+                        console.log("currentUpdateWeekSched #5.2.2");
+                        console.log("element.date (#5.2.2) = " + element.date);
+                        console.log("if (element.date < dateDisplay: delete the plannedTodos from the DOM)");
+
+                        element.dataDate = weekdayNameToWeekDayNumberMultiDuration(element.date);
+
+                        console.log("element.dataDate = " + element.dataDate);
+
+                        plannedTodosEdit.push(element);
+                    }
+                }
+
+                else if (specialUpdateBoolean === false) {
+                    if (element.date >= dateDisplay.textContent) {
+                        console.log("currentUpdateWeekSched #5.2.3");
                     console.log("if (element.date < dateDisplay: delete the plannedTodos from the DOM)");
-
-                    element.dataDate = weekdayNameToWeekDayNumberMultiDuration(element.date);
-
-                    console.log("element.dataDate = " + element.dataDate);
-
                     plannedTodosEdit.push(element);
+                    }
                 }
-            }
 
-            else if (specialUpdateBoolean === false) {
-                if (element.date >= dateDisplay.textContent) {
-                    console.log("currentUpdateWeekSched #5.2.3");
-                console.log("if (element.date < dateDisplay: delete the plannedTodos from the DOM)");
-                plannedTodosEdit.push(element);
-                }
-            }
+                // else {
+                //     if (element.date >= dateDisplay.textContent) {
+                //         console.log("currentUpdateWeekSched #5.2.2");
+                //     console.log("if (element.date < dateDisplay: delete the plannedTodos from the DOM)");
+                //     plannedTodosEdit.push(element);
+                //     }
+                // }
 
-            // else {
-            //     if (element.date >= dateDisplay.textContent) {
-            //         console.log("currentUpdateWeekSched #5.2.2");
-            //     console.log("if (element.date < dateDisplay: delete the plannedTodos from the DOM)");
-            //     plannedTodosEdit.push(element);
-            //     }
+            })
+
+            console.log("plannedTodosEdit = " + plannedTodosEdit);
+            console.log("JSON.stringify(plannedTodosEdit) = " + JSON.stringify(plannedTodosEdit));
+            plannedTodos = plannedTodosEdit;
+
+            plannedTodosEdit = [];
+
+        // }
+
+        // _ _ _
+
+        // 2025-03-31: Test (plannedTodosLS)    // wrapperContainer ooa
+            // if (dateCollection.length === 3 && plannedTodos.length > 3 && dateCollection.length !== plannedTodos.length) {
+            //     console.log("add dynamic container kk1");
+            //     dynamicContainerToken = "load_func";
+            //     dynamicContainerDataId = plannedTodos.length;
+            //     console.log("plannedTodos.length (add rec day everyday) = " + plannedTodos.length);
+
+            //     // let wrapperContainer = document.getElementById('todo-wrapper');
+            //     // console.log("wrapperContainer (plannedTodosLS) = " + wrapperContainer);
+            //     addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
+            // } else if (dateCollection.length > 3 && plannedTodos.length > 3 && dateCollection.length !== plannedTodos.length) {
+            //     console.log("add dynamic container kk2");
+            //     dynamicContainerToken = "load_func";
+            //     dynamicContainerDataId = plannedTodos.length;
+            //     console.log("plannedTodos.length (add rec day everyday) = " + plannedTodos.length);
+
+            //     // let wrapperContainer = document.getElementById('todo-wrapper');
+            //     // console.log("wrapperContainer (plannedTodosLS) = " + wrapperContainer);
+            //     addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
             // }
 
-        })
-
-        console.log("plannedTodosEdit = " + plannedTodosEdit);
-        console.log("JSON.stringify(plannedTodosEdit) = " + JSON.stringify(plannedTodosEdit));
-        plannedTodos = plannedTodosEdit;
-
-        plannedTodosEdit = [];
+        // _ _ _
 
             // uppdatera DOM:en
             for (let i = 0; i < plannedTodos.length; i++) {
@@ -8048,9 +8459,22 @@ function updateCurrentWeekSchedule(specialUpdateBoolean) {
         // console.log("currentMondayTodoItems[0].innerHTML = " + currentMondayTodoItems[0].innerHTML);
         // console.log("currentMondayTodos efter reset, JSON.stringify = " + JSON.stringify(currentMondayTodos));
 
+
+
+
         plannedTodos.forEach(todoRow => {
 
-        console.log("ooa");
+            // _ _ _
+
+            console.log("ooa");
+
+            console.log("todoRow.date = " + todoRow.date);
+
+            let element = document.querySelector(".todo-date");
+            let dataId = element.getAttribute("data-id");
+            console.log("dataId (i updatgeCurrentWeekSchedule = " + dataId);
+
+            // _ _ _
 
             // . . .
             // . . .
@@ -8822,6 +9246,41 @@ function addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId) 
 
     // Append the new container to the main container
     // const wrapperContainer = document.getElementById('todo-wrapper');
+
+    // wrapperContainer.appendChild(dynamicTodoContainer);
+
+    // if (wrapperContainer === undefined) {
+    //     let wrapperContainer = document.getElementById('todo-wrapper');
+    // }
+
+    // _ _ _
+
+    let wrapperContainer = document.getElementById('todo-wrapper');
+
+    // if (!wrapperContainer) {
+    //     console.warn("wrapperContainer is undefined. Trying to create it...");
+
+    //     // Optionally, create and append it if it doesn't exist
+    //     wrapperContainer = document.createElement('div');
+    //     wrapperContainer.id = 'todo-wrapper';
+
+    //     // Append it to a known existing parent element
+    //     document.body.appendChild(wrapperContainer);
+    // }
+
+    // _ _ _
+
+    // if (!wrapperContainer) {
+    //     console.warn("wrapperContainer is undefined. Trying to create it...");
+
+    //     // Optionally, create and append it if it doesn't exist
+    //     wrapperContainer = document.createElement('div');
+    //     wrapperContainer.id = 'todo-wrapper';
+
+    //     // Append it to a known existing parent element
+    //     document.body.appendChild(wrapperContainer);
+    // }
+
     wrapperContainer.appendChild(dynamicTodoContainer);
 
     dynamicTodoContainer.addEventListener('click', function() {
@@ -9849,6 +10308,7 @@ clearPastButton.addEventListener('click', () => {
     pastTasksSet = new Set();
     pastPlanStringToSave = '';
     past_data = '';
+    // localStorage.removeItem("pastPlanStringLS");
 })
 
 // Old todos (end)
@@ -9897,58 +10357,116 @@ clearPastButton.addEventListener('click', () => {
         }
 
 function updatePlannedTodosWithDomData() {
-
+    console.log("updatePlannedTodosWithDomData() körs")
     // if no localStorage saved
-
-
-
     // if localStorage exists!?
 
-    console.log("updatePlannedTodosWithDomData() körs")
+    // _ _ _
+    // let plannedTodosLS = localStorage.getItem("plannedTodosLS");
+    // _ _ _
 
-    if (dateCollection.length > 0) {
-        console.log("dateCollection[0].value (1) = " + dateCollection[0].value)
-        console.log("dateCollection.length = " + dateCollection.length)
+        // _ _ _
+    // // Check if plannedTodosLS is not null and not an empty array
+    // // if (plannedTodosLS && JSON.parse(localStorage.getItem("plannedTodosLS")).length === 0) {
+    //     if (plannedTodosLS && plannedTodosLS.length === 0) {
+    //     // if no localStorage saved
+    //             // _ _ _
 
-        for (let i = 0; i < dateCollection.length; i++) {
-            // dateCollection[i].value = dateCollection[i].innerHTML
-            // todoCollection[i].value = todoCollection[i].innerHTML
+        if (dateCollection.length > 0) {
+            console.log("dateCollection[0].value (1) = " + dateCollection[0].value)
+            console.log("dateCollection.length = " + dateCollection.length)
 
-            console.log("dateCollection[0].value (2) = " + dateCollection[i].value)
+            for (let i = 0; i < dateCollection.length; i++) {
+                // dateCollection[i].value = dateCollection[i].innerHTML
+                // todoCollection[i].value = todoCollection[i].innerHTML
 
-            console.log("dateCollection[i].value = " + dateCollection[i].value)
-            if (dateCollection[i].value !== "") {
+                console.log("dateCollection[0].value (2) = " + dateCollection[i].value)
 
-                dateCollection[i].value = "";
-                dateCollection[i].innerHTML = "";
-                todoCollection[i].value = "";
-                todoCollection[i].innerHTML = "";
+                console.log("dateCollection[i].value = " + dateCollection[i].value)
+                if (dateCollection[i].value !== "") {
 
-                document.getElementById("todo-`${0}`-date").innerHTML = ``;
-                document.getElementById("todo-0-text").innerHTML = ``;
+                    dateCollection[i].value = "";
+                    dateCollection[i].innerHTML = "";
+                    todoCollection[i].value = "";
+                    todoCollection[i].innerHTML = "";
 
-                // document.getElementById('add-todo-text').value = "";
+                    document.getElementById("todo-`${0}`-date").innerHTML = ``;
+                    document.getElementById("todo-0-text").innerHTML = ``;
 
-                // plannedTodos[i].date = dateCollection[i].value;
-                // plannedTodos[i].todo = todoCollection[i].value;
-                // plannedTodos[i].color = "grayColor";
-                // plannedTodos[i].isEmpty = false;
+                    // document.getElementById('add-todo-text').value = "";
 
-                // _ _ _
+                    // plannedTodos[i].date = dateCollection[i].value;
+                    // plannedTodos[i].todo = todoCollection[i].value;
+                    // plannedTodos[i].color = "grayColor";
+                    // plannedTodos[i].isEmpty = false;
 
-                // plannedTodos.push({
-                //     date: dateCollection[i].value,
-                //     todo: todoCollection[i].value,
-                //     color: "grayColor",
-                //     isRecurring: false,
-                //     dataDate: weekdayNameToWeekDayNumber(dateCollection[i]),
-                //     isEmpty: false
-                // })
+                    // _ _ _
+
+                    // plannedTodos.push({
+                    //     date: dateCollection[i].value,
+                    //     todo: todoCollection[i].value,
+                    //     color: "grayColor",
+                    //     isRecurring: false,
+                    //     dataDate: weekdayNameToWeekDayNumber(dateCollection[i]),
+                    //     isEmpty: false
+                    // })
+                }
             }
         }
     }
 
-}
+    // _ _ _
+
+    // // else if (plannedTodosLS && JSON.parse(localStorage.getItem("plannedTodosLS")).length > 0) {
+    //     else if (plannedTodosLS && plannedTodosLS.length > 0) {
+    //     // if localStorage exists!?
+
+    //     console.log("JSON.stringify(plannedTodos) ooa = " + JSON.stringify(plannedTodos));
+    //     console.log("dateCollection.length = " + dateCollection.length);
+
+    //     if (plannedTodos.length > 3) {
+    //         console.log("plannedTodos.length" > 3);
+    //     }
+
+    // _ _ _
+
+        // if (plannedTodos.length > 3) {
+        //         // console.log("add dynamic container");
+        //         // dynamicContainerToken = "load_func";
+        //         // dynamicContainerDataId = plannedTodos.length;
+        //         // console.log("plannedTodos.length (add rec day everyday) = " + plannedTodos.length);
+        //         // addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
+
+        //         // _ _ _                // _ _ _
+
+        //         let wrapperContainer = document.getElementById('todo-wrapper');
+
+        //         if (!wrapperContainer) {
+        //             console.warn("wrapperContainer is undefined. Trying to create it...");
+
+        //             // Optionally, create and append it if it doesn't exist
+        //             wrapperContainer = document.createElement('div');
+        //             wrapperContainer.id = 'todo-wrapper';
+
+        //             // Append it to a known existing parent element
+        //             document.body.appendChild(wrapperContainer);
+        //         }
+
+        //         // _ _ _                // _ _ _
+
+        //     for (let i = 3; plannedTodos.length; i++) {
+        //         console.log("add dynamic container");
+        //         console.log("i = " + i)
+        //         dynamicContainerToken = "load_func";
+        //         dynamicContainerDataId = plannedTodos.length;
+        //         console.log("plannedTodos.length (add rec day everyday) = " + plannedTodos.length);
+        //         addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId);
+        //     }
+        // }
+
+//         updateCurrentWeekSchedule(false);
+//     }
+// }
 
 // _ _ _
 
@@ -10831,18 +11349,25 @@ function checkTodoText(todoText) {
 // Function to read the Blob (file) content and separate the strings
 
 function readFile(file) {
+    // clearAppData();
     const reader = new FileReader();
 
     reader.onload = function(event) {
         const result = event.target.result;
         console.log("Concatenated string with delimiter:", result);
 
+        // clearAppData();
+
+        // _ _ _
+        // localStorage.setItem("plannedTodosLS", JSON.stringify([]));
+        // localStorage.removeItem("plannedTodosLS");
+            // _ _ _
+
         // Split the result using the delimiter
         let [planned_data, past_data] = result.split(delimiter);
 
         console.log("String 1 (planned_data):", planned_data);
         console.log("String 2 (past_data):", past_data);
-
 
 
         plannedTodos = planned_data;
@@ -11182,6 +11707,11 @@ function readFile(file) {
 
         pastPlanStringToSaveUpdate = outputString;
 
+        // _ _ _
+        // localStorage.setItem("pastPlanStringLS", pastPlanStringToSaveUpdate);
+        // console.log("pastPlanStringLS" + localStorage.getItem("pastPlanStringLS"));
+        // _ _ _
+
         console.log("pastPlanStringToSaveUpdate (2) = " + pastPlanStringToSaveUpdate)
 
         pastPlansTextArea.innerHTML = pastPlanStringToSaveUpdate
@@ -11228,6 +11758,7 @@ function load_func(delimiter) {
     console.log("clearAll() ska köras i readFile");
 
     if (dateCollection[0].value !== undefined && plannedTodos.length > 0) {
+        // clearAppData();
         clearAll();
     }
     // pastPlansTextArea.innerHTML = '';

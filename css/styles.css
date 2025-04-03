@@ -62,6 +62,31 @@ h3 {
   height: 60px;
 }
 
+#future-info-header,
+#week-info-header {
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+}
+
+#future-remember-save {
+  margin-bottom: 0px;
+}
+
+#info-symbol-week,
+#info-symbol-future {
+    display: flex;
+    align-items: center;
+    padding-left: 5px;
+    transform: scale(1.2);
+}
+
+#toggle-link-week,
+#toggle-link-future {
+    display: flex;
+    align-items: center;
+}
+
 .grid-container {
     display: grid;
     grid-template-columns: auto auto auto auto auto auto;
@@ -333,7 +358,12 @@ h3 {
 
 .todo-text {
   scrollbar-width: none;
+  border-radius: 0 !important;
+  padding-left: 6px;
+  border-color: rgb(114, 114, 114);
 }
+/* display: flex; */
+  /* align-items: center; */
 
 .grid-item {
   word-break: break-word;
@@ -350,12 +380,12 @@ h3 {
 #textarea {
   display: flex;
   width: 300px;
-  /* height: 22px; */
   background-color: rgb(228, 228, 228);
   color: rgb(24, 24, 24);
   border: 2px solid;
   border-color: rgb(65, 105, 65)
 }
+  /* height: 22px; */
 
 /* Remove field - save to file (end) */
 
@@ -373,12 +403,22 @@ h3 {
 
 .todo-color {
   height: 34px;
-  background-color: rgb(221, 221, 221);
+  line-height: 34px;
+  background-color: rgb(228, 228, 228);
   border: solid 1px rgb(196, 196, 196);
   cursor: pointer;
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
+  padding-top: 1px;
 }
+/* border: solid 1px rgb(151, 151, 151); */
+/* border-color: rgb(154, 154, 154); */
+/* border: solid 1px rgb(196, 196, 196); */
+/* display: flex; */
+/* margin: auto; */
+/* align-items: center; */
+/* line-height: 34px; */
+/* background-color: rgb(221, 221, 221); */
 /* display: flex;
 justify-content: center;
 align-items: center; */
@@ -414,18 +454,27 @@ align-items: center; */
   height: 100%;
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  border-right: 0 !important;
   border-width: 1px;
   padding-left: 5px;
   opacity: 0.9;
   color: black;
-  /* background-color: rgb(245, 244, 240); */
+  border-color: rgb(190, 189, 189);
 }
+/* background-color: rgb(245, 244, 240); */
 
 #add-todo-text {
   height: 100%;
   opacity: 0.9;
-  /* background-color: rgb(240, 239, 230); */
+  border-radius: 0 !important;
+  border-color: rgb(190, 189, 189);
+  border-top-color: rgb(255, 255, 255);
+  border-bottom-color:rgb(165, 165, 165);
 }
+  /* border-top-color:rgb(165, 165, 165); */
+  /* background-color: rgb(240, 239, 230); */
 
 #todo-container {
   display: flex;
@@ -444,7 +493,9 @@ align-items: center; */
   height: 100%;
   cursor: pointer;
   color: black;
+  border-color: lightgray;
 }
+
 /* Add this CSS to make the color picker more rectangular */
 #color-drop-down select {
   border-top-right-radius: 4px;
@@ -484,6 +535,7 @@ align-items: center; */
 /* margin-top: 15px; */
 /* padding: 10px; */
 
+/* #clear-schedule { */
 #clear-all {
   width: 85px;
   height: 30px;
@@ -495,10 +547,14 @@ align-items: center; */
   background-color: rgb(136, 136, 136);
   color: black;
   margin-top: 10px;
+  padding-top: 10px;
   padding: 10px;
   border-radius: 6px;
   cursor: pointer;
 }
+/* width: 120px; */
+/* width: auto; */
+/* width: 85px; */
 /* width: 80px; */
   /* color: rgb(0, 0, 0); */
   /* font-weight: bold; */
@@ -638,6 +694,24 @@ align-items: center; */
 /* width: auto; */
 /* width: 90px; */
 
+/* #clear-all-data {
+  width: 185px;
+  height: 30px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  border: 2px solid rgb(82, 82, 82);
+  background-color: rgb(167, 107, 16);
+  color: rgb(37, 37, 37);
+  margin-top: 60px;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+} */
+/* margin-top: 5px; */
+/* width: auto; */
+
 #date-wrapper,
 #text-wrapper,
 #color-wrapper {
@@ -713,11 +787,21 @@ align-items: center; */
     }
 
     .todo-date {
-      width: 110px;
+      width: 99px;
       border-top-left-radius: 4px;
       border-bottom-left-radius: 4px;
+      border-top-right-radius: 0 !important;
+      border-bottom-right-radius: 0 !important;
+      border-right: 0 !important;
+      padding-left: 9px;
+      border-top-color: rgb(114, 114, 114);
+      border-bottom-color: rgb(114, 114, 114);
     }
+
+      /* text-align: center; */
     /* width: 100px; */
+    /* width: 99px; */
+    /* padding-left: 6px; */
 
     /* .todo-text {
       width: 70%;
@@ -729,11 +813,23 @@ align-items: center; */
 
 .todo-date,
 .todo-text {
-  /* background-color: rgb(69 69 69);
-  color: rgb(232 232 232); */
+  height: 34px;
   background-color: rgb(202, 202, 202);
   color: rgb(0, 0, 0);
+  padding-top: 1px;
+  padding-bottom: 0px;
 }
+/* border-color: rgb(114, 114, 114); */
+  /* margin: auto; */
+  /* line-height: 34px; */
+  /* padding-left: 6px; */
+/* padding-top: 3px; */
+/* padding-left: 3px; */
+/* border-color: rgb(154, 154, 154); */
+  /* background-color: rgb(69 69 69);
+  color: rgb(232 232 232); */
+  /* background-color: rgb(202, 202, 202);
+  color: rgb(0, 0, 0); */
 
     /* Hide the color palette when not needed */
     /* .hidden {
@@ -1098,6 +1194,9 @@ _ _ _ */
   /* .grid-day-container {
     grid-template-columns: calc(99%/7) calc(99%/7) calc(99%/7) calc(99%/7) calc(99%/7) calc(99%/7) calc(99%/7);
   } */
+  #add-todo-text {
+    border-top-color: rgb(255, 255, 255);
+  }
 
   .grid-day-container {
     display: grid;
@@ -1122,6 +1221,10 @@ _ _ _ */
 
   #periodicity, #per-weekday, #per-week, #per-month, #per-year {
     width: 450px;
+  }
+
+  .todo-date {
+    border-top-color: rgb(0, 0, 0);
   }
 
   .todo-text {
@@ -1177,9 +1280,9 @@ _ _ _ */
     justify-content: end;
 }
 
-#link-wrapper {
-  display: flex;
-}
+  #link-wrapper {
+    display: flex;
+  }
 
 }
 /* Tablets and larger screens (end) */

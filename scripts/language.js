@@ -262,8 +262,18 @@ const addButton2 = {
 }
 
 const appInfo = {
-  sv: `App-information`,
-  en: `Application information`,
+  sv: `Fixa`,
+  en: `Top3`,
+}
+
+const appInfoWeek = {
+  sv: `Vecka`,
+  en: `Week`,
+}
+
+const appInfoFuture = {
+  sv: `Plan`,
+  en: `Future`,
 }
 
 const infoBullets = {
@@ -361,6 +371,11 @@ const sunWeekSchedule = {
 const futureHeading = {
   sv: `Framtidsplaner`,
   en: `Future Plans`,
+}
+
+const futureRememberSave = {
+  sv: `- Kom ihåg att spara!`,
+  en: `- Remember to save!`,
 }
 
 //  Current Plan and watch Past tasks.
@@ -595,6 +610,8 @@ const currentPlanTodoPlaceholder = {
 const clearAllButtonTranslate = {
   sv: 'Rensa allt',
   en: 'Clear All',
+  // sv: 'Rensa Schema',
+  // en: 'Clear Schedule',
 }
 
 const colorSwitcherHeading = {
@@ -670,6 +687,11 @@ const copyOrClearPast = {
 const clearPastTasksButtonTranslate = {
   sv: 'Töm utfört',
   en: 'Clear Past',
+}
+
+const clearAllAppDataButtonTranslate = {
+  sv: 'Rensa webbläsar-app-data',
+  en: 'Clear browser app data',
 }
 
 // Timer
@@ -1304,6 +1326,8 @@ const userMessagePlaceholder = {
           document.getElementById('top3-label').innerHTML = top3Label[selectedLanguage];
           document.getElementById('input-box-v2').placeholder = placeholderTop3Text[selectedLanguage];
           document.getElementById('app-info').innerHTML = appInfo[selectedLanguage];
+          document.getElementById('app-info-week').innerHTML = appInfoWeek[selectedLanguage];
+          document.getElementById('app-info-future').innerHTML = appInfoFuture[selectedLanguage];
           document.getElementById('todos-heading').innerHTML = top3Todos[selectedLanguage];
 
           // Veckoschema
@@ -1325,6 +1349,7 @@ const userMessagePlaceholder = {
 
           // Framtidsplaner
           document.getElementById('future-heading').innerHTML = futureHeading[selectedLanguage];
+          document.getElementById('future-remember-save').innerHTML = futureRememberSave[selectedLanguage];
           document.getElementById('future-desc').innerHTML = futureDesc[selectedLanguage];
 
           document.getElementById('add-task-span').innerHTML = addTaskSpan[selectedLanguage];
@@ -1385,6 +1410,7 @@ const userMessagePlaceholder = {
           document.getElementById('todo-0-date').placeholder = currentPlanDatePlaceholder[selectedLanguage];
           document.getElementById('todo-0-text').placeholder = currentPlanTodoPlaceholder[selectedLanguage];
           document.getElementById('clear-all').innerHTML = clearAllButtonTranslate[selectedLanguage];
+          // document.getElementById('clear-schedule').innerHTML = clearAllButtonTranslate[selectedLanguage];
 
           document.getElementById('color-switcher-heading').innerHTML = colorSwitcherHeading[selectedLanguage];
           document.getElementById('clear-row').innerHTML = clearRowTranslation[selectedLanguage];
@@ -1410,7 +1436,7 @@ const userMessagePlaceholder = {
           document.getElementById('past-tasks').innerHTML = pastTasks[selectedLanguage];
           document.getElementById('copy-or-clear-past').innerHTML = copyOrClearPast[selectedLanguage];
           document.getElementById('clear-past-tasks').innerHTML = clearPastTasksButtonTranslate[selectedLanguage];
-
+          // document.getElementById('clear-all-data').innerHTML = clearAllAppDataButtonTranslate[selectedLanguage];
 
           // Timer
           document.getElementById('timer-limit').innerHTML = timerLimit[selectedLanguage];

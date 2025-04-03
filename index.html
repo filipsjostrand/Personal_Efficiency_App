@@ -138,12 +138,21 @@
         <div id="week-plan-info">
           <p id="weekly-desc">
             Check current week schedule
-            <ul>
-              <li id="go-future-plans">Go to "Future Plans" (to add tasks)</li>
-              <ul>
-                <li id="go-future-navbar">Scroll down or click "Future" (navbar)</li>
-              </ul>
-            </ul>
+
+            <div id="week-info-header">
+              <a href="#" id="toggle-link-week"><h4 id="app-info-week">Application information </h4><div id="info-symbol-week">ℹ️</div></a>
+            </div>
+              <div class="info-week" id="content-week" style="display: none;">
+                <ul>
+                  <li id="go-future-plans">Go to "Future Plans" (to add tasks)</li>
+                  <ul>
+                    <li id="go-future-navbar">Scroll down or click "Future" (navbar)</li>
+                  </ul>
+                </ul>
+                    <br>
+
+              </div>
+
           </p>
           <div id="week-display-2"></div>
         </div>
@@ -270,14 +279,26 @@
           <div id="future-div"></div>
           <h3 id="future-heading" class="app-heading">Future Plans</h3>
 
-          <p id="future-desc"><u id="current-plan-words"></u><u id="past-tasks-words"></u>.
-            <ul>
-              <!-- <li id="add-list"></li>
-              <li id="save-list"></li>
-              <li id="edit-list"></li>
-              <li id="copy-clear-list"></li> -->
-            </ul>
-          </p>
+          <p id="future-remember-save">Save changes!</p>
+
+          <div id="future-info-header">
+            <a href="#" id="toggle-link-future"><h4 id="app-info-future">Application information </h4><div id="info-symbol-future">ℹ️
+
+          </div></a>
+          </div>
+              <div class="info-future" id="content-future" style="display: none;">
+                <p id="future-desc"><u id="current-plan-words"></u><u id="past-tasks-words"></u>.
+                  <ul>
+                    <!-- <li id="add-list"></li>
+                    <li id="save-list"></li>
+                    <li id="edit-list"></li>
+                    <li id="copy-clear-list"></li> -->
+                  </ul>
+                </p>
+                    <br>
+
+            </div>
+
 
           <!-- <p id="future-desc">Handle <u id="current-plan-words">Current Plan</u> and watch <u id="past-tasks-words">Past tasks</u>.
             <ul>
@@ -480,8 +501,8 @@
                 <div id="todo-2-rec" class="todo-rec" data-id="2" data-key="rec" name="rec"></div>
               </div>
             </div>
-            <!-- <button id="clear-all">Clear All</button> -->
-            <button id="clear-all" onclick="clearAll()">Clear All</button>
+            <button id="clear-all">Clear All</button>
+            <!-- <button id="clear-schedule" onclick="clearAll()">Clear Schedule</button> -->
             <p id="status">No textarea is active.</p>
 
           <!-- Hidden color switcher panel -->
@@ -546,6 +567,11 @@
                 </div>
                   <button id="clear-past-tasks">Clear Past</button>
               </div>
+
+            <!-- </div>
+              <button id="clear-all-data" onclick="clearAppData()">Clear All (App data)</button>
+          </div> -->
+
           </div>
         </div>
       </section>

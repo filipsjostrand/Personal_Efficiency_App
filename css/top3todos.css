@@ -95,7 +95,7 @@ height: 90px; */
 }
 
 .add-button-v2 {
-    width: 115px;
+    width: auto;
     height: 30px;
     display:flex;
     align-items: center;
@@ -114,6 +114,7 @@ height: 90px; */
     cursor: pointer;
 }
 /* width: 120px; */
+/* width: 115px; */
 
 /* .checkbox {
     transform: scale(1.75);
@@ -127,6 +128,11 @@ height: 90px; */
     display: flex;
     flex-direction: row;
     padding: 5px;
+}
+
+#app-info {
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 #info-symbol {
@@ -208,8 +214,9 @@ height: 90px; */
         flex-direction: column;
     }
     .checkbox {
-        transform: scale(1.3);
+        transform: scale(1.1);
     }
+    /* transform: scale(1.3); */
   }
   /* Tablets and larger screens (end) */
 
