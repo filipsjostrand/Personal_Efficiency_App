@@ -748,11 +748,140 @@ const timerTime = {
   en: 'Time:',
 }
 
-// Om
+const triggerActionRelaxation = {
+  sv: `Trigga aktivitet / avslappning`,
+  en: `Trigger Action / Relaxation`,
+}
+
+
+// Översättning (Om)
 const aboutHeading = {
   sv: 'Om',
   en: 'About',
 }
+
+const aboutYob = {
+  sv: `Födelseår: 1985`,
+  en: `Birthyear: 1985`,
+}
+const aboutPor = {
+  sv: `Bostadsort: Växjö`,
+  en: `Place of Residence: Växjö`,
+}
+const aboutContactInfo = {
+  sv: `Kontakt: ⬇️`,
+  en: `Contact: ⬇️`,
+}
+const filipDesc = {
+  sv: `Konsult | Programmerare | Ingenjör | Läxhjälpare | Lagledare | Författare`,
+  en: `Consultant | Programmer | Engineer | Homework Helper | Team Leader | Writer`,
+}
+const consultantButton = {
+  sv: `Konsultande`,
+  en: `Consulting`,
+}
+const employmentsButton = {
+  sv: `Anställningar`,
+  en: `Employments`,
+}
+const eduButton = {
+  sv: `Utbildningar`,
+  en: `Education`,
+}
+const refButton = {
+  sv: `Referenser`,
+  en: `References`,
+}
+const aboutIam = {
+  sv: `Är`,
+  en: `I am`,
+}
+const aboutIamOne = {
+  sv: `Hjälpsam`,
+  en: `Service-minded`,
+}
+const aboutIamTwo = {
+  sv: `Analytisk`,
+  en: `Analytical`,
+}
+const aboutIamThree = {
+  sv: `Energiingenjör`,
+  en: `Energy Engineer`,
+}
+const aboutIamFour = {
+  sv: `Lösningsfokuserad`,
+  en: `Solution-oriented`,
+}
+const aboutIamFive = {
+  sv: `Programmeringskunnig.`,
+  en: `Programmer`,
+}
+const aboutIWant = {
+  sv: `Vill`,
+  en: `I want to`,
+}
+const aboutIWantOne = {
+  sv: `Göra gott`,
+  en: `Do Good`,
+}
+const aboutIWantTwo = {
+  sv: `Spara energi`,
+  en: `Save energy`,
+}
+const aboutIWantThree = {
+  sv: `Hitta glädje & enkelhet.`,
+  en: `Find joy & simplicity.`,
+}
+const aboutICan = {
+  sv: `Kan`,
+  en: `I know how to`,
+}
+const aboutICanOne = {
+  sv: `Blåställsarbete`,
+  en: `Blue-collar work`,
+}
+const aboutICanTwo = {
+  sv: `Omvandla`,
+  en: `Transform`,
+}
+const aboutICanListOne = {
+  sv: `text,`,
+  en: `text,`,
+}
+const aboutICanListTwo = {
+  sv: `siffror,`,
+  en: `numbers,`,
+}
+const aboutICanListThree = {
+  sv: `kod`,
+  en: `code`,
+}
+const aboutICanListFour = {
+  sv: `till praktisk nytta.`,
+  en: `into practical use.`,
+}
+const iEnjoyDiv = {
+  sv: `Gillar att dela kunskap, glädje och att lösa problem tillsammans med andra.`,
+  en: `Appreciate sharing knowledge and joy while solving problems with others.`,
+}
+const aboutTools = {
+  sv: `Verktyg:`,
+  en: `Tools:`,
+}
+const aboutLanguages = {
+  sv: `<u>Språk:</u>	  Svenska, Engelska, (Franska, Spanska)`,
+  en: `<u>Languages:</u>	  Swedish, English, (French, Spanish)`,
+}
+const aboutDriving = {
+  sv: `<u>Körkort:</u> 	A1 & B`,
+  en: `<u>Driving license:</u> 	A1 & B`,
+}
+const aboutPhoto = {
+  sv: `Foto: Pixabay (pexels.com)`,
+  en: `Photo: Pixabay (pexels.com)`,
+}
+
+// _ _ _
 
   // Översättning (Footer)
 
@@ -1457,9 +1586,42 @@ const userMessagePlaceholder = {
 
           document.getElementById('timer-time').innerHTML = timerTime[selectedLanguage];
 
+          document.getElementById('trigger-act').innerHTML = triggerActionRelaxation[selectedLanguage];
+
+
           // Om
           document.getElementById('about-heading').innerHTML = aboutHeading[selectedLanguage];
 
+          document.getElementById('about-yob').innerHTML = aboutYob[selectedLanguage];
+          document.getElementById('about-por').innerHTML = aboutPor[selectedLanguage];
+          document.getElementById('about-contact-info').innerHTML = aboutContactInfo[selectedLanguage];
+          document.getElementById('filip-desc').innerHTML = filipDesc[selectedLanguage];
+          document.getElementById('consultant-button').innerHTML = consultantButton[selectedLanguage];
+          document.getElementById('employment-button').innerHTML = employmentsButton[selectedLanguage];
+          document.getElementById('edu-button').innerHTML = eduButton[selectedLanguage];
+          document.getElementById('ref-button').innerHTML = refButton[selectedLanguage];
+          document.getElementById('about-i-am').innerHTML = aboutIam[selectedLanguage];
+          document.getElementById('about-is-li-1').innerHTML = aboutIamOne[selectedLanguage];
+          document.getElementById('about-is-li-2').innerHTML = aboutIamTwo[selectedLanguage];
+          document.getElementById('about-is-li-3').innerHTML = aboutIamThree[selectedLanguage];
+          document.getElementById('about-is-li-4').innerHTML = aboutIamFour[selectedLanguage];
+          document.getElementById('about-is-li-5').innerHTML = aboutIamFive[selectedLanguage];
+          document.getElementById('about-i-want').innerHTML = aboutIWant[selectedLanguage];
+          document.getElementById('about-want-li-1').innerHTML = aboutIWantOne[selectedLanguage];
+          document.getElementById('about-want-li-2').innerHTML = aboutIWantTwo[selectedLanguage];
+          document.getElementById('about-want-li-3').innerHTML = aboutIWantThree[selectedLanguage];
+          document.getElementById('about-i-can').innerHTML = aboutICan[selectedLanguage];
+          document.getElementById('about-can-li-1').innerHTML = aboutICanOne[selectedLanguage];
+          document.getElementById('about-can-li-2').innerHTML = aboutICanTwo[selectedLanguage];
+          document.getElementById('list-term-1').innerHTML = aboutICanListOne[selectedLanguage];
+          document.getElementById('list-term-2').innerHTML = aboutICanListTwo[selectedLanguage];
+          document.getElementById('list-term-3').innerHTML = aboutICanListThree[selectedLanguage];
+          document.getElementById('list-term-4').innerHTML = aboutICanListFour[selectedLanguage];
+          document.getElementById('i-like-div').innerHTML = iEnjoyDiv[selectedLanguage];
+          document.getElementById('about-tools').innerHTML = aboutTools[selectedLanguage];
+          document.getElementById('about-languages').innerHTML = aboutLanguages[selectedLanguage];
+          document.getElementById('about-driving').innerHTML = aboutDriving[selectedLanguage];
+          document.getElementById('about-photo').innerHTML = aboutPhoto[selectedLanguage];
 
           // Footer
           document.querySelector('.footer-contact h3').innerHTML = footerContact[selectedLanguage];

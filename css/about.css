@@ -79,6 +79,10 @@
     /* align-items: center; */
 }
 
+#about-contact-info {
+    margin-top: 1em;
+}
+
 #daily-image {
     width: 100%;
     height: 100%;

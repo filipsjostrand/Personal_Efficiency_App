@@ -1,5 +1,45 @@
 "use strict"
 
+const emptyTaskAlert = {
+    sv: `Lägg till uppgift först d.,.`,
+    en: `Please add todos before editing.`,
+    }
+
+const copyAlreadyExists = {
+    sv: `Aktuell todo finns redan.`,
+    en: `Current todo already exists.`,
+    }
+
+const recurringMonthDateAlert = {
+    sv: `Kan inte lägga till återkommande månads(-datum) efter den 28:e.`,
+    en: `Can´t add recurring month (dates) after the 28th.`,
+    }
+
+const copyExistsInInterval = {
+    sv: `Todo-kopia finns redan på intervallet.`,
+    en: `Todo duplicate exists in the interval.`,
+}
+
+const durationDayNumberLargerThanFourteen = {
+    sv: `Maximalt antal dagar för återkommande uppgifter är satt till 14 (lägg till fler datum för fler repetitioner). `,
+    en: `Maximum duration day number set to 14 (Add multiple dates if duration > 14 days).`,
+}
+
+const cantPlanThePast = {
+    sv: `Gårdagen kan inte planeras :|.`,
+    en: `You can't make plans for yesterdays :).`,
+}
+
+const selectRecurringDaysOrDuration = {
+    sv: `Gör ett val (välj dagar eller varaktighet)`,
+    en: `Please make a selection (Select days or duration).`,
+}
+
+const selectRecurringNumberOfWeeks = {
+    sv: `Gör ett val (välj vecko-intervall)`,
+    en: `Please make a selection (Number of weeks).`,
+}
+
 // // Import the variable
 // import { exportedLanguageVariable } from './language.js';
 
@@ -1905,7 +1945,8 @@ function extractTimeFromTodo(todo) {
 function handleClickWhenEmpty(e) {
     if (plannedTodos.length === 0 || plannedTodos.length === undefined) {
         console.log("Planned todos are empty, handling click...");
-        alert("Please add todos before editing.");
+            // alert("Please add todos before editing.");
+            alert(emptyTaskAlert[selectedLanguage]);
     } else {
         console.log("Planned todos exist, ignoring click.");
     }
@@ -2957,7 +2998,8 @@ let plannedTodosObjectsArray = [];
         }
 
         if (plannedTodos.length > 0 && isCopy === true) {
-            alert("Current todo already exists.");
+            // alert("Current todo already exists.");
+            alert(copyAlreadyExists[selectedLanguage]);
             return 0;
         }
         // Add todo-object to plannedTodos (object array)
@@ -3019,7 +3061,8 @@ let plannedTodosObjectsArray = [];
                             isCopy = true;
                         }
                         if (isCopy === true) {
-                            alert("Todo duplicate exists in the interval.");
+                            // alert("Todo duplicate exists in the interval.");
+                            alert(copyExistsInInterval[selectedLanguage]);
                             return 0;
                         }
                         console.log("isCopy ooa = " + isCopy);
@@ -3123,7 +3166,7 @@ let plannedTodosObjectsArray = [];
                         isCopy = true;
                     }
                     if (isCopy === true) {
-                        alert("Todo duplicate exists in the interval.");
+                        alert(copyExistsInInterval[selectedLanguage]);
                         return 0;
                     }
                     console.log("isCopy ooa = " + isCopy);
@@ -3180,7 +3223,8 @@ let plannedTodosObjectsArray = [];
         // Don´t add monthly recurring todos if date > 28
         else if (newTodo.date >= dateDisplay.textContent && newTodo.isRecurring === true && newTodo.recurringType === 'm' && isDayLessThan29(newTodo.date) === false) {
             //todoDateLoad >= currentDate (M), day > 28"
-            alert('Can´t add recurring month dates > 28');
+            // alert('Can´t add recurring month dates > 28');
+            alert(recurringMonthDateAlert[selectedLanguage]);
         }
 
         // Add weekly recurring todo
@@ -3233,7 +3277,8 @@ let plannedTodosObjectsArray = [];
                             isCopy = true;
                         }
                         if (isCopy === true) {
-                            alert("Todo duplicate exists in the interval.");
+                            // alert("Todo duplicate exists in the interval.");
+                            alert(copyExistsInInterval[selectedLanguage]);
                             return 0;
                         }
                         console.log("isCopy ooa = " + isCopy);
@@ -3736,7 +3781,9 @@ let plannedTodosObjectsArray = [];
                         console.log("durationDaysNumber (1) = " + durationDaysNumber);
 
                         if (durationDaysNumber > 14) {
-                            alert("Duration set to 14 (Add multiple todos if duration > 14 days)")
+                            // alert("Duration set to 14 (Add multiple todos if duration > 14 days)")
+                            // alert("Maximum duration day number set to 14 (Add multiple dates if duration > 14 days).")
+                            alert(durationDayNumberLargerThanFourteen[selectedLanguage]);
                             durationDaysNumber = 14;
                         }
 
@@ -3828,7 +3875,8 @@ let plannedTodosObjectsArray = [];
 
         // Past dates should not be added!?
         else if (plannedTodos.length >= 0 && isCopy === false && newTodo.date < dateDisplay.textContent) {
-            alert("You can't make plans for yesterdays :)");
+            // alert("You can't make plans for yesterdays :)");
+            alert(cantPlanThePast[selectedLanguage]);
         }
 
         // _ _ _
@@ -3931,12 +3979,14 @@ let plannedTodosObjectsArray = [];
 
     // Get an alert if recurring day-s radio button is selected (but 'Select days' or 'Duration (days) are unchecked)
     if (isRecurringDayRadioButton.checked === true && isRecurringWeekDayNameRadioButton.checked === false && isRecurringWeekDayNumberRadioButton.checked === false) {
-        alert('Please make a selection (Select days or duration)');
+        // alert('Please make a selection (Select days or duration)');
+        alert(selectRecurringDaysOrDuration[selectedLanguage]);
     }
 
     // Get an alert if recurring day-s radio button is selected (but 'Select days' or 'Duration (days) are unchecked)
     if (isRecurringWeekRadioButton.checked === true && isRecurringWeekNrOneRadioButton.checked === false && isRecurringWeekNrTwoRadioButton.checked === false && isRecurringWeekNrThreeRadioButton.checked === false && isRecurringWeekNrFourRadioButton.checked === false) {
-        alert('Please make a selection (Number of weeks)');
+        // alert('Please make a selection (Number of weeks)');
+        alert(selectRecurringNumberOfWeeks[selectedLanguage]);
     }
 
     recurringYearDayDurationInput.value = 1;

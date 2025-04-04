@@ -159,6 +159,12 @@ a:link:active, a:visited:active {
     justify-content: center;
   }
 
+  #trigger-action-relaxation,
+  #trigger-act {
+    display: flex;
+    justify-content: center;
+}
+
 /* Computer screens and larger (start) */
 @media screen and (min-width: 1024px) {
 
