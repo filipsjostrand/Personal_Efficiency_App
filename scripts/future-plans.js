@@ -40,6 +40,31 @@ const selectRecurringNumberOfWeeks = {
     en: `Please make a selection (Number of weeks).`,
 }
 
+const alertCheckValidDate = {
+    sv: `Ogiltigt (otillåtet) värde. Föregående inlagt datum läggs in i stället.`,
+    en: `Invalid date. Assigning default date.`,
+}
+
+const alertAddBeforeEdit = {
+    sv: `Lägg till uppgift (innan ändringar görs).`,
+    en: `Add tasks before editing.`,
+}
+
+const alertEnterFileName = {
+    sv: `Vänligen välj ett filnamn.`,
+    en: `Please enter a file name.`,
+}
+
+const alertFileNameElementNotFound = {
+    sv: `Filnamn saknas.`,
+    en: `File name element not found.`,
+}
+
+const alertEnterFileName2 = {
+    sv: `Vänligen välj ett filnamn.`,
+    en: `Please enter a file name.`,
+}
+
 // // Import the variable
 // import { exportedLanguageVariable } from './language.js';
 
@@ -4201,7 +4226,8 @@ function updateRecurringPlannedTodos(plannedTodos) {
                 const todoValue = todoTextArea.value;
 
                 if (plannedTodos.length === 0) {
-                    alert("Add tasks before editing");
+                    // alert("Add tasks before editing");
+                    alert(alertAddBeforeEdit[selectedLanguage]);
                     console.log("Add tasks before editing");
                     // removeEditDateButton(dataId);
                     // isDateFieldFocus = false;
@@ -4374,7 +4400,8 @@ function updateRecurringPlannedTodos(plannedTodos) {
                 }
             } else if (newDate === undefined || regexA.test(newDate) === false || regexB.test(newDate) === false || isValidDateExceptFebruary(newDate) === false || isValidFebruaryDate(newDate) === false) {
                 // If invalid or not today or later, assign defaultDate
-                alert("Invalid date. Assigning default date.");
+                // alert("Invalid date. Assigning default date.");
+                alert(alertCheckValidDate[selectedLanguage]);
 
                 newDate = defaultDate;
                 dateCollection[dataId].value = defaultDate;
@@ -5664,7 +5691,7 @@ function checkIfDateAndTextAreEmpty() {
                         // && currentSundayTodos.length === 9
                     ) {
                         dateCollection[dataId].value = '';
-                        alert('Unavailable selection: The task limit has been reached for that day.')
+                        // alert('Unavailable selection: The task limit has been reached for that day.')
                     }
 
                     // console.log("JSON.stringify(plannedTodos) = " + JSON.stringify(plannedTodos));
@@ -9811,7 +9838,7 @@ function addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId) 
                 // && currentSundayTodos.length === 9
             ) {
                 dateCollection[dataId].value = '';
-                alert('Unavailable selection: The task limit has been reached for that day.')
+                // alert('Unavailable selection: The task limit has been reached for that day.')
             }
 
             // Edit date (1-3 plannedTodos, index: 0-2) (2 start)
@@ -9860,11 +9887,12 @@ function addDynamicTodoContainer(dynamicContainerToken, dynamicContainerDataId) 
 
             // Edit plannedTodos (object) when todo (DOM-list) is changed
 
-            if (todoCollection[dataId].value === "ooa") {
+            // if (todoCollection[dataId].value === "ooa") {
 
-            }
+            // }
 
-            else if (todoCollection[dataId].value !== '') {
+            // else if (todoCollection[dataId].value !== '') {
+            if (todoCollection[dataId].value !== '') {
 
                 // Om måndag-array-objekt finns, gå igenom alla måndags-objekt,    OM måndags-objekt-datum är lika plannedTodos-objekt-datum     &&  måndags-objekt-todo är lika plannedTodos-objekt-todo (för aktuell todo-liste-rad)  DÅ  (Hämta todo-värden från DOM-raden och lägg in i week schedule (för måndags-objekten i tur och ordning, efter "i"))
                 if (currentMondayTodos.length > 0) {
@@ -10582,7 +10610,7 @@ function save_func() {
 
     // Check if the file name is not empty
     if (!fileName) {
-        alert("Please enter a file name.");
+        alert(alertEnterFileName[selectedLanguage]);
         return;
     }
 
@@ -10678,14 +10706,14 @@ async function saveAs() {
         // Get the file name from the input field
         const fileNameElement = document.getElementById('file-name');
         if (!fileNameElement) {
-            alert("File name element not found.");
+            alert(alertFileNameElementNotFound[selectedLanguage]);
             return;
         }
 
         // const fileName = fileNameElement.innerText || fileNameElement.textContent;
         const fileName = fileNameElement.value;
         if (!fileName) {
-            alert("Please enter a file name.");
+            alert(alertEnterFileName2[selectedLanguage]);
             return;
         }
 
