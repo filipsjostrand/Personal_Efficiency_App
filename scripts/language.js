@@ -404,17 +404,19 @@ const futureRememberSave = {
 const futureDesc = {
   sv: `Hantera <u id="current-plan-words">Framtidsplaner</u> och visa <u id="past-tasks-words">Tidigare händelser</u>:
     <ul>
-      <li id="add-list">Lägg till uppgift / Ladda fil (Schema).</li>
-      <li id="save-list">Spara (Schema).</li>
-      <li id="edit-list">Redigera (i tabell).</li>
+      <li id="add-list">Lägg till uppgift / Ladda upp fil (Schema).</li>
+      <li id="save-list">Spara fil (Schema).</li>
+      <li id="dl-list">Ladda ner fil (Schema).</li>
+      <li id="edit-list">Redigera schema (i tabell).</li>
       <li id="copy-clear-list">Kopiera/rensa (tidigare händelser).</li>
     </ul>
   `,
   en: `Handle <u id="current-plan-words">"Future Plans"</u> and watch <u id="past-tasks-words">Past tasks</u>:
     <ul>
-      <li id="add-list">Add Task / Load File (Schedule)..</li>
-      <li id="save-list">Save (Schedule).</li>
-      <li id="edit-list">Edit (in table).</li>
+      <li id="add-list">Add Task / Upload File (Schedule).</li>
+      <li id="save-list">Save file (Schedule).</li>
+      <li id="dl-list">Download file (Schedule).</li>
+      <li id="edit-list">Edit schedule (in table).</li>
       <li id="copy-clear-list">Copy/clear (past tasks).</li>
     </ul>
   `,
