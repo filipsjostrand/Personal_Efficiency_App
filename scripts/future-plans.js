@@ -5,6 +5,16 @@ const emptyTaskAlert = {
     en: `Please add todos before editing.`,
     }
 
+const ifDurationGreaterThanSeven = {
+    sv: `Maxgräns för återkommande vecko-uppgifter är 7 dagar.`,
+    en: `The upper limit for recurring week tasks is 7 days.`,
+    }
+
+const ifDurationGreaterThanTwentyEight = {
+    sv: `Maxgräns för antal återkommande uppgifter är 28.`,
+    en: `The upper limit for the number of recurring tasks is 28.`,
+    }
+
 const copyAlreadyExists = {
     sv: `Aktuell todo finns redan.`,
     en: `Current todo already exists.`,
@@ -63,6 +73,11 @@ const alertFileNameElementNotFound = {
 const alertEnterFileName2 = {
     sv: `Vänligen välj ett filnamn.`,
     en: `Please enter a file name.`,
+}
+
+const confirmRemoveAllCopiesOfRecurringTask = {
+    sv: `Ta bort den här samt alla kopior av den här återkommande uppgiften?`,
+    en: `Remove this task and all the copies of this recurring task?`,
 }
 
 // // Import the variable
@@ -2673,12 +2688,28 @@ let plannedTodosObjectsArray = [];
         }
         else if (selectedPeriod === 'week') {
             duration = weekInput.value;
+            if (weekInput.value > 7) {
+                alert(ifDurationGreaterThanSeven[selectedLanguage]);
+                weekInput.value = 7;
+                duration = 7;
+            }
         }
         else if (selectedPeriod === 'month') {
             duration = monthInput.value;
+            if (monthInput.value > 28) {
+                alert(ifDurationGreaterThanTwentyEight[selectedLanguage]);
+                monthInput.value = 28;
+                duration = 28;
+            }
         }
         else if (selectedPeriod === 'year') {
-            duration = yearInput.value; }
+            duration = yearInput.value;
+            if (yearInput.value > 28) {
+                alert(ifDurationGreaterThanTwentyEight[selectedLanguage]);
+                yearInput.value = 28;
+                duration = 28;
+            }
+        }
         else {
             duration = "1"; // Default value if no period is selected
         }
@@ -6203,7 +6234,7 @@ let specificTodoContainer = wrapperContainer.getElementsByClassName('todo-contai
 
     function removeAllRecurringCopies() {
         // Display a confirm dialog box
-        let userResponse = confirm("Remove all copies of this recurring task?");
+        let userResponse = confirm(confirmRemoveAllCopiesOfRecurringTask[selectedLanguage]);
 
         // Check the user's response
         if (userResponse) {
