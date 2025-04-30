@@ -66,6 +66,21 @@
   const dynamicLanguageImage = document.querySelector(".flag-div");
   const fetchLanguageImage = document.querySelector(".flag-div").innerHTML;
 
+  var languageSelectId = document.getElementById("select-language");
+
+  var selectedLanguage;
+
+  // Select the dropdown element
+  var languageSelectElement = document.querySelector('.language-selector');
+  var languageSelectVariable;
+  var languageVariable = 'sv';
+  sessionStorage.setItem("languageVariable", languageVariable);
+  var selectedValue;
+
+   languageSelectElement.value = 'sv'
+
+   selectedLanguage = sessionStorage.getItem("languageVariable");
+
   function changeFlagImage() {
     dynamicLanguageImage.innerHTML =
     fetchLanguageImage +
@@ -73,11 +88,30 @@
   };
   // changeFlagImage();
 
+  changeFlagImage();
+
+      if (!selectedLanguage) {
+        selectedLanguage = 'sv';
+        runTranslation(selectedLanguage);
+      }
+
 
   // _ _ _
 
-//  var languageSelector = document.querySelector(".language-selector");
  var languageSelectId = document.getElementById("select-language");
+
+ var selectedLanguage;
+
+ // Select the dropdown element
+ var languageSelectElement = document.querySelector('.language-selector');
+ var languageSelectVariable;
+ var languageVariable = 'sv';
+ sessionStorage.setItem("languageVariable", languageVariable);
+ var selectedValue;
+
+languageSelectElement.value = 'sv'
+
+selectedLanguage = sessionStorage.getItem("languageVariable");
 
   //Översättning (navbar)
 
@@ -106,11 +140,11 @@
     en: "About",
   }
 
-  document.getElementById('top-todos').innerHTML = navbarTodo[selectedLanguage];
-  document.getElementById('weekly-calendar').innerHTML = navbarWeek[selectedLanguage];
-  document.getElementById('important-dates').innerHTML = navbarPlan[selectedLanguage];
-  document.getElementById('timer').innerHTML = navbarTimer[selectedLanguage];
-  document.getElementById('about-me').innerHTML = navbarAbout[selectedLanguage];
+  // document.getElementById('top-todos').innerHTML = navbarTodo[selectedLanguage];
+  // document.getElementById('weekly-calendar').innerHTML = navbarWeek[selectedLanguage];
+  // document.getElementById('important-dates').innerHTML = navbarPlan[selectedLanguage];
+  // document.getElementById('timer').innerHTML = navbarTimer[selectedLanguage];
+  // document.getElementById('about-me').innerHTML = navbarAbout[selectedLanguage];
 
 
   const monDayAbb = {
@@ -290,12 +324,12 @@ const infoBullets = {
   }
 
 
-document.querySelector('.info').innerHTML = infoBullets[selectedLanguage];
-document.querySelector('.add-button-v2').innerHTML = addButton2[selectedLanguage];
-document.getElementById('top3-label').innerHTML = top3Label[selectedLanguage];
-document.getElementById('input-box-v2').placeholder = placeholderTop3Text[selectedLanguage];
-document.getElementById('app-info').innerHTML = appInfo[selectedLanguage];
-document.getElementById('todos-heading').innerHTML = top3Todos[selectedLanguage];
+// document.querySelector('.info').innerHTML = infoBullets[selectedLanguage];
+// document.querySelector('.add-button-v2').innerHTML = addButton2[selectedLanguage];
+// document.getElementById('top3-label').innerHTML = top3Label[selectedLanguage];
+// document.getElementById('input-box-v2').placeholder = placeholderTop3Text[selectedLanguage];
+// document.getElementById('app-info').innerHTML = appInfo[selectedLanguage];
+// document.getElementById('todos-heading').innerHTML = top3Todos[selectedLanguage];
 
 // Översättning (veckoschema)
 // week schedule
@@ -1386,17 +1420,21 @@ const userMessagePlaceholder = {
     // }
     // }]
 
-        var selectedLanguage;
+// _ _ _
 
-        // Select the dropdown element
-        var languageSelectElement = document.querySelector('.language-selector');
-        var languageSelectVariable;
-        var languageVariable = 'sv';
-        sessionStorage.setItem("languageVariable", languageVariable);
-        var selectedValue;
-        // var languageSelectVariable = languageSelectElement.options[languageSelectElement.selectedIndex].text;
+      //   var selectedLanguage;
 
-      languageSelectElement.value = 'sv'
+      //   // Select the dropdown element
+      //   var languageSelectElement = document.querySelector('.language-selector');
+      //   var languageSelectVariable;
+      //   var languageVariable = 'sv';
+      //   sessionStorage.setItem("languageVariable", languageVariable);
+      //   var selectedValue;
+      //   // var languageSelectVariable = languageSelectElement.options[languageSelectElement.selectedIndex].text;
+
+      // languageSelectElement.value = 'sv'
+
+      // _ _ _
 
       if (!selectedLanguage) {
         console.log("HERE!!");
@@ -1659,6 +1697,7 @@ const userMessagePlaceholder = {
           changeFlagImage();
         }
 
+        runTranslation(selectedLanguage);
         // Declare the variable
         // export const exportedLanguageVariable = selectedLanguage;
 

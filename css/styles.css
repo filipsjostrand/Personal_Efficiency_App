@@ -1102,6 +1102,7 @@ _ _ _ */
 
   #rec-task {
     width: 480px;
+    padding-top: 10px;
   }
 
   #periodicity, #per-weekday, #per-week, #per-month, #per-year {

@@ -1586,19 +1586,41 @@ const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 // _ _ _
 
-languageSelectElement.addEventListener('change', function() {
-    console.log("languageSelectElement.addEventListener('change' ... körs")
+document.addEventListener('DOMContentLoaded', function () {
+    const languageSelectElement = document.getElementById('language-select'); // or querySelector('.your-class')
+
+    if (!languageSelectElement) {
+        console.warn('languageSelectElement not found');
+        return;
+    }
+
+    languageSelectElement.addEventListener('change', function (event) {
+        const selectedValue = event.target.value;
+
         if (selectedValue === 'sv') {
             selectedLanguage = 'sv';
-            console.log("selectedLanguage sv (future-plans change) = " + selectedLanguage)
+            putInSelectedLanguageMultipleTimes(selectedLanguage);
+        } else if (selectedValue === 'en') {
+            selectedLanguage = 'en';
             putInSelectedLanguageMultipleTimes(selectedLanguage);
         }
-        else if (selectedValue === 'en') {
-            selectedLanguage = 'en';
-            console.log("selectedLanguage en (future-plans change) = " + selectedLanguage);
-            putInSelectedLanguageMultipleTimes(selectedLanguage);
-    }
-})
+    });
+});
+
+
+// languageSelectElement.addEventListener('change', function() {
+//     console.log("languageSelectElement.addEventListener('change' ... körs")
+//         if (selectedValue === 'sv') {
+//             selectedLanguage = 'sv';
+//             console.log("selectedLanguage sv (future-plans change) = " + selectedLanguage)
+//             putInSelectedLanguageMultipleTimes(selectedLanguage);
+//         }
+//         else if (selectedValue === 'en') {
+//             selectedLanguage = 'en';
+//             console.log("selectedLanguage en (future-plans change) = " + selectedLanguage);
+//             putInSelectedLanguageMultipleTimes(selectedLanguage);
+//     }
+// })
 
 console.log("selectedLanguage i future-plans = " + selectedLanguage);
 

@@ -20,6 +20,8 @@ document.getElementById('resetButton').addEventListener('click', resetTimer);
 // Uppdatera isCountingDown-variabel när timer-typ-rolldown ("Count up" <-> "Countdown") ändras
 countModeSelect.addEventListener('change', timerCountTypeController)
 
+selectedLanguage = sessionStorage.getItem("languageVariable");
+
 if (selectedLanguage === undefined) {
     selectedLanguage = 'sv';
     } else if (typeof(selectedLanguage) === "string" && typeof(languageVariable) === "string") {
