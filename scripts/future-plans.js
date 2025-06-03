@@ -1587,10 +1587,14 @@ const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 // _ _ _
 
 document.addEventListener('DOMContentLoaded', function () {
-    const languageSelectElement = document.getElementById('language-select'); // or querySelector('.your-class')
+    //const languageSelectElement = document.getElementById('language-select'); // or querySelector('.your-class')
+    languageSelectElement = window.languageSelectElement;
+    // console.log("languageSelectElement.innerHTML: " + languageSelectElement.innerHTML)
+    // console.log("languageSelectElement.value: " + languageSelectElement.value)
 
     if (!languageSelectElement) {
         console.warn('languageSelectElement not found');
+        var languageSelectElement = document.getElementById('language-select')
         return;
     }
 
